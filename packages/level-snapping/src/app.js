@@ -5,6 +5,7 @@ import decision from "../resources/decision.dmn";
 import DmnModeler from "dmn-js/lib/Modeler";
 
 import createMoveSnapping from "./snapping";
+import levels from "./levels";
 
 var dmnJS = new DmnModeler({
   container: "#canvas",
@@ -12,7 +13,7 @@ var dmnJS = new DmnModeler({
     bindTo: window
   },
   drd: {
-    additionalModules: [ createMoveSnapping ]
+    additionalModules: [ createMoveSnapping, levels ]
   }
 });
 
