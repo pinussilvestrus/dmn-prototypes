@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "lerna run build -- --silent",
-    "serve": "serve .",
+    "postinstall": "lerna bootstrap",
+    "serve": "serve packages",
     "dev": "run-s build serve"
   },
   "repository": {
