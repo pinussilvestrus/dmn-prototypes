@@ -5,7 +5,6 @@ import CreateMoveSnapping from "diagram-js/lib/features/snapping/CreateMoveSnapp
 /**
  * Snap during create and move.
  *
- * @param {EventBus} eventBus
  * @param {Injector} injector
  */
 export default function DmnCreateMoveSnapping(injector) {
@@ -16,7 +15,7 @@ inherits(DmnCreateMoveSnapping, CreateMoveSnapping);
 
 DmnCreateMoveSnapping.$inject = ["injector"];
 
-DmnCreateMoveSnapping.prototype.addSnapTargetPoints = function(snapPoints, shape, target) {
+DmnCreateMoveSnapping.prototype.addSnapTargetPoints = function(snapPoints) {
   // CreateMoveSnapping.prototype.addSnapTargetPoints.call(this, snapPoints, shape, target);
 
   // snap levels
