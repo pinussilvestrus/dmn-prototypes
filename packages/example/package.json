@@ -1,0 +1,20 @@
+{
+  "name": "example",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dmn-js": "^7.2.1"
+  },
+  "devDependencies": {
+    "raw-loader": "^4.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
