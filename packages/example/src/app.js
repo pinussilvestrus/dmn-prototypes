@@ -6,9 +6,11 @@ import DmnViewer from "dmn-js";
 
 var dmnJS = new DmnViewer({
   container: "#canvas",
-  keyboard: {
-    bindTo: window
-  }
+  common: {
+    keyboard: {
+      bindTo: document
+    }
+  }   
 });
 
 dmnJS.importXML(decision, function(err) {

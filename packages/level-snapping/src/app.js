@@ -9,8 +9,10 @@ import levels from "./levels";
 
 var dmnJS = new DmnModeler({
   container: "#canvas",
-  keyboard: {
-    bindTo: window
+  common: {
+    keyboard: {
+      bindTo: document
+    }
   },
   drd: {
     additionalModules: [ createMoveSnapping, levels ]
