@@ -20,9 +20,33 @@
       href="./node_modules/photoswipe/dist/default-skin/default-skin.css"
     />
 
+    <style>
+      h1 {
+        padding: 10px;
+      }
+
+      #btn {
+        padding: 10px;
+        display: inline;
+        cursor: pointer;
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+      }
+    </style>
+
     <title>drd-layout-sketches</title>
   </head>
   <body>
+    <h1>DRD Layout Sketches</h1>
+
+    <div id="btn">
+      Show Sketches
+    </div>
+
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
       <!-- Background of PhotoSwipe. 
@@ -96,94 +120,98 @@
       </div>
     </div>
 
-    <!-- Core JS file -->
     <script src="./node_modules/photoswipe/dist/photoswipe.min.js"></script>
 
-    <!-- UI JS file -->
     <script src="./node_modules/photoswipe/dist/photoswipe-ui-default.min.js"></script>
 
     <script>
-      var pswpElement = document.querySelectorAll(".pswp")[0];
+      function open() {
+        var pswpElement = document.querySelectorAll(".pswp")[0];
 
-      // build items array
-      var items = [
-        {
-          src: "./resources/Original.png",
-          w: 4884,
-          h: 1584
-        },
-        {
-          src: "./resources/Tree Layouting.png",
-          w: 1820,
-          h: 859
-        },
-        {
-          src: "./resources/Colors.png",
-          w: 1820,
-          h: 859
-        },
-        {
-          src: "./resources/WithoutInputs.png",
-          w: 1608,
-          h: 659
-        },
-        {
-          src: "./resources/Hover.png",
-          w: 1820,
-          h: 859
-        },
-        {
-          src: "./resources/MindMap.png",
-          w: 1469,
-          h: 875
-        },
-        {
-          src: "./resources/Radial.png",
-          w: 1886,
-          h: 1473
-        },
-        {
-          src: "./resources/LeftRight.png",
-          w: 1454,
-          h: 1142
-        },
-        {
-          src: "./resources/ManhattanCurved.png",
-          w: 3324,
-          h: 1616
-        },
-        {
-          src: "./resources/Color_2.png",
-          w: 1820,
-          h: 859
-        },
-        {
-          src: "./resources/LeftRightCurved.png",
-          w: 1499,
-          h: 1142
-        },
-        {
-          src: "./resources/Polyline.png",
-          w: 1820,
-          h: 859
-        }
-      ];
+        var items = [
+          {
+            src: "./resources/Original.png",
+            w: 4884,
+            h: 1584
+          },
+          {
+            src: "./resources/Tree Layouting.png",
+            w: 1820,
+            h: 859
+          },
+          {
+            src: "./resources/Colors.png",
+            w: 1820,
+            h: 859
+          },
+          {
+            src: "./resources/WithoutInputs.png",
+            w: 1608,
+            h: 659
+          },
+          {
+            src: "./resources/Hover.png",
+            w: 1820,
+            h: 859
+          },
+          {
+            src: "./resources/MindMap.png",
+            w: 1469,
+            h: 875
+          },
+          {
+            src: "./resources/Radial.png",
+            w: 1886,
+            h: 1473
+          },
+          {
+            src: "./resources/LeftRight.png",
+            w: 1454,
+            h: 1142
+          },
+          {
+            src: "./resources/ManhattanCurved.png",
+            w: 3324,
+            h: 1616
+          },
+          {
+            src: "./resources/Color_2.png",
+            w: 1820,
+            h: 859
+          },
+          {
+            src: "./resources/LeftRightCurved.png",
+            w: 1499,
+            h: 1142
+          },
+          {
+            src: "./resources/Polyline.png",
+            w: 1820,
+            h: 859
+          }
+        ];
 
-      // define options (if needed)
-      var options = {
-        // optionName: 'option value'
-        // for example:
-        index: 0 // start at first slide
-      };
+        var options = {
+          index: 0,
+          history: false,
+          focus: false,
+          showAnimationDuration: 0,
+          hideAnimationDuration: 0
+        };
 
-      // Initializes and opens PhotoSwipe
-      var gallery = new PhotoSwipe(
-        pswpElement,
-        PhotoSwipeUI_Default,
-        items,
-        options
-      );
-      gallery.init();
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          items,
+          options
+        );
+
+        gallery.init();
+      }
+
+      open();
+
+      document.getElementById('btn').onclick = open;
     </script>
   </body>
 </html>
