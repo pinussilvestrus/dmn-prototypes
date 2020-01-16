@@ -5,6 +5,7 @@ Prototypes built via our DMN Innovation Process, Q1 2020
 ## Demos
 
  - [level-snapping](./packages/level-snapping)
+ - [drd-layout-sketches](./packages/drd-layout-sketches)
 
 ## Setup
 
