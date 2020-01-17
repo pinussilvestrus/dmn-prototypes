@@ -25,8 +25,9 @@
         padding: 10px;
       }
 
-      #btn {
-        padding: 10px;
+      .btn {
+        padding: 0.5rem;
+        margin: 0.5rem;
         display: inline;
         cursor: pointer;
         color: #fff;
@@ -36,6 +37,21 @@
         line-height: 1.5;
         border-radius: 0.25rem;
       }
+
+      .final-gallery {
+        visibility: hidden;
+        display: block;
+        margin-top: 0.5rem;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .column {
+        flex: 33.33%;
+        padding: 5px;
+      }
     </style>
 
     <title>drd-layout-sketches</title>
@@ -43,8 +59,35 @@
   <body>
     <h1>DRD Layout Sketches</h1>
 
-    <div id="btn">
-      Show Sketches
+    <div class="btn" id="btn-all">
+      Show All Sketches
+    </div>
+
+    <div class="btn" id="btn-final">
+      Show Final Sketches
+    </div>
+
+    <div class="btn" id="btn-final-slides">
+      Show Final Sketches (Slideshow)
+    </div>
+
+    <div class="final-gallery">
+      <div class="row">
+        <div class="column">
+          <img src="./resources/Colors.png" style="width: 100%;" />
+        </div>
+        <div class="column">
+          <img src="./resources/final/Curved_new.png" style="width: 100%;" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <img src="./resources/final/LeftRight_new.png" style="width: 100%;" />
+        </div>
+        <div class="column">
+          <img src="./resources/final/Radial_new.png" style="width: 100%;" />
+        </div>
+      </div>
     </div>
 
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
@@ -125,9 +168,34 @@
     <script src="./node_modules/photoswipe/dist/photoswipe-ui-default.min.js"></script>
 
     <script>
-      function open() {
-        var pswpElement = document.querySelectorAll(".pswp")[0];
+      function openFinal() {
+        var items = [
+          {
+            src: "./resources/Colors.png",
+            w: 1820,
+            h: 859
+          },
+          {
+            src: "./resources/final/Curved_new.png",
+            w: 1571,
+            h: 831
+          },
+          {
+            src: "./resources/final/LeftRight_new.png",
+            w: 1018,
+            h: 858
+          },
+          {
+            src: "./resources/final/Radial_new.png",
+            w: 1758,
+            h: 1443
+          }
+        ];
 
+        openGallery(items);
+      }
+
+      function openAll() {
         var items = [
           {
             src: "./resources/Original.png",
@@ -196,6 +264,12 @@
           }
         ];
 
+        openGallery(items);
+      }
+
+      function openGallery(items) {
+        var pswpElement = document.querySelectorAll(".pswp")[0];
+
         var options = {
           index: 0,
           history: false,
@@ -214,9 +288,14 @@
         gallery.init();
       }
 
-      open();
+      function openFinalDirectly() {
+        document.getElementsByClassName("final-gallery")[0].style.visibility =
+          "visible";
+      }
 
-      document.getElementById('btn').onclick = open;
+      document.getElementById("btn-all").onclick = openAll;
+      document.getElementById("btn-final-slides").onclick = openFinal;
+      document.getElementById("btn-final").onclick = openFinalDirectly;
     </script>
   </body>
 </html>
