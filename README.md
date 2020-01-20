@@ -13,6 +13,7 @@ Prototypes built via our DMN Innovation Process, Q1 2020
     - [hypothesis-1-final](./packages/hypothesis-1-final)
 - Hypothesis 2: DRD Relations
     - [drd-relation-prototype](./packages/drd-relation-prototype)
+    - [innovation-week-linus](./packages/innovation-week-linus)
 
 ## Setup
 
