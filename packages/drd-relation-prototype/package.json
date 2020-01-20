@@ -1,0 +1,10 @@
+{
+  "name": "drd-relation-prototype",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "build": "echo \"No further building needed\""
+  },
+  "author": "",
+  "license": "MIT"
+}
