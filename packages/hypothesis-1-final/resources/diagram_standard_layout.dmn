@@ -14,27 +14,27 @@
         <biodi:waypoints x="828" y="161.921875" />
       </biodi:edge>
       <biodi:edge source="Decision_1t5tsxt">
-        <biodi:waypoints x="272" y="323.921875" />
+        <biodi:waypoints x="272" y="323" />
         <biodi:waypoints x="810" y="186.921875" />
         <biodi:waypoints x="810" y="162.921875" />
       </biodi:edge>
       <biodi:edge source="Decision_1adzzst">
-        <biodi:waypoints x="1083" y="322.921875" />
+        <biodi:waypoints x="1076" y="321" />
         <biodi:waypoints x="889" y="182.921875" />
         <biodi:waypoints x="889" y="161.921875" />
       </biodi:edge>
       <biodi:edge source="Decision_15zeass">
-        <biodi:waypoints x="1289" y="322.921875" />
+        <biodi:waypoints x="1276" y="322" />
         <biodi:waypoints x="907" y="183.921875" />
         <biodi:waypoints x="907" y="161.921875" />
       </biodi:edge>
       <biodi:edge source="Decision_1917kau">
-        <biodi:waypoints x="1499" y="322.921875" />
+        <biodi:waypoints x="1485" y="321" />
         <biodi:waypoints x="925" y="182.921875" />
         <biodi:waypoints x="925" y="161.921875" />
       </biodi:edge>
       <biodi:edge source="Decision_1utg8st">
-        <biodi:waypoints x="871" y="324" />
+        <biodi:waypoints x="871" y="322" />
         <biodi:waypoints x="869" y="161" />
       </biodi:edge>
     </extensionElements>
@@ -70,7 +70,7 @@
   </decision>
   <decision id="Decision_15zeass" name="Criminal Offenses&#10;(sbl §7g+9, sbf §5)">
     <extensionElements>
-      <biodi:bounds x="1203" y="323" width="180" height="80" />
+      <biodi:bounds x="1190" y="322" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_0msf6ri">
       <input id="InputClause_0qciy3a">
@@ -81,10 +81,10 @@
   </decision>
   <decision id="Decision_1adzzst" name="Identiy &#10;(sbl §7a, sbf §1)">
     <extensionElements>
-      <biodi:bounds x="993" y="324" width="180" height="80" />
+      <biodi:bounds x="986" y="322" width="180" height="80" />
       <biodi:edge source="Decision_05mun60">
-        <biodi:waypoints x="1083" y="521.921875" />
-        <biodi:waypoints x="1083" y="403.921875" />
+        <biodi:waypoints x="1077" y="522" />
+        <biodi:waypoints x="1076" y="402" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
@@ -99,10 +99,10 @@
   </decision>
   <decision id="Decision_05mun60" name="Identity Doubts">
     <extensionElements>
-      <biodi:bounds x="993" y="522" width="180" height="80" />
+      <biodi:bounds x="987" y="522" width="180" height="80" />
       <biodi:edge source="Decision_19h5ng1">
-        <biodi:waypoints x="1083" y="704.921875" />
-        <biodi:waypoints x="1083" y="601.921875" />
+        <biodi:waypoints x="1078" y="705" />
+        <biodi:waypoints x="1077" y="602" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
@@ -117,7 +117,7 @@
   </decision>
   <decision id="Decision_19h5ng1" name="Country classification">
     <extensionElements>
-      <biodi:bounds x="993" y="705" width="180" height="80" />
+      <biodi:bounds x="988" y="705" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_0znqbko">
       <input id="InputClause_0ah1mdi">
@@ -128,21 +128,21 @@
   </decision>
   <decision id="Decision_1utg8st" name="Age&#10;(sbl §7b+15+16+17)">
     <extensionElements>
-      <biodi:bounds x="781" y="324" width="180" height="80" />
+      <biodi:bounds x="781" y="322" width="180" height="80" />
       <biodi:edge source="InputData_0ac4zig">
-        <biodi:waypoints x="292" y="533.921875" />
+        <biodi:waypoints x="292" y="535" />
         <biodi:waypoints x="798" y="424.921875" />
-        <biodi:waypoints x="798" y="403.921875" />
+        <biodi:waypoints x="798" y="402" />
       </biodi:edge>
       <biodi:edge source="InputData_0ega55b">
         <biodi:waypoints x="592" y="536.921875" />
         <biodi:waypoints x="871" y="424.921875" />
-        <biodi:waypoints x="871" y="403.921875" />
+        <biodi:waypoints x="871" y="402" />
       </biodi:edge>
       <biodi:edge source="InputData_03gtin1">
         <biodi:waypoints x="452" y="536.921875" />
         <biodi:waypoints x="834" y="424.921875" />
-        <biodi:waypoints x="834" y="404.921875" />
+        <biodi:waypoints x="834" y="403" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
@@ -163,7 +163,7 @@
   </decision>
   <inputData id="InputData_0ac4zig" name="Stateless Person&#10;(sbl §16)">
     <extensionElements>
-      <biodi:bounds x="192" y="534" width="125" height="45" />
+      <biodi:bounds x="192" y="535" width="125" height="45" />
     </extensionElements>
   </inputData>
   <inputData id="InputData_087iruh" name="Nordic Nationals &#10;(sbl §13)">
@@ -178,7 +178,7 @@
   </inputData>
   <inputData id="InputData_0r5ig3p" name="EEA/EFTA&#10;(sbl §14)">
     <extensionElements>
-      <biodi:bounds x="804" y="538" width="125" height="45" />
+      <biodi:bounds x="801" y="539" width="125" height="45" />
     </extensionElements>
   </inputData>
   <inputData id="InputData_03gtin1" name="Children as secondary persons&#10;(sbl §17)">
@@ -189,19 +189,15 @@
   <decision id="Decision_15iqsnt" name="Settlement Permit&#10;(sbl §7+14)">
     <extensionElements>
       <biodi:bounds x="579" y="322" width="180" height="80" />
-      <biodi:edge source="Decision_11i95tj">
-        <biodi:waypoints x="554" y="369.921875" />
-        <biodi:waypoints x="579" y="370.921875" />
-      </biodi:edge>
       <biodi:edge source="InputData_0ega55b">
         <biodi:waypoints x="567" y="536.921875" />
         <biodi:waypoints x="669" y="428.921875" />
         <biodi:waypoints x="669" y="402.921875" />
       </biodi:edge>
       <biodi:edge source="InputData_0r5ig3p">
-        <biodi:waypoints x="865" y="537.921875" />
+        <biodi:waypoints x="862" y="539" />
         <biodi:waypoints x="739" y="424.921875" />
-        <biodi:waypoints x="739" y="401.921875" />
+        <biodi:waypoints x="739" y="402" />
       </biodi:edge>
       <biodi:edge source="InputData_087iruh">
         <biodi:waypoints x="700" y="537.921875" />
@@ -211,6 +207,10 @@
         <biodi:waypoints x="416" y="536.921875" />
         <biodi:waypoints x="629" y="427.921875" />
         <biodi:waypoints x="629" y="401.921875" />
+      </biodi:edge>
+      <biodi:edge source="Decision_11i95tj">
+        <biodi:waypoints x="554" y="370" />
+        <biodi:waypoints x="579" y="370" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
@@ -249,9 +249,9 @@
         <biodi:waypoints x="499" y="403.921875" />
       </biodi:edge>
       <biodi:edge source="InputData_0ac4zig">
-        <biodi:waypoints x="241" y="533.921875" />
+        <biodi:waypoints x="241" y="535" />
         <biodi:waypoints x="401" y="428.921875" />
-        <biodi:waypoints x="401" y="402.921875" />
+        <biodi:waypoints x="401" y="403" />
       </biodi:edge>
       <biodi:edge source="InputData_03gtin1">
         <biodi:waypoints x="393" y="536.921875" />
@@ -280,11 +280,11 @@
   </decision>
   <decision id="Decision_1t5tsxt" name="Language&#10;(sbl §7f+8, sbf §4)">
     <extensionElements>
-      <biodi:bounds x="167" y="324" width="180" height="80" />
+      <biodi:bounds x="167" y="323" width="180" height="80" />
       <biodi:edge source="InputData_03gtin1">
         <biodi:waypoints x="363" y="536.921875" />
         <biodi:waypoints x="214" y="432.921875" />
-        <biodi:waypoints x="214" y="403.921875" />
+        <biodi:waypoints x="214" y="403" />
       </biodi:edge>
     </extensionElements>
     <informationRequirement>
@@ -299,7 +299,7 @@
   </decision>
   <decision id="Decision_1917kau" name="Realm&#10;(sbl §7c, sbf §2)">
     <extensionElements>
-      <biodi:bounds x="1410" y="323" width="180" height="80" />
+      <biodi:bounds x="1396" y="321" width="180" height="80" />
     </extensionElements>
     <decisionTable id="DecisionTable_04xmj1d">
       <input id="InputClause_0qezapv">
