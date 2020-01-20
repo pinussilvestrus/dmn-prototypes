@@ -8,6 +8,7 @@ Prototypes built via our DMN Innovation Process, Q1 2020
 
  - [level-snapping](./packages/level-snapping)
  - [drd-layout-sketches](./packages/drd-layout-sketches)
+ - [hypothesis-1-final](./packages/hypothesis-1-final)
 
 ## Setup
 
