@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DMN Innovation Week Prototype</title>
+  <link rel="stylesheet" href="https://unpkg.com/dmn-js@7.2.1/dist/assets/diagram-js.css">
+  <link rel="stylesheet" href="https://unpkg.com/dmn-js@7.2.1/dist/assets/dmn-js-shared.css">
+  <link rel="stylesheet" href="https://unpkg.com/dmn-js@7.2.1/dist/assets/dmn-js-drd.css">
+  <link rel="stylesheet" href="https://unpkg.com/dmn-js@7.2.1/dist/assets/dmn-js-decision-table.css">
+  <link rel="stylesheet" href="https://unpkg.com/dmn-js@7.2.1/dist/assets/dmn-js-decision-table-controls.css">
+  <link rel="stylesheet" href="https://unpkg.com/dmn-js@7.2.1/dist/assets/dmn-js-literal-expression.css">
+  <link rel="stylesheet" href="https://unpkg.com/dmn-js@7.2.1/dist/assets/dmn-font/css/dmn.css">
+
+  <script src="https://unpkg.com/dmn-js@7.2.1/dist/dmn-modeler.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.js"></script>
+  <script src="./diagram.js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div style="width: 100%; height: 100%;" id="canvas"></div>
+
+<dialog id="dialog" class="dms-container ref-input-editor">
+  <form id="form" method="dialog">
+    <p class="dms-fill-row">
+      <label class="dms-label">
+        Label:
+      </label>
+      <input class="ref-input-label dms-input" name="label" disabled>
+    </p>
+
+    <p class="dms-fill-row">
+      <label class="dms-label">
+        Input name:
+      </label>
+      <input class="ref-input-label dms-input"  name="name">
+    </p>
+
+    <p class="dms-fill-row">
+      <label class="dms-label">
+        Input type:
+      </label>
+      <select name="type" class="dms-select" required>
+        <option></option>
+        <option>boolean</option>
+        <option>string</option>
+        <option>integer</option>
+      </select>
+    </p>
+
+    <button style="float: right; padding: 10px 20px;">OK</button>
+  </form>
+</dialog>
+
+<dialog id="outputDialog" class="dms-container ref-input-editor">
+  <form id="outputForm" method="dialog">
+    <p class="dms-fill-row">
+      <label class="dms-label">
+        Label:
+      </label>
+      <input class="ref-input-label dms-input" name="label">
+    </p>
+
+    <p class="dms-fill-row">
+      <label class="dms-label">
+        Input/output name:
+      </label>
+      <input class="ref-input-label dms-input"  name="name">
+    </p>
+
+    <p class="dms-fill-row">
+      <label class="dms-label">
+        Input/output type:
+      </label>
+      <select name="type" class="dms-select" required>
+        <option></option>
+        <option>boolean</option>
+        <option>string</option>
+        <option>integer</option>
+      </select>
+    </p>
+
+    <button style="float: right; padding: 10px 20px;">OK</button>
+  </form>
+</dialog>
+
+<script>
+  var dmnJS = window.modeler = new DmnJS({
+    container: '#canvas'
+  });
+
+  const dialog = document.getElementById('dialog');
+  const form = document.getElementById('form');
+
+  const outputDialog = document.getElementById('outputDialog');
+  const outputForm = document.getElementById('outputForm');
+
+  const commandsMap = new Map();
+
+  const columnMap = new Map();
+
+  run();
+
+  async function run() {
+
+    await openDiagram(diagram);
+
+    const viewer = dmnJS.getActiveViewer();
+
+    dmnJS.on('views.changed', ({ activeView }) => {
+      if (activeView.element && activeView.element.id) {
+        const commands = commandsMap.get(activeView.element.id) || [];
+
+        for (const command of commands) {
+          command();
+        }
+
+        commandsMap.set(activeView.element.id, []);
+      }
+
+      if (activeView.type === 'drd') {
+        viewer.on('connection.removed', handleConnectionRemoved);
+        viewer.on('connection.added', handleConnectionAdded);
+      }
+    });
+
+
+    viewer.on('diagram.clear', () => {
+      viewer.off('connection.removed', handleConnectionRemoved);
+      viewer.off('connection.added', handleConnectionAdded);
+    });
+  }
+
+  function openDiagram(diagram) {
+    return new Promise((resolve, reject) => {
+      dmnJS.importXML(diagram, function(err) {
+
+        if (!err) {
+          var activeViewer = dmnJS.getActiveViewer();
+
+          activeViewer
+            .get('canvas')
+              .zoom('fit-viewport');
+
+          return resolve();
+        } else {
+          console.log('something went wrong:', err);
+
+          reject();
+        }
+      })
+    });
+  }
+
+  function handleConnectionAdded({ element }) {
+    const {
+      source,
+      target
+    } = element;
+
+    const { id } = source;
+
+    const { decisionTable } = source.businessObject;
+
+    const targetDecisionTable = target.businessObject.decisionTable;
+
+    if (!targetDecisionTable) {
+      return;
+    }
+
+    // remove empty column
+    if (!(commandsMap.get(target.id) && commandsMap.get(target.id).length) && isColumnEmpty(targetDecisionTable.input)) {
+      const command = () => {
+        const modeling = dmnJS.getActiveViewer().get('modeling');
+        const elementRegistry = dmnJS.getActiveViewer().get('elementRegistry');
+
+        modeling.removeCol(elementRegistry.get(targetDecisionTable.input[0].id));
+      }
+
+      addComand(target.id, command);
+    }
+
+    // map Decision Table outputs to inputs
+    if (decisionTable) {
+
+      const { output } = decisionTable;
+
+      if (isColumnEmpty(output)) {
+
+        const [ dialog, form ] = [ outputDialog, outputForm ];
+
+        dialog.addEventListener('close', event => {
+
+          const [
+            label,
+            text,
+            typeRef
+          ] = [
+            form.elements['label'].value,
+            form.elements['name'].value,
+            form.elements['type'].value
+          ];
+
+          const targetCommand = () => {
+            const modeling = dmnJS.getActiveViewer().get('modeling');
+
+            const col = modeling.addCol({ type: 'dmn:InputClause' }, 0);
+            modeling.editInputExpression(col.businessObject.inputExpression, { text, typeRef });
+            modeling.updateProperties(col, { label });
+
+            columnMap.set(id, [ col ]);
+          };
+
+          const sourceCommand = () => {
+            const modeling = dmnJS.getActiveViewer().get('modeling');
+            const elementRegistry = dmnJS.getActiveViewer().get('elementRegistry');
+
+            modeling.removeCol(elementRegistry.get(output[0].id));
+
+            const col = modeling.addCol({ type: 'dmn:OutputClause' }, 0);
+            modeling.updateProperties(col, { label, text, typeRef });
+          };
+
+          addComand(target.id, targetCommand);
+          addComand(id, sourceCommand);
+
+        }, { once: true });
+
+        /** @type {string} */
+        const label = source.businessObject.name;
+
+        form.reset();
+
+        form.elements['label'].value = label;
+        form.elements['name'].value = _.camelCase(label);
+
+        dialog.showModal();
+      } else {
+        const command = () => {
+          const modeling = dmnJS.getActiveViewer().get('modeling');
+
+          output.slice().reverse().forEach(({ name: text, typeRef, label }) => {
+
+            const col = modeling.addCol({ type: 'dmn:InputClause' }, 0);
+            modeling.editInputExpression(col.businessObject.inputExpression, { text, typeRef });
+            modeling.updateProperties(col, { label });
+
+            if (columnMap.has(id)) {
+              columnMap.set(id, [ ...columnMap.get(id), col ]);
+            } else {
+              columnMap.set(id, [ col ]);
+            }
+          });
+        };
+
+        addComand(target.id, command);
+      }
+    } else {
+
+      // add mapping for Input Data
+
+      /** @type {string} */
+      const bo = source.businessObject;
+      const label = bo.name;
+      const name = _.camelCase(label);
+
+      if (bo.variable && bo.variable.typeRef) {
+        const typeRef = bo.variable.typeRef;
+        const text = name;
+
+        const command = () => {
+          const modeling = dmnJS.getActiveViewer().get('modeling');
+
+          const col = modeling.addCol({ type: 'dmn:InputClause' }, 0);
+          modeling.editInputExpression(col.businessObject.inputExpression, { text, typeRef });
+          modeling.updateProperties(col, { label });
+
+          columnMap.set(id, [ col ]);
+        };
+
+        addComand(target.id, command);
+
+        return;
+      }
+
+      dialog.addEventListener('close', event => {
+
+        const [
+          label,
+          text,
+          typeRef
+        ] = [
+          form.elements['label'].value,
+          form.elements['name'].value,
+          form.elements['type'].value
+        ];
+
+        const drdFactory = dmnJS.getActiveViewer().get('drdFactory');
+        const modeling = dmnJS.getActiveViewer().get('modeling');
+
+        const variable = drdFactory.create('dmn:InformationItem', { typeRef });
+
+        modeling.updateProperties(source, { variable });
+
+        const command = () => {
+          const modeling = dmnJS.getActiveViewer().get('modeling');
+
+          const col = modeling.addCol({ type: 'dmn:InputClause' }, 0);
+          modeling.editInputExpression(col.businessObject.inputExpression, { text, typeRef });
+          modeling.updateProperties(col, { label });
+
+          columnMap.set(id, [ col ]);
+        };
+
+        addComand(target.id, command);
+      }, { once: true });
+
+      form.reset();
+
+      form.elements['label'].value = label;
+      form.elements['name'].value = name;
+
+      dialog.showModal();
+    }
+  }
+
+  function handleConnectionRemoved({ element }) {
+    const { source, target } = element;
+
+    const { id } = source;
+
+    if (!columnMap.has(id)) {
+      return;
+    }
+
+    const command = () => {
+      const viewer = dmnJS.getActiveViewer();
+      const elementRegistry = viewer.get('elementRegistry');
+      const modeling = viewer.get('modeling');
+
+      for (const column of columnMap.get(id)) {
+        const el = elementRegistry.get(column.id);
+        modeling.removeCol(el);
+      }
+
+      columnMap.delete(id);
+    }
+
+    if (!window.confirm('Do you also want to remove ' +
+      (columnMap.get(id).length > 1 ?
+        `${columnMap.get(id).length} related input columns?` :
+        'related input column?'))) {
+      return;
+    }
+
+    addComand(target.id, command);
+  }
+
+  function isColumnEmpty(col) {
+    return col.length === 1 && !col[0].label && !(col[0].inputExpression && col[0].inputExpression.text);
+  }
+
+  function addComand(id, command) {
+    const commands = commandsMap.get(id) || [];
+
+    commandsMap.set(id, [ ...commands, command ]);
+  }
+</script>
+</body>
+</html>
