@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_1fbvgsr" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.6.0-nightly">
+  <decision id="Decision_18kyv5m" name="Main Rule&#10;(sbl §7)">
+    <extensionElements>
+      <biodi:bounds x="829" y="81" width="180" height="80" />
+      <biodi:edge source="Decision_1t5tsxt">
+        <biodi:waypoints x="353" y="256" />
+        <biodi:waypoints x="829" y="138" />
+      </biodi:edge>
+      <biodi:edge source="Decision_1utg8st">
+        <biodi:waypoints x="576" y="252" />
+        <biodi:waypoints x="829" y="156" />
+      </biodi:edge>
+      <biodi:edge source="Decision_15iqsnt">
+        <biodi:waypoints x="752" y="252" />
+        <biodi:waypoints x="872" y="161" />
+      </biodi:edge>
+      <biodi:edge source="Decision_11i95tj">
+        <biodi:waypoints x="919" y="251" />
+        <biodi:waypoints x="919" y="161" />
+      </biodi:edge>
+      <biodi:edge source="Decision_1adzzst">
+        <biodi:waypoints x="1108" y="257" />
+        <biodi:waypoints x="970" y="165" />
+      </biodi:edge>
+      <biodi:edge source="Decision_1917kau">
+        <biodi:waypoints x="1323" y="297" />
+        <biodi:waypoints x="1009" y="152" />
+      </biodi:edge>
+      <biodi:edge source="Decision_15zeass">
+        <biodi:waypoints x="1592" y="294" />
+        <biodi:waypoints x="1009" y="103" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredDecision href="#Decision_15zeass" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_1adzzst" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_1917kau" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_1t5tsxt" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_1utg8st" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_15iqsnt" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredDecision href="#Decision_11i95tj" />
+    </informationRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <decision id="Decision_1917kau" name="Realm&#10;(sbl §7c, sbf §2)">
+    <extensionElements>
+      <biodi:bounds x="1320" y="297" width="180" height="80" />
+    </extensionElements>
+    <variable id="InformationItem_1bz86ir" />
+    <literalExpression id="LiteralExpression_1g2gjoj" />
+  </decision>
+  <decision id="Decision_15zeass" name="Criminal Offenses&#10;(sbl §7g+9, sbf §5)">
+    <extensionElements>
+      <biodi:bounds x="1592" y="283" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_0msf6ri">
+      <input id="InputClause_0qciy3a">
+        <inputExpression id="LiteralExpression_1vwuihx" typeRef="string" />
+      </input>
+      <output id="OutputClause_059xmjt" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <decision id="Decision_1adzzst" name="Identiy &#10;(sbl §7a, sbf §1)">
+    <extensionElements>
+      <biodi:bounds x="1078" y="257" width="180" height="80" />
+      <biodi:edge source="Decision_05mun60">
+        <biodi:waypoints x="1181" y="378" />
+        <biodi:waypoints x="1189" y="337" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredDecision href="#Decision_05mun60" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1plm27e">
+      <input id="InputClause_029hi2i">
+        <inputExpression id="LiteralExpression_1qsowcr" typeRef="string" />
+      </input>
+      <output id="OutputClause_1o7037p" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <decision id="Decision_05mun60" name="Identity Doubts">
+    <extensionElements>
+      <biodi:bounds x="1084" y="378" width="180" height="80" />
+      <biodi:edge source="Decision_19h5ng1">
+        <biodi:waypoints x="1180" y="532" />
+        <biodi:waypoints x="1186" y="458" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredDecision href="#Decision_19h5ng1" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1xnek32">
+      <input id="InputClause_0z467w2">
+        <inputExpression id="LiteralExpression_0wdqp3h" typeRef="string" />
+      </input>
+      <output id="OutputClause_168hhtf" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <decision id="Decision_19h5ng1" name="Country classification">
+    <extensionElements>
+      <biodi:bounds x="1087" y="532" width="180" height="80" />
+      <biodi:edge source="KnowledgeSource_1t4rksg">
+        <biodi:waypoints x="1188" y="653" />
+        <biodi:waypoints x="1184" y="615" />
+      </biodi:edge>
+    </extensionElements>
+    <authorityRequirement>
+      <requiredAuthority href="#KnowledgeSource_1t4rksg" />
+    </authorityRequirement>
+    <decisionTable id="DecisionTable_0znqbko">
+      <input id="InputClause_0ah1mdi">
+        <inputExpression id="LiteralExpression_05q14u3" typeRef="string" />
+      </input>
+      <output id="OutputClause_08xfeto" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <decision id="Decision_1utg8st" name="Age&#10;(sbl §7b+15+16+17)">
+    <extensionElements>
+      <biodi:bounds x="396" y="246" width="180" height="80" />
+      <biodi:edge source="InputData_0ac4zig">
+        <biodi:waypoints x="474" y="493" />
+        <biodi:waypoints x="480" y="326" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0ega55b">
+        <biodi:waypoints x="621" y="421" />
+        <biodi:waypoints x="513" y="326" />
+      </biodi:edge>
+      <biodi:edge source="InputData_03gtin1">
+        <biodi:waypoints x="235" y="584" />
+        <biodi:waypoints x="413" y="329" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0ac4zig" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0ega55b" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_03gtin1" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0b2xmys">
+      <input id="InputClause_08tjc0c">
+        <inputExpression id="LiteralExpression_1v8mjv9" typeRef="string" />
+      </input>
+      <output id="OutputClause_0rkep79" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0ac4zig" name="Stateless Person&#10;(sbl §16)">
+    <extensionElements>
+      <biodi:bounds x="410" y="493" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_087iruh" name="Nordic Nationals &#10;(sbl §13)">
+    <extensionElements>
+      <biodi:bounds x="772" y="424" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0ega55b" name="Former Norwegian Nationals (sbl §15)">
+    <extensionElements>
+      <biodi:bounds x="584" y="421" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0r5ig3p" name="EEA/EFTA&#10;(sbl §14)">
+    <extensionElements>
+      <biodi:bounds x="674" y="516" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_03gtin1" name="Children as secondary persons&#10;(sbl §17)">
+    <extensionElements>
+      <biodi:bounds x="156" y="584" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <decision id="Decision_15iqsnt" name="Settlement Permit&#10;(sbl §7+14)">
+    <extensionElements>
+      <biodi:bounds x="609" y="252" width="180" height="80" />
+      <biodi:edge source="Decision_11i95tj">
+        <biodi:waypoints x="829" y="298" />
+        <biodi:waypoints x="789" y="301" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0ega55b">
+        <biodi:waypoints x="656" y="421" />
+        <biodi:waypoints x="693" y="332" />
+      </biodi:edge>
+      <biodi:edge source="InputData_087iruh">
+        <biodi:waypoints x="817" y="424" />
+        <biodi:waypoints x="744" y="332" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0r5ig3p">
+        <biodi:waypoints x="735" y="516" />
+        <biodi:waypoints x="717" y="332" />
+      </biodi:edge>
+      <biodi:edge source="InputData_03gtin1">
+        <biodi:waypoints x="253" y="584" />
+        <biodi:waypoints x="627" y="332" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredDecision href="#Decision_11i95tj" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0ega55b" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_087iruh" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0r5ig3p" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_03gtin1" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_160tpnl">
+      <input id="InputClause_0c0d90n">
+        <inputExpression id="LiteralExpression_1bvh2t8" typeRef="string" />
+      </input>
+      <output id="OutputClause_178c86f" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <decision id="Decision_11i95tj" name="Residence Time&#10;(sbl §7e+11+12, sbf §3+7)">
+    <extensionElements>
+      <biodi:bounds x="829" y="251" width="180" height="80" />
+      <biodi:edge source="InputData_0ega55b">
+        <biodi:waypoints x="692" y="421" />
+        <biodi:waypoints x="866" y="331" />
+      </biodi:edge>
+      <biodi:edge source="InputData_087iruh">
+        <biodi:waypoints x="851" y="424" />
+        <biodi:waypoints x="917" y="331" />
+      </biodi:edge>
+      <biodi:edge source="InputData_03gtin1">
+        <biodi:waypoints x="281" y="607" />
+        <biodi:waypoints x="967" y="607" />
+        <biodi:waypoints x="967" y="331" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0ega55b" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_087iruh" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_03gtin1" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_14jn8hy">
+      <input id="InputClause_0czo83n">
+        <inputExpression id="LiteralExpression_1ia58q0" typeRef="string" />
+      </input>
+      <output id="OutputClause_00emw76" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <decision id="Decision_1t5tsxt" name="Language&#10;(sbl §7f+8, sbf §4)">
+    <extensionElements>
+      <biodi:bounds x="173" y="238" width="180" height="80" />
+      <biodi:edge source="InputData_03gtin1">
+        <biodi:waypoints x="224" y="584" />
+        <biodi:waypoints x="279" y="318" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_03gtin1" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1725qwd">
+      <input id="InputClause_1gn0mxb">
+        <inputExpression id="LiteralExpression_0eurnb5" typeRef="string" />
+      </input>
+      <output id="OutputClause_0m4itdb" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <knowledgeSource id="KnowledgeSource_1t4rksg" name="Country Classification Sheet">
+    <extensionElements>
+      <biodi:bounds x="1142" y="653" width="100" height="63" />
+    </extensionElements>
+  </knowledgeSource>
+</definitions>

@@ -10,6 +10,7 @@ Prototypes built via our DMN Innovation Process, Q1 2020
 - Hypothesis 1: DRD Layout
     - [level-snapping](./packages/level-snapping)
     - [drd-layout-sketches](./packages/drd-layout-sketches)
+    - [ortho-incoming-connections](./packages/ortho-incoming-connections)
     - [hypothesis-1-final](./packages/hypothesis-1-final)
 - Hypothesis 2: DRD Relations
     - [drd-relation-prototype](./packages/drd-relation-prototype)
