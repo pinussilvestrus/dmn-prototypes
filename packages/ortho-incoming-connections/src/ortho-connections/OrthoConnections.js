@@ -1,5 +1,9 @@
 import { forEach } from "min-dash";
 
+const DOCKING_DISTANCE = 25;
+
+const ORTHOGONAL_BENDPOINT_X = 20;
+
 export default function OrthoConnections(eventBus, modeling, elementRegistry) {
   this._eventBus = eventBus;
   this._modeling = modeling;
@@ -26,8 +30,6 @@ OrthoConnections.prototype.format = function(shape) {
 
   const self = this;
 
-  const pieces = incomingConnections.length
-
   // sort connected decisions from left to right with bubble sort
   for (let i = 0; i < incomingConnections.length ; i++) {
 
@@ -47,13 +49,13 @@ OrthoConnections.prototype.format = function(shape) {
     const waypoints = connection.waypoints;
 
     const newLastWaypoint = {
-      x: lowerEdge.start.x + (index + 1) * (lowerEdge.length / pieces),
+      x: lowerEdge.start.x + (index + 1) * (DOCKING_DISTANCE),
       y: lowerEdge.start.y
     };
 
     const orthoWaypoint = {
       x: newLastWaypoint.x,
-      y: newLastWaypoint.y + 20
+      y: newLastWaypoint.y + ORTHOGONAL_BENDPOINT_X
     };
 
     const newWaypoints = [
