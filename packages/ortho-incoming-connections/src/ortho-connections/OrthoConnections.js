@@ -1,58 +1,69 @@
-import {
-    forEach
-} from 'min-dash';
+import { forEach } from "min-dash";
 
 export default function OrthoConnections(eventBus, modeling, elementRegistry) {
-
-    this._eventBus = eventBus;
-    this._modeling = modeling;
-    this._elementRegistry = elementRegistry;
+  this._eventBus = eventBus;
+  this._modeling = modeling;
+  this._elementRegistry = elementRegistry;
 }
 
 OrthoConnections.prototype.format = function(shape) {
+  const incomingConnections = shape.incoming;
 
-    var incomingConnections = shape.incoming;
-
-    // get lower edge
-    var lowerEdge = {
-        start: {
-            x: shape.x,
-            y: shape.y + shape.height
-        },
-        end: {
-            x: shape.x + shape.width,
-            y: shape.y + shape.height
-        },
-        get length() { return this.end.x - this.start.x }
+  // get lower edge
+  const lowerEdge = {
+    start: {
+      x: shape.x,
+      y: shape.y + shape.height
+    },
+    end: {
+      x: shape.x + shape.width,
+      y: shape.y + shape.height
+    },
+    get length() {
+      return this.end.x - this.start.x;
     }
+  };
 
-    var self = this;
+  const self = this;
 
-    var pieces = incomingConnections.length;
+  const pieces = incomingConnections.length
 
-    forEach(incomingConnections, (connection, index) => {
+  // sort connected decisions from left to right with bubble sort
+  for (let i = 0; i < incomingConnections.length ; i++) {
 
-        var waypoints = connection.waypoints;
+    for (let j = 0 ; j < incomingConnections.length - i - 1; j++) {
 
-        // todo(pinussilvestrus): from where to start?
-        var newLastWaypoint = { 
-            x: lowerEdge.end.x - (index + 1) * (lowerEdge.length / pieces), 
-            y: lowerEdge.end.y 
-        };
+    if (incomingConnections[j].source.x > incomingConnections[j + 1].source.x) {
 
-        var orthoWaypoint = {
-            x: newLastWaypoint.x,
-            y: newLastWaypoint.y + 20
-        };
+      // swap
+      const temp = incomingConnections[j];
+      incomingConnections[j] = incomingConnections[j+1];
+      incomingConnections[j + 1] = temp;
+    }
+   }
+  };
 
-        var newWaypoints = [
-            ...waypoints.slice(0, waypoints.length - 1),
-            orthoWaypoint,
-            newLastWaypoint
-        ];
+  forEach(incomingConnections, (connection, index) => {
+    const waypoints = connection.waypoints;
 
-        self._modeling.updateWaypoints(connection, newWaypoints);
-    });
-}
+    const newLastWaypoint = {
+      x: lowerEdge.start.x + (index + 1) * (lowerEdge.length / pieces),
+      y: lowerEdge.start.y
+    };
 
-OrthoConnections.$inject = [ 'eventBus', 'modeling', 'elementRegistry' ];
+    const orthoWaypoint = {
+      x: newLastWaypoint.x,
+      y: newLastWaypoint.y + 20
+    };
+
+    const newWaypoints = [
+      ...waypoints.slice(0, waypoints.length - 1),
+      orthoWaypoint,
+      newLastWaypoint
+    ];
+
+    self._modeling.updateWaypoints(connection, newWaypoints);
+  });
+};
+
+OrthoConnections.$inject = ["eventBus", "modeling", "elementRegistry"];
