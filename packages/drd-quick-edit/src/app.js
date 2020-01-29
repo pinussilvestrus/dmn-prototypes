@@ -4,9 +4,18 @@ import $ from "jquery";
 
 import diagram from "../resources/diagram.svg";
 
+import QuickEditModal from "./QuickEditModal";
+
 function openEditModal(decision) {
-  // mark as selected
-  decision.addClass("selected");
+
+  const node = $('.edit-modal-placeholder');
+
+  const quickEditModal = new QuickEditModal({
+    node
+  });
+
+  quickEditModal.init();
+
 }
 
 function _interactions(decision) {
@@ -18,6 +27,9 @@ function _interactions(decision) {
 
   $("body").click(event => {
     if (event.target == hitBox[0]) {
+
+      decision.addClass("selected");
+
       return openEditModal(decision);
     }
 

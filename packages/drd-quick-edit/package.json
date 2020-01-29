@@ -11,11 +11,19 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
     "eslint-plugin-bpmn-io": "^0.10.0",
-    "jquery": "^3.4.1",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
