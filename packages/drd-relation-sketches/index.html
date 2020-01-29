@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!-- Core CSS file -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/photoswipe/dist/photoswipe.css"
+    />
+
+    <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+     In the folder of skin CSS file there are also:
+     - .png and .svg icons sprite, 
+     - preloader.gif (for browsers that do not support CSS animations) -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/photoswipe/dist/default-skin/default-skin.css"
+    />
+
+    <style>
+
+      body {
+        font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      
+      h1 {
+        padding: 10px;
+      }
+
+      .btn {
+        padding: 0.5rem;
+        margin: 0.5rem;
+        display: inline;
+        cursor: pointer;
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+      }
+
+      .final-gallery {
+        visibility: hidden;
+        display: block;
+        margin-top: 0.5rem;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .column {
+        flex: 33.33%;
+        padding: 5px;
+      }
+    </style>
+
+    <title>drd-relations-sketches</title>
+  </head>
+  <body>
+    <h1>DRD Relations Sketches</h1>
+
+    <div class="btn" id="btn-open">
+      Show All Sketches
+    </div>
+
+    <div class="btn" id="btn-slides">
+      Show All Sketches (Slideshow)
+    </div>
+
+    <div class="final-gallery">
+      <div class="row">
+        <div class="column">
+          <img src="./resources/sketch_1.png" style="width: 100%;" />
+        </div>
+        <div class="column">
+          <img src="./resources/sketch_2.png" style="width: 100%;" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <img src="./resources/sketch_3.png" style="width: 100%;" />
+        </div>
+        <div class="column">
+          <img src="./resources/sketch_4.png" style="width: 100%;" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <img src="./resources/sketch_5.png" style="width: 100%;" />
+        </div>
+        <div class="column">
+          <img style="width: 100%;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+      <!-- Background of PhotoSwipe. 
+       It's a separate element as animating opacity is faster than rgba(). -->
+      <div class="pswp__bg"></div>
+
+      <!-- Slides wrapper with overflow:hidden. -->
+      <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+          PhotoSwipe keeps only 3 of them in the DOM to save memory.
+          Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <!--  Controls are self-explanatory. Order can be changed. -->
+
+            <div class="pswp__counter"></div>
+
+            <button
+              class="pswp__button pswp__button--share"
+              title="Share"
+            ></button>
+
+            <button
+              class="pswp__button pswp__button--fs"
+              title="Toggle fullscreen"
+            ></button>
+
+            <button
+              class="pswp__button pswp__button--zoom"
+              title="Zoom in/out"
+            ></button>
+
+            <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+            <!-- element will get class pswp__preloader--active when preloader is running -->
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"
+          >
+            <div class="pswp__share-tooltip"></div>
+          </div>
+
+          <button
+            class="pswp__button pswp__button--arrow--left"
+            title="Previous (arrow left)"
+          ></button>
+
+          <button
+            class="pswp__button pswp__button--arrow--right"
+            title="Next (arrow right)"
+          ></button>
+
+          <div class="pswp__caption">
+            <div class="pswp__caption__center"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./node_modules/photoswipe/dist/photoswipe.min.js"></script>
+
+    <script src="./node_modules/photoswipe/dist/photoswipe-ui-default.min.js"></script>
+
+    <script>
+      function openSlides() {
+        var items = [
+          {
+            src: "./resources/sketch_1.png",
+            w: 4087,
+            h: 2112
+          },
+          {
+            src: "./resources/sketch_2.png",
+            w: 3919,
+            h: 2221
+          },
+          {
+            src: "./resources/sketch_3.png",
+            w: 3217,
+            h: 2204
+          },
+          {
+            src: "./resources/sketch_4.png",
+            w: 1601,
+            h: 1102
+          },
+          {
+            src: "./resources/sketch_5.png",
+            w: 1595,
+            h: 1110
+          }
+        ];
+
+        openGallery(items);
+      }
+
+      function openGallery(items) {
+        var pswpElement = document.querySelectorAll(".pswp")[0];
+
+        var options = {
+          index: 0,
+          history: false,
+          focus: false,
+          showAnimationDuration: 0,
+          hideAnimationDuration: 0
+        };
+
+        var gallery = new PhotoSwipe(
+          pswpElement,
+          PhotoSwipeUI_Default,
+          items,
+          options
+        );
+
+        gallery.init();
+      }
+
+      function open() {
+        document.getElementsByClassName("final-gallery")[0].style.visibility =
+          "visible";
+      }
+
+      document.getElementById("btn-open").onclick = open;
+      document.getElementById("btn-slides").onclick = openSlides;
+    </script>
+  </body>
+</html>

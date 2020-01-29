@@ -16,6 +16,7 @@ Prototypes built via our DMN Innovation Process, Q1 2020
     - [drd-relation-prototype](./packages/drd-relation-prototype)
     - [innovation-week-linus](./packages/innovation-week-linus)
     - [innovation-week-maciej](./packages/innovation-week-maciej)
+    - [drd-relation-sketches](./packages/drd-relation-sketches)
 
 ## Setup
 
