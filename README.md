@@ -13,7 +13,7 @@ Prototypes built via our DMN Innovation Process, Q1 2020
     - [ortho-incoming-connections](./packages/ortho-incoming-connections)
     - [hypothesis-1-final](./packages/hypothesis-1-final)
 - Hypothesis 2: DRD Relations
-    - [drd-relation-prototype](./packages/drd-relation-prototype)
+    - [innovation-week-niklas](./packages/innovation-week-maciej)
     - [innovation-week-linus](./packages/innovation-week-linus)
     - [innovation-week-maciej](./packages/innovation-week-maciej)
     - [drd-relation-sketches](./packages/drd-relation-sketches)
@@ -36,7 +36,7 @@ Visit http://localhost:5000 and visit one demo inside the `packages` directory.
 
 ## Contribution
 
-Every demo goes into the `packages` sub directory. It has to include a `npm run build` task resulting in an `index.html` to serve the Demo in the end. 
+Every demo goes into the `packages` sub-directory. It has to include a `npm run build` task resulting in an `index.html` to serve the Demo in the end. 
 
 Check out the [example demo](./packages/example) for guidance.
 
