@@ -10,15 +10,32 @@ body {
 }
 
 .contents {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .contents {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
 svg {
-    height: 80%;
-    width: inherit;
+  height: 80%;
+  width: inherit;
+}
+
+.demo-decision.hover .djs-outline,
+.demo-decision.selected .djs-outline {
+  visibility: visible;
+  shape-rendering: crispEdges;
+  stroke-dasharray: 3,3;
+}
+
+.demo-decision.selected .djs-outline {
+  stroke: #8888FF;
+  stroke-width: 1px;
+}
+
+.demo-decision.hover .djs-outline {
+  stroke: #FF8888;
+  stroke-width: 1px;
 }
