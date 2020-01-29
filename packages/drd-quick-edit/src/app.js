@@ -1,46 +1,43 @@
 /* global document */
 
-import $ from 'jquery';
+import $ from "jquery";
 
-import diagram from '../resources/diagram.svg';
+import diagram from "../resources/diagram.svg";
 
-
-function openEditModal() {
-  
-  const decision = $(this);
-
+function openEditModal(decision) {
   // mark as selected
-  decision.addClass('selected');
-
+  decision.addClass("selected");
 }
 
-function mockInteractions(decision) {
+function _interactions(decision) {
+  const hitBox = decision.children(".djs-hit");
 
-  const hitBox = decision.children('.djs-hit');
+  hitBox.mouseover(() => decision.addClass("hover"));
 
-  const outline = decision.children('.djs-outline');
+  hitBox.mouseout(() => decision.removeClass("hover"));
 
-  decision.mouseover(() => decision.addClass('hover'));
+  $("body").click(event => {
+    if (event.target == hitBox[0]) {
+      return openEditModal(decision);
+    }
 
-  decision.mouseout(() => decision.removeClass('hover'))
+    decision.removeClass("selected");
+  });
+
+  hitBox.click(() => {});
 }
 
 function main() {
-  
   const diagramGfx = $(diagram)[0];
 
-  const contents = $('.contents')[0];
+  const contents = $(".contents")[0];
 
   // insert diagram svg into page
   contents.append(diagramGfx);
 
-  const decision = $('.demo-decision');
+  const decision = $(".demo-decision");
 
-  mockInteractions(decision);
-
-  decision.click(openEditModal);
-
+  _interactions(decision);
 }
-
 
 $(document).ready(main);

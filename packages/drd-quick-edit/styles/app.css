@@ -23,6 +23,10 @@ svg {
   width: inherit;
 }
 
+.demo-decision .djs-hit {
+    pointer-events: all;
+}
+
 .demo-decision.hover .djs-outline,
 .demo-decision.selected .djs-outline {
   visibility: visible;
