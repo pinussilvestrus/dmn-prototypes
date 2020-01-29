@@ -1,0 +1,24 @@
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 100%;
+  width: 100%;
+
+  padding: 0;
+  margin: 0;
+}
+
+.contents {
+    width: 100%;
+    height: 100%;
+}
+
+.contents {
+    margin-top: 5rem;
+}
+
+svg {
+    height: 80%;
+    width: inherit;
+}
