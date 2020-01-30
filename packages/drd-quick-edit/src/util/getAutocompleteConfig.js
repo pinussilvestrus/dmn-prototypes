@@ -5,13 +5,15 @@ function extractLast(term) {
   return split(term).pop();
 }
 
-export default function getAutocompleteConfig(items) {
+export default function getAutocompleteConfig(items, selectCb) {
   return {
     minLength: 0,
     source: function(request, response) {
       response($.ui.autocomplete.filter(items, extractLast(request.term)));
     },
     focus: function() {
+      
+      // todo(pinussilvestrus): highlight related
       return false;
     },
     select: function(event, ui) {
@@ -23,9 +25,12 @@ export default function getAutocompleteConfig(items) {
       // add the selected item
       terms.push(ui.item.value);
 
-      // add placeholder to get the comma-and-space at the end
-      terms.push("");
       this.value = terms.join(" ");
+
+      if(typeof selectCb === 'function') {
+        selectCb(this);
+      }
+
       return false;
     }
   };

@@ -40,6 +40,8 @@ const INPUTS = [
 
 const AVAILABLE_INPUTS = map(INPUTS, i => i.label);
 
+const ALL_ELEMENTS = flatten(map(INPUTS, i => i.elements));
+
 export default class QuickEditModal {
   constructor(options) {
     this._node = options.node;
@@ -60,7 +62,12 @@ export default class QuickEditModal {
     container.prepend(closeGfx);
   }
 
-  bindRelations() {
+  highlightElements(elements) {
+    this._onUnhighlight(ALL_ELEMENTS);
+    this._onHighlight(elements);
+  }
+
+  highlightRelatedElements(event) {
     function getRelatedElements(node) {
 
       // (1) find exact match
@@ -71,32 +78,44 @@ export default class QuickEditModal {
       }
 
       // (2) find including match
-      const inputs = filter(INPUTS, i =>  node.val().includes(i.label));
+      const inputs = filter(INPUTS, i => node.val().includes(i.label));
 
       const elements = flatten(map(inputs, input => input.elements)) || [];
 
       return elements;
     }
 
-    $(".inputs input").focus(event => {
-      const node = $(event.target);
+    const node = $(event.target);
 
-      const elements = getRelatedElements(node);
+    const elements = getRelatedElements(node);
 
-      this._onHighlight(elements);
-    });
+    this.highlightElements(elements);
+  }
 
-    $(".inputs input").focusout(event => {
-      const node = $(event.target);
+  bindRelations() {
+    const self = this;
 
-      const elements = getRelatedElements(node);
+    $(".inputs input")
+      .focus(e => this.highlightRelatedElements(e))
+      .focusout(() => this.highlightElements([]))
+      .on("keyup", event => {
 
-      this._onUnhighlight(elements);
-    });
+        // lazy check
+        setTimeout(this.highlightRelatedElements.bind(self, event), 800);
+      });
   }
 
   bindAutocomplete() {
-    $(".inputs input").autocomplete(getAutocompleteConfig(AVAILABLE_INPUTS));
+
+    const self = this;
+
+    function selectCb(input) {
+      return self.highlightRelatedElements({ target: input });
+    }
+
+    $(".inputs input").autocomplete(
+      getAutocompleteConfig(AVAILABLE_INPUTS, selectCb)
+    );
   }
 
   init() {
