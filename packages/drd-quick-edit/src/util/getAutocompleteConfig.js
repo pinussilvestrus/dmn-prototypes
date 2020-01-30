@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 function split(val) {
   return val.split(/ \s*/);
 }
@@ -13,7 +15,7 @@ export default function getAutocompleteConfig(items, selectCb) {
     },
     focus: function(event, ui) {
 
-      if(typeof selectCb === 'function') {
+      if (typeof selectCb === 'function') {
         selectCb({
           target: ui.item.value
         });
@@ -23,16 +25,16 @@ export default function getAutocompleteConfig(items, selectCb) {
     },
     select: function(event, ui) {
       var terms = split(this.value);
-      
+
       // remove the current input
       terms.pop();
 
       // add the selected item
       terms.push(ui.item.value);
 
-      this.value = terms.join(" ");
+      this.value = terms.join(' ');
 
-      if(typeof selectCb === 'function') {
+      if (typeof selectCb === 'function') {
         selectCb({
           target: this
         });
