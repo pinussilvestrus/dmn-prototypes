@@ -23,23 +23,23 @@ svg {
   width: inherit;
 }
 
-.demo-decision .djs-hit {
+[data-element-id="Decision_03absfl"] .djs-hit {
     pointer-events: all;
 }
 
-.demo-decision.hover .djs-outline,
-.demo-decision.selected .djs-outline {
+[data-element-id="Decision_03absfl"].hover .djs-outline,
+[data-element-id="Decision_03absfl"].selected .djs-outline {
   visibility: visible;
   shape-rendering: crispEdges;
   stroke-dasharray: 3,3;
 }
 
-.demo-decision.selected .djs-outline {
+[data-element-id="Decision_03absfl"].selected .djs-outline {
   stroke: #8888FF;
   stroke-width: 1px;
 }
 
-.demo-decision.hover .djs-outline {
+[data-element-id="Decision_03absfl"].hover .djs-outline {
   stroke: #FF8888;
   stroke-width: 1px;
 }

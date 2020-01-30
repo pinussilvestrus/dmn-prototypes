@@ -59,7 +59,9 @@ function main() {
   // insert diagram svg into page
   contents.append(diagramGfx);
 
-  const decision = $(".demo-decision");
+  const decision = $('[data-element-id="Decision_03absfl"]');
+
+  debugger;
 
   interactions(decision);
 }
