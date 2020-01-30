@@ -20,6 +20,8 @@ const HOVER_MARKER = "hover";
 
 const HIGHLIGHT_MARKER = "highlight";
 
+// todo(pinussilvestrus): make it possible to create variations (multiple app.js) and toggle them
+
 let quickEditModal;
 
 function unhighlightElements(elements) {
@@ -56,7 +58,7 @@ function openEditModal() {
 }
 
 function closeModal() {
-  quickEditModal && quickEditModal.close();
+  quickEditModal && quickEditModal.hide();
 }
 
 function interactions(decision) {
