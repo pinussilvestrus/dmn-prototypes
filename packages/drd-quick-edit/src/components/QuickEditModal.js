@@ -17,40 +17,16 @@ import getAutocompleteConfig from "../util/getAutocompleteConfig";
 
 import "./QuickEditModal.css";
 
-// todo(pinussilvestrus): move me
-const INPUTS = [
-  {
-    label: "Number of open claims of employee",
-    elements: ["InputData_13z77r8", "connection_147"]
-  },
-  {
-    label: "Employee",
-    elements: ["InputData_011xp5m", "connection_145"]
-  },
-  {
-    label: "Claim",
-    elements: ["InputData_0qarm4x", "connection_146"]
-  },
-  {
-    label: "Employee Experience",
-    elements: ["Decision_19jtlzt", "connection_149"]
-  },
-  {
-    label: "Employee fills skillset",
-    elements: ["Decision_11xban0", "connection_148"]
-  }
-];
-
-const AVAILABLE_INPUTS = map(INPUTS, i => i.label);
-
-const ALL_ELEMENTS = flatten(map(INPUTS, i => i.elements));
-
 export default class QuickEditModal {
   constructor(options) {
     this._node = options.node;
     this._onClose = options.onClose;
     this._onHighlight = options.onHighlight;
     this._onUnhighlight = options.onUnhighlight;
+    this._availableInputs = options.availableInputs;
+
+    this.AVAILABLE_INPUT_LABELS = map(this._availableInputs, i => i.label);
+    this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
 
     this.init();
   }
@@ -66,7 +42,7 @@ export default class QuickEditModal {
   }
 
   renderNewInputBtn() {
-    const container = this._node.find('.modal-container');
+    const container = this._node.find(".modal-container");
 
     const newInputBtnGfx = $(newInputBtnSkeleton);
 
@@ -75,54 +51,53 @@ export default class QuickEditModal {
 
     newInputBtnGfx.click(() => this.addInput());
 
-    container.append(newInputBtnGfx);   
+    container.append(newInputBtnGfx);
   }
 
   addInput(options = {}) {
-    const {
-      label,
-      type
-    } = options;
+    const { label, type } = options;
 
-    const inputContainer = this._node.find('.inputs');
+    const inputContainer = this._node.find(".inputs");
 
     const newInput = $(inputSkeleton);
 
-    newInput.find('input').val(label);
-    newInput.find('select').val(type);
+    newInput.find("input").val(label);
+    newInput.find("select").val(type);
 
     inputContainer.append(newInput);
   }
 
   highlightElements(elements) {
-    this._onUnhighlight(ALL_ELEMENTS);
+    this._onUnhighlight(this.ALL_ELEMENTS);
     this._onHighlight(elements);
   }
 
   highlightRelatedElements(event) {
-    function getRelatedElements(value) {
 
+    const self = this;
+
+    function getRelatedElements(value) {
       // (1) find exact match
-      const input = find(INPUTS, i => value === i.label);
+      const input = find(self._availableInputs, i => value === i.label);
 
       if (input) {
         return input.elements;
       }
 
       // (2) find including match
-      const inputs = filter(INPUTS, i => value.includes(i.label));
+      const inputs = filter(self._availableInputs, i =>
+        value.includes(i.label)
+      );
 
       const elements = flatten(map(inputs, input => input.elements)) || [];
 
       return elements;
     }
 
-    let {
-      target
-    } = event;
+    let { target } = event;
 
-    if(typeof target !== 'string') {
-      target = $(event.target).val()
+    if (typeof target !== "string") {
+      target = $(event.target).val();
     }
 
     const elements = getRelatedElements(target);
@@ -137,7 +112,6 @@ export default class QuickEditModal {
       .focus(e => this.highlightRelatedElements(e))
       .focusout(() => this.highlightElements([]))
       .on("keyup", event => {
-
         // lazy check
         setTimeout(this.highlightRelatedElements.bind(self, event), 800);
       });
@@ -145,7 +119,9 @@ export default class QuickEditModal {
 
   bindAutocomplete() {
     $(".inputs input").autocomplete(
-      getAutocompleteConfig(AVAILABLE_INPUTS, e => this.highlightRelatedElements(e))
+      getAutocompleteConfig(this.AVAILABLE_INPUT_LABELS, e =>
+        this.highlightRelatedElements(e)
+      )
     );
   }
 

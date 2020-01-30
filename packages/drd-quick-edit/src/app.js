@@ -20,6 +20,29 @@ const HOVER_MARKER = "hover";
 
 const HIGHLIGHT_MARKER = "highlight";
 
+const AVAILABLE_INPUTS = [
+  {
+    label: "Number of open claims of employee",
+    elements: ["InputData_13z77r8", "connection_147"]
+  },
+  {
+    label: "Employee",
+    elements: ["InputData_011xp5m", "connection_145"]
+  },
+  {
+    label: "Claim",
+    elements: ["InputData_0qarm4x", "connection_146"]
+  },
+  {
+    label: "Employee Experience",
+    elements: ["Decision_19jtlzt", "connection_149"]
+  },
+  {
+    label: "Employee fills skillset",
+    elements: ["Decision_11xban0", "connection_148"]
+  }
+];
+
 // todo(pinussilvestrus): make it possible to create variations (multiple app.js) and toggle them
 
 let quickEditModal;
@@ -49,7 +72,8 @@ function openEditModal() {
       node,
       onClose: closeModal,
       onHighlight: highlightElements,
-      onUnhighlight: unhighlightElements
+      onUnhighlight: unhighlightElements,
+      availableInputs: AVAILABLE_INPUTS
     });
   }
 
