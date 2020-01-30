@@ -4,62 +4,41 @@ import "webpack-jquery-ui";
 
 import "webpack-jquery-ui/css";
 
-import { forEach } from "min-dash";
+import { filter, find, flatten, map } from "min-dash";
 
 import MODAL_SKELETON from "./QuickEditModal.html";
 
 import closeSVG from "../../resources/close.svg";
 
-import getAutocompleteConfig from '../util/getAutocompleteConfig';
+import getAutocompleteConfig from "../util/getAutocompleteConfig";
 
 import "./QuickEditModal.css";
 
 // todo(pinussilvestrus): move me
-const RELATIONS = [
+const INPUTS = [
   {
-    inputSelector: "Number of open claims of employee",
+    label: "Number of open claims of employee",
     elements: ["InputData_13z77r8", "connection_147"]
   },
   {
-    inputSelector: "Employee.region = Claim.region",
-    elements: [
-      "InputData_011xp5m",
-      "InputData_0qarm4x",
-      "connection_146",
-      "connection_145"
-    ]
+    label: "Employee",
+    elements: ["InputData_011xp5m", "connection_145"]
   },
   {
-    inputSelector: "Claim.expenditure",
-    elements: [
-      "InputData_0qarm4x",
-      "connection_146"
-    ]
+    label: "Claim",
+    elements: ["InputData_0qarm4x", "connection_146"]
   },
   {
-    inputSelector: "Employee Experience",
-    elements: [
-      "Decision_19jtlzt",
-      "connection_149"
-    ]
+    label: "Employee Experience",
+    elements: ["Decision_19jtlzt", "connection_149"]
   },
   {
-    inputSelector: "Employee fills skillset",
-    elements: [
-      "Decision_11xban0",
-      "connection_148"
-    ]
+    label: "Employee fills skillset",
+    elements: ["Decision_11xban0", "connection_148"]
   }
 ];
 
-const AVAILABLE_INPUTS = [
-    "Employee fills skillset",
-    "Employee Experience",
-    "Employee",
-    "Claim",
-    "Number of open claims of employees"
-];
-
+const AVAILABLE_INPUTS = map(INPUTS, i => i.label);
 
 export default class QuickEditModal {
   constructor(options) {
@@ -82,20 +61,42 @@ export default class QuickEditModal {
   }
 
   bindRelations() {
-    forEach(RELATIONS, r => {
-      const { inputSelector, elements } = r;
+    function getRelatedElements(node) {
 
-      $(`input[value="${inputSelector}"]`).focus(
-        this._onHighlight.bind(this, elements)
-      );
-      $(`input[value="${inputSelector}"]`).focusout(
-        this._onUnhighlight.bind(this, elements)
-      );
+      // (1) find exact match
+      const input = find(INPUTS, i => node.val() === i.label);
+
+      if (input) {
+        return input.elements;
+      }
+
+      // (2) find including match
+      const inputs = filter(INPUTS, i =>  node.val().includes(i.label));
+
+      const elements = flatten(map(inputs, input => input.elements)) || [];
+
+      return elements;
+    }
+
+    $(".inputs input").focus(event => {
+      const node = $(event.target);
+
+      const elements = getRelatedElements(node);
+
+      this._onHighlight(elements);
+    });
+
+    $(".inputs input").focusout(event => {
+      const node = $(event.target);
+
+      const elements = getRelatedElements(node);
+
+      this._onUnhighlight(elements);
     });
   }
 
   bindAutocomplete() {
-      $('.inputs input').autocomplete(getAutocompleteConfig(AVAILABLE_INPUTS));
+    $(".inputs input").autocomplete(getAutocompleteConfig(AVAILABLE_INPUTS));
   }
 
   init() {
