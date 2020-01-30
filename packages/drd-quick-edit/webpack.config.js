@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
   mode: 'development',
   entry: './src/app.js',
@@ -23,7 +25,26 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: 'html-loader',
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/i,
+        loader:"file-loader",
+        options:{
+          name:'[name].[ext]',
+          outputPath:'assets/images/'
+          //the images will be emited to dist/assets/images/ folder
+        }
       }
     ]
-  }
+  },
+  plugins: [
+
+    /* Use the ProvidePlugin constructor to inject jquery implicit globals */
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery'",
+        "window.$": "jquery"
+    })
+  ]
 };

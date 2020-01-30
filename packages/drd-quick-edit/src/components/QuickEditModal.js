@@ -1,10 +1,16 @@
 import $ from "jquery";
 
+import "webpack-jquery-ui";
+
+import "webpack-jquery-ui/css";
+
 import { forEach } from "min-dash";
 
 import MODAL_SKELETON from "./QuickEditModal.html";
 
 import closeSVG from "../../resources/close.svg";
+
+import getAutocompleteConfig from '../util/getAutocompleteConfig';
 
 import "./QuickEditModal.css";
 
@@ -46,6 +52,15 @@ const RELATIONS = [
   }
 ];
 
+const AVAILABLE_INPUTS = [
+    "Employee fills skillset",
+    "Employee Experience",
+    "Employee",
+    "Claim",
+    "Number of open claims of employees"
+];
+
+
 export default class QuickEditModal {
   constructor(options) {
     this._node = options.node;
@@ -79,12 +94,17 @@ export default class QuickEditModal {
     });
   }
 
+  bindAutocomplete() {
+      $('.inputs input').autocomplete(getAutocompleteConfig(AVAILABLE_INPUTS));
+  }
+
   init() {
     this._node.append(MODAL_SKELETON);
 
     this.appendClose();
 
     this.bindRelations();
+    this.bindAutocomplete();
 
     this.hide();
   }
