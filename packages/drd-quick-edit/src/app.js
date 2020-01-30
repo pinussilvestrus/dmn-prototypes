@@ -4,7 +4,9 @@ import $ from "jquery";
 
 import diagram from "../resources/diagram.svg";
 
-import QuickEditModal from "./QuickEditModal";
+import QuickEditModal from "./components/QuickEditModal";
+
+import './app.css';
 
 function openEditModal(decision) {
 

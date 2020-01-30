@@ -1,0 +1,31 @@
+.modal-container {
+  background: rgb(255, 255, 255);
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px 0px;
+  left: 1230px;
+  width: 364px;
+  top: 30px;
+  height: 475px;
+  overflow: hidden;
+  position: absolute;
+  font-family: "IBM Plex Sans";
+}
+
+.outputs-header {
+  font-size: 18px;
+  font-weight: 400;
+  padding: 1rem;
+}
+
+.inputs-header {
+  font-size: 18px;
+  font-weight: 400;
+  padding: 1rem;
+}
+
+.horizontal_line {
+  left: 76px;
+  width: 342px;
+  top: 255px;
+  height: 1px;
+}
