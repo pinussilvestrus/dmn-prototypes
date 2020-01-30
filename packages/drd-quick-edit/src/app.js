@@ -8,26 +8,35 @@ import QuickEditModal from "./components/QuickEditModal";
 
 import './app.css';
 
+let quickEditModal;
+
 function openEditModal(decision) {
 
   const node = $('.edit-modal-placeholder');
 
-  const quickEditModal = new QuickEditModal({
-    node
-  });
+  if(!quickEditModal) {
+    quickEditModal = new QuickEditModal({
+      node,
+      onClose: closeModal
+    });
+  }
 
-  quickEditModal.init();
+  quickEditModal.open();
 
 }
 
-function _interactions(decision) {
+function closeModal() {
+  quickEditModal && quickEditModal.close();
+}
+
+function interactions(decision) {
   const hitBox = decision.children(".djs-hit");
 
   hitBox.mouseover(() => decision.addClass("hover"));
 
   hitBox.mouseout(() => decision.removeClass("hover"));
 
-  $("body").click(event => {
+  $("svg").click(event => {
     if (event.target == hitBox[0]) {
 
       decision.addClass("selected");
@@ -35,6 +44,7 @@ function _interactions(decision) {
       return openEditModal(decision);
     }
 
+    closeModal();
     decision.removeClass("selected");
   });
 
@@ -51,7 +61,7 @@ function main() {
 
   const decision = $(".demo-decision");
 
-  _interactions(decision);
+  interactions(decision);
 }
 
 $(document).ready(main);
