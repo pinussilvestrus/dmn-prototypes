@@ -17,7 +17,7 @@
 
 .outputs,
 .inputs {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .inputs-header {
@@ -61,4 +61,20 @@ select {
   width: auto;
   margin: 0.5rem 0.5rem 0 0;
   cursor: pointer;
+}
+
+.new-input-btn {
+  margin: 0rem 1rem 1rem 0;
+  float: right;
+  border-radius: 0.2em;
+  background: #4d90ff;
+  font-size: 12px;
+  padding: 0.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.new-input-btn .plus {
+  height: 10px !important;
+  margin-right: 0.3rem;
 }

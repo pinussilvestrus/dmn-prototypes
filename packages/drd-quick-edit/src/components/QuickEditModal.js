@@ -6,9 +6,12 @@ import "webpack-jquery-ui/css";
 
 import { filter, find, flatten, map } from "min-dash";
 
-import MODAL_SKELETON from "./QuickEditModal.html";
+import modalSkeleton from "./QuickEditModal.html";
+import inputSkeleton from "./Input.html";
+import newInputBtnSkeleton from "./NewInputBtn.html";
 
 import closeSVG from "../../resources/close.svg";
+import plusSVG from "../../resources/plus.svg";
 
 import getAutocompleteConfig from "../util/getAutocompleteConfig";
 
@@ -52,7 +55,7 @@ export default class QuickEditModal {
     this.init();
   }
 
-  appendClose() {
+  renderClose() {
     const container = this._node.find(".modal-container");
 
     const closeGfx = $(closeSVG).addClass("close");
@@ -60,6 +63,35 @@ export default class QuickEditModal {
     closeGfx.click(this._onClose);
 
     container.prepend(closeGfx);
+  }
+
+  renderNewInputBtn() {
+    const container = this._node.find('.modal-container');
+
+    const newInputBtnGfx = $(newInputBtnSkeleton);
+
+    const plusGfx = $(plusSVG).addClass("plus");
+    newInputBtnGfx.prepend(plusGfx);
+
+    newInputBtnGfx.click(() => this.addInput());
+
+    container.append(newInputBtnGfx);   
+  }
+
+  addInput(options = {}) {
+    const {
+      label,
+      type
+    } = options;
+
+    const inputContainer = this._node.find('.inputs');
+
+    const newInput = $(inputSkeleton);
+
+    newInput.find('input').val(label);
+    newInput.find('select').val(type);
+
+    inputContainer.append(newInput);
   }
 
   highlightElements(elements) {
@@ -93,9 +125,6 @@ export default class QuickEditModal {
       target = $(event.target).val()
     }
 
-
-    console.log(target);
-    
     const elements = getRelatedElements(target);
 
     this.highlightElements(elements);
@@ -115,16 +144,16 @@ export default class QuickEditModal {
   }
 
   bindAutocomplete() {
-
     $(".inputs input").autocomplete(
       getAutocompleteConfig(AVAILABLE_INPUTS, e => this.highlightRelatedElements(e))
     );
   }
 
   init() {
-    this._node.append(MODAL_SKELETON);
+    this._node.append(modalSkeleton);
 
-    this.appendClose();
+    this.renderClose();
+    this.renderNewInputBtn();
 
     this.bindRelations();
     this.bindAutocomplete();
