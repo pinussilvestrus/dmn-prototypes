@@ -43,3 +43,7 @@ svg {
   stroke: #FF8888;
   stroke-width: 1px;
 }
+
+.djs-shape.highlight .djs-visual rect {
+  stroke: coral !important;
+}

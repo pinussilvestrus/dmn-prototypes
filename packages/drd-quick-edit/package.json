@@ -12,7 +12,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "min-dash": "^3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

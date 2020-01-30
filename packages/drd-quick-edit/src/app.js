@@ -2,22 +2,52 @@
 
 import $ from "jquery";
 
+import {
+  forEach
+} from 'min-dash';
+
 import diagram from "../resources/diagram.svg";
 
 import QuickEditModal from "./components/QuickEditModal";
 
+import getElement from "./util/getElement";
+
 import './app.css';
+
+const SELECTED_MARKER = "selected";
+
+const HOVER_MARKER = "hover";
+
+const HIGHLIGHT_MARKER = "highlight";
 
 let quickEditModal;
 
-function openEditModal(decision) {
+function unhighlightElements(elements) {
+  forEach(elements, id => {
+    const element = getElement(id);
+
+    element.removeClass(HIGHLIGHT_MARKER);
+  });
+}
+
+function highlightElements(elements) {
+  forEach(elements, id => {
+    const element = getElement(id);
+
+    element.addClass(HIGHLIGHT_MARKER);
+  });
+}
+
+function openEditModal() {
 
   const node = $('.edit-modal-placeholder');
 
   if(!quickEditModal) {
     quickEditModal = new QuickEditModal({
       node,
-      onClose: closeModal
+      onClose: closeModal,
+      onHighlight: highlightElements,
+      onUnhighlight: unhighlightElements
     });
   }
 
@@ -32,20 +62,20 @@ function closeModal() {
 function interactions(decision) {
   const hitBox = decision.children(".djs-hit");
 
-  hitBox.mouseover(() => decision.addClass("hover"));
+  hitBox.mouseover(() => decision.addClass(HOVER_MARKER));
 
-  hitBox.mouseout(() => decision.removeClass("hover"));
+  hitBox.mouseout(() => decision.removeClass(HOVER_MARKER));
 
   $("svg").click(event => {
     if (event.target == hitBox[0]) {
 
-      decision.addClass("selected");
+      decision.addClass(SELECTED_MARKER);
 
       return openEditModal(decision);
     }
 
     closeModal();
-    decision.removeClass("selected");
+    decision.removeClass(SELECTED_MARKER);
   });
 
   hitBox.click(() => {});
@@ -59,9 +89,7 @@ function main() {
   // insert diagram svg into page
   contents.append(diagramGfx);
 
-  const decision = $('[data-element-id="Decision_03absfl"]');
-
-  debugger;
+  const decision = getElement('Decision_03absfl');
 
   interactions(decision);
 }
