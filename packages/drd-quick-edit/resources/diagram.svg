@@ -13,6 +13,9 @@
         <marker id="information-requirement-end" viewBox="0 0 20 20" refX="11" refY="10" markerWidth="20" markerHeight="20" orient="auto">
             <path d="M 1 5 L 11 10 L 1 15 Z" style="stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1;"></path>
         </marker>
+         <marker id="information-requirement-highlight-end" viewBox="0 0 20 20" refX="11" refY="10" markerWidth="20" markerHeight="20" orient="auto">
+            <path d="M 1 5 L 11 10 L 1 15 Z" style="stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; fill: coral"></path>
+        </marker>
         <marker id="knowledge-requirement-end" viewBox="0 0 20 20" refX="11" refY="10" markerWidth="16" markerHeight="16" orient="auto">
             <path d="M 1 3 L 11 10 L 1 17" style="stroke-width: 2px; stroke-linecap: round; stroke-dasharray: 10000, 1; fill: none; stroke: black;"></path>
         </marker>
@@ -208,7 +211,7 @@
     <g class="djs-group">
         <g class="djs-element djs-connection" data-element-id="connection_147" style="display: block;">
             <g class="djs-visual">
-                <polyline points="1290,415 1040,320 1040,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+                <polyline points="1290,417 1040,320 1040,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
             <polyline points="1290,415 1040,320 1040,304 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
             <rect x="1034" y="298" width="262" height="123" class="djs-outline" style="fill: none;"/>

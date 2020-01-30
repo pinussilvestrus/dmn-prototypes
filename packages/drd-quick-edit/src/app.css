@@ -47,3 +47,8 @@ svg {
 .djs-shape.highlight .djs-visual rect {
   stroke: coral !important;
 }
+
+.djs-connection.highlight .djs-visual polyline {
+  stroke: coral !important;
+  marker-end: url(#information-requirement-highlight-end) !important;
+}

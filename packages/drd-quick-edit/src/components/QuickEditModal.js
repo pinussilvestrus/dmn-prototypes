@@ -14,7 +14,7 @@ import "./QuickEditModal.css";
 const RELATIONS = [
     {
         inputSelector: 'Number of open claims of employee',
-        elements: ['InputData_13z77r8']
+        elements: ['InputData_13z77r8', 'connection_147']
     }
 ];
 
