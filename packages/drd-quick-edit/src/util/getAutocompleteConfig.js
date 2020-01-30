@@ -11,9 +11,14 @@ export default function getAutocompleteConfig(items, selectCb) {
     source: function(request, response) {
       response($.ui.autocomplete.filter(items, extractLast(request.term)));
     },
-    focus: function() {
-      
-      // todo(pinussilvestrus): highlight related
+    focus: function(event, ui) {
+
+      if(typeof selectCb === 'function') {
+        selectCb({
+          target: ui.item.value
+        });
+      }
+
       return false;
     },
     select: function(event, ui) {
@@ -28,7 +33,9 @@ export default function getAutocompleteConfig(items, selectCb) {
       this.value = terms.join(" ");
 
       if(typeof selectCb === 'function') {
-        selectCb(this);
+        selectCb({
+          target: this
+        });
       }
 
       return false;

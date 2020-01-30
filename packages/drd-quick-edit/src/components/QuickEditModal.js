@@ -68,26 +68,35 @@ export default class QuickEditModal {
   }
 
   highlightRelatedElements(event) {
-    function getRelatedElements(node) {
+    function getRelatedElements(value) {
 
       // (1) find exact match
-      const input = find(INPUTS, i => node.val() === i.label);
+      const input = find(INPUTS, i => value === i.label);
 
       if (input) {
         return input.elements;
       }
 
       // (2) find including match
-      const inputs = filter(INPUTS, i => node.val().includes(i.label));
+      const inputs = filter(INPUTS, i => value.includes(i.label));
 
       const elements = flatten(map(inputs, input => input.elements)) || [];
 
       return elements;
     }
 
-    const node = $(event.target);
+    let {
+      target
+    } = event;
 
-    const elements = getRelatedElements(node);
+    if(typeof target !== 'string') {
+      target = $(event.target).val()
+    }
+
+
+    console.log(target);
+    
+    const elements = getRelatedElements(target);
 
     this.highlightElements(elements);
   }
@@ -107,14 +116,8 @@ export default class QuickEditModal {
 
   bindAutocomplete() {
 
-    const self = this;
-
-    function selectCb(input) {
-      return self.highlightRelatedElements({ target: input });
-    }
-
     $(".inputs input").autocomplete(
-      getAutocompleteConfig(AVAILABLE_INPUTS, selectCb)
+      getAutocompleteConfig(AVAILABLE_INPUTS, e => this.highlightRelatedElements(e))
     );
   }
 
