@@ -86,6 +86,13 @@ input {
   color: #ffffff !important;
 }
 
+.ui-state-highlight {
+  height: 1.4rem;
+  margin: 0 0 0.5rem 1rem;
+  background-color: gainsboro;
+  border: none;
+}
+
 .delete {
   color: #4d90ff;
   margin-top: 0.3rem;
