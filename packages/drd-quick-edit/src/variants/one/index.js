@@ -4,7 +4,7 @@ import {
   forEach
 } from 'min-dash';
 
-import diagram from '../../../resources/diagram.svg';
+import diagramSVG from '../../../resources/diagram.svg';
 
 import QuickEditModal from './components/QuickEditModal';
 
@@ -127,10 +127,10 @@ function interactions(decision) {
   hitBox.click(() => {});
 }
 
-function main() {
-  const diagramGfx = $(diagram)[0];
+function enable() {
+  const contents = $('.contents');
 
-  const contents = $('.contents')[0];
+  const diagramGfx = $(diagramSVG).addClass('diagram');
 
   // insert diagram svg into page
   contents.append(diagramGfx);
@@ -140,4 +140,11 @@ function main() {
   interactions(decision);
 }
 
-export default main;
+function disable() {
+  $('.contents').empty();
+}
+
+export default {
+  enable,
+  disable
+};

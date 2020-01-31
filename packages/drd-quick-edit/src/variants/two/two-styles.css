@@ -1,0 +1,19 @@
+.under-construction {
+  font-size: 6rem;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
+}
+
+.under-construction p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20rem;
+  bottom: 0;
+  margin: auto;
+}
