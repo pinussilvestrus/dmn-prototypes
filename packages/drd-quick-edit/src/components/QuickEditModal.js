@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-import 'webpack-jquery-ui';
+import 'webpack-jquery-ui/autocomplete';
 
 import 'webpack-jquery-ui/css';
 
