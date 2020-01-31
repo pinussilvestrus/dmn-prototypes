@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 import 'webpack-jquery-ui/autocomplete';
+import 'webpack-jquery-ui/sortable';
 
 import 'webpack-jquery-ui/css';
 
@@ -57,8 +58,14 @@ export default class QuickEditModal {
   }
 
   renderInputs() {
+    const inputContainer = $('.inputs');
+
     forEach(this._inputHeaders, input => {
       this.addInput(input);
+    });
+
+    inputContainer.sortable({
+      placeholder: 'ui-state-highlight'
     });
   }
 
