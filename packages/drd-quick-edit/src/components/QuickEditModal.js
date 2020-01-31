@@ -129,11 +129,20 @@ export default class QuickEditModal {
   }
 
   bindAutocomplete(input) {
-    input.find('input').autocomplete(
-      getAutocompleteConfig(this.AVAILABLE_INPUT_LABELS, e =>
-        this.highlightRelatedElements(e)
+    input.find('input')
+      .autocomplete(
+        getAutocompleteConfig(this.AVAILABLE_INPUT_LABELS, e =>
+          this.highlightRelatedElements(e)
+        )
       )
-    );
+      .focus(function() {
+        const node = $(this);
+
+        if (isEmpty(node)) {
+          node.data('uiAutocomplete').search(node.val());
+        }
+
+      });
   }
 
   init() {
@@ -159,4 +168,11 @@ export default class QuickEditModal {
     this._node.css('visibility', 'hidden');
     this._opened = false;
   }
+}
+
+
+// helpers ///////////////////
+
+function isEmpty(node) {
+  return !node.val().trim();
 }
