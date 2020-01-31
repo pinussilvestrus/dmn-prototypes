@@ -4,10 +4,19 @@ import diagramSVG from '../../../resources/diagram.svg';
 
 import './two-styles.css';
 
-function main() {
+function enable() {
+  const diagramGfx = $(diagramSVG).addClass('diagram');
+
   $('.contents')
-    .append(diagramSVG)
+    .append(diagramGfx)
     .prepend('<div class="under-construction"><p>UNDER CONSTRUCTION</p></div>');
 }
 
-export default main;
+function disable() {
+  $('.contents').empty();
+}
+
+export default {
+  disable,
+  enable
+};
