@@ -17,8 +17,7 @@
 
 .outputs,
 .inputs {
-  margin-bottom: 1rem;
-  margin-right: 1rem;
+  margin: 0 1rem 1rem 1rem;
 }
 
 .inputs-header {
@@ -37,8 +36,12 @@
   display: flex;
 }
 
+.row .drag {
+  flex: 10%;
+}
+
 .row input {
-  flex: 60%;
+  flex: 50%;
 }
 
 .row select {
@@ -50,10 +53,14 @@
 }
 
 input {
-  margin: 0 1rem 0.5rem 1rem;
+  margin: 0 0.5rem 0.5rem 0;
   height: 1.2rem;
-  padding-left: 0.5rem;
+  padding-left: 0.3rem;
   outline-color: coral;
+}
+
+select {
+  margin-top: 0.2rem;
 }
 
 .close {
@@ -93,9 +100,9 @@ input {
   border: none;
 }
 
-.delete {
+.delete, .drag {
   color: #4d90ff;
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   height: 10px !important;
   cursor: pointer;
 }

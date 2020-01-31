@@ -14,6 +14,7 @@ import newInputBtnSkeleton from './NewInputBtn.html';
 import closeSVG from '../../resources/close.svg';
 import plusSVG from '../../resources/plus.svg';
 import minusSVG from '../../resources/minus.svg';
+import dragSVG from '../../resources/drag.svg';
 
 import getAutocompleteConfig from '../util/getAutocompleteConfig';
 
@@ -75,6 +76,9 @@ export default class QuickEditModal {
     const inputContainer = this._node.find('.inputs');
 
     const newInput = $(inputSkeleton);
+
+    const dragGfx = $(dragSVG).addClass('drag');
+    newInput.prepend(dragGfx);
 
     const minusGfx = $(minusSVG)
       .addClass('delete')
