@@ -84,7 +84,8 @@ function highlightElements(elements) {
 
 function openEditModal() {
 
-  const node = $('.edit-modal-placeholder');
+  const node = $('<div class="edit-modal-placeholder"></div>');
+  $('.contents').append(node);
 
   if (!quickEditModal) {
     quickEditModal = new QuickEditModal({
@@ -105,7 +106,7 @@ function closeModal() {
   quickEditModal && quickEditModal.hide();
 }
 
-function interactions(decision) {
+function initInteractions(decision) {
   const hitBox = decision.children('.djs-hit');
 
   hitBox.mouseover(() => decision.addClass(HOVER_MARKER));
@@ -137,11 +138,13 @@ function enable() {
 
   const decision = getElement('Decision_03absfl');
 
-  interactions(decision);
+  initInteractions(decision);
 }
 
 function disable() {
   $('.contents').empty();
+
+  quickEditModal = undefined;
 }
 
 export default {
