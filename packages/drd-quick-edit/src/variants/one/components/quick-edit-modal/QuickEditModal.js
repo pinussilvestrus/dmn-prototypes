@@ -26,13 +26,9 @@ export default class QuickEditModal {
     this._onClose = options.onClose;
     this._onHighlight = options.onHighlight;
     this._onUnhighlight = options.onUnhighlight;
-    this._availableInputs = options.availableInputs;
-    this._inputHeaders = options.inputHeaders;
 
-    this.AVAILABLE_INPUT_LABELS = map(this._availableInputs, i => i.label);
-    this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
-
-    this.init();
+    this.setInputs(options);
+    this.render();
   }
 
   renderClose() {
@@ -43,6 +39,19 @@ export default class QuickEditModal {
     closeGfx.click(this._onClose);
 
     container.prepend(closeGfx);
+  }
+
+  setInputs(options) {
+    const {
+      availableInputs,
+      inputHeaders
+    } = options;
+
+    this._availableInputs = availableInputs;
+    this._inputHeaders = inputHeaders;
+
+    this.AVAILABLE_INPUT_LABELS = map(this._availableInputs, i => i.label);
+    this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
   }
 
   renderNewInputBtn() {
@@ -181,7 +190,8 @@ export default class QuickEditModal {
       });
   }
 
-  init() {
+  render() {
+    this._node.empty();
     this._node.append(modalSkeleton);
 
     this.renderInputs();

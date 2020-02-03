@@ -1,13 +1,11 @@
-
-import $ from 'jquery';
-
 export default class NewInputConnection {
 
   constructor(options) {
     this._svgContainer = options.svgContainer;
+    this._onUpdateInputs = options.onUpdateInputs;
   }
 
-  init() {
+  render() {
     this.showNewInput();
   }
 
@@ -25,6 +23,8 @@ export default class NewInputConnection {
 
     const newConnectionGfx = this._svgContainer.find('.new-connection');
     newConnectionGfx.css('display', 'none');
+
+    this._onUpdateInputs();
   }
 
   showNewInput() {

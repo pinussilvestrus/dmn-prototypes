@@ -1,8 +1,6 @@
 import $ from 'jquery';
 
-import {
-  forEach
-} from 'min-dash';
+import { forEach } from 'min-dash';
 
 import diagramSVG from '../../../resources/diagram.svg';
 
@@ -20,7 +18,7 @@ const HOVER_MARKER = 'hover';
 
 const HIGHLIGHT_MARKER = 'highlight';
 
-const AVAILABLE_INPUTS = [
+let AVAILABLE_INPUTS = [
   {
     label: 'Employee fills skillset',
     elements: ['Decision_11xban0', 'connection_148'],
@@ -38,7 +36,7 @@ const AVAILABLE_INPUTS = [
   {
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
-  },
+  }
 
   // default state
   // {
@@ -48,7 +46,7 @@ const AVAILABLE_INPUTS = [
   // }
 ];
 
-const DT_INPUTS = [
+let DT_INPUTS = [
 
   // default state
   // {
@@ -91,8 +89,26 @@ function highlightElements(elements) {
   });
 }
 
-function openEditModal() {
+function updateInputs() {
+  DT_INPUTS.push({
+    label: 'Number of open claims of employee',
+    type: 'integer'
+  });
 
+  AVAILABLE_INPUTS.push({
+    label: 'Number of open claims of employee',
+    elements: ['InputData_13z77r8', 'connection_147'],
+    type: 'integer'
+  });
+
+  quickEditModal.setInputs({
+    availableInputs: AVAILABLE_INPUTS,
+    inputHeaders: DT_INPUTS
+  });
+  quickEditModal.render();
+}
+
+function openEditModal() {
   const node = $('<div class="edit-modal-placeholder"></div>');
   $('.contents').append(node);
 
@@ -108,7 +124,6 @@ function openEditModal() {
   }
 
   quickEditModal.open();
-
 }
 
 function closeModal() {
@@ -124,7 +139,6 @@ function initInteractions(decision) {
 
   $('svg').click(event => {
     if (event.target == hitBox[0]) {
-
       decision.addClass(SELECTED_MARKER);
 
       return openEditModal(decision);
@@ -151,9 +165,10 @@ function enable() {
 
   // initialize new input connections actions
   const newInputConnection = new NewInputConnection({
-    svgContainer: contents.find('svg').first()
+    svgContainer: contents.find('svg').first(),
+    onUpdateInputs: updateInputs
   });
-  newInputConnection.init();
+  newInputConnection.render();
 }
 
 function disable() {
