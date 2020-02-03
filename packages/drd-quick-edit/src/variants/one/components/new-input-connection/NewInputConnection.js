@@ -1,3 +1,7 @@
+/* global document */
+
+import $ from 'jquery';
+
 export default class NewInputConnection {
 
   constructor(options) {
@@ -9,9 +13,21 @@ export default class NewInputConnection {
     this.showNewInput();
   }
 
-  showInput() {
+  showInput(text) {
     const inputGfx = this._svgContainer.find('[data-element-id="InputData_13z77r8"]');
     inputGfx.css('display', 'block');
+
+    if (text) {
+      const textGfx = inputGfx.find('text');
+
+      textGfx.empty();
+
+      $(SVG('tspan'))
+        .attr('x', '19.47')
+        .attr('y','25')
+        .html(text)
+        .appendTo(textGfx);
+    }
 
     const newInputGfx = this._svgContainer.find('.new-input-data');
     newInputGfx.css('display', 'none');
@@ -53,4 +69,10 @@ export default class NewInputConnection {
   }
 
 
+}
+
+// helpers ////////////////
+
+function SVG(tag) {
+  return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }

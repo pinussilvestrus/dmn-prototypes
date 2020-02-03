@@ -101,11 +101,13 @@ function updateInputs() {
     type: 'integer'
   });
 
-  quickEditModal.setInputs({
-    availableInputs: AVAILABLE_INPUTS,
-    inputHeaders: DT_INPUTS
-  });
-  quickEditModal.render();
+  if (quickEditModal) {
+    quickEditModal.setInputs({
+      availableInputs: AVAILABLE_INPUTS,
+      inputHeaders: DT_INPUTS
+    });
+    quickEditModal.render();
+  }
 }
 
 function openEditModal() {
