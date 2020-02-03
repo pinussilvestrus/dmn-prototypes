@@ -145,12 +145,31 @@ export default class QuickEditModal {
       });
   }
 
+  setType(inputNode) {
+
+    const typeNode = $(inputNode).siblings('select');
+
+    const input = find(this._availableInputs, i => inputNode.value === i.label);
+
+    if (input && typeNode) {
+      typeNode.val(input.type);
+    }
+
+  }
+
   bindAutocomplete(input) {
     input.find('input')
       .autocomplete(
-        getAutocompleteConfig(this.AVAILABLE_INPUT_LABELS, e =>
-          this.highlightRelatedElements(e)
-        )
+        getAutocompleteConfig(this.AVAILABLE_INPUT_LABELS, event => {
+          const {
+            isSelect,
+            target
+          } = event;
+
+          isSelect && this.setType(target);
+
+          this.highlightRelatedElements(event);
+        })
       )
       .focus(function() {
         const node = $(this);

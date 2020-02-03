@@ -36,7 +36,8 @@ export default function getAutocompleteConfig(items, selectCb) {
 
       if (typeof selectCb === 'function') {
         selectCb({
-          target: this
+          target: this,
+          isSelect: true
         });
       }
 

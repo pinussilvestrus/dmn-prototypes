@@ -21,11 +21,13 @@ const HIGHLIGHT_MARKER = 'highlight';
 const AVAILABLE_INPUTS = [
   {
     label: 'Employee fills skillset',
-    elements: ['Decision_11xban0', 'connection_148']
+    elements: ['Decision_11xban0', 'connection_148'],
+    type: 'boolean'
   },
   {
     label: 'Employee Experience',
-    elements: ['Decision_19jtlzt', 'connection_149']
+    elements: ['Decision_19jtlzt', 'connection_149'],
+    type: 'string'
   },
   {
     label: 'Employee',
@@ -37,7 +39,8 @@ const AVAILABLE_INPUTS = [
   },
   {
     label: 'Number of open claims of employee',
-    elements: ['InputData_13z77r8', 'connection_147']
+    elements: ['InputData_13z77r8', 'connection_147'],
+    type: 'integer'
   }
 ];
 
