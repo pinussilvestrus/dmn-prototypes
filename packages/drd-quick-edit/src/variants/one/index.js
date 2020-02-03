@@ -8,6 +8,8 @@ import diagramSVG from '../../../resources/diagram.svg';
 
 import QuickEditModal from './components/quick-edit-modal';
 
+import NewInputConnection from './components/new-input-connection';
+
 import getElement from '../../util/getElement';
 
 import './one-styles.css';
@@ -146,6 +148,12 @@ function enable() {
   const decision = getElement('Decision_03absfl');
 
   initInteractions(decision);
+
+  // initialize new input connections actions
+  const newInputConnection = new NewInputConnection({
+    svgContainer: contents.find('svg').first()
+  });
+  newInputConnection.init();
 }
 
 function disable() {
