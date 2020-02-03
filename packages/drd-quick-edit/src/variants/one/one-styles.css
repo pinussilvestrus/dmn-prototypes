@@ -7,12 +7,14 @@
 
 [data-element-id="Decision_03absfl"].selected .djs-outline {
   stroke: #8888FF;
-  stroke-width: 1px;
+  stroke-width: 3px;
+  stroke-dasharray: 10px;
 }
 
 [data-element-id="Decision_03absfl"].hover .djs-outline {
   stroke: #FF8888;
   stroke-width: 1px;
+  stroke-dasharray: 10px;
 }
 
 .djs-shape.highlight .djs-visual rect {

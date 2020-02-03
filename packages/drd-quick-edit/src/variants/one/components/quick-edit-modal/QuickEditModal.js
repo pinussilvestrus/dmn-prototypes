@@ -15,6 +15,7 @@ import closeSVG from '../../../../../resources/close.svg';
 import plusSVG from '../../../../../resources/plus.svg';
 import minusSVG from '../../../../../resources/minus.svg';
 import dragSVG from '../../../../../resources/drag.svg';
+import tableSVG from '../../../../../resources/table.svg';
 
 import getAutocompleteConfig from '../../../../util/getAutocompleteConfig';
 
@@ -141,6 +142,12 @@ export default class QuickEditModal {
     this.highlightElements(elements);
   }
 
+  renderHeader() {
+    const tableGfx = $(tableSVG).addClass('table-icon');
+
+    this._node.find('.modal-header').prepend(tableGfx);
+  }
+
   bindRelations(input) {
     const self = this;
 
@@ -155,7 +162,6 @@ export default class QuickEditModal {
   }
 
   setType(inputNode) {
-
     const typeNode = $(inputNode).siblings('select');
 
     const input = find(this._availableInputs, i => inputNode.value === i.label);
@@ -194,6 +200,7 @@ export default class QuickEditModal {
     this._node.empty();
     this._node.append(modalSkeleton);
 
+    this.renderHeader();
     this.renderInputs();
     this.renderClose();
     this.renderNewInputBtn();

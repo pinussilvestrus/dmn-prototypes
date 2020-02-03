@@ -9,10 +9,21 @@
   position: absolute;
 }
 
+.modal-header {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+}
+
+.table-icon {
+  height: 1.1rem !important;
+  padding-right: 0.5rem;
+}
+
 .outputs-header {
   font-size: 18px;
   font-weight: 400;
   padding: 1rem;
+  padding-left: 0;
 }
 
 .outputs,
