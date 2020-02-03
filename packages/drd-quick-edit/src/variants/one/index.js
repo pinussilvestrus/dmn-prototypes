@@ -6,7 +6,7 @@ import {
 
 import diagramSVG from '../../../resources/diagram.svg';
 
-import QuickEditModal from './components/QuickEditModal';
+import QuickEditModal from './components/quick-edit-modal';
 
 import getElement from '../../util/getElement';
 
