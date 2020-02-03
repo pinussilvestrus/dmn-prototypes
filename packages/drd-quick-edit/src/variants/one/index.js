@@ -37,18 +37,22 @@ const AVAILABLE_INPUTS = [
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
   },
-  {
-    label: 'Number of open claims of employee',
-    elements: ['InputData_13z77r8', 'connection_147'],
-    type: 'integer'
-  }
+
+  // default state
+  // {
+  //   label: 'Number of open claims of employee',
+  //   elements: ['InputData_13z77r8', 'connection_147'],
+  //   type: 'integer'
+  // }
 ];
 
 const DT_INPUTS = [
-  {
-    label: 'Number of open claims of employee',
-    type: 'integer'
-  },
+
+  // default state
+  // {
+  //   label: 'Number of open claims of employee',
+  //   type: 'integer'
+  // },
   {
     label: 'Employee.region = Claim.region',
     type: 'boolean'
