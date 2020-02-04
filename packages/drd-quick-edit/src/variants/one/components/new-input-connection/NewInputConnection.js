@@ -16,8 +16,9 @@ export default class NewInputConnection {
   showInput(text) {
     const inputGfx = this._svgContainer.find('[data-element-id="InputData_13z77r8"]');
     inputGfx.css('display', 'block');
+    inputGfx.find('text').css('display', 'block');
 
-    // disabled for now
+    // todo(pinussilvestrus): disabled for now
     // if (typeof text !== 'undefined') {
     //   const textGfx = inputGfx.find('text');
 

@@ -73,8 +73,7 @@ export default class QuickEditModal {
       self._onAddNewInput('');
 
       // todo(pinussilvestrus): remove me
-      newInput.find('input').val('Number of open claims of employee');
-      self._onUpdateNewInput();
+      $('[data-element-id="InputData_13z77r8"]').find('text').css('display', 'none');
 
       newInput.find('input').change(e => {
         self._onUpdateNewInput(e.target.value);
