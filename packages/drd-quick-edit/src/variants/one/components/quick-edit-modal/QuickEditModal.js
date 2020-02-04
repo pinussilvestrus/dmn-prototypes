@@ -28,6 +28,7 @@ export default class QuickEditModal {
     this._onHighlight = options.onHighlight;
     this._onUnhighlight = options.onUnhighlight;
     this._onAddNewInput = options.onAddNewInput;
+    this._onUpdateNewInput = options.onUpdateNewInput;
 
     this.setInputs(options);
     this.render();
@@ -69,6 +70,10 @@ export default class QuickEditModal {
     newInputBtnGfx.click(() => {
       const newInput = this.addInput();
       self._onAddNewInput('');
+
+      newInput.change(e => {
+        self._onUpdateNewInput(e.target.value);
+      });
     });
 
     container.append(newInputBtnGfx);

@@ -95,14 +95,19 @@ function addNewInput(text) {
   newInputConnection.showConnection();
 }
 
-function updateInputs() {
+function updateNewInputValue(text) {
+  newInputConnection.showInput(text);
+  updateInputs(true, text);
+}
+
+function updateInputs(open = false, text) {
   DT_INPUTS.push({
-    label: 'Number of open claims of employee',
+    label: text || 'Number of open claims of employee',
     type: 'integer'
   });
 
   AVAILABLE_INPUTS.push({
-    label: 'Number of open claims of employee',
+    label: text || 'Number of open claims of employee',
     elements: ['InputData_13z77r8', 'connection_147'],
     type: 'integer'
   });
@@ -113,6 +118,10 @@ function updateInputs() {
       inputHeaders: DT_INPUTS
     });
     quickEditModal.render();
+  }
+
+  if (open) {
+    quickEditModal.open();
   }
 }
 
@@ -127,6 +136,7 @@ function openEditModal() {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
+      onUpdateNewInput: updateNewInputValue,
       availableInputs: AVAILABLE_INPUTS,
       inputHeaders: DT_INPUTS
     });
