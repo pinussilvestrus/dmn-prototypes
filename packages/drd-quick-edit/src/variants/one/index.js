@@ -72,6 +72,7 @@ let DT_INPUTS = [
 ];
 
 let quickEditModal;
+let newInputConnection;
 
 function unhighlightElements(elements) {
   forEach(elements, id => {
@@ -87,6 +88,11 @@ function highlightElements(elements) {
 
     element.addClass(HIGHLIGHT_MARKER);
   });
+}
+
+function addNewInput(text) {
+  newInputConnection.showInput(text);
+  newInputConnection.showConnection();
 }
 
 function updateInputs() {
@@ -120,6 +126,7 @@ function openEditModal() {
       onClose: closeModal,
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
+      onAddNewInput: addNewInput,
       availableInputs: AVAILABLE_INPUTS,
       inputHeaders: DT_INPUTS
     });
@@ -166,7 +173,7 @@ function enable() {
   initInteractions(decision);
 
   // initialize new input connections actions
-  const newInputConnection = new NewInputConnection({
+  newInputConnection = new NewInputConnection({
     svgContainer: contents.find('svg').first(),
     onUpdateInputs: updateInputs
   });

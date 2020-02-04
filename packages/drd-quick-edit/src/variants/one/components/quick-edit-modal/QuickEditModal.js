@@ -27,6 +27,7 @@ export default class QuickEditModal {
     this._onClose = options.onClose;
     this._onHighlight = options.onHighlight;
     this._onUnhighlight = options.onUnhighlight;
+    this._onAddNewInput = options.onAddNewInput;
 
     this.setInputs(options);
     this.render();
@@ -56,6 +57,8 @@ export default class QuickEditModal {
   }
 
   renderNewInputBtn() {
+    const self = this;
+
     const container = this._node.find('.modal-container');
 
     const newInputBtnGfx = $(newInputBtnSkeleton);
@@ -63,7 +66,10 @@ export default class QuickEditModal {
     const plusGfx = $(plusSVG).addClass('plus');
     newInputBtnGfx.prepend(plusGfx);
 
-    newInputBtnGfx.click(() => this.addInput());
+    newInputBtnGfx.click(() => {
+      const newInput = this.addInput();
+      self._onAddNewInput('');
+    });
 
     container.append(newInputBtnGfx);
   }
@@ -102,6 +108,8 @@ export default class QuickEditModal {
     this.bindAutocomplete(newInput);
 
     inputContainer.append(newInput);
+
+    return newInput;
   }
 
   highlightElements(elements) {

@@ -17,7 +17,7 @@ export default class NewInputConnection {
     const inputGfx = this._svgContainer.find('[data-element-id="InputData_13z77r8"]');
     inputGfx.css('display', 'block');
 
-    if (text) {
+    if (typeof text !== 'undefined') {
       const textGfx = inputGfx.find('text');
 
       textGfx.empty();
@@ -39,8 +39,6 @@ export default class NewInputConnection {
 
     const newConnectionGfx = this._svgContainer.find('.new-connection');
     newConnectionGfx.css('display', 'none');
-
-    this._onUpdateInputs();
   }
 
   showNewInput() {
@@ -65,6 +63,7 @@ export default class NewInputConnection {
 
     newConnectionGfx.find('tspan').click(() => {
       self.showConnection();
+      this._onUpdateInputs();
     });
   }
 
