@@ -69,9 +69,14 @@ export default class QuickEditModal {
 
     newInputBtnGfx.click(() => {
       const newInput = this.addInput();
+
       self._onAddNewInput('');
 
-      newInput.change(e => {
+      // todo(pinussilvestrus): remove me
+      newInput.find('input').val('Number of open claims of employee');
+      self._onUpdateNewInput();
+
+      newInput.find('input').change(e => {
         self._onUpdateNewInput(e.target.value);
       });
     });

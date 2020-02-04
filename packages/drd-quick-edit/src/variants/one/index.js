@@ -92,6 +92,7 @@ function highlightElements(elements) {
 
 function addNewInput(text) {
   newInputConnection.showInput(text);
+
   newInputConnection.showConnection();
 }
 

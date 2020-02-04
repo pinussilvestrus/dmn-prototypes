@@ -17,17 +17,18 @@ export default class NewInputConnection {
     const inputGfx = this._svgContainer.find('[data-element-id="InputData_13z77r8"]');
     inputGfx.css('display', 'block');
 
-    if (typeof text !== 'undefined') {
-      const textGfx = inputGfx.find('text');
+    // disabled for now
+    // if (typeof text !== 'undefined') {
+    //   const textGfx = inputGfx.find('text');
 
-      textGfx.empty();
+    //   textGfx.empty();
 
-      $(SVG('tspan'))
-        .attr('x', '19.47')
-        .attr('y','25')
-        .html(text)
-        .appendTo(textGfx);
-    }
+    //   $(SVG('tspan'))
+    //     .attr('x', '19.47')
+    //     .attr('y','25')
+    //     .html(text)
+    //     .appendTo(textGfx);
+    // }
 
     const newInputGfx = this._svgContainer.find('.new-input-data');
     newInputGfx.css('display', 'none');
