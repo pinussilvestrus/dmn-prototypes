@@ -39,4 +39,16 @@
     width: auto;
     cursor: pointer;
   }
+
+  .attributes {
+    display: none;
+    margin-top: 1rem;
+
+    .attributes-edit {
+      width: 95%;
+      height: 5rem;
+      padding: 0.5rem;
+      margin: 0.5rem 2rem 0 0;
+    }
+  }
 }

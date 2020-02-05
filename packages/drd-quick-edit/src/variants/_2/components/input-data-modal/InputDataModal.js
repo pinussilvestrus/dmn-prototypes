@@ -36,6 +36,27 @@ export default class InputDataModal {
     this._node.find('.modal-header').prepend(fileGfx);
   }
 
+
+
+  renderSelect() {
+    const select = $('select');
+
+    select.change(event => {
+
+      const {
+        target
+      } = event;
+
+      if (target.value === 'complex object') {
+
+        // show attributes
+        $('.attributes').css('display', 'block');
+      } else {
+        $('.attributes').css('display', 'none');
+      }
+    });
+  }
+
   render() {
     this._node.empty();
     this._node.append(modalSkeleton);
@@ -43,6 +64,7 @@ export default class InputDataModal {
 
     this.renderHeader();
     this.renderClose();
+    this.renderSelect();
 
     this.hide();
   }
