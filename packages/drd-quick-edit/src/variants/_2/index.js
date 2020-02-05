@@ -66,6 +66,7 @@ function enable() {
 
 function disable() {
   $('.contents').removeClass(VARIANT_CLASS).empty();
+  inputDataModal = undefined;
 }
 
 export default {
