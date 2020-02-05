@@ -1,5 +1,6 @@
 /* global document */
 
+/* eslint-disable-next-line */
 import $ from 'jquery';
 
 export default class NewInputConnection {
@@ -18,6 +19,7 @@ export default class NewInputConnection {
     inputGfx.css('display', 'block');
     inputGfx.find('text').css('display', 'block');
 
+    /* eslint-disable-next-line */
     // todo(pinussilvestrus): disabled for now
     // if (typeof text !== 'undefined') {
     //   const textGfx = inputGfx.find('text');
@@ -74,6 +76,7 @@ export default class NewInputConnection {
 
 // helpers ////////////////
 
+/* eslint-disable-next-line */
 function SVG(tag) {
   return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
