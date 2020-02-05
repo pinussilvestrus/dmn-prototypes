@@ -5,7 +5,7 @@ import $ from 'jquery';
 import varianteOne from './variants/one';
 import variantTwo from './variants/two';
 
-import './app.css';
+import './app.scss';
 
 const VARIANTS = {
   ONE: varianteOne,

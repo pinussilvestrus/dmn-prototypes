@@ -10,13 +10,15 @@ import NewInputConnection from './components/new-input-connection';
 
 import getElement from '../../util/getElement';
 
-import './one-styles.css';
+import './one-styles.scss';
 
 const SELECTED_MARKER = 'selected';
 
 const HOVER_MARKER = 'hover';
 
 const HIGHLIGHT_MARKER = 'highlight';
+
+const VARIANT_CLASS = 'variant-one';
 
 let AVAILABLE_INPUTS = [
   {
@@ -173,6 +175,7 @@ function initInteractions(decision) {
 
 function enable() {
   const contents = $('.contents');
+  contents.addClass(VARIANT_CLASS);
 
   const diagramGfx = $(diagramSVG).addClass('diagram');
 
@@ -192,8 +195,7 @@ function enable() {
 }
 
 function disable() {
-  $('.contents').empty();
-
+  $('.contents').removeClass(VARIANT_CLASS).empty();
   quickEditModal = undefined;
 }
 

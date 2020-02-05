@@ -19,7 +19,7 @@ import tableSVG from '../../../../../resources/table.svg';
 
 import getAutocompleteConfig from '../../../../util/getAutocompleteConfig';
 
-import './QuickEditModal.css';
+import './QuickEditModal.scss';
 
 export default class QuickEditModal {
   constructor(options) {

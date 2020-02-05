@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 import diagramSVG from '../../../resources/diagram.svg';
 
-import './two-styles.css';
+import './two-styles.scss';
 
 function enable() {
   const diagramGfx = $(diagramSVG).addClass('diagram');
