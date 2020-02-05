@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 import { forEach } from 'min-dash';
 
-import diagramSVG from '../../../resources/diagram.svg';
+import diagramSVG from './resources/diagram.svg';
 
 import QuickEditModal from './components/quick-edit-modal';
 
@@ -169,8 +169,6 @@ function initInteractions(decision) {
     closeModal();
     decision.removeClass(SELECTED_MARKER);
   });
-
-  hitBox.click(() => {});
 }
 
 function enable() {

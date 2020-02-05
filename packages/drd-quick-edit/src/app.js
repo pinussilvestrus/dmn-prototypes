@@ -2,8 +2,8 @@
 
 import $ from 'jquery';
 
-import varianteOne from './variants/one';
-import variantTwo from './variants/two';
+import varianteOne from './variants/_1';
+import variantTwo from './variants/_2';
 
 import './app.scss';
 
@@ -44,5 +44,5 @@ function toggleVariant(variant) {
 
 $(document).ready(() => {
   $('body').keypress(bindListeners);
-  toggleVariant('1');
+  toggleVariant('2');
 });

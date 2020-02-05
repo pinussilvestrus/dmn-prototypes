@@ -216,6 +216,7 @@ export default class QuickEditModal {
   render() {
     this._node.empty();
     this._node.append(modalSkeleton);
+    this._node.addClass('quick-edit-modal');
 
     this.renderHeader();
     this.renderInputs();

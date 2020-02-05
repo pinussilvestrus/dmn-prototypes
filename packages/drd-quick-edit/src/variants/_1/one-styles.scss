@@ -1,5 +1,10 @@
 .variant-one {
+
   [data-element-id="Decision_03absfl"] {
+    .djs-hit {
+      pointer-events: all;
+    }
+
     &.hover .djs-outline {
       visibility: visible;
       shape-rendering: crispEdges;
