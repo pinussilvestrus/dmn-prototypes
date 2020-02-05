@@ -19,9 +19,22 @@
 
 .djs-shape.highlight .djs-visual rect {
   stroke: coral !important;
+  stroke-width: 2px !important;
+}
+
+.djs-shape.highlight .djs-visual rect {
+  stroke: coral !important;
+  stroke-width: 2px !important;
+  fill: rgb(	255, 127, 80, 0.3) !important;
+}
+
+.djs-shape.highlight .djs-visual text {
+  fill: coral !important;
+  font-weight: bold;
 }
 
 .djs-connection.highlight .djs-visual polyline {
   stroke: coral !important;
+  stroke-width: 1.3px !important;
   marker-end: url(#information-requirement-highlight-end) !important;
 }
