@@ -1,4 +1,4 @@
-/* global document */
+/* global document, window */
 
 import $ from 'jquery';
 
@@ -27,6 +27,11 @@ function bindListeners(event) {
   }
 }
 
+function initVariant() {
+  const variantParam = $.urlParam('variant');
+  toggleVariant(variantParam);
+}
+
 function addVariantBadge(variant) {
   const badgeSVG = $(`<div><span>${variant}</span></div>`).addClass('badge');
   $('.contents').append(badgeSVG);
@@ -44,5 +49,14 @@ function toggleVariant(variant) {
 
 $(document).ready(() => {
   $('body').keypress(bindListeners);
-  toggleVariant('2');
+  initVariant();
 });
+
+// helper ///////////
+
+$.urlParam = function(name) {
+  const results = new RegExp('[?&]' + name + '=([^&#]*)')
+    .exec(window.location.href);
+
+  return results && results[1] || 1;
+};
