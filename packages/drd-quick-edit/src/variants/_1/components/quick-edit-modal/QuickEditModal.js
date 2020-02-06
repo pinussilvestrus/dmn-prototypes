@@ -57,6 +57,19 @@ export default class QuickEditModal {
     this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
   }
 
+  // todo(pinussilvestrus): remove me after user test
+  mockNewInput(event) {
+    const {
+      target
+    } = event;
+
+    const mockText = 'Number of open claims of employee';
+
+    $(target).val(mockText);
+    this._onUpdateNewInput(mockText);
+    this.highlightRelatedElements({ target: mockText });
+  }
+
   renderNewInputBtn() {
     const self = this;
 
@@ -75,9 +88,15 @@ export default class QuickEditModal {
       // todo(pinussilvestrus): remove me
       $('[data-element-id="InputData_13z77r8"]').find('text').css('display', 'none');
 
-      newInput.find('input').change(e => {
-        self._onUpdateNewInput(e.target.value);
-      });
+      newInput.find('input')
+        .click(e => {
+          self.mockNewInput(e);
+        })
+        .change(e => {
+
+          // todo(pinussilvestrus): add me after user test
+          // self._onUpdateNewInput(e.target.value);
+        });
     });
 
     container.append(newInputBtnGfx);
