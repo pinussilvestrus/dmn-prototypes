@@ -28,7 +28,7 @@ function bindListeners(event) {
 }
 
 function initVariant() {
-  const variantParam = $.urlParam('variant');
+  const variantParam = urlParam('variant');
   toggleVariant(variantParam);
 }
 
@@ -44,6 +44,9 @@ function toggleVariant(variant) {
 
   current = variant;
   VARIANTS[current].enable();
+
+  updateURL(variant);
+
   addVariantBadge(variant);
 }
 
@@ -54,9 +57,14 @@ $(document).ready(() => {
 
 // helper ///////////
 
-$.urlParam = function(name) {
+function updateURL(variant) {
+  const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?variant=${variant}`;
+  window.history.pushState({ path: newurl }, '', newurl);
+}
+
+function urlParam(name) {
   const results = new RegExp('[?&]' + name + '=([^&#]*)')
     .exec(window.location.href);
 
   return results && results[1] || 1;
-};
+}
