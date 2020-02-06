@@ -112,6 +112,10 @@ export default class QuickEditModal {
     inputContainer.sortable({
       placeholder: 'ui-state-highlight'
     });
+
+    // todo(pinussilvestrus): remove me after user test
+    const lastInput = inputContainer.find('input:last');
+    lastInput.val() === 'Number of open claims of employee' && lastInput.focus();
   }
 
   addInput(options = {}) {
