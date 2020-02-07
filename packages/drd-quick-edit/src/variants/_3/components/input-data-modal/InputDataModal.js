@@ -36,13 +36,11 @@ export default class InputDataModal {
     this._node.find('.modal-header').prepend(fileGfx);
   }
 
-
-
   renderSelect() {
+
     const select = $('select');
 
-    select.change(event => {
-
+    function _initComplexObject(event) {
       const {
         target
       } = event;
@@ -54,7 +52,11 @@ export default class InputDataModal {
       } else {
         $('.attributes').css('display', 'none');
       }
-    });
+    }
+
+    select.change(_initComplexObject);
+
+    _initComplexObject({ target: select[0] });
   }
 
   render() {
