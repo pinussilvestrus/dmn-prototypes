@@ -17,7 +17,6 @@ const VARIANTS = {
 let current;
 
 function bindListeners(event) {
-  console.log(event.shiftKey, event.keyCode);
 
   // SHIFT + 1
   if (event.shiftKey && event.keyCode == 33) {

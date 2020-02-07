@@ -57,19 +57,6 @@ export default class QuickEditModal {
     this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
   }
 
-  // todo(pinussilvestrus): remove me after user test
-  mockNewInput(event) {
-    const {
-      target
-    } = event;
-
-    const mockText = 'Number of open claims of employee';
-
-    $(target).val(mockText);
-    this._onUpdateNewInput(mockText);
-    this.highlightRelatedElements({ target: mockText });
-  }
-
   renderNewInputBtn() {
     const self = this;
 
@@ -85,17 +72,10 @@ export default class QuickEditModal {
 
       self._onAddNewInput('');
 
-      // todo(pinussilvestrus): remove me
-      $('[data-element-id="InputData_13z77r8"]').find('text').css('display', 'none');
-
       newInput.find('input')
-        .click(e => {
-          self.mockNewInput(e);
-        })
         .change(e => {
 
-          // todo(pinussilvestrus): add me after user test
-          // self._onUpdateNewInput(e.target.value);
+          self._onUpdateNewInput(e.target.value);
         });
     });
 
@@ -112,10 +92,6 @@ export default class QuickEditModal {
     inputContainer.sortable({
       placeholder: 'ui-state-highlight'
     });
-
-    // todo(pinussilvestrus): remove me after user test
-    const lastInput = inputContainer.find('input:last');
-    lastInput.val() === 'Number of open claims of employee' && lastInput.focus();
   }
 
   addInput(options = {}) {

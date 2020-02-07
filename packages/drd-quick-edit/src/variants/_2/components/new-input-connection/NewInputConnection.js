@@ -19,19 +19,17 @@ export default class NewInputConnection {
     inputGfx.css('display', 'block');
     inputGfx.find('text').css('display', 'block');
 
-    /* eslint-disable-next-line */
-    // todo(pinussilvestrus): disabled for now
-    // if (typeof text !== 'undefined') {
-    //   const textGfx = inputGfx.find('text');
+    if (typeof text !== 'undefined') {
+      const textGfx = inputGfx.find('text');
 
-    //   textGfx.empty();
+      textGfx.empty();
 
-    //   $(SVG('tspan'))
-    //     .attr('x', '19.47')
-    //     .attr('y','25')
-    //     .html(text)
-    //     .appendTo(textGfx);
-    // }
+      $(SVG('tspan'))
+        .attr('x', '19.47')
+        .attr('y','25')
+        .html(text)
+        .appendTo(textGfx);
+    }
 
     const newInputGfx = this._svgContainer.find('.new-input-data');
     newInputGfx.css('display', 'none');
