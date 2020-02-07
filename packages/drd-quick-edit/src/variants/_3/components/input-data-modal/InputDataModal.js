@@ -10,6 +10,8 @@ import modalSkeleton from './InputDataModal.html';
 import closeSVG from '../../../../../resources/close.svg';
 import fileSVG from '../../../../../resources/file.svg';
 
+import getElement from '../../../../util/getElement';
+
 import './InputDataModal.scss';
 
 export default class InputDataModal {
@@ -64,6 +66,17 @@ export default class InputDataModal {
     _initComplexObject({ target: select[0] });
   }
 
+  getCoordinates() {
+    const elementGfx = getElement(this._inputData.id);
+
+    const position = elementGfx.offset();
+
+    return {
+      top: position.top + 125,
+      left: position.left - 100
+    };
+  }
+
   render() {
     this._node.empty();
     this._node.append(modalSkeleton);
@@ -72,6 +85,11 @@ export default class InputDataModal {
     this.renderHeader();
     this.renderClose();
     this.renderSelect();
+
+    // set coordinates
+    this._node
+      .find('.modal-container')
+      .css(this.getCoordinates());
 
     this.hide();
   }
