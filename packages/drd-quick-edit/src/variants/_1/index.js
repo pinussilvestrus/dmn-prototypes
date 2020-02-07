@@ -8,6 +8,8 @@ import QuickEditModal from '../_2/components/quick-edit-modal';
 
 import NewInputConnection from '../_2/components/new-input-connection';
 
+import InputDataModal from '../_3/components/input-data-modal';
+
 import getElement from '../../util/getElement';
 
 import './one-styles.scss';
@@ -75,6 +77,7 @@ let DT_INPUTS = [
 
 let quickEditModal;
 let newInputConnection;
+let inputDataModal;
 
 function unhighlightElements(elements) {
   forEach(elements, id => {
@@ -128,14 +131,14 @@ function updateInputs(open = false, text) {
   }
 }
 
-function openEditModal() {
+function openDecisionModal() {
   const node = $('<div class="edit-modal-placeholder"></div>');
   $('.contents').append(node);
 
   if (!quickEditModal) {
     quickEditModal = new QuickEditModal({
       node,
-      onClose: closeModal,
+      onClose: closeDecisionModal,
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
@@ -148,11 +151,11 @@ function openEditModal() {
   quickEditModal.open();
 }
 
-function closeModal() {
+function closeDecisionModal() {
   quickEditModal && quickEditModal.hide();
 }
 
-function initInteractions(decision) {
+function initDecisionInteractions(decision) {
   const hitBox = decision.children('.djs-hit');
 
   hitBox.mouseover(() => decision.addClass(HOVER_MARKER));
@@ -163,11 +166,30 @@ function initInteractions(decision) {
     if (event.target == hitBox[0]) {
       decision.addClass(SELECTED_MARKER);
 
-      return openEditModal(decision);
+      return openDecisionModal(decision);
     }
 
-    closeModal();
+    closeDecisionModal();
     decision.removeClass(SELECTED_MARKER);
+  });
+}
+
+function initInputDataInteractions(inputData) {
+  const hitBox = inputData.children('.djs-hit');
+
+  hitBox.mouseover(() => inputData.addClass(HOVER_MARKER));
+
+  hitBox.mouseout(() => inputData.removeClass(HOVER_MARKER));
+
+  $('svg').click(event => {
+    if (event.target == hitBox[0]) {
+      inputData.addClass(SELECTED_MARKER);
+
+      return openInputDataModal(inputData);
+    }
+
+    closeInputDataModal();
+    inputData.removeClass(SELECTED_MARKER);
   });
 }
 
@@ -181,8 +203,10 @@ function enable() {
   contents.append(diagramGfx);
 
   const decision = getElement('Decision_03absfl');
+  const inputData = getElement('InputData_0qarm4x');
 
-  initInteractions(decision);
+  initDecisionInteractions(decision);
+  initInputDataInteractions(inputData);
 
   // initialize new input connections actions
   newInputConnection = new NewInputConnection({
@@ -190,6 +214,25 @@ function enable() {
     onUpdateInputs: updateInputs
   });
   newInputConnection.render();
+}
+
+
+function openInputDataModal() {
+  const node = $('<div class="edit-modal-placeholder"></div>');
+  $('.contents').append(node);
+
+  if (!inputDataModal) {
+    inputDataModal = new InputDataModal({
+      node,
+      onClose: closeInputDataModal
+    });
+  }
+
+  inputDataModal.open();
+}
+
+function closeInputDataModal() {
+  inputDataModal && inputDataModal.hide();
 }
 
 function disable() {
