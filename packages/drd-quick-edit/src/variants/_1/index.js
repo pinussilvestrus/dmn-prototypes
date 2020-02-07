@@ -22,7 +22,7 @@ const HIGHLIGHT_MARKER = 'highlight';
 
 const VARIANT_CLASS = 'variant-one';
 
-let AVAILABLE_INPUTS = [
+let availableInputs = [
   {
     label: 'Employee fills skillset',
     elements: ['Decision_11xban0', 'connection_148'],
@@ -50,7 +50,7 @@ let AVAILABLE_INPUTS = [
   // }
 ];
 
-let DT_INPUTS = [
+let dtInputHeaders = [
 
   // default state
   // {
@@ -74,6 +74,24 @@ let DT_INPUTS = [
     type: 'boolean'
   }
 ];
+
+let inputData = {
+  id: 'InputData_0qarm4x',
+  label: 'Claim',
+  type: 'data object',
+
+  // only belongs to type==='data object'
+  attributes: [
+    {
+      name: 'region',
+      type: 'string'
+    },
+    {
+      name: 'expenditure',
+      type: 'integer'
+    }
+  ]
+};
 
 let quickEditModal;
 let newInputConnection;
@@ -107,12 +125,12 @@ function updateNewInputValue(text) {
 }
 
 function updateInputs(open = false, text) {
-  DT_INPUTS.push({
+  dtInputHeaders.push({
     label: text || 'Number of open claims of employee',
     type: 'integer'
   });
 
-  AVAILABLE_INPUTS.push({
+  availableInputs.push({
     label: text || 'Number of open claims of employee',
     elements: ['InputData_13z77r8', 'connection_147'],
     type: 'integer'
@@ -120,8 +138,8 @@ function updateInputs(open = false, text) {
 
   if (quickEditModal) {
     quickEditModal.setInputs({
-      availableInputs: AVAILABLE_INPUTS,
-      inputHeaders: DT_INPUTS
+      availableInputs: availableInputs,
+      inputHeaders: dtInputHeaders
     });
     quickEditModal.render();
   }
@@ -143,8 +161,8 @@ function openDecisionModal() {
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
-      availableInputs: AVAILABLE_INPUTS,
-      inputHeaders: DT_INPUTS
+      availableInputs: availableInputs,
+      inputHeaders: dtInputHeaders
     });
   }
 
@@ -193,6 +211,43 @@ function initInputDataInteractions(inputData) {
   });
 }
 
+function changeInputType(event) {
+  const {
+    target
+  } = event;
+
+  inputData = {
+    ...inputData,
+    type: target.value
+  };
+
+  if (inputDataModal) {
+    inputDataModal.setInputData(inputData);
+    inputDataModal.render();
+    inputDataModal.open();
+  }
+}
+
+function openInputDataModal() {
+  const node = $('<div class="edit-modal-placeholder"></div>');
+  $('.contents').append(node);
+
+  if (!inputDataModal) {
+    inputDataModal = new InputDataModal({
+      node,
+      inputData,
+      onClose: closeInputDataModal,
+      onTypeChanged: changeInputType
+    });
+  }
+
+  inputDataModal.open();
+}
+
+function closeInputDataModal() {
+  inputDataModal && inputDataModal.hide();
+}
+
 function enable() {
   const contents = $('.contents');
   contents.addClass(VARIANT_CLASS);
@@ -214,25 +269,6 @@ function enable() {
     onUpdateInputs: updateInputs
   });
   newInputConnection.render();
-}
-
-
-function openInputDataModal() {
-  const node = $('<div class="edit-modal-placeholder"></div>');
-  $('.contents').append(node);
-
-  if (!inputDataModal) {
-    inputDataModal = new InputDataModal({
-      node,
-      onClose: closeInputDataModal
-    });
-  }
-
-  inputDataModal.open();
-}
-
-function closeInputDataModal() {
-  inputDataModal && inputDataModal.hide();
 }
 
 function disable() {

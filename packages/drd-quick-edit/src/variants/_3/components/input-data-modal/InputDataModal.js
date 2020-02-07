@@ -16,8 +16,14 @@ export default class InputDataModal {
   constructor(options) {
     this._node = options.node;
     this._onClose = options.onClose;
+    this._onTypeChanged = options.onTypeChanged;
 
+    this.setInputData(options.inputData);
     this.render();
+  }
+
+  setInputData(inputData) {
+    this._inputData = inputData;
   }
 
   renderClose() {
@@ -37,15 +43,14 @@ export default class InputDataModal {
   }
 
   renderSelect() {
-
     const select = $('select');
 
-    function _initComplexObject(event) {
-      const {
-        target
-      } = event;
+    const type = this._inputData.type;
 
-      if (target.value === 'complex object') {
+    select.val(type);
+
+    function _initComplexObject() {
+      if (type === 'data object') {
 
         // show attributes
         $('.attributes').css('display', 'block');
@@ -54,7 +59,7 @@ export default class InputDataModal {
       }
     }
 
-    select.change(_initComplexObject);
+    select.change(this._onTypeChanged);
 
     _initComplexObject({ target: select[0] });
   }
