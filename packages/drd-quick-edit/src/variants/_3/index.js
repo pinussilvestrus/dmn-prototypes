@@ -34,6 +34,11 @@ function closeModal() {
   inputDataModal && inputDataModal.hide();
 }
 
+function addDeprecated() {
+  const deprecatedNode = $('<div>⚠️ Deprecated</div>').addClass('deprecated');
+  $('.contents').append(deprecatedNode);
+}
+
 function initInteractions(inputData) {
   const hitBox = inputData.children('.djs-hit');
 
@@ -62,6 +67,8 @@ function enable() {
 
   const inputData = getElement('InputData_0qarm4x');
   initInteractions(inputData);
+
+  addDeprecated();
 }
 
 function disable() {

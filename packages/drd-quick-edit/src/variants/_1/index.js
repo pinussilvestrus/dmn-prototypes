@@ -4,13 +4,13 @@ import { forEach } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
-import QuickEditModal from './components/quick-edit-modal';
+import QuickEditModal from '../_2/components/quick-edit-modal';
 
-import NewInputConnection from './components/new-input-connection';
+import NewInputConnection from '../_2/components/new-input-connection';
 
 import getElement from '../../util/getElement';
 
-import './two-styles.scss';
+import './one-styles.scss';
 
 const SELECTED_MARKER = 'selected';
 
@@ -18,7 +18,7 @@ const HOVER_MARKER = 'hover';
 
 const HIGHLIGHT_MARKER = 'highlight';
 
-const VARIANT_CLASS = 'variant-two';
+const VARIANT_CLASS = 'variant-one';
 
 let AVAILABLE_INPUTS = [
   {
@@ -171,11 +171,6 @@ function initInteractions(decision) {
   });
 }
 
-function addDeprecated() {
-  const deprecatedNode = $('<div>⚠️ Deprecated</div>').addClass('deprecated');
-  $('.contents').append(deprecatedNode);
-}
-
 function enable() {
   const contents = $('.contents');
   contents.addClass(VARIANT_CLASS);
@@ -195,8 +190,6 @@ function enable() {
     onUpdateInputs: updateInputs
   });
   newInputConnection.render();
-
-  addDeprecated();
 }
 
 function disable() {

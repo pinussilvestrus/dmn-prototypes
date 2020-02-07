@@ -2,12 +2,14 @@
 
 import $ from 'jquery';
 
+import variantOne from './variants/_1';
 import variantTwo from './variants/_2';
 import variantThree from './variants/_3';
 
 import './app.scss';
 
 const VARIANTS = {
+  '1': variantOne,
   '2': variantTwo,
   '3': variantThree
 };
@@ -72,5 +74,5 @@ function urlParam(name) {
   const results = new RegExp('[?&]' + name + '=([^&#]*)')
     .exec(window.location.href);
 
-  return results && results[1] || 2;
+  return results && results[1] || 1;
 }
