@@ -2,19 +2,20 @@
 
 import $ from 'jquery';
 
-import varianteOne from './variants/_1';
 import variantTwo from './variants/_2';
+import variantThree from './variants/_3';
 
 import './app.scss';
 
 const VARIANTS = {
-  '1': varianteOne,
-  '2': variantTwo
+  '2': variantTwo,
+  '3': variantThree
 };
 
 let current;
 
 function bindListeners(event) {
+  console.log(event.shiftKey, event.keyCode);
 
   // SHIFT + 1
   if (event.shiftKey && event.keyCode == 33) {
@@ -24,6 +25,11 @@ function bindListeners(event) {
   // SHIFT + 2
   else if (event.shiftKey && event.keyCode == 34) {
     toggleVariant('2');
+  }
+
+  // SHIFT + 3
+  else if (event.shiftKey && event.keyCode == 167) {
+    toggleVariant('3');
   }
 }
 
@@ -66,5 +72,5 @@ function urlParam(name) {
   const results = new RegExp('[?&]' + name + '=([^&#]*)')
     .exec(window.location.href);
 
-  return results && results[1] || 1;
+  return results && results[1] || 2;
 }

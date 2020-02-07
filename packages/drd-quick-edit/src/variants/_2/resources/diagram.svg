@@ -148,7 +148,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-shape" data-element-id="InputData_13z77r8" style="display: block;" transform="matrix(1 0 0 1 1227 417)">
+        <g class="djs-element djs-shape" data-element-id="InputData_13z77r8" style="display: none;" transform="matrix(1 0 0 1 1227 417)">
             <g class="djs-visual">
                 <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
@@ -158,6 +158,26 @@
             </g>
             <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
             <rect x="-6" y="-6" width="137" height="57" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape new-input-data" style="display: none; cursor: pointer" transform="matrix(1 0 0 1 1227 417)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: #ccc; stroke-width: 2px; fill: white; stroke-dasharray: 5"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px; fill: #ccc">
+                    <tspan x="19.46875" y="25">+ New Input Data</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection new-connection" style="display: none;">
+            <g class="djs-visual">
+                <polyline points="1290,416 1290,380" style="fill: none; stroke: #ccc; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-ccc-end');"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px; fill: #ccc; cursor: pointer">
+                    <tspan x="1300" y="405">+ Add</tspan>
+                </text>
+            </g>
         </g>
     </g>
     <g class="djs-group">
@@ -212,7 +232,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-connection" data-element-id="connection_147" style="display: block;">
+        <g class="djs-element djs-connection" data-element-id="connection_147" style="display: none;">
             <g class="djs-visual">
                 <polyline points="1290,417 1040,320 1040,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
