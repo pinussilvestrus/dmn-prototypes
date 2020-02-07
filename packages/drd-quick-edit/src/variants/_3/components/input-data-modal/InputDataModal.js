@@ -14,6 +14,11 @@ import getElement from '../../../../util/getElement';
 
 import './InputDataModal.scss';
 
+const DEFAULT_POSITION = {
+  left: 900,
+  top: 500,
+};
+
 export default class InputDataModal {
   constructor(options) {
     this._node = options.node;
@@ -24,7 +29,7 @@ export default class InputDataModal {
     this.render();
   }
 
-  setInputData(inputData) {
+  setInputData(inputData = {}) {
     this._inputData = inputData;
   }
 
@@ -47,7 +52,7 @@ export default class InputDataModal {
   renderSelect() {
     const select = $('select');
 
-    const type = this._inputData.type;
+    const type = (this._inputData || {}).type;
 
     select.val(type);
 
@@ -67,9 +72,13 @@ export default class InputDataModal {
   }
 
   getCoordinates() {
-    const elementGfx = getElement(this._inputData.id);
+    const elementGfx = getElement((this._inputData || {}).id);
 
     const position = elementGfx.offset();
+
+    if (!position) {
+      return DEFAULT_POSITION;
+    }
 
     return {
       top: position.top + 125,
