@@ -3,11 +3,23 @@
 /* eslint-disable-next-line */
 import $ from 'jquery';
 
+import TextUtil from 'diagram-js/lib/util/Text';
+
+const LABEL_STYLE = {
+  fontFamily: 'Arial, sans-serif',
+  fontSize: '12px'
+};
+
 export default class NewInputConnection {
 
   constructor(options) {
     this._svgContainer = options.svgContainer;
     this._onUpdateInputs = options.onUpdateInputs;
+
+    this._textUtil = new TextUtil({
+      style: LABEL_STYLE,
+      size: { width: 100 }
+    });
   }
 
   render() {
@@ -17,18 +29,20 @@ export default class NewInputConnection {
   showInput(text) {
     const inputGfx = this._svgContainer.find('[data-element-id="InputData_13z77r8"]');
     inputGfx.css('display', 'block');
-    inputGfx.find('text').css('display', 'block');
 
     if (typeof text !== 'undefined') {
-      const textGfx = inputGfx.find('text');
 
-      textGfx.empty();
+      const newText = this._textUtil.createText(text, {
+        box: { width: 125, height: 45 },
+        align: 'center-middle',
+        padding: 5
+      });
 
-      $(SVG('tspan'))
-        .attr('x', '19.47')
-        .attr('y','25')
-        .html(text)
-        .appendTo(textGfx);
+      $(newText).addClass('djs-label');
+
+      inputGfx.find('text').remove();
+
+      inputGfx.append(newText);
     }
 
     const newInputGfx = this._svgContainer.find('.new-input-data');
