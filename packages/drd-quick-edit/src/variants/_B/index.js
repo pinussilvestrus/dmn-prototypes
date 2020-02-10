@@ -49,48 +49,33 @@ let availableInputs = [
   // }
 ];
 
-let dtInputHeaders = [
+let decision = {
+  id: 'Decision_03absfl',
+  name: 'Employeen Suitability Score',
+  inputHeaders: [
 
-  // {
-  //   label: 'Number of open claims of employee',
-  //   type: 'integer'
-  // },
-  {
-    label: 'Employee.region = Claim.region',
-    type: 'boolean'
-  },
-  {
-    label: 'Claim.expenditure',
-    type: 'integer'
-  },
-  {
-    label: 'Employee Experience',
-    type: 'string'
-  },
-  {
-    label: 'Employee fills skillset',
-    type: 'boolean'
-  }
-];
-
-// todo(pinussilvestrus): use in future
-// let inputData = {
-//   id: 'InputData_0qarm4x',
-//   label: 'Claim',
-//   type: 'data object',
-
-//   // only belongs to type==='data object'
-//   attributes: [
-//     {
-//       name: 'region',
-//       type: 'string'
-//     },
-//     {
-//       name: 'expenditure',
-//       type: 'integer'
-//     }
-//   ]
-// };
+    // {
+    //   label: 'Number of open claims of employee',
+    //   type: 'integer'
+    // },
+    {
+      label: 'Employee.region = Claim.region',
+      type: 'boolean'
+    },
+    {
+      label: 'Claim.expenditure',
+      type: 'integer'
+    },
+    {
+      label: 'Employee Experience',
+      type: 'string'
+    },
+    {
+      label: 'Employee fills skillset',
+      type: 'boolean'
+    }
+  ]
+};
 
 let inputData = {
   id: 'InputData_13z77r8',
@@ -130,10 +115,16 @@ function updateNewInputValue(text) {
 }
 
 function updateInputs(open = false, text) {
-  dtInputHeaders.push({
-    label: text || 'Number of open claims of employee',
-    type: 'integer'
-  });
+  decision = {
+    ...decision,
+    inputHeaders: [
+      ...decision.inputHeaders,
+      {
+        label: text || 'Number of open claims of employee',
+        type: 'integer'
+      }
+    ]
+  };
 
   availableInputs.push({
     label: text || 'Number of open claims of employee',
@@ -144,7 +135,7 @@ function updateInputs(open = false, text) {
   if (quickEditModal) {
     quickEditModal.setInputs({
       availableInputs: availableInputs,
-      inputHeaders: dtInputHeaders
+      decision
     });
     quickEditModal.render();
   }
@@ -167,7 +158,7 @@ function openDecisionModal() {
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
       availableInputs,
-      inputHeaders: dtInputHeaders,
+      decision,
       inputData
     });
   }
