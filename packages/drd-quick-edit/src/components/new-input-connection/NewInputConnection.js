@@ -45,6 +45,10 @@ export default class NewInputConnection {
       inputGfx.append(newText);
     }
 
+    this.hideNewInput();
+  }
+
+  hideNewInput() {
     const newInputGfx = this._svgContainer.find('.new-input-data');
     newInputGfx.css('display', 'none');
   }

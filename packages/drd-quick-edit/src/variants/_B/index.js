@@ -8,6 +8,8 @@ import QuickEditModal from '../../components/quick-edit-modal';
 
 import NewInputConnection from '../../components/new-input-connection';
 
+import InputDataModal from '../../components/input-data-modal';
+
 import getElement from '../../util/getElement';
 
 import './styles.scss';
@@ -20,7 +22,7 @@ const HIGHLIGHT_MARKER = 'highlight';
 
 const VARIANT_CLASS = 'variant-b';
 
-let AVAILABLE_INPUTS = [
+let availableInputs = [
   {
     label: 'Employee fills skillset',
     elements: ['Decision_11xban0', 'connection_148'],
@@ -38,9 +40,8 @@ let AVAILABLE_INPUTS = [
   {
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
-  }
+  },
 
-  // default state
   // {
   //   label: 'Number of open claims of employee',
   //   elements: ['InputData_13z77r8', 'connection_147'],
@@ -48,9 +49,8 @@ let AVAILABLE_INPUTS = [
   // }
 ];
 
-let DT_INPUTS = [
+let dtInputHeaders = [
 
-  // default state
   // {
   //   label: 'Number of open claims of employee',
   //   type: 'integer'
@@ -73,8 +73,34 @@ let DT_INPUTS = [
   }
 ];
 
+// todo(pinussilvestrus): use in future
+// let inputData = {
+//   id: 'InputData_0qarm4x',
+//   label: 'Claim',
+//   type: 'data object',
+
+//   // only belongs to type==='data object'
+//   attributes: [
+//     {
+//       name: 'region',
+//       type: 'string'
+//     },
+//     {
+//       name: 'expenditure',
+//       type: 'integer'
+//     }
+//   ]
+// };
+
+let inputData = {
+  id: 'InputData_13z77r8',
+  label: 'Number of open claims of employee',
+  type: 'integer'
+};
+
 let quickEditModal;
 let newInputConnection;
+let inputDataModal;
 
 function unhighlightElements(elements) {
   forEach(elements, id => {
@@ -104,12 +130,12 @@ function updateNewInputValue(text) {
 }
 
 function updateInputs(open = false, text) {
-  DT_INPUTS.push({
+  dtInputHeaders.push({
     label: text || 'Number of open claims of employee',
     type: 'integer'
   });
 
-  AVAILABLE_INPUTS.push({
+  availableInputs.push({
     label: text || 'Number of open claims of employee',
     elements: ['InputData_13z77r8', 'connection_147'],
     type: 'integer'
@@ -117,8 +143,8 @@ function updateInputs(open = false, text) {
 
   if (quickEditModal) {
     quickEditModal.setInputs({
-      availableInputs: AVAILABLE_INPUTS,
-      inputHeaders: DT_INPUTS
+      availableInputs: availableInputs,
+      inputHeaders: dtInputHeaders
     });
     quickEditModal.render();
   }
@@ -128,31 +154,32 @@ function updateInputs(open = false, text) {
   }
 }
 
-function openEditModal() {
+function openDecisionModal() {
   const node = $('<div class="edit-modal-placeholder"></div>');
   $('.contents').append(node);
 
   if (!quickEditModal) {
     quickEditModal = new QuickEditModal({
       node,
-      onClose: closeModal,
+      onClose: closeDecisionModal,
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
-      availableInputs: AVAILABLE_INPUTS,
-      inputHeaders: DT_INPUTS
+      availableInputs,
+      inputHeaders: dtInputHeaders,
+      inputData
     });
   }
 
   quickEditModal.open();
 }
 
-function closeModal() {
+function closeDecisionModal() {
   quickEditModal && quickEditModal.hide();
 }
 
-function initInteractions(decision) {
+function initDecisionInteractions(decision) {
   const hitBox = decision.children('.djs-hit');
 
   hitBox.mouseover(() => decision.addClass(HOVER_MARKER));
@@ -163,17 +190,76 @@ function initInteractions(decision) {
     if (event.target == hitBox[0]) {
       decision.addClass(SELECTED_MARKER);
 
-      return openEditModal(decision);
+      return openDecisionModal(decision);
     }
 
-    closeModal();
+    closeDecisionModal();
     decision.removeClass(SELECTED_MARKER);
   });
 }
 
-function addDeprecated() {
-  const deprecatedNode = $('<div>⚠️ Deprecated</div>').addClass('deprecated');
-  $('.contents').append(deprecatedNode);
+function initInputDataInteractions(inputData) {
+  const hitBox = inputData.children('.djs-hit');
+
+  hitBox.mouseover(() => inputData.addClass(HOVER_MARKER));
+
+  hitBox.mouseout(() => inputData.removeClass(HOVER_MARKER));
+
+  $('svg').click(event => {
+    if (event.target == hitBox[0]) {
+      inputData.addClass(SELECTED_MARKER);
+
+      return openInputDataModal(inputData);
+    }
+
+    closeInputDataModal();
+    inputData.removeClass(SELECTED_MARKER);
+  });
+}
+
+function changeInputType(updated) {
+  inputData = {
+    ...inputData,
+    ...updated
+  };
+
+  if (inputDataModal) {
+    inputDataModal.setInputData(inputData);
+    inputDataModal.render();
+    inputDataModal.open();
+  }
+}
+
+function openInputDataModal() {
+  const node = $('<div class="edit-modal-placeholder"></div>');
+  $('.contents').append(node);
+
+  if (!inputDataModal) {
+    inputDataModal = new InputDataModal({
+      node,
+      inputData,
+      onClose: closeInputDataModal,
+      onTypeChanged: changeInputType
+    });
+  }
+
+  inputDataModal.open();
+}
+
+function closeInputDataModal() {
+  inputDataModal && inputDataModal.hide();
+}
+
+function initNewInputConnection() {
+  const contents = $('.contents');
+
+  // initialize new input connections actions
+  newInputConnection = new NewInputConnection({
+    svgContainer: contents.find('svg').first(),
+    onUpdateInputs: updateInputs
+  });
+  newInputConnection.render();
+  newInputConnection.hideNewInput();
 }
 
 function enable() {
@@ -186,17 +272,11 @@ function enable() {
   contents.append(diagramGfx);
 
   const decision = getElement('Decision_03absfl');
+  const inputData = getElement('InputData_13z77r8');
 
-  initInteractions(decision);
-
-  // initialize new input connections actions
-  newInputConnection = new NewInputConnection({
-    svgContainer: contents.find('svg').first(),
-    onUpdateInputs: updateInputs
-  });
-  newInputConnection.render();
-
-  addDeprecated();
+  initDecisionInteractions(decision);
+  initInputDataInteractions(inputData);
+  initNewInputConnection();
 }
 
 function disable() {

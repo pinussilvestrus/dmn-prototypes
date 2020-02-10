@@ -51,7 +51,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-shape" data-element-id="Decision_1rj4fxk" style="display: block;" transform="matrix(1 0 0 1 280 570)">
+        <g class="djs-element djs-shape" data-element-id="Decision_1rj4fxk" style="display: none;" transform="matrix(1 0 0 1 280 570)">
             <g class="djs-visual">
                 <rect x="0" y="0" width="180" height="80" rx="0" ry="0" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
@@ -63,7 +63,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-shape" data-element-id="InputData_0id5dfd" style="display: block;" transform="matrix(1 0 0 1 157 727)">
+        <g class="djs-element djs-shape" data-element-id="InputData_0id5dfd" style="display: none;" transform="matrix(1 0 0 1 157 727)">
             <g class="djs-visual">
                 <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
@@ -76,7 +76,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-shape" data-element-id="InputData_06sulo7" style="display: block;" transform="matrix(1 0 0 1 307 727)">
+        <g class="djs-element djs-shape" data-element-id="InputData_06sulo7" style="display: none;" transform="matrix(1 0 0 1 307 727)">
             <g class="djs-visual">
                 <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
@@ -88,7 +88,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-shape" data-element-id="InputData_1ykic6i" style="display: block;" transform="matrix(1 0 0 1 457 727)">
+        <g class="djs-element djs-shape" data-element-id="InputData_1ykic6i" style="display: none;" transform="matrix(1 0 0 1 457 727)">
             <g class="djs-visual">
                 <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
@@ -193,7 +193,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-shape" data-element-id="InputData_1x2qw0w" style="display: block;" transform="matrix(1 0 0 1 547 587)">
+        <g class="djs-element djs-shape" data-element-id="InputData_1x2qw0w" style="display: block;" transform="matrix(1 0 0 1 495 587)">
             <g class="djs-visual">
                 <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
@@ -259,7 +259,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-connection" data-element-id="connection_150" style="display: block;">
+        <g class="djs-element djs-connection" data-element-id="connection_150" style="display: none;">
             <g class="djs-visual">
                 <polyline points="222,727 320,670 320,650 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
@@ -268,7 +268,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-connection" data-element-id="connection_151" style="display: block;">
+        <g class="djs-element djs-connection" data-element-id="connection_151" style="display: none;">
             <g class="djs-visual">
                 <polyline points="368,727 368,650 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
@@ -277,7 +277,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-connection" data-element-id="connection_152" style="display: block;">
+        <g class="djs-element djs-connection" data-element-id="connection_152" style="display: none;">
             <g class="djs-visual">
                 <polyline points="520,726 420,670 420,650 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
@@ -295,7 +295,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-connection" data-element-id="connection_154" style="display: block;">
+        <g class="djs-element djs-connection" data-element-id="connection_154" style="display: none;">
             <g class="djs-visual">
                 <polyline points="374,570 530,500 530,480 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
@@ -306,7 +306,7 @@
     <g class="djs-group">
         <g class="djs-element djs-connection" data-element-id="connection_155" style="display: block;">
             <g class="djs-visual">
-                <polyline points="610,587 580,500 580,480 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+                <polyline points="560,587 560,480 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
             <polyline points="610,587 580,500 580,480 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
             <rect x="574" y="474" width="42" height="119" class="djs-outline" style="fill: none;"/>
