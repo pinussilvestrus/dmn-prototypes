@@ -4,15 +4,15 @@ import { forEach } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
-import QuickEditModal from '../_2/components/quick-edit-modal';
+import QuickEditModal from '../../components/quick-edit-modal';
 
-import NewInputConnection from '../_2/components/new-input-connection';
+import NewInputConnection from '../../components/new-input-connection';
 
-import InputDataModal from '../_3/components/input-data-modal';
+import InputDataModal from '../../components/input-data-modal';
 
 import getElement from '../../util/getElement';
 
-import './one-styles.scss';
+import './styles.scss';
 
 const SELECTED_MARKER = 'selected';
 
@@ -20,7 +20,7 @@ const HOVER_MARKER = 'hover';
 
 const HIGHLIGHT_MARKER = 'highlight';
 
-const VARIANT_CLASS = 'variant-one';
+const VARIANT_CLASS = 'variant-a';
 
 let availableInputs = [
   {

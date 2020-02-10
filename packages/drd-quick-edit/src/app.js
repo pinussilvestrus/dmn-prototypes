@@ -2,16 +2,16 @@
 
 import $ from 'jquery';
 
-import variantOne from './variants/_1';
-import variantTwo from './variants/_2';
-import variantThree from './variants/_3';
+import variantA from './variants/_A';
+import variantB from './variants/_B';
+import variantC from './variants/_C';
 
 import './app.scss';
 
 const VARIANTS = {
-  '1': variantOne,
-  '2': variantTwo,
-  '3': variantThree
+  'A': variantA,
+  'B': variantB,
+  'C': variantC
 };
 
 let current;
@@ -20,17 +20,17 @@ function bindListeners(event) {
 
   // SHIFT + 1
   if (event.shiftKey && event.keyCode == 33) {
-    toggleVariant('1');
+    toggleVariant('A');
   }
 
   // SHIFT + 2
   else if (event.shiftKey && event.keyCode == 34) {
-    toggleVariant('2');
+    toggleVariant('B');
   }
 
   // SHIFT + 3
   else if (event.shiftKey && event.keyCode == 167) {
-    toggleVariant('3');
+    toggleVariant('C');
   }
 }
 
@@ -73,5 +73,5 @@ function urlParam(name) {
   const results = new RegExp('[?&]' + name + '=([^&#]*)')
     .exec(window.location.href);
 
-  return results && results[1] || 1;
+  return results && results[1] || 'A';
 }

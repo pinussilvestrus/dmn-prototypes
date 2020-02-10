@@ -11,13 +11,13 @@ import modalSkeleton from './QuickEditModal.html';
 import inputSkeleton from './Input.html';
 import newInputBtnSkeleton from './NewInputBtn.html';
 
-import closeSVG from '../../../../../resources/close.svg';
-import plusSVG from '../../../../../resources/plus.svg';
-import minusSVG from '../../../../../resources/minus.svg';
-import dragSVG from '../../../../../resources/drag.svg';
-import tableSVG from '../../../../../resources/table.svg';
+import closeSVG from '../../../resources/close.svg';
+import plusSVG from '../../../resources/plus.svg';
+import minusSVG from '../../../resources/minus.svg';
+import dragSVG from '../../../resources/drag.svg';
+import tableSVG from '../../../resources/table.svg';
 
-import getAutocompleteConfig from '../../../../util/getAutocompleteConfig';
+import getAutocompleteConfig from '../../util/getAutocompleteConfig';
 
 import './QuickEditModal.scss';
 

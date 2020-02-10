@@ -2,13 +2,13 @@ import $ from 'jquery';
 
 import diagramSVG from './resources/diagram.svg';
 
-import InputDataModal from './components/input-data-modal';
+import InputDataModal from '../../components/input-data-modal';
 
 import getElement from '../../util/getElement';
 
-import './three-styles.scss';
+import './styles.scss';
 
-const VARIANT_CLASS = 'variant-three';
+const VARIANT_CLASS = 'variant-c';
 
 const SELECTED_MARKER = 'selected';
 

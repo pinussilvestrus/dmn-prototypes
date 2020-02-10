@@ -1,6 +1,37 @@
-.variant-two {
+.variant-a {
+
+  svg.diagram {
+    margin-left: -10rem;
+  }
 
   [data-element-id="Decision_03absfl"] {
+    .djs-hit {
+      pointer-events: all;
+    }
+
+    &.hover .djs-outline {
+      visibility: visible;
+      shape-rendering: crispEdges;
+      stroke-dasharray: 3,3;
+    }
+  
+    &.selected .djs-outline {
+      visibility: visible;
+      shape-rendering: crispEdges;
+      stroke-dasharray: 3,3;
+      stroke: #8888FF;
+      stroke-width: 3px;
+      stroke-dasharray: 10px;
+    }
+  
+    &.hover .djs-outline {
+      stroke: #FF8888;
+      stroke-width: 1px;
+      stroke-dasharray: 10px;
+    }
+  }
+
+  [data-element-id="InputData_13z77r8"] {
     .djs-hit {
       pointer-events: all;
     }

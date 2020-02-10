@@ -7,10 +7,10 @@ import 'webpack-jquery-ui/css';
 
 import modalSkeleton from './InputDataModal.html';
 
-import closeSVG from '../../../../../resources/close.svg';
-import fileSVG from '../../../../../resources/file.svg';
+import closeSVG from '../../../resources/close.svg';
+import fileSVG from '../../../resources/file.svg';
 
-import getElement from '../../../../util/getElement';
+import getElement from '../../util/getElement';
 
 import './InputDataModal.scss';
 
