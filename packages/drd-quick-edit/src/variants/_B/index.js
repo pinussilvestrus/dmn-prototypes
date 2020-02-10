@@ -51,7 +51,7 @@ let availableInputs = [
 
 let decision = {
   id: 'Decision_03absfl',
-  name: 'Employeen Suitability Score',
+  name: 'Employee Suitability Score',
   inputHeaders: [
 
     // {

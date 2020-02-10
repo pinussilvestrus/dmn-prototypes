@@ -1,12 +1,12 @@
 import $ from 'jquery';
 
+import { forEach } from 'min-dash';
+
 import diagramSVG from './resources/diagram.svg';
 
 import InputDataModal from '../../components/input-data-modal';
 
 import getElement from '../../util/getElement';
-
-import './styles.scss';
 
 const VARIANT_CLASS = 'variant-c';
 
@@ -14,32 +14,145 @@ const SELECTED_MARKER = 'selected';
 
 const HOVER_MARKER = 'hover';
 
+const HIGHLIGHT_MARKER = 'highlight';
+
+import QuickEditModal from '../../components/quick-edit-modal';
+
+import './styles.scss';
+
+let availableInputs = [
+  {
+    label: 'Employee fills skillset',
+    elements: ['Decision_11xban0', 'connection_148'],
+    type: 'boolean'
+  },
+  {
+    label: 'Employee Experience',
+    elements: ['Decision_19jtlzt', 'connection_149'],
+    type: 'string'
+  },
+  {
+    label: 'Employee',
+    elements: ['InputData_011xp5m', 'connection_145']
+  },
+  {
+    label: 'Claim',
+    elements: ['InputData_0qarm4x', 'connection_146']
+  },
+  {
+    label: 'Number of open claims of employee',
+    elements: ['InputData_13z77r8', 'connection_147'],
+    type: 'integer'
+  }
+];
+
+let decision = {
+  id: 'Decision_03absfl',
+  name: 'Employee Suitability Score',
+  inputHeaders: [
+    {
+      label: 'Number of open claims of employee',
+      type: 'integer'
+    },
+    {
+      label: 'Employee.region = Claim.region',
+      type: 'boolean'
+    },
+    {
+      label: 'Claim.expenditure',
+      type: 'integer'
+    },
+    {
+      label: 'Employee Experience',
+      type: 'string'
+    },
+    {
+      label: 'Employee fills skillset',
+      type: 'boolean'
+    }
+  ]
+};
+
+let inputData = {
+  id: 'InputData_0qarm4x',
+  label: 'Claim',
+  type: 'data object',
+
+  // only belongs to type==='data object'
+  attributes: [
+    {
+      name: 'region',
+      type: 'string'
+    },
+    {
+      name: 'expenditure',
+      type: 'integer'
+    }
+  ]
+};
+
+let quickEditModal;
 let inputDataModal;
 
-function openEditModal() {
+function unhighlightElements(elements) {
+  forEach(elements, id => {
+    const element = getElement(id);
+
+    element.removeClass(HIGHLIGHT_MARKER);
+  });
+}
+
+function highlightElements(elements) {
+  forEach(elements, id => {
+    const element = getElement(id);
+
+    element.addClass(HIGHLIGHT_MARKER);
+  });
+}
+
+function openDecisionModal() {
   const node = $('<div class="edit-modal-placeholder"></div>');
   $('.contents').append(node);
 
-  if (!inputDataModal) {
-    inputDataModal = new InputDataModal({
+  if (!quickEditModal) {
+    quickEditModal = new QuickEditModal({
       node,
-      onClose: closeModal
+      onClose: closeDecisionModal,
+      onHighlight: highlightElements,
+      onUnhighlight: unhighlightElements,
+      availableInputs,
+      decision,
+      inputData
     });
   }
 
-  inputDataModal.open();
+  quickEditModal.open();
 }
 
-function closeModal() {
-  inputDataModal && inputDataModal.hide();
+function closeDecisionModal() {
+  quickEditModal && quickEditModal.hide();
 }
 
-function addDeprecated() {
-  const deprecatedNode = $('<div>⚠️ Deprecated</div>').addClass('deprecated');
-  $('.contents').append(deprecatedNode);
+function initDecisionInteractions(decision) {
+  const hitBox = decision.children('.djs-hit');
+
+  hitBox.mouseover(() => decision.addClass(HOVER_MARKER));
+
+  hitBox.mouseout(() => decision.removeClass(HOVER_MARKER));
+
+  $('svg').click(event => {
+    if (event.target == hitBox[0]) {
+      decision.addClass(SELECTED_MARKER);
+
+      return openDecisionModal(decision);
+    }
+
+    closeDecisionModal();
+    decision.removeClass(SELECTED_MARKER);
+  });
 }
 
-function initInteractions(inputData) {
+function initInputDataInteractions(inputData) {
   const hitBox = inputData.children('.djs-hit');
 
   hitBox.mouseover(() => inputData.addClass(HOVER_MARKER));
@@ -50,25 +163,68 @@ function initInteractions(inputData) {
     if (event.target == hitBox[0]) {
       inputData.addClass(SELECTED_MARKER);
 
-      return openEditModal(inputData);
+      return openInputDataModal(inputData);
     }
 
-    closeModal();
+    closeInputDataModal();
     inputData.removeClass(SELECTED_MARKER);
   });
 }
 
+function changeInputType(updated) {
+  inputData = {
+    ...inputData,
+    ...updated
+  };
+
+  if (inputDataModal) {
+    inputDataModal.setInputData(inputData);
+    inputDataModal.render();
+    inputDataModal.open();
+  }
+}
+
+function openInputDataModal() {
+  const node = $('<div class="edit-modal-placeholder"></div>');
+  $('.contents').append(node);
+
+  if (!inputDataModal) {
+    inputDataModal = new InputDataModal({
+      node,
+      inputData,
+      onClose: closeInputDataModal,
+      onTypeChanged: changeInputType
+    });
+  }
+
+  inputDataModal.open();
+}
+
+function closeInputDataModal() {
+  inputDataModal && inputDataModal.hide();
+}
+
+function addUnderConstruction() {
+  const deprecatedNode = $('<div>⛑Under Construction</div>').addClass('under-construction');
+  $('.contents').append(deprecatedNode);
+}
+
 function enable() {
+  const contents = $('.contents');
+  contents.addClass(VARIANT_CLASS);
+
   const diagramGfx = $(diagramSVG).addClass('diagram');
 
-  $('.contents')
-    .addClass(VARIANT_CLASS)
-    .append(diagramGfx);
+  // insert diagram svg into page
+  contents.append(diagramGfx);
 
+  const decision = getElement('Decision_03absfl');
   const inputData = getElement('InputData_0qarm4x');
-  initInteractions(inputData);
 
-  addDeprecated();
+  initDecisionInteractions(decision);
+  initInputDataInteractions(inputData);
+
+  addUnderConstruction();
 }
 
 function disable() {
