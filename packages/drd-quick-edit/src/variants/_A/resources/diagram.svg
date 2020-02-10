@@ -148,7 +148,7 @@
         </g>
     </g>
     <g class="djs-group">
-        <g class="djs-element djs-shape" data-element-id="InputData_13z77r8" style="display: block;" transform="matrix(1 0 0 1 1227 417)">
+        <g class="djs-element djs-shape" data-element-id="InputData_13z77r8" style="display: none;" transform="matrix(1 0 0 1 1227 417)">
             <g class="djs-visual">
                 <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">

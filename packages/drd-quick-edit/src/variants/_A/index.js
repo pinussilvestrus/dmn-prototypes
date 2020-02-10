@@ -256,8 +256,6 @@ function initNewInputConnection() {
     onUpdateInputs: updateInputs
   });
   newInputConnection.render();
-  newInputConnection.showInput();
-  newInputConnection.showNewConnection();
 }
 
 function enable() {
