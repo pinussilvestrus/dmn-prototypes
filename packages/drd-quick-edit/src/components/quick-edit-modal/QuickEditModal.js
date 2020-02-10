@@ -30,6 +30,7 @@ export default class QuickEditModal {
     this._onAddNewInput = options.onAddNewInput;
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._inputData = options.inputData;
+    this._decision = options.decision;
 
     this.setInputs(options);
     this.render();
@@ -48,11 +49,11 @@ export default class QuickEditModal {
   setInputs(options) {
     const {
       availableInputs,
-      inputHeaders
+      decision,
     } = options;
 
     this._availableInputs = availableInputs;
-    this._inputHeaders = inputHeaders;
+    this._inputHeaders = decision.inputHeaders;
 
     this.AVAILABLE_INPUT_LABELS = map(this._availableInputs, i => i.label);
     this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
@@ -160,7 +161,13 @@ export default class QuickEditModal {
   }
 
   renderHeader() {
+    const {
+      name: decisionName
+    } = this._decision;
+
     const tableGfx = $(tableSVG).addClass('table-icon');
+
+    decisionName && this._node.find('.modal-header').text(decisionName);
 
     this._node.find('.modal-header').prepend(tableGfx);
   }
