@@ -29,6 +29,7 @@ export default class QuickEditModal {
     this._onUnhighlight = options.onUnhighlight;
     this._onAddNewInput = options.onAddNewInput;
     this._onUpdateNewInput = options.onUpdateNewInput;
+    this._inputData = options.inputData;
 
     this.setInputs(options);
     this.render();
@@ -174,16 +175,44 @@ export default class QuickEditModal {
 
         // lazy check
         setTimeout(this.highlightRelatedElements.bind(self, event), 800);
-      });
+      })
+      .change(e => this.setType(e.target));
   }
 
   setType(inputNode) {
     const typeNode = $(inputNode).siblings('select');
 
-    const input = find(this._availableInputs, i => inputNode.value === i.label);
+    const value = inputNode.value;
 
-    if (input && typeNode) {
-      typeNode.val(input.type);
+    let type;
+
+    // (1) find in 1st level inputs
+    const input = find(this._availableInputs, i => value === i.label);
+
+    type = input && input.type;
+
+    // (2) find in nested data input
+    if (!input && this._inputData) {
+      const [ label, attribute ] = value.split('.');
+
+      const {
+        attributes,
+        label: inputDataLabel
+      } = this._inputData;
+
+      if (!attribute || label !== inputDataLabel) {
+        return;
+      }
+
+      const found = find(attributes, a => {
+        return a.name == attribute;
+      });
+
+      type = found && found.type;
+    }
+
+    if (type && typeNode) {
+      typeNode.val(type);
     }
 
   }

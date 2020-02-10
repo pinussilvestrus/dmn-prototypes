@@ -161,8 +161,9 @@ function openDecisionModal() {
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
-      availableInputs: availableInputs,
-      inputHeaders: dtInputHeaders
+      availableInputs,
+      inputHeaders: dtInputHeaders,
+      inputData
     });
   }
 
