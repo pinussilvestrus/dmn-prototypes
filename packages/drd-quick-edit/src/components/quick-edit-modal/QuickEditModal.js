@@ -105,7 +105,7 @@ export default class QuickEditModal {
 
     const inputContainer = this._node.find('.inputs');
 
-    const newInput = $(inputSkeleton);
+    const newInput = $(inputSkeleton).attr('id', generateID);
 
     const dragGfx = $(dragSVG).addClass('drag');
     newInput.prepend(dragGfx);
@@ -285,4 +285,8 @@ export default class QuickEditModal {
 
 function isEmpty(node) {
   return !node.val().trim();
+}
+
+function generateID() {
+  return Math.random().toString(36).substr(2, 9);
 }

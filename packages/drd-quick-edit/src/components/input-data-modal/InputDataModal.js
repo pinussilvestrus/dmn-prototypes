@@ -50,7 +50,7 @@ export default class InputDataModal {
   }
 
   renderSelect() {
-    const select = $('select');
+    const select = this._node.find('select');
 
     const type = (this._inputData || {}).type;
 

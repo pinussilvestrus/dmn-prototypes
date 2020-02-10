@@ -52,6 +52,7 @@ let availableInputs = [
 let decision = {
   id: 'Decision_03absfl',
   name: 'Employeen Suitability Score',
+  connected: false, // connected to new input data (mock)
   inputHeaders: [
 
     // {
@@ -129,6 +130,7 @@ function updateInputs(open = false) {
 
   decision = {
     ...decision,
+    connected: true,
     inputHeaders: [
       ...decision.inputHeaders,
       {
@@ -223,6 +225,17 @@ function changeInputType(updated) {
     ...inputData,
     ...updated
   };
+
+
+  if (decision.connected) {
+    decision = {
+      ...decision,
+      inputHeaders: decision.inputHeaders.slice(0, decision.inputHeaders.length - 1)
+    };
+
+    updateInputs(false);
+  }
+
 
   if (inputDataModal) {
     inputDataModal.setInputData(inputData);
