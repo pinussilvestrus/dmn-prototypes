@@ -204,14 +204,14 @@ export default class QuickEditModal {
 
     // (2) find in nested data input
     if (!input && this._inputData) {
-      const [ label, attribute ] = value.split('.');
+      const [ name, attribute ] = value.split('.');
 
       const {
         attributes,
-        label: inputDataLabel
+        name: inputDataName
       } = this._inputData;
 
-      if (!attribute || label !== inputDataLabel) {
+      if (!attribute || name !== inputDataName) {
         return;
       }
 
