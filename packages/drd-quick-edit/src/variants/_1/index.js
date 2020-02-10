@@ -40,23 +40,19 @@ let availableInputs = [
   {
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
+  },
+  {
+    label: 'Number of open claims of employee',
+    elements: ['InputData_13z77r8', 'connection_147'],
+    type: 'integer'
   }
-
-  // default state
-  // {
-  //   label: 'Number of open claims of employee',
-  //   elements: ['InputData_13z77r8', 'connection_147'],
-  //   type: 'integer'
-  // }
 ];
 
 let dtInputHeaders = [
-
-  // default state
-  // {
-  //   label: 'Number of open claims of employee',
-  //   type: 'integer'
-  // },
+  {
+    label: 'Number of open claims of employee',
+    type: 'integer'
+  },
   {
     label: 'Employee.region = Claim.region',
     type: 'boolean'
@@ -75,22 +71,29 @@ let dtInputHeaders = [
   }
 ];
 
-let inputData = {
-  id: 'InputData_0qarm4x',
-  label: 'Claim',
-  type: 'data object',
+// todo(pinussilvestrus): use in future
+// let inputData = {
+//   id: 'InputData_0qarm4x',
+//   label: 'Claim',
+//   type: 'data object',
 
-  // only belongs to type==='data object'
-  attributes: [
-    {
-      name: 'region',
-      type: 'string'
-    },
-    {
-      name: 'expenditure',
-      type: 'integer'
-    }
-  ]
+//   // only belongs to type==='data object'
+//   attributes: [
+//     {
+//       name: 'region',
+//       type: 'string'
+//     },
+//     {
+//       name: 'expenditure',
+//       type: 'integer'
+//     }
+//   ]
+// };
+
+let inputData = {
+  id: 'InputData_13z77r8',
+  label: 'Number of open claims of employee',
+  type: 'integer'
 };
 
 let quickEditModal;
@@ -212,14 +215,10 @@ function initInputDataInteractions(inputData) {
   });
 }
 
-function changeInputType(event) {
-  const {
-    target
-  } = event;
-
+function changeInputType(updated) {
   inputData = {
     ...inputData,
-    type: target.value
+    ...updated
   };
 
   if (inputDataModal) {
@@ -249,6 +248,19 @@ function closeInputDataModal() {
   inputDataModal && inputDataModal.hide();
 }
 
+function initNewInputConnection() {
+  const contents = $('.contents');
+
+  // initialize new input connections actions
+  newInputConnection = new NewInputConnection({
+    svgContainer: contents.find('svg').first(),
+    onUpdateInputs: updateInputs
+  });
+  newInputConnection.render();
+  newInputConnection.showInput();
+  newInputConnection.showNewConnection();
+}
+
 function enable() {
   const contents = $('.contents');
   contents.addClass(VARIANT_CLASS);
@@ -259,17 +271,11 @@ function enable() {
   contents.append(diagramGfx);
 
   const decision = getElement('Decision_03absfl');
-  const inputData = getElement('InputData_0qarm4x');
+  const inputData = getElement('InputData_13z77r8');
 
   initDecisionInteractions(decision);
   initInputDataInteractions(inputData);
-
-  // initialize new input connections actions
-  newInputConnection = new NewInputConnection({
-    svgContainer: contents.find('svg').first(),
-    onUpdateInputs: updateInputs
-  });
-  newInputConnection.render();
+  initNewInputConnection();
 }
 
 function disable() {

@@ -66,7 +66,20 @@ export default class InputDataModal {
       }
     }
 
-    select.change(this._onTypeChanged);
+    select.change(e => {
+      const {
+        target
+      } = e;
+
+      // todo(pinussilvestrus): push attribute changes for data object
+      // eslint-disable-next-line
+      const textArea = $(target).find('textarea');
+
+      this._onTypeChanged({
+        type: target.value
+      });
+
+    });
 
     _initComplexObject({ target: select[0] });
   }
