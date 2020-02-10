@@ -49,7 +49,13 @@ export default class InputDataModal {
   }
 
   renderHeader() {
+    const {
+      name: inputDataName
+    } = this._inputData;
+
     const fileGfx = $(fileSVG).addClass('input-icon');
+
+    inputDataName && this._node.find('.modal-header').text(inputDataName);
 
     this._node.find('.modal-header').prepend(fileGfx);
   }

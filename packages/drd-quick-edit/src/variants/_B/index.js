@@ -83,7 +83,7 @@ let decision = {
 
 let inputData = {
   id: 'InputData_13z77r8',
-  label: 'Number of open claims of employee',
+  name: 'Number of open claims of employee',
   type: 'integer'
 };
 

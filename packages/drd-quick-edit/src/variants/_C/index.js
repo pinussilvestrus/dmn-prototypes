@@ -79,7 +79,7 @@ let decision = {
 
 let inputData = {
   id: 'InputData_0qarm4x',
-  label: 'Claim',
+  name: 'Claim',
   type: 'data object',
 
   // only belongs to type==='data object'
