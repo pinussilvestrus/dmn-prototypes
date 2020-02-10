@@ -22,6 +22,10 @@ const HIGHLIGHT_MARKER = 'highlight';
 
 const VARIANT_CLASS = 'variant-a';
 
+const ATTRIBUTE_TYPES = [
+  'string', 'boolean', 'integer', 'long', 'double', 'date'
+];
+
 let availableInputs = [
   {
     label: 'Employee fills skillset',
@@ -252,6 +256,7 @@ function openInputDataModal() {
     inputDataModal = new InputDataModal({
       node,
       inputData,
+      attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
       onTypeChanged: changeInputType
     });

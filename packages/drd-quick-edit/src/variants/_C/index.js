@@ -20,6 +20,10 @@ import QuickEditModal from '../../components/quick-edit-modal';
 
 import './styles.scss';
 
+const ATTRIBUTE_TYPES = [
+  'string', 'boolean', 'integer', 'long', 'double', 'date', 'data object'
+];
+
 let availableInputs = [
   {
     label: 'Employee fills skillset',
@@ -192,6 +196,7 @@ function openInputDataModal() {
     inputDataModal = new InputDataModal({
       node,
       inputData,
+      attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
       onTypeChanged: changeInputType
     });

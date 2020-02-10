@@ -1,5 +1,9 @@
 import $ from 'jquery';
 
+import {
+  forEach
+} from 'min-dash';
+
 import 'webpack-jquery-ui/autocomplete';
 import 'webpack-jquery-ui/sortable';
 
@@ -24,6 +28,7 @@ export default class InputDataModal {
     this._node = options.node;
     this._onClose = options.onClose;
     this._onTypeChanged = options.onTypeChanged;
+    this._attributeTypes = options.attributeTypes;
 
     this.setInputData(options.inputData);
     this.render();
@@ -54,7 +59,13 @@ export default class InputDataModal {
 
     const type = (this._inputData || {}).type;
 
-    select.val(type);
+    const attributeTypes = this._attributeTypes;
+
+    function _initAttributes() {
+      forEach(attributeTypes, a => {
+        select.append(`<option value="${a}">${a}</option>`);
+      });
+    }
 
     function _initComplexObject() {
       if (type === 'data object') {
@@ -82,6 +93,8 @@ export default class InputDataModal {
     });
 
     _initComplexObject({ target: select[0] });
+    _initAttributes();
+    select.val(type);
   }
 
   getCoordinates() {
