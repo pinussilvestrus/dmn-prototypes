@@ -72,12 +72,16 @@ export default class QuickEditModal {
     newInputBtnGfx.click(() => {
       const newInput = this.addInput();
 
-      self._onAddNewInput('');
+      if (typeof self._onAddNewInput === 'function') {
+        self._onAddNewInput('');
+      }
 
       newInput.find('input')
         .change(e => {
 
-          self._onUpdateNewInput(e.target.value);
+          if (typeof self._onUpdateNewInput === 'function') {
+            self._onUpdateNewInput(e.target.value);
+          }
         });
     });
 

@@ -122,17 +122,6 @@ function highlightElements(elements) {
   });
 }
 
-function addNewInput(text) {
-  newInputConnection.showInput(text);
-
-  newInputConnection.showConnection();
-}
-
-function updateNewInputValue(text) {
-  newInputConnection.showInput(text);
-  updateInputs(true, text);
-}
-
 function updateInputs(open = false) {
   decision = {
     ...decision,
@@ -174,8 +163,6 @@ function openDecisionModal() {
       onClose: closeDecisionModal,
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
-      onAddNewInput: addNewInput,
-      onUpdateNewInput: updateNewInputValue,
       availableInputs,
       decision,
       inputData
