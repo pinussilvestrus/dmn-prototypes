@@ -106,15 +106,15 @@ export default class InputDataModal {
   getCoordinates() {
     const elementGfx = getElement((this._inputData || {}).id);
 
-    const position = elementGfx.offset();
+    const position = elementGfx[0].getBoundingClientRect();
 
     if (!position) {
       return DEFAULT_POSITION;
     }
 
     return {
-      top: position.top + 125,
-      left: position.left - 100
+      top: position.bottom + 20,
+      left: position.left - 20
     };
   }
 
