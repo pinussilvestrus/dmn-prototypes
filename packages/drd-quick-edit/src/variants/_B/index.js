@@ -109,13 +109,20 @@ function highlightElements(elements) {
 
 function addNewInput(text) {
   newInputConnection.showInput(text);
-
   newInputConnection.showConnection();
+}
+
+function updateInputData(text) {
+  inputData = {
+    ...inputData,
+    name: text
+  };
 }
 
 function updateNewInputValue(text) {
   newInputConnection.showInput(text);
   updateInputs(true, text);
+  updateInputData(text);
 }
 
 function updateInputs(open = false, text) {
