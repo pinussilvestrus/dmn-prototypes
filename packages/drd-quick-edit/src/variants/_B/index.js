@@ -121,11 +121,11 @@ function updateInputData(text) {
 
 function updateNewInputValue(text) {
   newInputConnection.showInput(text);
-  updateInputs(true, text);
+  updateInputs(text);
   updateInputData(text);
 }
 
-function updateInputs(open = false, text) {
+function updateInputs(text) {
   decision = {
     ...decision,
     inputHeaders: [
@@ -142,18 +142,6 @@ function updateInputs(open = false, text) {
     elements: ['InputData_13z77r8', 'connection_147'],
     type: 'integer'
   });
-
-  if (quickEditModal) {
-    quickEditModal.setInputs({
-      availableInputs: availableInputs,
-      decision
-    });
-    quickEditModal.render();
-  }
-
-  if (open) {
-    quickEditModal.open();
-  }
 }
 
 function openDecisionModal() {
@@ -258,8 +246,7 @@ function initNewInputConnection() {
 
   // initialize new input connections actions
   newInputConnection = new NewInputConnection({
-    svgContainer: contents.find('svg').first(),
-    onUpdateInputs: updateInputs
+    svgContainer: contents.find('svg').first()
   });
   newInputConnection.render();
   newInputConnection.hideNewInput();
