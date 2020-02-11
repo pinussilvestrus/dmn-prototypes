@@ -78,12 +78,12 @@ export default class ContextPad {
   render() {
 
     // set position relative to input data
-    const position = this._inputDataSVG.offset();
+    const bbox = this._inputDataSVG[0].getBoundingClientRect();
 
-    if (position) {
+    if (bbox) {
       this._node.css({
-        top: position.top,
-        left: position.left - 15
+        top: bbox.top,
+        left: bbox.right + 5
       });
     }
 
