@@ -4,7 +4,9 @@ import { forEach } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
-import InputDataModal from '../../components/input-data-modal';
+import InputDataModal from '../../features/input-data-modal';
+
+import QuickEditModal from '../../features/quick-edit-modal';
 
 import getElement from '../../util/getElement';
 
@@ -16,7 +18,6 @@ const HOVER_MARKER = 'hover';
 
 const HIGHLIGHT_MARKER = 'highlight';
 
-import QuickEditModal from '../../components/quick-edit-modal';
 
 import './styles.scss';
 

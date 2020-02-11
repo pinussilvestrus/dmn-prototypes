@@ -4,11 +4,11 @@ import { forEach } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
-import QuickEditModal from '../../components/quick-edit-modal';
+import QuickEditModal from '../../features/quick-edit-modal';
 
-import NewInputConnection from '../../components/new-input-connection';
+import NewInputConnection from '../../features/new-input-connection';
 
-import InputDataModal from '../../components/input-data-modal';
+import InputDataModal from '../../features/input-data-modal';
 
 import getElement from '../../util/getElement';
 
