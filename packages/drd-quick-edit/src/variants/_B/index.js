@@ -174,10 +174,7 @@ function openDecisionModal() {
 }
 
 function closeDecisionModal() {
-  if (quickEditModal) {
-    quickEditModal.hide();
-    quickEditModal.renderInputs();
-  }
+  quickEditModal && quickEditModal.hide();
 }
 
 function initDecisionInteractions(decision) {
