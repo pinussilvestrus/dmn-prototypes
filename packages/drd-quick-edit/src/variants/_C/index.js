@@ -8,7 +8,7 @@ import InputDataModal from '../../features/input-data-modal';
 
 import QuickEditModal from '../../features/quick-edit-modal';
 
-import ContextPad from '../../features/ContextPad';
+import ContextPad from '../../features/context-pad';
 
 import getElement from '../../util/getElement';
 
