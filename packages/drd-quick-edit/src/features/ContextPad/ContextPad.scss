@@ -1,0 +1,9 @@
+.context-pad-placeholder {
+  position: fixed;
+  visibility: hidden;
+
+  .change-type {
+    width: 12px !important;
+    cursor: pointer !important;
+  }
+}

@@ -292,4 +292,16 @@
             <rect x="574" y="474" width="42" height="119" class="djs-outline" style="fill: none;"/>
         </g>
     </g>
+     <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="dump_decision" style="display: none;" transform="matrix(1 0 0 1 1042 400)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="180" height="80" rx="0" ry="0" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="47.1640625" y="25.875">Claim</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="137" height="57" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
 </svg>

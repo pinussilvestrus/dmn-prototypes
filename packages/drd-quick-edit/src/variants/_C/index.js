@@ -8,6 +8,8 @@ import InputDataModal from '../../features/input-data-modal';
 
 import QuickEditModal from '../../features/quick-edit-modal';
 
+import ContextPad from '../../features/ContextPad';
+
 import getElement from '../../util/getElement';
 
 const VARIANT_CLASS = 'variant-c';
@@ -98,6 +100,7 @@ let inputData = {
 
 let quickEditModal;
 let inputDataModal;
+let contextPad;
 
 function unhighlightElements(elements) {
   forEach(elements, id => {
@@ -157,6 +160,30 @@ function initDecisionInteractions(decision) {
   });
 }
 
+function onToDecisionChange() {
+  closeInputDataModal();
+}
+
+function openContextPad() {
+  const node = $('<div class="context-pad-placeholder"></div>');
+  $('.contents').append(node);
+
+  if (!contextPad) {
+    contextPad = new ContextPad({
+      decision: 'dump_decision',
+      inputData,
+      node,
+      onChange: onToDecisionChange
+    });
+  }
+
+  contextPad.open();
+}
+
+function closeContextPad() {
+  contextPad && contextPad.hide();
+}
+
 function initInputDataInteractions(inputData) {
   const hitBox = inputData.children('.djs-hit');
 
@@ -168,10 +195,15 @@ function initInputDataInteractions(inputData) {
     if (event.target == hitBox[0]) {
       inputData.addClass(SELECTED_MARKER);
 
+      openContextPad();
+
       return openInputDataModal(inputData);
     }
 
     closeInputDataModal();
+
+    closeContextPad();
+
     inputData.removeClass(SELECTED_MARKER);
   });
 }
