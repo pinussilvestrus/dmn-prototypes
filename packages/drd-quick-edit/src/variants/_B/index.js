@@ -135,11 +135,21 @@ function updateInputs(text) {
     ]
   };
 
-  availableInputs.push({
-    label: text || 'Number of open claims of employee',
-    elements: ['InputData_13z77r8', 'connection_147'],
-    type: 'integer'
-  });
+  availableInputs = [
+    ...availableInputs,
+    {
+      label: text || 'Number of open claims of employee',
+      elements: ['InputData_13z77r8', 'connection_147'],
+      type: 'integer'
+    }
+  ];
+
+  if (quickEditModal) {
+    quickEditModal.setInputs({
+      availableInputs,
+      decision
+    });
+  }
 }
 
 function openDecisionModal() {
@@ -164,7 +174,10 @@ function openDecisionModal() {
 }
 
 function closeDecisionModal() {
-  quickEditModal && quickEditModal.hide();
+  if (quickEditModal) {
+    quickEditModal.hide();
+    quickEditModal.renderInputs();
+  }
 }
 
 function initDecisionInteractions(decision) {

@@ -91,6 +91,8 @@ export default class QuickEditModal {
   renderInputs() {
     const inputContainer = $('.inputs');
 
+    inputContainer.empty();
+
     forEach(this._inputHeaders, input => {
       this.addInput(input);
     });
