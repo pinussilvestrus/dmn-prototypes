@@ -94,7 +94,6 @@ let inputDataModal;
 function unhighlightElements(elements) {
   forEach(elements, id => {
     const element = getElement(id);
-
     element.removeClass(HIGHLIGHT_MARKER);
   });
 }
@@ -102,7 +101,6 @@ function unhighlightElements(elements) {
 function highlightElements(elements) {
   forEach(elements, id => {
     const element = getElement(id);
-
     element.addClass(HIGHLIGHT_MARKER);
   });
 }

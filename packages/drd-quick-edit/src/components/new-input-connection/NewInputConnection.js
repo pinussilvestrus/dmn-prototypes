@@ -42,7 +42,7 @@ export default class NewInputConnection {
 
       inputGfx.find('text').remove();
 
-      inputGfx.append(newText);
+      inputGfx.find('.djs-visual').append(newText);
     }
 
     this.hideNewInput();
