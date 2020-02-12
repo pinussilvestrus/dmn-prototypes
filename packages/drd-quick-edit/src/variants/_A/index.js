@@ -138,14 +138,14 @@ function updateInputs(open = false) {
     inputHeaders: [
       ...decision.inputHeaders,
       {
-        label: 'Number of open claims of employee',
+        label: 'Open Claims',
         type: inputDataType
       }
     ]
   };
 
   availableInputs.push({
-    label: 'Number of open claims of employee',
+    label: 'Open Claims',
     elements: ['InputData_13z77r8', 'connection_147'],
     type: inputDataType
   });

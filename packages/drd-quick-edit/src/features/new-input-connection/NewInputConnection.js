@@ -69,7 +69,7 @@ export default class NewInputConnection {
     newInputGfx.css('display', 'block');
 
     newInputGfx.click(() => {
-      self.showInput();
+      self.showInput('Open Claims');
       self.showNewConnection();
     });
   }
@@ -87,12 +87,4 @@ export default class NewInputConnection {
     });
   }
 
-
-}
-
-// helpers ////////////////
-
-/* eslint-disable-next-line */
-function SVG(tag) {
-  return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
