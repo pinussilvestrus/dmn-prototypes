@@ -10,6 +10,7 @@ import { filter, find, flatten, forEach, map } from 'min-dash';
 
 import modalSkeleton from './DecisionModal.html';
 import inputSkeleton from './Input.html';
+import outputSkeleton from './Output.html';
 import newInputBtnSkeleton from './NewInputBtn.html';
 
 import closeSVG from '../../../resources/close.svg';
@@ -87,6 +88,39 @@ export default class DecisionModal {
     });
 
     container.append(newInputBtnGfx);
+  }
+
+  addOutput(options) {
+    const { label, type } = options;
+
+    const outputContainer = this._node.find('.outputs');
+
+    const newOutput = $(outputSkeleton).attr('id', generateID);
+
+    newOutput.find('input').val(label);
+    newOutput.find('select').val(type);
+
+    outputContainer.append(newOutput);
+
+    return newOutput;
+  }
+
+  renderOutputs() {
+    const outputHeaders = this._decision.outputHeaders;
+
+    if (outputHeaders.length) {
+      this._node.find('.outputs-header').html('Output Columns');
+
+      const outputContainer = $('.outputs');
+
+      outputContainer.empty();
+
+      forEach(outputHeaders, output => {
+        this.addOutput(output);
+      });
+    } else {
+      this._node.find('.output-type').val(this._decision.outputType);
+    }
   }
 
   renderInputs() {
@@ -262,6 +296,7 @@ export default class DecisionModal {
 
     this.renderHeader();
     this.renderInputs();
+    this.renderOutputs();
     this.renderClose();
     this.renderNewInputBtn();
 

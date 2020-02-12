@@ -44,13 +44,7 @@ let availableInputs = [
   {
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
-  },
-
-  // {
-  //   label: 'Number of open claims of employee',
-  //   elements: ['InputData_13z77r8', 'connection_147'],
-  //   type: 'integer'
-  // }
+  }
 ];
 
 let decision = {
@@ -58,11 +52,6 @@ let decision = {
   name: 'Employee Suitability Score',
   connected: false, // connected to new input data (mock)
   inputHeaders: [
-
-    // {
-    //   label: 'Number of open claims of employee',
-    //   type: 'integer'
-    // },
     {
       label: 'Employee.region = Claim.region',
       type: 'boolean'
@@ -79,7 +68,9 @@ let decision = {
       label: 'Employee fills skillset',
       type: 'boolean'
     }
-  ]
+  ],
+  outputHeaders : [],
+  outputType: 'integer'
 };
 
 // todo(pinussilvestrus): use in future

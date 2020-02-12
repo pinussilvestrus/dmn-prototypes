@@ -80,7 +80,9 @@ let decision = {
       label: 'Employee fills skillset',
       type: 'boolean'
     }
-  ]
+  ],
+  outputHeaders : [],
+  outputType: 'integer'
 };
 
 let inputData = {

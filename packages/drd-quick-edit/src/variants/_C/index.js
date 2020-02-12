@@ -77,7 +77,14 @@ let decision = {
       label: 'Employee fills skillset',
       type: 'boolean'
     }
-  ]
+  ],
+  outputHeaders : [
+    {
+      label: 'Score',
+      type: 'integer'
+    }
+  ],
+  outputType: 'integer'
 };
 
 let inputData = {
