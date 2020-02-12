@@ -4,7 +4,7 @@ import { forEach } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
-import QuickEditModal from '../../features/quick-edit-modal';
+import DecisionModal from '../../features/decision-modal';
 
 import NewInputConnection from '../../features/new-input-connection';
 
@@ -89,7 +89,7 @@ let inputData = {
   type: 'integer'
 };
 
-let quickEditModal;
+let decisionModal;
 let newInputConnection;
 let inputDataModal;
 let contextPad;
@@ -147,8 +147,8 @@ function updateInputs(text) {
     }
   ];
 
-  if (quickEditModal) {
-    quickEditModal.setInputs({
+  if (decisionModal) {
+    decisionModal.setInputs({
       availableInputs,
       decision
     });
@@ -159,8 +159,8 @@ function openDecisionModal() {
   const node = $('<div class="edit-modal-placeholder"></div>');
   $('.contents').append(node);
 
-  if (!quickEditModal) {
-    quickEditModal = new QuickEditModal({
+  if (!decisionModal) {
+    decisionModal = new DecisionModal({
       node,
       onClose: closeDecisionModal,
       onHighlight: highlightElements,
@@ -173,11 +173,11 @@ function openDecisionModal() {
     });
   }
 
-  quickEditModal.open();
+  decisionModal.open();
 }
 
 function closeDecisionModal() {
-  quickEditModal && quickEditModal.hide();
+  decisionModal && decisionModal.hide();
 }
 
 function initDecisionInteractions(decision) {
@@ -309,7 +309,7 @@ function enable() {
 
 function disable() {
   $('.contents').removeClass(VARIANT_CLASS).empty();
-  quickEditModal = undefined;
+  decisionModal = undefined;
 }
 
 export default {

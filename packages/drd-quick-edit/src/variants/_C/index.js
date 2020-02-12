@@ -6,7 +6,7 @@ import diagramSVG from './resources/diagram.svg';
 
 import InputDataModal from '../../features/input-data-modal';
 
-import QuickEditModal from '../../features/quick-edit-modal';
+import DecisionModal from '../../features/decision-modal';
 
 import ContextPad from '../../features/context-pad';
 
@@ -98,7 +98,7 @@ let inputData = {
   ]
 };
 
-let quickEditModal;
+let decisionModal;
 let inputDataModal;
 let contextPad;
 
@@ -122,8 +122,8 @@ function openDecisionModal() {
   const node = $('<div class="edit-modal-placeholder"></div>');
   $('.contents').append(node);
 
-  if (!quickEditModal) {
-    quickEditModal = new QuickEditModal({
+  if (!decisionModal) {
+    decisionModal = new DecisionModal({
       node,
       onClose: closeDecisionModal,
       onHighlight: highlightElements,
@@ -134,11 +134,11 @@ function openDecisionModal() {
     });
   }
 
-  quickEditModal.open();
+  decisionModal.open();
 }
 
 function closeDecisionModal() {
-  quickEditModal && quickEditModal.hide();
+  decisionModal && decisionModal.hide();
 }
 
 function initDecisionInteractions(decision) {

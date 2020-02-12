@@ -1,3 +1,4 @@
+
 import $ from 'jquery';
 
 import 'webpack-jquery-ui/autocomplete';
@@ -7,7 +8,7 @@ import 'webpack-jquery-ui/css';
 
 import { filter, find, flatten, forEach, map } from 'min-dash';
 
-import modalSkeleton from './QuickEditModal.html';
+import modalSkeleton from './DecisionModal.html';
 import inputSkeleton from './Input.html';
 import newInputBtnSkeleton from './NewInputBtn.html';
 
@@ -19,9 +20,9 @@ import tableSVG from '../../../resources/table.svg';
 
 import getAutocompleteConfig from '../../util/getAutocompleteConfig';
 
-import './QuickEditModal.scss';
+import './DecisionModal.scss';
 
-export default class QuickEditModal {
+export default class DecisionModal {
   constructor(options) {
     this._node = options.node;
     this._onClose = options.onClose;
@@ -257,7 +258,7 @@ export default class QuickEditModal {
   render() {
     this._node.empty();
     this._node.append(modalSkeleton);
-    this._node.addClass('quick-edit-modal');
+    this._node.addClass('decision-modal');
 
     this.renderHeader();
     this.renderInputs();
