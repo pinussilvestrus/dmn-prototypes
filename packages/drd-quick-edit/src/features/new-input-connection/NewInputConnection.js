@@ -1,6 +1,3 @@
-/* global document */
-
-/* eslint-disable-next-line */
 import $ from 'jquery';
 
 import TextUtil from 'diagram-js/lib/util/Text';
