@@ -70,7 +70,8 @@ let decision = {
     }
   ],
   outputHeaders : [],
-  outputType: 'integer'
+  outputType: 'integer',
+  fixed: true
 };
 
 // todo(pinussilvestrus): use in future

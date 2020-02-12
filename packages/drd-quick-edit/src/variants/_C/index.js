@@ -84,7 +84,8 @@ let decision = {
       type: 'integer'
     }
   ],
-  outputType: 'integer'
+  outputType: 'integer',
+  fixed: true
 };
 
 let inputData = {

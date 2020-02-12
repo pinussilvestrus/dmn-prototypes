@@ -19,9 +19,15 @@ import minusSVG from '../../../resources/minus.svg';
 import dragSVG from '../../../resources/drag.svg';
 import tableSVG from '../../../resources/table.svg';
 
+import getElement from '../../util/getElement';
 import getAutocompleteConfig from '../../util/getAutocompleteConfig';
 
 import './DecisionModal.scss';
+
+const DEFAULT_POSITION = {
+  left: 50,
+  top: 50
+};
 
 export default class DecisionModal {
   constructor(options) {
@@ -289,6 +295,21 @@ export default class DecisionModal {
       });
   }
 
+  getCoordinates() {
+    const elementGfx = getElement((this._decision || {}).id);
+
+    const position = elementGfx[0].getBoundingClientRect();
+
+    if (!position || this._decision.fixed) {
+      return DEFAULT_POSITION;
+    }
+
+    return {
+      top: position.bottom + 20,
+      left: position.left - 40
+    };
+  }
+
   render() {
     this._node.empty();
     this._node.append(modalSkeleton);
@@ -299,6 +320,11 @@ export default class DecisionModal {
     this.renderOutputs();
     this.renderClose();
     this.renderNewInputBtn();
+
+    // set coordinates
+    this._node
+      .find('.modal-container')
+      .css(this.getCoordinates());
 
     this.hide();
   }

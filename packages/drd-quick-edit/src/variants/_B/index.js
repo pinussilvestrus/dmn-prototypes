@@ -82,7 +82,8 @@ let decision = {
     }
   ],
   outputHeaders : [],
-  outputType: 'integer'
+  outputType: 'integer',
+  fixed: true
 };
 
 let inputData = {
