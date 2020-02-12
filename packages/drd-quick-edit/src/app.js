@@ -18,20 +18,20 @@ let current;
 
 function bindListeners(event) {
 
-  // SHIFT + 1
-  if (event.shiftKey && event.keyCode == 33) {
-    toggleVariant('A');
+  // SHIFT + 5
+  if (event.shiftKey && event.keyCode == 37) {
+    toggleVariant(current === 'A' ? 'B' : 'A');
   }
 
-  // SHIFT + 2
-  else if (event.shiftKey && event.keyCode == 34) {
-    toggleVariant('B');
-  }
+  // // SHIFT + 2
+  // else if (event.shiftKey && event.keyCode == 34) {
+  //   toggleVariant('B');
+  // }
 
   // SHIFT + 3
-  else if (event.shiftKey && event.keyCode == 167) {
-    toggleVariant('C');
-  }
+  // else if (event.shiftKey && event.keyCode == 167) {
+  //   toggleVariant('C');
+  // }
 }
 
 function initVariant() {
