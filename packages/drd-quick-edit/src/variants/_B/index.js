@@ -181,7 +181,9 @@ function openDecisionModal(customDecision) {
 
 function replaceDecision() {
   const contextPad = new ContextPad({
-    decision: 'dump_decision',
+    decision: 'new_decision',
+    connection: 'connection_147',
+    newConnection: 'new_connection',
     inputData,
     node: $('<div></div>')
   });
@@ -198,7 +200,7 @@ function replaceDecision() {
       label: '',
       type: ''
     }],
-    id: 'dump_decision',
+    id: 'new_decision',
     outputHeaders: [],
     isMock: true,
     outputType: inputData.type

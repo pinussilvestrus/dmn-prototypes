@@ -19,6 +19,8 @@ export default class ContextPad {
     this._node = options.node;
     this._inputData = options.inputData;
     this._decision = options.decision;
+    this._connection = options.connection;
+    this._newConnection = options.newConnection;
     this._inputDataSVG = getElement(this._inputData.id);
     this._onChange = options.onChange;
     this._open = false;
@@ -45,6 +47,14 @@ export default class ContextPad {
     this._node.css('visibility', 'hidden');
   }
 
+  renderNewConnection() {
+    const connectionGfx = getElement(this._connection);
+    connectionGfx.css('display', 'none');
+
+    const newConnectionGfx = getElement(this._newConnection);
+    newConnectionGfx.css('display', 'block');
+  }
+
   renderDecision(name) {
     const decisionGfx = getElement(this._decision);
 
@@ -61,6 +71,8 @@ export default class ContextPad {
     decisionGfx.find('text').remove();
 
     decisionGfx.find('.djs-visual').append(newText);
+
+    this._newConnection && this.renderNewConnection();
   }
 
   hideInputData() {

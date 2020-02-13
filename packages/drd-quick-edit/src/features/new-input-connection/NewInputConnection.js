@@ -88,7 +88,7 @@ export default class NewInputConnection {
 
     this.showNewConnection();
 
-    newConnectionGfx.find('tspan').click(event => {
+    newConnectionGfx.find('tspan').click(() => {
       self.showConnection();
       this._onUpdateInputs();
     });
