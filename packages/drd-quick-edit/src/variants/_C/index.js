@@ -125,7 +125,7 @@ function highlightElements(elements) {
   });
 }
 
-function openDecisionModal() {
+function openDecisionModal(customDecision) {
 
   if (!decisionModal) {
     const node = $('<div class="edit-modal-placeholder"></div>');
@@ -137,7 +137,7 @@ function openDecisionModal() {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       availableInputs,
-      decision,
+      decision: customDecision || decision,
       inputData
     });
   }
@@ -160,7 +160,7 @@ function initDecisionInteractions(decision) {
     if (event.target == hitBox[0]) {
       decision.addClass(SELECTED_MARKER);
 
-      return openDecisionModal(decision);
+      return openDecisionModal();
     }
 
     closeDecisionModal();
@@ -211,6 +211,20 @@ function replaceDecision() {
   contextPad.renderDecision(inputData.name);
   contextPad.hideInputData();
   closeInputDataModal();
+
+  // open new decision modal
+  decisionModal = null;
+  openDecisionModal({
+    ...inputData,
+    inputHeaders: [{
+      label: '',
+      type: ''
+    }],
+    id: 'dump_decision',
+    outputHeaders: [],
+    isMock: true
+  });
+
 }
 
 function openInputDataModal() {

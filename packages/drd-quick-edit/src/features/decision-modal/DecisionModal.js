@@ -319,7 +319,7 @@ export default class DecisionModal {
     this.renderInputs();
     this.renderOutputs();
     this.renderClose();
-    this.renderNewInputBtn();
+    !this._decision.isMock && this.renderNewInputBtn();
 
     // set coordinates
     this._node
