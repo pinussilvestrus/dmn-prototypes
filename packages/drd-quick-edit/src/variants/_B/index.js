@@ -215,6 +215,7 @@ function replaceDecision() {
   };
 
   openDecisionModal(newDecision);
+  getElement(newDecision.id).addClass('selected');
 }
 
 function closeDecisionModal() {
