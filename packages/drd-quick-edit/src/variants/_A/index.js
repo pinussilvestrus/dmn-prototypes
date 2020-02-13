@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-import { forEach } from 'min-dash';
+import { forEach, find } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
@@ -151,15 +151,16 @@ function updateInputs(open = false) {
   }
 
   if (open) {
-    decisionModal.open();
+    openDecisionModal();
   }
 }
 
 function openDecisionModal() {
-  const node = $('<div class="edit-modal-placeholder"></div>');
-  $('.contents').append(node);
 
   if (!decisionModal) {
+    const node = $('<div class="edit-modal-placeholder"></div>');
+    $('.contents').append(node);
+
     decisionModal = new DecisionModal({
       node,
       onClose: closeDecisionModal,
@@ -200,14 +201,27 @@ function initDecisionInteractions(decision) {
 function initInputDataInteractions(inputData) {
   const hitBox = inputData.children('.djs-hit');
 
+  // todo(pinussilvestrus): dirty stuff
+  const newInputDataAction = $('svg').find('.new-input-data rect, .new-input-data tspan');
+
   hitBox.mouseover(() => inputData.addClass(HOVER_MARKER));
 
   hitBox.mouseout(() => inputData.removeClass(HOVER_MARKER));
 
   $('svg').click(event => {
+
+    const {
+      target
+    } = event;
+
     if (event.target == hitBox[0]) {
       inputData.addClass(SELECTED_MARKER);
+      return openInputDataModal(inputData);
+    }
 
+    if (includesNode(newInputDataAction, target)) {
+      updateInputData({ name: 'Open Claims' });
+      inputData.addClass(SELECTED_MARKER);
       return openInputDataModal(inputData);
     }
 
@@ -216,7 +230,7 @@ function initInputDataInteractions(inputData) {
   });
 }
 
-function changeInputType(updated) {
+function updateInputData(updated) {
   inputData = {
     ...inputData,
     ...updated
@@ -241,16 +255,17 @@ function changeInputType(updated) {
 }
 
 function openInputDataModal() {
-  const node = $('<div class="edit-modal-placeholder"></div>');
-  $('.contents').append(node);
 
   if (!inputDataModal) {
+    const node = $('<div class="edit-modal-placeholder"></div>');
+    $('.contents').append(node);
+
     inputDataModal = new InputDataModal({
       node,
       inputData,
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
-      onTypeChanged: changeInputType
+      onTypeChanged: updateInputData
     });
   }
 
@@ -284,9 +299,9 @@ function enable() {
   const decision = getElement('Decision_03absfl');
   const inputData = getElement('InputData_13z77r8');
 
+  initNewInputConnection();
   initDecisionInteractions(decision);
   initInputDataInteractions(inputData);
-  initNewInputConnection();
 }
 
 function disable() {
@@ -298,3 +313,12 @@ export default {
   enable,
   disable
 };
+
+
+// helpers ///////
+
+function includesNode($_nodes, node) {
+  return find([$_nodes[0], $_nodes[1]], n => {
+    return n === node;
+  });
+}

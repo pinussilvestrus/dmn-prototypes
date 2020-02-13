@@ -127,10 +127,11 @@ function highlightElements(elements) {
 }
 
 function openDecisionModal() {
-  const node = $('<div class="edit-modal-placeholder"></div>');
-  $('.contents').append(node);
 
   if (!decisionModal) {
+    const node = $('<div class="edit-modal-placeholder"></div>');
+    $('.contents').append(node);
+
     decisionModal = new DecisionModal({
       node,
       onClose: closeDecisionModal,
@@ -230,10 +231,11 @@ function changeInputType(updated) {
 }
 
 function openInputDataModal() {
-  const node = $('<div class="edit-modal-placeholder"></div>');
-  $('.contents').append(node);
 
   if (!inputDataModal) {
+    const node = $('<div class="edit-modal-placeholder"></div>');
+    $('.contents').append(node);
+
     inputDataModal = new InputDataModal({
       node,
       inputData,
