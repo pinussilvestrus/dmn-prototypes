@@ -5,13 +5,15 @@ import $ from 'jquery';
 import variantA from './variants/_A';
 import variantB from './variants/_B';
 import variantC from './variants/_C';
+import variantD from './variants/_D';
 
 import './app.scss';
 
 const VARIANTS = {
   'A': variantA,
   'B': variantB,
-  'C': variantC
+  'C': variantC,
+  'D': variantD
 };
 
 let current;

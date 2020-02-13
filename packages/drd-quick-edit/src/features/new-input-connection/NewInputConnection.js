@@ -12,6 +12,8 @@ export default class NewInputConnection {
   constructor(options) {
     this._svgContainer = options.svgContainer;
     this._onUpdateInputs = options.onUpdateInputs;
+    this._input = options.input || 'InputData_13z77r8';
+    this._connection = options.connection || 'connection_147';
 
     this._textUtil = new TextUtil({
       style: LABEL_STYLE,
@@ -24,7 +26,7 @@ export default class NewInputConnection {
   }
 
   showInput(text) {
-    const inputGfx = this._svgContainer.find('[data-element-id="InputData_13z77r8"]');
+    const inputGfx = this._svgContainer.find(`[data-element-id="${this._input}"]`);
     inputGfx.css('display', 'block');
 
     if (typeof text !== 'undefined') {
@@ -56,7 +58,7 @@ export default class NewInputConnection {
   }
 
   showConnection() {
-    const connectionGfx = this._svgContainer.find('[data-element-id="connection_147"]');
+    const connectionGfx = this._svgContainer.find(`[data-element-id="${this._connection}"]`);
     connectionGfx.css('display', 'block');
 
     this.hideNewConnection();
