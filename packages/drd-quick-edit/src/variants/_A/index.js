@@ -287,6 +287,7 @@ function openInputDataModal() {
 }
 
 function closeInputDataModal() {
+  mockFirstInputDataTypeChanged();
   inputDataModal && inputDataModal.hide();
 }
 
