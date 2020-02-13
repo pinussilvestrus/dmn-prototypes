@@ -8,8 +8,6 @@ import InputDataModal from '../../features/input-data-modal';
 
 import DecisionModal from '../../features/decision-modal';
 
-import ContextPad from '../../features/context-pad';
-
 import getElement from '../../util/getElement';
 
 const VARIANT_CLASS = 'variant-c';
@@ -108,7 +106,6 @@ let inputData = {
 
 let decisionModal;
 let inputDataModal;
-let contextPad;
 
 function unhighlightElements(elements) {
   forEach(elements, id => {
@@ -169,30 +166,6 @@ function initDecisionInteractions(decision) {
   });
 }
 
-function onToDecisionChange() {
-  closeInputDataModal();
-}
-
-function openContextPad() {
-  const node = $('<div class="context-pad-placeholder"></div>');
-  $('.contents').append(node);
-
-  if (!contextPad) {
-    contextPad = new ContextPad({
-      decision: 'dump_decision',
-      inputData,
-      node,
-      onChange: onToDecisionChange
-    });
-  }
-
-  contextPad.open();
-}
-
-function closeContextPad() {
-  contextPad && contextPad.hide();
-}
-
 function initInputDataInteractions(inputData) {
   const hitBox = inputData.children('.djs-hit');
 
@@ -204,14 +177,10 @@ function initInputDataInteractions(inputData) {
     if (event.target == hitBox[0]) {
       inputData.addClass(SELECTED_MARKER);
 
-      openContextPad();
-
       return openInputDataModal(inputData);
     }
 
     closeInputDataModal();
-
-    closeContextPad();
 
     inputData.removeClass(SELECTED_MARKER);
   });

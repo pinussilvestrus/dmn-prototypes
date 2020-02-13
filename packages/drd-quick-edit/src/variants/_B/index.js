@@ -10,8 +10,6 @@ import NewInputConnection from '../../features/new-input-connection';
 
 import InputDataModal from '../../features/input-data-modal';
 
-import ContextPad from '../../features/context-pad';
-
 import getElement from '../../util/getElement';
 
 import './styles.scss';
@@ -95,7 +93,6 @@ let inputData = {
 let decisionModal;
 let newInputConnection;
 let inputDataModal;
-let contextPad;
 
 function unhighlightElements(elements) {
   forEach(elements, id => {
@@ -214,13 +211,10 @@ function initInputDataInteractions(inputData) {
     if (event.target == hitBox[0]) {
       inputData.addClass(SELECTED_MARKER);
 
-      openContextPad();
-
       return openInputDataModal(inputData);
     }
 
     closeInputDataModal();
-    closeContextPad();
     inputData.removeClass(SELECTED_MARKER);
   });
 }
@@ -269,30 +263,6 @@ function initNewInputConnection() {
   });
   newInputConnection.render();
   newInputConnection.hideNewInput();
-}
-
-function onToDecisionChange() {
-  closeInputDataModal();
-}
-
-function openContextPad() {
-  const node = $('<div class="context-pad-placeholder"></div>');
-  $('.contents').append(node);
-
-  if (!contextPad) {
-    contextPad = new ContextPad({
-      decision: 'dump_decision',
-      inputData,
-      node,
-      onChange: onToDecisionChange
-    });
-  }
-
-  contextPad.open();
-}
-
-function closeContextPad() {
-  contextPad && contextPad.hide();
 }
 
 function enable() {
