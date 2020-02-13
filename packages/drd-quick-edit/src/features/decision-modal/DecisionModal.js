@@ -38,7 +38,6 @@ export default class DecisionModal {
     this._onAddNewInput = options.onAddNewInput;
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._inputData = options.inputData;
-    this._decision = options.decision;
 
     this.setInputs(options);
     this.render();
@@ -60,11 +59,16 @@ export default class DecisionModal {
       decision,
     } = options;
 
+    this._decision = decision;
+
     this._availableInputs = availableInputs;
     this._inputColumns = decision.inputColumns;
 
     this.AVAILABLE_INPUT_LABELS = map(this._availableInputs, i => i.label);
     this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
+
+    // re-render, OMG I miss react
+    this.render();
   }
 
   renderNewInputBtn() {
@@ -325,8 +329,6 @@ export default class DecisionModal {
     this._node
       .find('.modal-container')
       .css(this.getCoordinates());
-
-    this.hide();
   }
 
   open() {

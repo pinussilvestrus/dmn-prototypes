@@ -55,7 +55,7 @@ let availableInputs = [
   // }
 ];
 
-let decision = {
+let defaultDecision = {
   id: 'Decision_03absfl',
   name: 'Employee Suitability Score',
   inputColumns: [
@@ -86,10 +86,21 @@ let decision = {
   fixed: true
 };
 
+
 let inputData = {
   id: 'InputData_13z77r8',
-  name: 'Number of open claims of employee',
+  name: 'Open Claims',
   type: 'integer'
+};
+
+let newDecision = {
+  inputColumns: [{
+    label: '',
+    type: ''
+  }],
+  id: 'new_decision',
+  outputHeaders: [],
+  isMock: true
 };
 
 let decisionModal;
@@ -129,10 +140,10 @@ function updateNewInputValue(text) {
 }
 
 function updateInputs(text) {
-  decision = {
-    ...decision,
+  defaultDecision = {
+    ...defaultDecision,
     inputColumns: [
-      ...decision.inputColumns,
+      ...defaultDecision.inputColumns,
       {
         label: text || 'Number of open claims of employee',
         type: 'integer'
@@ -152,13 +163,12 @@ function updateInputs(text) {
   if (decisionModal) {
     decisionModal.setInputs({
       availableInputs,
-      decision
+      decision: defaultDecision
     });
   }
 }
 
-function openDecisionModal(customDecision) {
-
+function openDecisionModal(decision) {
   if (!decisionModal) {
     const node = $('<div class="edit-modal-placeholder"></div>');
     $('.contents').append(node);
@@ -171,10 +181,15 @@ function openDecisionModal(customDecision) {
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
       availableInputs,
-      decision: customDecision || decision,
+      decision,
       inputData
     });
   }
+
+  decisionModal.setInputs({
+    availableInputs,
+    decision
+  });
 
   decisionModal.open();
 }
@@ -193,40 +208,50 @@ function replaceDecision() {
   closeInputDataModal();
 
   // open new decision modal
-  decisionModal = null;
-  openDecisionModal({
+  newDecision = {
     ...inputData,
-    inputColumns: [{
-      label: '',
-      type: ''
-    }],
-    id: 'new_decision',
-    outputHeaders: [],
-    isMock: true,
+    ...newDecision,
     outputType: inputData.type
-  });
+  };
+
+  openDecisionModal(newDecision);
 }
 
 function closeDecisionModal() {
   decisionModal && decisionModal.hide();
 }
 
-function initDecisionInteractions(decision) {
-  const hitBox = decision.children('.djs-hit');
+function initDecisionInteractions(decisions) {
 
-  hitBox.mouseover(() => decision.addClass(HOVER_MARKER));
+  let elements = [];
 
-  hitBox.mouseout(() => decision.removeClass(HOVER_MARKER));
+  forEach(decisions, decision => {
+    const element = getElement(decision.id);
 
-  $('svg').click(event => {
-    if (event.target == hitBox[0]) {
-      decision.addClass(SELECTED_MARKER);
+    elements.push(element);
 
-      return openDecisionModal();
-    }
+    element.addClass('active');
 
+    const hitBox = element.children('.djs-hit');
+
+    hitBox.mouseover(() => element.addClass(HOVER_MARKER));
+
+    hitBox.mouseout(() => element.removeClass(HOVER_MARKER));
+
+    hitBox.click(event => {
+      element.addClass(SELECTED_MARKER);
+
+      // todo(pinussilvestrus): refactor me to handle decision state updates
+      event.stopPropagation();
+      event.preventDefault();
+      return openDecisionModal(decision.id === defaultDecision.id ? defaultDecision : newDecision);
+    });
+  });
+
+  // outside click
+  $('svg').click(() => {
     closeDecisionModal();
-    decision.removeClass(SELECTED_MARKER);
+    forEach(elements, e => e.removeClass(SELECTED_MARKER));
   });
 }
 
@@ -305,10 +330,9 @@ function enable() {
   // insert diagram svg into page
   contents.append(diagramGfx);
 
-  const decision = getElement('Decision_03absfl');
   const inputData = getElement('InputData_13z77r8');
 
-  initDecisionInteractions(decision);
+  initDecisionInteractions([ defaultDecision, newDecision ]);
   initInputDataInteractions(inputData);
   initNewInputConnection();
 }
