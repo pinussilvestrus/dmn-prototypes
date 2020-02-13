@@ -63,11 +63,15 @@ export default class ContextPad {
     decisionGfx.find('.djs-visual').append(newText);
   }
 
+  hideInputData() {
+    this._inputDataSVG.css('display', 'none');
+  }
+
   renderChangeToDecision() {
     const wrenchGfx = $(wrenchSVG).addClass('change-type');
 
     wrenchGfx.click(() => {
-      this._inputDataSVG.css('display', 'none');
+      this.hideInputData();
       this.hide();
       this.renderDecision(this._inputData.name);
       this._onChange();

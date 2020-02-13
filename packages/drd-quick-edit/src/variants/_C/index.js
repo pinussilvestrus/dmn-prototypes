@@ -209,6 +209,7 @@ function replaceDecision() {
   });
 
   contextPad.renderDecision(inputData.name);
+  contextPad.hideInputData();
   closeInputDataModal();
 }
 
