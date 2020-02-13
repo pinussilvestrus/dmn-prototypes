@@ -224,16 +224,9 @@ export default class DecisionModal {
   }
 
   bindRelations(input) {
-    const self = this;
-
     input.find('input')
       .focus(e => this.highlightRelatedElements(e))
       .focusout(() => this.highlightElements([]))
-      .on('keyup', event => {
-
-        // lazy check
-        setTimeout(this.highlightRelatedElements.bind(self, event), 800);
-      })
       .change(e => this.setType(e.target));
   }
 
