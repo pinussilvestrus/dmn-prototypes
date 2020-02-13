@@ -30,6 +30,7 @@ export default class InputDataModal {
     this._onTypeChanged = options.onTypeChanged;
     this._attributeTypes = options.attributeTypes;
     this._onReplaceDecision = options.onReplaceDecision;
+    this._noReplace = options.noReplace;
 
     this.setInputData(options.inputData);
     this.render();
@@ -70,7 +71,7 @@ export default class InputDataModal {
 
     header.append(fileGfx);
     header.append(label);
-    header.append(replace);
+    !this._noReplace && header.append(replace);
   }
 
   renderSelect() {

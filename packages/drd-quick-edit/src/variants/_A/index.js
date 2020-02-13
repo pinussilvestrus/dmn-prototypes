@@ -279,7 +279,8 @@ function openInputDataModal() {
       inputData,
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
-      onTypeChanged: handleInputDataTypeChanged
+      onTypeChanged: handleInputDataTypeChanged,
+      noReplace: true
     });
   }
 
