@@ -96,7 +96,7 @@ let decision = {
 let inputData = {
   id: 'InputData_13z77r8',
   name: 'Number of open claims of employee',
-  type: 'integer',
+  type: 'string',
   typeChanged: false
 };
 
@@ -154,6 +154,16 @@ function updateInputs(open = false) {
   if (open) {
     openDecisionModal();
   }
+}
+
+function updateNewInputType(type) {
+  inputData = {
+    ...inputData,
+    type
+  };
+
+  inputDataModal.setInputData(inputData);
+  inputDataModal.render();
 }
 
 function openDecisionModal() {
@@ -280,6 +290,7 @@ function openInputDataModal() {
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
       onTypeChanged: handleInputDataTypeChanged,
+      onUpdateNewInputType: updateNewInputType,
       noReplace: true
     });
   }

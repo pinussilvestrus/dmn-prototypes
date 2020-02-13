@@ -133,6 +133,13 @@ function updateInputData(text) {
   };
 }
 
+function updateNewInputType(type) {
+  inputData = {
+    ...inputData,
+    type
+  };
+}
+
 function updateNewInputValue(text) {
   newInputConnection.showInput(text);
   updateInputs(text);
@@ -180,6 +187,7 @@ function openDecisionModal(decision) {
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
+      updateNewInputType: updateNewInputType,
       availableInputs,
       decision,
       inputData
@@ -267,7 +275,7 @@ function initInputDataInteractions(inputData) {
     if (event.target == hitBox[0]) {
       inputData.addClass(SELECTED_MARKER);
 
-      return openInputDataModal(inputData);
+      return openInputDataModal();
     }
 
     closeInputDataModal();

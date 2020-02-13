@@ -37,6 +37,7 @@ export default class DecisionModal {
     this._onUnhighlight = options.onUnhighlight;
     this._onAddNewInput = options.onAddNewInput;
     this._onUpdateNewInput = options.onUpdateNewInput;
+    this._onUpdateNewInputType = options.onUpdateNewInputType;
     this._inputData = options.inputData;
 
     this.setInputs(options);
@@ -90,9 +91,16 @@ export default class DecisionModal {
 
       newInput.find('input')
         .change(e => {
-
           if (typeof self._onUpdateNewInput === 'function') {
             self._onUpdateNewInput(e.target.value);
+          }
+        });
+
+      // todo(pinussilvestrus): why you're not working
+      newInput.find('select')
+        .change(e => {
+          if (typeof self._onUpdateNewInputType === 'function') {
+            self._onUpdateNewInputType(e.target.value);
           }
         });
     });
