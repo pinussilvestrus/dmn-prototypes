@@ -8,6 +8,8 @@ import InputDataModal from '../../features/input-data-modal';
 
 import DecisionModal from '../../features/decision-modal';
 
+import ContextPad from '../../features/context-pad';
+
 import getElement from '../../util/getElement';
 
 const VARIANT_CLASS = 'variant-c';
@@ -199,6 +201,17 @@ function changeInputType(updated) {
   }
 }
 
+function replaceDecision() {
+  const contextPad = new ContextPad({
+    decision: 'dump_decision',
+    inputData,
+    node: $('<div></div>')
+  });
+
+  contextPad.renderDecision(inputData.name);
+  closeInputDataModal();
+}
+
 function openInputDataModal() {
 
   if (!inputDataModal) {
@@ -210,7 +223,8 @@ function openInputDataModal() {
       inputData,
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
-      onTypeChanged: changeInputType
+      onTypeChanged: changeInputType,
+      onReplaceDecision: replaceDecision
     });
   }
 

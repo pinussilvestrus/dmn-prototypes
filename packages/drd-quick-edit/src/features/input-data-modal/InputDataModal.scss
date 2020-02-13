@@ -10,7 +10,21 @@
   }
 
   .modal-header {
-    font-size: 1.2rem;
+    p {
+      display: inline-block;
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    a {
+      color: rgba($color: blue, $alpha: 0.7);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    
+    a:hover {
+      color: rgba($color: blue, $alpha: 1.0);;
+    }
   }
 
   .input-icon {

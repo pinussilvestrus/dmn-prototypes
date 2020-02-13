@@ -29,6 +29,7 @@ export default class InputDataModal {
     this._onClose = options.onClose;
     this._onTypeChanged = options.onTypeChanged;
     this._attributeTypes = options.attributeTypes;
+    this._onReplaceDecision = options.onReplaceDecision;
 
     this.setInputData(options.inputData);
     this.render();
@@ -53,11 +54,23 @@ export default class InputDataModal {
       name: inputDataName
     } = this._inputData;
 
+    const header = this._node.find('.modal-header');
+
     const fileGfx = $(fileSVG).addClass('input-icon');
+    const label = $('<p></p>');
 
-    inputDataName && this._node.find('.modal-header').text(inputDataName);
+    const replace= $('<a class="change-to-decision">Replace to Decision</a>');
+    replace.click(() => {
+      if (typeof this._onReplaceDecision === 'function') {
+        this._onReplaceDecision();
+      }
+    });
 
-    this._node.find('.modal-header').prepend(fileGfx);
+    inputDataName && label.text(inputDataName);
+
+    header.append(fileGfx);
+    header.append(label);
+    header.append(replace);
   }
 
   renderSelect() {

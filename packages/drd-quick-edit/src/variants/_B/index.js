@@ -10,6 +10,8 @@ import NewInputConnection from '../../features/new-input-connection';
 
 import InputDataModal from '../../features/input-data-modal';
 
+import ContextPad from '../../features/context-pad';
+
 import getElement from '../../util/getElement';
 
 import './styles.scss';
@@ -177,6 +179,17 @@ function openDecisionModal() {
   decisionModal.open();
 }
 
+function replaceDecision() {
+  const contextPad = new ContextPad({
+    decision: 'dump_decision',
+    inputData,
+    node: $('<div></div>')
+  });
+
+  contextPad.renderDecision(inputData.name);
+  closeInputDataModal();
+}
+
 function closeDecisionModal() {
   decisionModal && decisionModal.hide();
 }
@@ -243,7 +256,8 @@ function openInputDataModal() {
       inputData,
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
-      onTypeChanged: changeInputType
+      onTypeChanged: changeInputType,
+      onReplaceDecision: replaceDecision
     });
   }
 
