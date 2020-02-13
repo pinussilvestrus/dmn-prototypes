@@ -36,6 +36,8 @@ export default class DecisionModal {
     this._onHighlight = options.onHighlight;
     this._onUnhighlight = options.onUnhighlight;
     this._onAddNewInput = options.onAddNewInput;
+
+    // todo(pinussilvestrus): combine
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._onUpdateNewInputType = options.onUpdateNewInputType;
     this._inputData = options.inputData;
@@ -186,35 +188,33 @@ export default class DecisionModal {
     this._onHighlight(elements);
   }
 
-  highlightRelatedElements(event) {
-    const self = this;
+  getRelatedElements(value) {
 
-    function getRelatedElements(value) {
+    // (1) find exact match
+    const input = find(this._availableInputs, i => value === i.label);
 
-      // (1) find exact match
-      const input = find(self._availableInputs, i => value === i.label);
-
-      if (input) {
-        return input.elements;
-      }
-
-      // (2) find including match
-      const inputs = filter(self._availableInputs, i =>
-        value.includes(i.label)
-      );
-
-      const elements = flatten(map(inputs, input => input.elements)) || [];
-
-      return elements;
+    if (input) {
+      return input.elements;
     }
 
+    // (2) find including match
+    const inputs = filter(this._availableInputs, i =>
+      value.includes(i.label)
+    );
+
+    const elements = flatten(map(inputs, input => input.elements)) || [];
+
+    return elements;
+  }
+
+  highlightRelatedElements(event) {
     let { target } = event;
 
     if (typeof target !== 'string') {
       target = $(event.target).val();
     }
 
-    const elements = getRelatedElements(target);
+    const elements = this.getRelatedElements(target);
 
     this.highlightElements(elements);
   }
@@ -232,10 +232,29 @@ export default class DecisionModal {
   }
 
   bindRelations(input) {
+    const self = this;
+
     input.find('input')
       .focus(e => this.highlightRelatedElements(e))
       .focusout(() => this.highlightElements([]))
       .change(e => this.setType(e.target));
+
+    input.find('select')
+      .change(e => {
+
+        // todo(pinussilvestrus): remove me
+        const relatedElements = self.getRelatedElements(input.find('input').val());
+
+        console.log(self._onUpdateNewInputType);
+
+        if (
+          relatedElements.includes(self._inputData.id) &&
+          typeof self._onUpdateNewInputType === 'function'
+        ) {
+          self._onUpdateNewInputType(e.target.value);
+        }
+
+      });
   }
 
   setType(inputNode) {

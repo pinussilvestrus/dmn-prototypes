@@ -177,6 +177,7 @@ function openDecisionModal() {
       onClose: closeDecisionModal,
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
+      onUpdateNewInputType: updateNewInputType,
       availableInputs,
       decision,
       inputData
@@ -290,7 +291,6 @@ function openInputDataModal() {
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
       onTypeChanged: handleInputDataTypeChanged,
-      onUpdateNewInputType: updateNewInputType,
       noReplace: true
     });
   }

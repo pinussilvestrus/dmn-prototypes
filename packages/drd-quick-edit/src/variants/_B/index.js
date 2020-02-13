@@ -187,7 +187,7 @@ function openDecisionModal(decision) {
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
-      updateNewInputType: updateNewInputType,
+      onUpdateNewInputType: updateNewInputType,
       availableInputs,
       decision,
       inputData
