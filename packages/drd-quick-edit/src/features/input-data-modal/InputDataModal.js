@@ -60,7 +60,7 @@ export default class InputDataModal {
     const fileGfx = $(fileSVG).addClass('input-icon');
     const label = $('<p></p>');
 
-    const replace= $('<a class="change-to-decision">Replace to Decision</a>');
+    const replace= $('<a class="transform-to-decision">Transform to Decision</a>');
     replace.click(() => {
       if (typeof this._onReplaceDecision === 'function') {
         this._onReplaceDecision();

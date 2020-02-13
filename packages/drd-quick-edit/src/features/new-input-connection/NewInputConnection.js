@@ -77,7 +77,6 @@ export default class NewInputConnection {
 
   showNewConnection() {
     const newConnectionGfx = this._svgContainer.find('.new-connection');
-
     newConnectionGfx.css('display', 'block');
   }
 
