@@ -71,18 +71,24 @@ export default class NewInputConnection {
 
     newInputGfx.click(() => {
       self.showInput('Open Claims');
-      self.showNewConnection();
+      self.renderNewConnection();
     });
   }
 
   showNewConnection() {
+    const newConnectionGfx = this._svgContainer.find('.new-connection');
+
+    newConnectionGfx.css('display', 'block');
+  }
+
+  renderNewConnection() {
     const self = this;
 
     const newConnectionGfx = this._svgContainer.find('.new-connection');
 
-    newConnectionGfx.css('display', 'block');
+    this.showNewConnection();
 
-    newConnectionGfx.find('tspan').click(() => {
+    newConnectionGfx.find('tspan').click(event => {
       self.showConnection();
       this._onUpdateInputs();
     });
