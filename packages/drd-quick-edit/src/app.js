@@ -40,7 +40,10 @@ function initVariant() {
 }
 
 function addVariantBadge(variant) {
-  const badgeSVG = $(`<div><span>${variant}</span></div>`).addClass('badge');
+  const badgeSVG = $(`<div><span>${variant}</span></div>`)
+    .addClass('badge')
+    .click(() => toggleVariant(current === 'A' ? 'B' : 'A'));
+
   $('.contents').append(badgeSVG);
 }
 
