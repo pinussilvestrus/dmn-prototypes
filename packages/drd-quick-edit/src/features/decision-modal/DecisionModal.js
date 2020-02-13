@@ -61,7 +61,7 @@ export default class DecisionModal {
     } = options;
 
     this._availableInputs = availableInputs;
-    this._inputHeaders = decision.inputHeaders;
+    this._inputColumns = decision.inputColumns;
 
     this.AVAILABLE_INPUT_LABELS = map(this._availableInputs, i => i.label);
     this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
@@ -134,7 +134,7 @@ export default class DecisionModal {
 
     inputContainer.empty();
 
-    forEach(this._inputHeaders, input => {
+    forEach(this._inputColumns, input => {
       this.addInput(input);
     });
 

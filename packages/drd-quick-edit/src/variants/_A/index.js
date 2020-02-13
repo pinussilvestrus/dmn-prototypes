@@ -51,7 +51,7 @@ let decision = {
   id: 'Decision_03absfl',
   name: 'Employee Suitability Score',
   connected: false, // connected to new input data (mock)
-  inputHeaders: [
+  inputColumns: [
     {
       label: 'Employee.region = Claim.region',
       type: 'boolean'
@@ -128,8 +128,8 @@ function updateInputs(open = false) {
   decision = {
     ...decision,
     connected: true,
-    inputHeaders: [
-      ...decision.inputHeaders,
+    inputColumns: [
+      ...decision.inputColumns,
       {
         label: 'Open Claims',
         type: inputDataType
@@ -254,7 +254,7 @@ function updateInputData(updated) {
   if (decision.connected) {
     decision = {
       ...decision,
-      inputHeaders: decision.inputHeaders.slice(0, decision.inputHeaders.length - 1)
+      inputColumns: decision.inputColumns.slice(0, decision.inputColumns.length - 1)
     };
 
     updateInputs(false);

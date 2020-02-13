@@ -56,7 +56,7 @@ let availableInputs = [
 let decision = {
   id: 'Decision_03absfl',
   name: 'Employee Suitability Score',
-  inputHeaders: [
+  inputColumns: [
     {
       label: 'Number of open claims of employee',
       type: 'integer'
@@ -216,7 +216,7 @@ function replaceDecision() {
   decisionModal = null;
   openDecisionModal({
     ...inputData,
-    inputHeaders: [{
+    inputColumns: [{
       label: '',
       type: ''
     }],
