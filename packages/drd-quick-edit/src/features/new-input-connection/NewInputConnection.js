@@ -50,12 +50,16 @@ export default class NewInputConnection {
     newInputGfx.css('display', 'none');
   }
 
+  hideNewConnection() {
+    const newConnectionGfx = this._svgContainer.find('.new-connection');
+    newConnectionGfx.css('display', 'none');
+  }
+
   showConnection() {
     const connectionGfx = this._svgContainer.find('[data-element-id="connection_147"]');
     connectionGfx.css('display', 'block');
 
-    const newConnectionGfx = this._svgContainer.find('.new-connection');
-    newConnectionGfx.css('display', 'none');
+    this.hideNewConnection();
   }
 
   showNewInput() {

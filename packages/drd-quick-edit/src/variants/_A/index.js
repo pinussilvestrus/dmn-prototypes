@@ -96,7 +96,8 @@ let decision = {
 let inputData = {
   id: 'InputData_13z77r8',
   name: 'Number of open claims of employee',
-  type: 'integer'
+  type: 'integer',
+  typeChanged: false
 };
 
 let decisionModal;
@@ -220,6 +221,7 @@ function initInputDataInteractions(inputData) {
     }
 
     if (includesNode(newInputDataAction, target)) {
+      newInputConnection.hideNewConnection();
       updateInputData({ name: 'Open Claims' });
       inputData.addClass(SELECTED_MARKER);
       return openInputDataModal(inputData);
@@ -228,6 +230,18 @@ function initInputDataInteractions(inputData) {
     closeInputDataModal();
     inputData.removeClass(SELECTED_MARKER);
   });
+}
+
+function mockFirstInputDataTypeChanged() {
+  if (!inputData.typeChanged) {
+    inputData.typeChanged = true;
+    newInputConnection.showNewConnection();
+  }
+}
+
+function handleInputDataTypeChanged(updated) {
+  mockFirstInputDataTypeChanged();
+  updateInputData(updated);
 }
 
 function updateInputData(updated) {
@@ -265,7 +279,7 @@ function openInputDataModal() {
       inputData,
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
-      onTypeChanged: updateInputData
+      onTypeChanged: handleInputDataTypeChanged
     });
   }
 
