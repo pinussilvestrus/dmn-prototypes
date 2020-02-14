@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-import { forEach } from 'min-dash';
+import { forEach, findIndex } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
@@ -188,6 +188,7 @@ function openDecisionModal(decision) {
       onAddNewInput: addNewInput,
       onUpdateNewInput: updateNewInputValue,
       onUpdateNewInputType: updateNewInputType,
+      onUpdateInput: updateInput,
       availableInputs,
       decision,
       inputData
@@ -261,7 +262,31 @@ function initDecisionInteractions(decisions) {
   $('svg').click(() => {
     closeDecisionModal();
     forEach(elements, e => e.removeClass(SELECTED_MARKER));
+    $('*').removeClass(HIGHLIGHT_MARKER);
   });
+}
+
+function updateInput(oldLabel, updated) {
+  if (!oldLabel) {
+    return;
+  }
+
+  const found = findIndex(defaultDecision.inputColumns, i => i.label === oldLabel);
+
+  if (!found) {
+    return;
+  }
+
+  const newInputColumn = {
+    ...defaultDecision.inputColumns[found],
+    ...updated
+  };
+
+  defaultDecision.inputColumns.splice(found, 1, newInputColumn);
+
+  if (decisionModal) {
+    decisionModal.setInputs({ defaultDecision, availableInputs });
+  }
 }
 
 function initInputDataInteractions(inputData) {
@@ -278,8 +303,10 @@ function initInputDataInteractions(inputData) {
       return openInputDataModal();
     }
 
+    // outside click
     closeInputDataModal();
     inputData.removeClass(SELECTED_MARKER);
+    $('*').removeClass(HIGHLIGHT_MARKER);
   });
 }
 

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-import { forEach, find } from 'min-dash';
+import { forEach, find, findIndex } from 'min-dash';
 
 import diagramSVG from './resources/diagram.svg';
 
@@ -120,6 +120,29 @@ function highlightElements(elements) {
   });
 }
 
+function updateInput(oldLabel, updated) {
+  if (!oldLabel) {
+    return;
+  }
+
+  const found = findIndex(decision.inputColumns, i => i.label === oldLabel);
+
+  if (!found) {
+    return;
+  }
+
+  const newInputColumn = {
+    ...decision.inputColumns[found],
+    ...updated
+  };
+
+  decision.inputColumns.splice(found, 1, newInputColumn);
+
+  if (decisionModal) {
+    decisionModal.setInputs({ decision, availableInputs });
+  }
+}
+
 function updateInputs(open = false) {
   const {
     type: inputDataType
@@ -178,6 +201,7 @@ function openDecisionModal() {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onUpdateNewInputType: updateNewInputType,
+      onUpdateInput: updateInput,
       availableInputs,
       decision,
       inputData
@@ -205,8 +229,10 @@ function initDecisionInteractions(decision) {
       return openDecisionModal(decision);
     }
 
+    // outside click
     closeDecisionModal();
     decision.removeClass(SELECTED_MARKER);
+    $('*').removeClass(HIGHLIGHT_MARKER);
   });
 }
 
@@ -238,6 +264,7 @@ function initInputDataInteractions(inputData) {
       return openInputDataModal(inputData);
     }
 
+    // outside click
     closeInputDataModal();
     inputData.removeClass(SELECTED_MARKER);
   });

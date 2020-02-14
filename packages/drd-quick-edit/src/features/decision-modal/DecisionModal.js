@@ -35,6 +35,7 @@ export default class DecisionModal {
     this._onClose = options.onClose;
     this._onHighlight = options.onHighlight;
     this._onUnhighlight = options.onUnhighlight;
+    this._onUpdateInput = options.onUpdateInput;
     this._onAddNewInput = options.onAddNewInput;
 
     // todo(pinussilvestrus): combine
@@ -172,8 +173,27 @@ export default class DecisionModal {
       .click(() => newInput.remove());
     newInput.append(minusGfx);
 
-    newInput.find('input').val(label);
-    newInput.find('select').val(type);
+    newInput
+      .find('input')
+      .val(label)
+      .change((e) => {
+
+        if (typeof this._onUpdateInput === 'function') {
+          this._onUpdateInput(label, { label: e.target.value });
+        }
+
+      });
+
+    newInput
+      .find('select')
+      .val(type)
+      .change((e) => {
+
+        if (typeof this._onUpdateInput === 'function') {
+          this._onUpdateInput(label, { type: e.target.value });
+        }
+
+      });
 
     this.bindRelations(newInput);
     this.bindAutocomplete(newInput);
@@ -236,7 +256,7 @@ export default class DecisionModal {
 
     input.find('input')
       .focus(e => this.highlightRelatedElements(e))
-      .focusout(() => this.highlightElements([]))
+      .blur(() => this.highlightElements([]))
       .change(e => this.setType(e.target));
 
     input.find('select')
@@ -244,8 +264,6 @@ export default class DecisionModal {
 
         // todo(pinussilvestrus): remove me
         const relatedElements = self.getRelatedElements(input.find('input').val());
-
-        console.log(self._onUpdateNewInputType);
 
         if (
           relatedElements.includes(self._inputData.id) &&
