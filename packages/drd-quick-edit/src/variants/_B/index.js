@@ -126,24 +126,24 @@ function addNewInput(text) {
   newInputConnection.showConnection();
 }
 
-function updateInputData(text) {
+function updateInputData(updated) {
   inputData = {
     ...inputData,
-    name: text
+    ...updated
   };
 }
 
-function updateNewInputType(type) {
-  inputData = {
-    ...inputData,
-    type
-  };
-}
+function updateNewInput(updated = {}) {
+  const {
+    name
+  } = updated;
 
-function updateNewInputValue(text) {
-  newInputConnection.showInput(text);
-  updateInputs(text);
-  updateInputData(text);
+  if (name) {
+    newInputConnection.showInput(name);
+    updateInputs(name);
+  }
+
+  updateInputData(updated);
 }
 
 function updateInputs(text) {
@@ -186,8 +186,7 @@ function openDecisionModal(decision) {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
-      onUpdateNewInput: updateNewInputValue,
-      onUpdateNewInputType: updateNewInputType,
+      onUpdateNewInput: updateNewInput,
       onUpdateInput: updateInput,
       availableInputs,
       decision,
@@ -285,7 +284,7 @@ function updateInput(oldLabel, updated) {
   defaultDecision.inputColumns.splice(found, 1, newInputColumn);
 
   if (decisionModal) {
-    decisionModal.setInputs({ defaultDecision, availableInputs });
+    decisionModal.setInputs({ decision: defaultDecision, availableInputs });
   }
 }
 

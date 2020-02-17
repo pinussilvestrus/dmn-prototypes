@@ -179,10 +179,10 @@ function updateInputs(open = false) {
   }
 }
 
-function updateNewInputType(type) {
+function updateNewInput(updated) {
   inputData = {
     ...inputData,
-    type
+    ...updated
   };
 
   inputDataModal.setInputData(inputData);
@@ -200,7 +200,7 @@ function openDecisionModal() {
       onClose: closeDecisionModal,
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
-      onUpdateNewInputType: updateNewInputType,
+      onUpdateNewInput: updateNewInput,
       onUpdateInput: updateInput,
       availableInputs,
       decision,

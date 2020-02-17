@@ -76,16 +76,20 @@ function addNewInput(text) {
   newInputConnection.showConnection();
 }
 
-function updateInputData(text) {
+function updateInputData(updated) {
   inputData = {
     ...inputData,
-    name: text
+    ...updated
   };
 }
 
-function updateNewInputValue(text) {
-  newInputConnection.showInput(text);
-  updateInputData(text);
+function updateNewInput(updated) {
+  const {
+    name
+  } = updated;
+
+  name && newInputConnection.showInput(name);
+  updateInputData(updated);
 }
 
 function openDecisionModal(decision) {
@@ -100,7 +104,7 @@ function openDecisionModal(decision) {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
-      onUpdateNewInput: updateNewInputValue,
+      onUpdateNewInput: updateNewInput,
       availableInputs,
       decision,
       inputData
