@@ -336,11 +336,12 @@ export default class DecisionModal {
     input.find('input')
 
       // configure autocomplete module
-      .autocomplete(getAutocompleteConfig(
-        this.AVAILABLE_INPUT_LABELS,
-        onSelect,
-        onCreate
-      ))
+      .autocomplete(getAutocompleteConfig({
+        items: this.AVAILABLE_INPUT_LABELS,
+        selectCb: onSelect,
+        createCb: onCreate,
+        disableCreate: typeof self._onAddNewInput !== 'function'
+      }))
       .focus(function() {
         const node = $(this);
 

@@ -3,7 +3,11 @@ import $ from 'jquery';
 const CREATE_NEW_DECISION = '...Create new Decision Table';
 const CREATE_NEW_INPUT_DATA = '...Create new Input Data';
 
-export default function getAutocompleteConfig(items, selectCb, createCb) {
+export default function getAutocompleteConfig(options) {
+
+  const {
+    items, selectCb, createCb, disableCreate
+  } = options;
 
   function defaultSelect(node, selectedValue) {
     let terms = split(node.value);
@@ -30,11 +34,13 @@ export default function getAutocompleteConfig(items, selectCb, createCb) {
 
       // add new input / decision options
       // todo(pinussilvestrus): really show everytime?
-      results = [
-        ...results,
-        CREATE_NEW_DECISION,
-        CREATE_NEW_INPUT_DATA
-      ];
+      if (!disableCreate) {
+        results = [
+          ...results,
+          CREATE_NEW_DECISION,
+          CREATE_NEW_INPUT_DATA
+        ];
+      }
 
       response(results);
     },
