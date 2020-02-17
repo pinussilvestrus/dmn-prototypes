@@ -10,8 +10,6 @@ import NewInputConnection from '../../features/new-input-connection';
 
 import InputDataModal from '../../features/input-data-modal';
 
-import ContextPad from '../../features/context-pad';
-
 import getElement from '../../util/getElement';
 
 import './styles.scss';
@@ -202,30 +200,6 @@ function openDecisionModal(decision) {
   decisionModal.open();
 }
 
-function replaceDecision() {
-  const contextPad = new ContextPad({
-    decision: 'new_decision',
-    connection: 'connection_147',
-    newConnection: 'new_connection',
-    inputData,
-    node: $('<div></div>')
-  });
-
-  contextPad.renderDecision(inputData.name);
-  contextPad.hideInputData();
-  closeInputDataModal();
-
-  // open new decision modal
-  newDecision = {
-    ...inputData,
-    ...newDecision,
-    outputType: inputData.type
-  };
-
-  openDecisionModal(newDecision);
-  getElement(newDecision.id).addClass('selected');
-}
-
 function closeDecisionModal() {
   decisionModal && decisionModal.hide();
 }
@@ -334,7 +308,7 @@ function openInputDataModal() {
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
       onTypeChanged: changeInputType,
-      onReplaceDecision: replaceDecision
+      noReplace: true
     });
   }
 

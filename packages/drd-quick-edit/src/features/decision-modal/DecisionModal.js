@@ -87,10 +87,6 @@ export default class DecisionModal {
     newInputBtnGfx.click(() => {
       const newInput = this.addInput();
 
-      if (typeof self._onAddNewInput === 'function') {
-        self._onAddNewInput('');
-      }
-
       newInput.find('input')
         .change(e => {
           if (typeof self._onUpdateNewInput === 'function') {
@@ -318,22 +314,39 @@ export default class DecisionModal {
   }
 
   bindAutocomplete(input) {
+    const self = this;
+
+    function onSelect(event) {
+      const {
+        isSelect,
+        target
+      } = event;
+
+      isSelect && self.setType(target);
+
+      self.highlightRelatedElements(event);
+    }
+
+    function onCreate(type, name) {
+      if (type === 'inputData') {
+        typeof self._onAddNewInput && self._onAddNewInput(name);
+      } else {
+        return;
+      }
+    }
+
     input.find('input')
-      .autocomplete(
-        getAutocompleteConfig(this.AVAILABLE_INPUT_LABELS, event => {
-          const {
-            isSelect,
-            target
-          } = event;
 
-          isSelect && this.setType(target);
-
-          this.highlightRelatedElements(event);
-        })
-      )
+      // configure autocomplete module
+      .autocomplete(getAutocompleteConfig(
+        this.AVAILABLE_INPUT_LABELS,
+        onSelect,
+        onCreate
+      ))
       .focus(function() {
         const node = $(this);
 
+        // even search if empty
         if (isEmpty(node)) {
           node.data('uiAutocomplete').search(node.val());
         }
