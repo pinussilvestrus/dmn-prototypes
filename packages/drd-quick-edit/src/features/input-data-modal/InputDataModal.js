@@ -62,9 +62,7 @@ export default class InputDataModal {
 
     const replace= $('<a class="transform-to-decision">Transform to Decision</a>');
     replace.click(() => {
-      if (typeof this._onReplaceDecision === 'function') {
-        this._onReplaceDecision();
-      }
+      typeof this._onReplaceDecision === 'function' && this._onReplaceDecision();
     });
 
     inputDataName && label.text(inputDataName);

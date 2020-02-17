@@ -89,20 +89,16 @@ export default class DecisionModal {
 
       newInput.find('input')
         .change(e => {
-          if (typeof self._onUpdateNewInput === 'function') {
-            self._onUpdateNewInput({
-              name: e.target.value
-            });
-          }
+          typeof self._onUpdateNewInput === 'function' && self._onUpdateNewInput({
+            name: e.target.value
+          });
         });
 
       newInput.find('select')
         .change(e => {
-          if (typeof self._onUpdateNewInput === 'function') {
-            self._onUpdateNewInput({
-              type: e.target.value
-            });
-          }
+          typeof self._onUpdateNewInput === 'function' && self._onUpdateNewInput({
+            type: e.target.value
+          });
         });
     });
 
@@ -176,9 +172,10 @@ export default class DecisionModal {
       .val(label)
       .change((e) => {
 
-        if (typeof this._onUpdateInput === 'function') {
-          this._onUpdateInput(label, { label: e.target.value });
-        }
+        typeof this._onUpdateInput === 'function' && this._onUpdateInput(
+          label,
+          { label: e.target.value }
+        );
 
       });
 
@@ -187,9 +184,10 @@ export default class DecisionModal {
       .val(type)
       .change((e) => {
 
-        if (typeof this._onUpdateInput === 'function') {
-          this._onUpdateInput(label, { type: e.target.value });
-        }
+        typeof this._onUpdateInput === 'function' && this._onUpdateInput(
+          label,
+          { type: e.target.value }
+        );
 
       });
 
@@ -329,7 +327,7 @@ export default class DecisionModal {
 
     function onCreate(type, name) {
       if (type === 'inputData') {
-        typeof self._onAddNewInput && self._onAddNewInput(name);
+        typeof self._onAddNewInput === 'function' && self._onAddNewInput(name);
       } else {
         return;
       }
