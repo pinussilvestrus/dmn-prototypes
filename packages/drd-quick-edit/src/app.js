@@ -4,6 +4,7 @@ import $ from 'jquery';
 
 import variantA from './variants/_A';
 import variantB from './variants/_B';
+import variantB_old from './variants/_B (old)';
 import variantC from './variants/_C';
 import variantD from './variants/_D';
 
@@ -12,6 +13,7 @@ import './app.scss';
 const VARIANTS = {
   'A': variantA,
   'B': variantB,
+  'B_old': variantB_old,
   'C': variantC,
   'D': variantD
 };
