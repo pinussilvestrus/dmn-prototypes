@@ -272,7 +272,7 @@ function updateInput(oldLabel, updated) {
 
   const found = findIndex(defaultDecision.inputColumns, i => i.label === oldLabel);
 
-  if (!found) {
+  if (found < 0) {
     return;
   }
 

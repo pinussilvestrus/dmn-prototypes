@@ -127,7 +127,7 @@ function updateInput(oldLabel, updated) {
 
   const found = findIndex(decision.inputColumns, i => i.label === oldLabel);
 
-  if (!found) {
+  if (found < 0) {
     return;
   }
 
