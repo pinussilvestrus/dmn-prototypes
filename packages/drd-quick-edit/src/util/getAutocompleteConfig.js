@@ -30,11 +30,14 @@ export default function getAutocompleteConfig(options) {
     minLength: 0,
     source: function(request, response) {
 
-      let results = $.ui.autocomplete.filter(items, extractLast(request.term));
+      const {
+        term
+      } = request;
+
+      let results = $.ui.autocomplete.filter(items, extractLast(term));
 
       // add new input / decision options
-      // todo(pinussilvestrus): really show everytime?
-      if (!disableCreate) {
+      if (!disableCreate && term) {
         results = [
           ...results,
           CREATE_NEW_DECISION,
