@@ -41,6 +41,11 @@ svg.diagram {
   background: coral !important;
   border: coral !important;
   color: #ffffff !important;
+
+  &.autocomplete-action {
+    background-color: #4d90ff !important;
+    border: #4d90ff !important;
+  }
 }
 
 .ui-state-highlight {

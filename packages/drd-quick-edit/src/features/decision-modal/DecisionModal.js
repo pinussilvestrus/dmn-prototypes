@@ -12,6 +12,7 @@ import modalSkeleton from './DecisionModal.html';
 import inputSkeleton from './Input.html';
 import outputSkeleton from './Output.html';
 import newInputBtnSkeleton from './NewInputBtn.html';
+import autocompleteItemSkeleton from './AutocompleteItem.html';
 
 import closeSVG from '../../../resources/close.svg';
 import plusSVG from '../../../resources/plus.svg';
@@ -21,6 +22,9 @@ import tableSVG from '../../../resources/table.svg';
 
 import getElement from '../../util/getElement';
 import getAutocompleteConfig from '../../util/getAutocompleteConfig';
+
+const CREATE_NEW_DECISION = '+ Create new Decision Table';
+const CREATE_NEW_INPUT_DATA = '+ Create new Input Data';
 
 import './DecisionModal.scss';
 
@@ -37,8 +41,6 @@ export default class DecisionModal {
     this._onUnhighlight = options.onUnhighlight;
     this._onUpdateInput = options.onUpdateInput;
     this._onAddNewInput = options.onAddNewInput;
-
-    // todo(pinussilvestrus): combine
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._inputData = options.inputData;
 
@@ -88,6 +90,8 @@ export default class DecisionModal {
       const newInput = this.addInput();
 
       newInput.find('input')
+
+        // todo(pinussilvestrus): should be aware of created type
         .change(e => {
           self._onUpdateNewInput?.({
             name: e.target.value
@@ -171,24 +175,20 @@ export default class DecisionModal {
       .find('input')
       .val(label)
       .change((e) => {
-
         this._onUpdateInput?.(
           label,
           { label: e.target.value }
         );
-
       });
 
     newInput
       .find('select')
       .val(type)
       .change((e) => {
-
         this._onUpdateInput?.(
           label,
           { type: e.target.value }
         );
-
       });
 
     this.bindRelations(newInput);
@@ -350,7 +350,22 @@ export default class DecisionModal {
           node.data('uiAutocomplete').search(node.val());
         }
 
-      });
+      })
+      .autocomplete('instance')._renderItem = function(ul, item) {
+        const node = $(autocompleteItemSkeleton);
+
+        node
+          .find('.ui-menu-item-wrapper')
+          .append(item.label);
+
+        if ([CREATE_NEW_DECISION, CREATE_NEW_INPUT_DATA].includes(item.label)) {
+          node
+            .find('.ui-menu-item-wrapper')
+            .addClass('autocomplete-action');
+        }
+
+        return node.appendTo(ul);
+      };
   }
 
   getCoordinates() {
