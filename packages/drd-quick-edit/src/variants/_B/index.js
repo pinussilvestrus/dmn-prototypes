@@ -125,27 +125,41 @@ function updateInputData(updated) {
   };
 }
 
-function updateNewInput(updated = {}) {
+function updateNewDecision(updated) {
+  newDecision = {
+    ...newDecision,
+    ...updated
+  };
+}
+
+function updateNewInput(updated = {}, type = 'inputData') {
   const {
     name
   } = updated;
 
-  if (name) {
-    newInputConnection.showInput(name);
-    updateInputs(name);
+  if (type === 'inputData') {
+    updateInputData(updated);
+    name && newInputConnection.showInput(name);
+    name && updateInputColumns(name);
+  } else {
+    updateNewDecision({
+      ...updated,
+      outputType: updated.type
+    });
+
+    name && newInputConnection.showDecision(name);
+    name && updateInputColumns(name, [ 'new_decision', 'new_connection' ]);
   }
 
-  updateInputData(updated);
 }
 
-function updateInputs(text) {
+function updateInputColumns(text, elements) {
   defaultDecision = {
     ...defaultDecision,
     inputColumns: [
       ...defaultDecision.inputColumns,
       {
-        label: text || 'Number of open claims of employee',
-        type: 'integer'
+        label: text || 'Open Claims'
       }
     ]
   };
@@ -153,8 +167,8 @@ function updateInputs(text) {
   availableInputs = [
     ...availableInputs,
     {
-      label: text || 'Number of open claims of employee',
-      elements: ['InputData_13z77r8', 'connection_147'],
+      label: text || 'Open  Claims',
+      elements: elements || ['InputData_13z77r8', 'connection_147'],
       type: 'integer'
     }
   ];

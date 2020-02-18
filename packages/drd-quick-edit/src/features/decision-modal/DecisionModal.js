@@ -45,6 +45,8 @@ export default class DecisionModal {
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._inputData = options.inputData;
 
+    this._newInputType = 'inputData';
+
     this.setInputs(options);
     this.render();
   }
@@ -91,19 +93,17 @@ export default class DecisionModal {
       const newInput = this.addInput();
 
       newInput.find('input')
-
-        // todo(pinussilvestrus): should be aware of created type
         .change(e => {
           self._onUpdateNewInput?.({
             name: e.target.value
-          });
+          }, self._newInputType);
         });
 
       newInput.find('select')
         .change(e => {
           self._onUpdateNewInput?.({
             type: e.target.value
-          });
+          }, self._newInputType);
         });
     });
 
@@ -270,7 +270,6 @@ export default class DecisionModal {
             type: e.target.value
           });
         }
-
       });
   }
 
@@ -327,6 +326,8 @@ export default class DecisionModal {
     }
 
     function onCreate(type, name) {
+      self._newInputType = type;
+
       if (type === 'inputData') {
         self._onAddNewInput?.(name);
       } else {

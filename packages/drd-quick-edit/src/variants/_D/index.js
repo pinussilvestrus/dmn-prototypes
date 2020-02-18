@@ -226,7 +226,6 @@ function changeInputType(updated) {
 }
 
 function openInputDataModal() {
-
   if (!inputDataModal) {
     const node = $('<div class="edit-modal-placeholder"></div>');
     $('.contents').append(node);
