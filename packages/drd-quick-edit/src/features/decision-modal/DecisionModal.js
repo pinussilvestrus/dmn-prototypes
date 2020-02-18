@@ -12,6 +12,7 @@ import modalSkeleton from './DecisionModal.html';
 import inputSkeleton from './Input.html';
 import outputSkeleton from './Output.html';
 import newInputBtnSkeleton from './NewInputBtn.html';
+import autocompleteItemSkeleton from './AutocompleteItem.html';
 
 import closeSVG from '../../../resources/close.svg';
 import plusSVG from '../../../resources/plus.svg';
@@ -21,6 +22,9 @@ import tableSVG from '../../../resources/table.svg';
 
 import getElement from '../../util/getElement';
 import getAutocompleteConfig from '../../util/getAutocompleteConfig';
+
+const CREATE_NEW_DECISION = '+ Create new Decision Table';
+const CREATE_NEW_INPUT_DATA = '+ Create new Input Data';
 
 import './DecisionModal.scss';
 
@@ -37,10 +41,11 @@ export default class DecisionModal {
     this._onUnhighlight = options.onUnhighlight;
     this._onUpdateInput = options.onUpdateInput;
     this._onAddNewInput = options.onAddNewInput;
-
-    // todo(pinussilvestrus): combine
+    this._onAddNewDecision = options.onAddNewDecision;
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._inputData = options.inputData;
+
+    this._newInputType = 'inputData';
 
     this.setInputs(options);
     this.render();
@@ -87,26 +92,18 @@ export default class DecisionModal {
     newInputBtnGfx.click(() => {
       const newInput = this.addInput();
 
-      if (typeof self._onAddNewInput === 'function') {
-        self._onAddNewInput('');
-      }
-
       newInput.find('input')
         .change(e => {
-          if (typeof self._onUpdateNewInput === 'function') {
-            self._onUpdateNewInput({
-              name: e.target.value
-            });
-          }
+          self._onUpdateNewInput?.({
+            name: e.target.value
+          }, self._newInputType);
         });
 
       newInput.find('select')
         .change(e => {
-          if (typeof self._onUpdateNewInput === 'function') {
-            self._onUpdateNewInput({
-              type: e.target.value
-            });
-          }
+          self._onUpdateNewInput?.({
+            type: e.target.value
+          }, self._newInputType);
         });
     });
 
@@ -179,22 +176,20 @@ export default class DecisionModal {
       .find('input')
       .val(label)
       .change((e) => {
-
-        if (typeof this._onUpdateInput === 'function') {
-          this._onUpdateInput(label, { label: e.target.value });
-        }
-
+        this._onUpdateInput?.(
+          label,
+          { label: e.target.value }
+        );
       });
 
     newInput
       .find('select')
       .val(type)
       .change((e) => {
-
-        if (typeof this._onUpdateInput === 'function') {
-          this._onUpdateInput(label, { type: e.target.value });
-        }
-
+        this._onUpdateInput?.(
+          label,
+          { type: e.target.value }
+        );
       });
 
     this.bindRelations(newInput);
@@ -275,7 +270,6 @@ export default class DecisionModal {
             type: e.target.value
           });
         }
-
       });
   }
 
@@ -318,27 +312,62 @@ export default class DecisionModal {
   }
 
   bindAutocomplete(input) {
+    const self = this;
+
+    function onSelect(event) {
+      const {
+        isSelect,
+        target
+      } = event;
+
+      isSelect && self.setType(target);
+
+      self.highlightRelatedElements(event);
+    }
+
+    function onCreate(type, name) {
+      self._newInputType = type;
+
+      if (type === 'inputData') {
+        self._onAddNewInput?.(name);
+      } else {
+        self._onAddNewDecision?.(name);
+      }
+    }
+
     input.find('input')
-      .autocomplete(
-        getAutocompleteConfig(this.AVAILABLE_INPUT_LABELS, event => {
-          const {
-            isSelect,
-            target
-          } = event;
 
-          isSelect && this.setType(target);
-
-          this.highlightRelatedElements(event);
-        })
-      )
+      // configure autocomplete module
+      .autocomplete(getAutocompleteConfig({
+        items: this.AVAILABLE_INPUT_LABELS,
+        selectCb: onSelect,
+        createCb: onCreate,
+        disableCreate: typeof self._onAddNewInput !== 'function'
+      }))
       .focus(function() {
         const node = $(this);
 
+        // even search if empty
         if (isEmpty(node)) {
           node.data('uiAutocomplete').search(node.val());
         }
 
-      });
+      })
+      .autocomplete('instance')._renderItem = function(ul, item) {
+        const node = $(autocompleteItemSkeleton);
+
+        node
+          .find('.ui-menu-item-wrapper')
+          .append(item.label);
+
+        if ([CREATE_NEW_DECISION, CREATE_NEW_INPUT_DATA].includes(item.label)) {
+          node
+            .find('.ui-menu-item-wrapper')
+            .addClass('autocomplete-action');
+        }
+
+        return node.appendTo(ul);
+      };
   }
 
   getCoordinates() {

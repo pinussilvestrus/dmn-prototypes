@@ -10,8 +10,6 @@ import NewInputConnection from '../../features/new-input-connection';
 
 import InputDataModal from '../../features/input-data-modal';
 
-import ContextPad from '../../features/context-pad';
-
 import getElement from '../../util/getElement';
 
 import './styles.scss';
@@ -46,24 +44,13 @@ let availableInputs = [
   {
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
-  },
-
-  // {
-  //   label: 'Number of open claims of employee',
-  //   elements: ['InputData_13z77r8', 'connection_147'],
-  //   type: 'integer'
-  // }
+  }
 ];
 
 let defaultDecision = {
   id: 'Decision_03absfl',
   name: 'Employee Suitability Score',
   inputColumns: [
-
-    // {
-    //   label: 'Number of open claims of employee',
-    //   type: 'integer'
-    // },
     {
       label: 'Employee.region = Claim.region',
       type: 'boolean'
@@ -121,6 +108,11 @@ function highlightElements(elements) {
   });
 }
 
+function addNewDecision(text) {
+  newInputConnection.showDecision(text);
+  newInputConnection.showDecisionConnection();
+}
+
 function addNewInput(text) {
   newInputConnection.showInput(text);
   newInputConnection.showConnection();
@@ -133,27 +125,41 @@ function updateInputData(updated) {
   };
 }
 
-function updateNewInput(updated = {}) {
+function updateNewDecision(updated) {
+  newDecision = {
+    ...newDecision,
+    ...updated
+  };
+}
+
+function updateNewInput(updated = {}, type = 'inputData') {
   const {
     name
   } = updated;
 
-  if (name) {
-    newInputConnection.showInput(name);
-    updateInputs(name);
+  if (type === 'inputData') {
+    updateInputData(updated);
+    name && newInputConnection.showInput(name);
+    name && updateInputColumns(name);
+  } else {
+    updateNewDecision({
+      ...updated,
+      outputType: updated.type
+    });
+
+    name && newInputConnection.showDecision(name);
+    name && updateInputColumns(name, [ 'new_decision', 'new_connection' ]);
   }
 
-  updateInputData(updated);
 }
 
-function updateInputs(text) {
+function updateInputColumns(text, elements) {
   defaultDecision = {
     ...defaultDecision,
     inputColumns: [
       ...defaultDecision.inputColumns,
       {
-        label: text || 'Number of open claims of employee',
-        type: 'integer'
+        label: text || 'Open Claims'
       }
     ]
   };
@@ -161,8 +167,8 @@ function updateInputs(text) {
   availableInputs = [
     ...availableInputs,
     {
-      label: text || 'Number of open claims of employee',
-      elements: ['InputData_13z77r8', 'connection_147'],
+      label: text || 'Open  Claims',
+      elements: elements || ['InputData_13z77r8', 'connection_147'],
       type: 'integer'
     }
   ];
@@ -186,6 +192,7 @@ function openDecisionModal(decision) {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
+      onAddNewDecision: addNewDecision,
       onUpdateNewInput: updateNewInput,
       onUpdateInput: updateInput,
       availableInputs,
@@ -200,30 +207,6 @@ function openDecisionModal(decision) {
   });
 
   decisionModal.open();
-}
-
-function replaceDecision() {
-  const contextPad = new ContextPad({
-    decision: 'new_decision',
-    connection: 'connection_147',
-    newConnection: 'new_connection',
-    inputData,
-    node: $('<div></div>')
-  });
-
-  contextPad.renderDecision(inputData.name);
-  contextPad.hideInputData();
-  closeInputDataModal();
-
-  // open new decision modal
-  newDecision = {
-    ...inputData,
-    ...newDecision,
-    outputType: inputData.type
-  };
-
-  openDecisionModal(newDecision);
-  getElement(newDecision.id).addClass('selected');
 }
 
 function closeDecisionModal() {
@@ -334,7 +317,7 @@ function openInputDataModal() {
       attributeTypes: ATTRIBUTE_TYPES,
       onClose: closeInputDataModal,
       onTypeChanged: changeInputType,
-      onReplaceDecision: replaceDecision
+      noReplace: true
     });
   }
 

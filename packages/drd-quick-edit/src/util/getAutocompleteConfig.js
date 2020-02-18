@@ -1,47 +1,90 @@
 import $ from 'jquery';
 
-function split(val) {
-  return val.split(/ \s*/);
-}
-function extractLast(term) {
-  return split(term).pop();
-}
+const CREATE_NEW_DECISION = '+ Create new Decision Table';
+const CREATE_NEW_INPUT_DATA = '+ Create new Input Data';
 
-export default function getAutocompleteConfig(items, selectCb) {
+export default function getAutocompleteConfig(options) {
+
+  const {
+    items, selectCb, createCb, disableCreate
+  } = options;
+
+  function defaultSelect(node, selectedValue) {
+    let terms = split(node.value);
+
+    // remove the current input
+    terms.pop();
+
+    // add the selected item
+    terms.push(selectedValue);
+
+    node.value = terms.join(' ');
+
+    typeof selectCb === 'function' && selectCb({
+      target: node,
+      isSelect: true
+    });
+  }
+
   return {
     minLength: 0,
     source: function(request, response) {
-      response($.ui.autocomplete.filter(items, extractLast(request.term)));
+
+      const {
+        term
+      } = request;
+
+      let results = $.ui.autocomplete.filter(items, extractLast(term));
+
+      // add new input / decision options
+      if (!disableCreate && term) {
+        results = [
+          ...results,
+          CREATE_NEW_DECISION,
+          CREATE_NEW_INPUT_DATA
+        ];
+      }
+
+      response(results);
     },
     focus: function(event, ui) {
 
-      if (typeof selectCb === 'function') {
-        selectCb({
-          target: ui.item.value
-        });
-      }
+      typeof selectCb === 'function' && selectCb({
+        target: ui.item.value
+      });
 
       return false;
     },
     select: function(event, ui) {
-      var terms = split(this.value);
 
-      // remove the current input
-      terms.pop();
+      const { item: { value: selectedValue } } = ui;
 
-      // add the selected item
-      terms.push(ui.item.value);
+      event.preventDefault();
 
-      this.value = terms.join(' ');
-
-      if (typeof selectCb === 'function') {
-        selectCb({
-          target: this,
-          isSelect: true
-        });
+      // check for predefined actions
+      if (selectedValue === CREATE_NEW_DECISION) {
+        typeof createCb === 'function' && createCb('decisionTable', this.value);
+        return;
       }
+
+      if (selectedValue === CREATE_NEW_INPUT_DATA) {
+        typeof createCb === 'function' && createCb('inputData', this.value);
+        return;
+      }
+
+      defaultSelect(this, selectedValue);
 
       return false;
     }
   };
+}
+
+// helpers ///////////
+
+function split(val) {
+  return val.split(/ \s*/);
+}
+
+function extractLast(term) {
+  return split(term).pop();
 }
