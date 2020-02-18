@@ -358,8 +358,10 @@ export default class DecisionModal {
 
         node
           .find('.ui-menu-item-wrapper')
+          .attr('data-value', item.value)
           .append(item.label);
 
+        // handle actions
         if ([CREATE_NEW_DECISION, CREATE_NEW_INPUT_DATA].includes(item.label)) {
           node
             .find('.ui-menu-item-wrapper')

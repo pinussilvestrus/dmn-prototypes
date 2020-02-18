@@ -43,9 +43,21 @@ svg.diagram {
   color: #ffffff !important;
 
   &.autocomplete-action {
-    background-color: #4d90ff !important;
+    background: #4d90ff !important;
     border: #4d90ff !important;
   }
+}
+
+.ui-menu-item .ui-menu-item-wrapper {
+  background: white;
+
+  &.autocomplete-action {
+    background: whitesmoke !important;
+  }
+}
+
+.ui-menu-item [data-value="+ Create new Decision Table"] {
+  border-top: solid 0.05rem rgba(0,0,0,0.1) !important;
 }
 
 .ui-state-highlight {
