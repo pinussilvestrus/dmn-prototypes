@@ -14,6 +14,8 @@ export default class NewInputConnection {
     this._onUpdateInputs = options.onUpdateInputs;
     this._input = options.input || 'InputData_13z77r8';
     this._connection = options.connection || 'connection_147';
+    this._decision = options.decision || 'new_decision';
+    this._decisionConnection = options.decisionConnection || 'new_connection';
 
     this._textUtil = new TextUtil({
       style: LABEL_STYLE,
@@ -23,6 +25,26 @@ export default class NewInputConnection {
 
   render() {
     this.showNewInput();
+  }
+
+  showDecision(text) {
+    const decisionGfx = this._svgContainer.find(`[data-element-id="${this._decision}"]`);
+    decisionGfx.css('display', 'block');
+
+    if (typeof text !== 'undefined') {
+
+      const newText = this._textUtil.createText(text, {
+        box: { width: 180, height: 80 },
+        align: 'center-middle',
+        padding: 5
+      });
+
+      $(newText).addClass('djs-label');
+
+      decisionGfx.find('text').remove();
+
+      decisionGfx.find('.djs-visual').append(newText);
+    }
   }
 
   showInput(text) {
@@ -62,6 +84,11 @@ export default class NewInputConnection {
     connectionGfx.css('display', 'block');
 
     this.hideNewConnection();
+  }
+
+  showDecisionConnection() {
+    const connectionGfx = this._svgContainer.find(`[data-element-id="${this._decisionConnection}"]`);
+    connectionGfx.css('display', 'block');
   }
 
   showNewInput() {

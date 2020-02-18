@@ -41,6 +41,7 @@ export default class DecisionModal {
     this._onUnhighlight = options.onUnhighlight;
     this._onUpdateInput = options.onUpdateInput;
     this._onAddNewInput = options.onAddNewInput;
+    this._onAddNewDecision = options.onAddNewDecision;
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._inputData = options.inputData;
 
@@ -329,7 +330,7 @@ export default class DecisionModal {
       if (type === 'inputData') {
         self._onAddNewInput?.(name);
       } else {
-        return;
+        self._onAddNewDecision?.(name);
       }
     }
 

@@ -44,24 +44,13 @@ let availableInputs = [
   {
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
-  },
-
-  // {
-  //   label: 'Number of open claims of employee',
-  //   elements: ['InputData_13z77r8', 'connection_147'],
-  //   type: 'integer'
-  // }
+  }
 ];
 
 let defaultDecision = {
   id: 'Decision_03absfl',
   name: 'Employee Suitability Score',
   inputColumns: [
-
-    // {
-    //   label: 'Number of open claims of employee',
-    //   type: 'integer'
-    // },
     {
       label: 'Employee.region = Claim.region',
       type: 'boolean'
@@ -117,6 +106,11 @@ function highlightElements(elements) {
     const element = getElement(id);
     element.addClass(HIGHLIGHT_MARKER);
   });
+}
+
+function addNewDecision(text) {
+  newInputConnection.showDecision(text);
+  newInputConnection.showDecisionConnection();
 }
 
 function addNewInput(text) {
@@ -184,6 +178,7 @@ function openDecisionModal(decision) {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
+      onAddNewDecision: addNewDecision,
       onUpdateNewInput: updateNewInput,
       onUpdateInput: updateInput,
       availableInputs,
