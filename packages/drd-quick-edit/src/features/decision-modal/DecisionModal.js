@@ -23,8 +23,8 @@ import tableSVG from '../../../resources/table.svg';
 import getElement from '../../util/getElement';
 import getAutocompleteConfig from '../../util/getAutocompleteConfig';
 
-const CREATE_NEW_DECISION = '+ Create new Decision Table';
-const CREATE_NEW_INPUT_DATA = '+ Create new Input Data';
+const CREATE_NEW_DECISION = 'Create new Decision Table';
+const CREATE_NEW_INPUT_DATA = 'Create new Input Data';
 
 import './DecisionModal.scss';
 
@@ -363,8 +363,12 @@ export default class DecisionModal {
 
         // handle actions
         if ([CREATE_NEW_DECISION, CREATE_NEW_INPUT_DATA].includes(item.label)) {
+
+          const addGfx = $(plusSVG).addClass('add');
+
           node
             .find('.ui-menu-item-wrapper')
+            .prepend(addGfx)
             .addClass('autocomplete-action');
         }
 
