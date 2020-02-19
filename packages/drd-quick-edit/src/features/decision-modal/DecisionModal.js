@@ -201,9 +201,13 @@ export default class DecisionModal {
     return newInput;
   }
 
-  highlightElements(elements) {
-    this._onUnhighlight(this.ALL_ELEMENTS);
-    this._onHighlight(elements);
+  highlightElements(elements, missingConnections) {
+    this._onUnhighlight(this.ALL_ELEMENTS, this.getMissingConnections(this._availableInputs));
+    this._onHighlight(elements, missingConnections);
+  }
+
+  getMissingConnections(inputs) {
+    return flatten(map(inputs, input => input.missingConnections || [])) || [];
   }
 
   getRelatedElements(value) {
@@ -212,7 +216,7 @@ export default class DecisionModal {
     const input = find(this._availableInputs, i => value === i.label);
 
     if (input) {
-      return input.elements;
+      return { elements: input.elements, missingConnections: input.missingConnections };
     }
 
     // (2) find including match
@@ -222,7 +226,9 @@ export default class DecisionModal {
 
     const elements = flatten(map(inputs, input => input.elements)) || [];
 
-    return elements;
+    const missingConnections = this.getMissingConnections(inputs);
+
+    return { elements, missingConnections };
   }
 
   highlightRelatedElements(event) {
@@ -232,9 +238,9 @@ export default class DecisionModal {
       target = $(event.target).val();
     }
 
-    const elements = this.getRelatedElements(target);
+    const { elements, missingConnections } = this.getRelatedElements(target);
 
-    this.highlightElements(elements);
+    this.highlightElements(elements, missingConnections);
   }
 
   renderHeader() {
@@ -261,7 +267,7 @@ export default class DecisionModal {
     input.find('select')
       .change(e => {
 
-        const relatedElements = self.getRelatedElements(input.find('input').val());
+        const { elements: relatedElements } = self.getRelatedElements(input.find('input').val());
 
         if (
           relatedElements.includes(self._inputData.id) &&

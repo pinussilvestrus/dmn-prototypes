@@ -7,6 +7,8 @@ import variantB from './variants/_B';
 import variantB_old from './variants/_B (old)';
 import variantC from './variants/_C';
 import variantD from './variants/_D';
+import variantE from './variants/_E';
+
 
 import './app.scss';
 
@@ -15,7 +17,8 @@ const VARIANTS = {
   'B': variantB,
   'B_old': variantB_old,
   'C': variantC,
-  'D': variantD
+  'D': variantD,
+  'E': variantE
 };
 
 let current;
