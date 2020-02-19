@@ -44,6 +44,7 @@ export default class DecisionModal {
     this._onAddNewDecision = options.onAddNewDecision;
     this._onUpdateNewInput = options.onUpdateNewInput;
     this._inputData = options.inputData;
+    this._newDecision = options.newDecision || 'new_decision';
 
     this._newInputType = 'inputData';
 
@@ -256,10 +257,10 @@ export default class DecisionModal {
       .blur(() => this.highlightElements([]))
       .change(e => this.setType(e.target));
 
+    // todo(pinussilvestrus): remove me, just for mocking purposes
     input.find('select')
       .change(e => {
 
-        // todo(pinussilvestrus): remove me
         const relatedElements = self.getRelatedElements(input.find('input').val());
 
         if (
@@ -268,7 +269,16 @@ export default class DecisionModal {
         ) {
           self._onUpdateNewInput({
             type: e.target.value
-          });
+          }, 'inputData');
+        }
+
+        if (
+          relatedElements.includes(self._newDecision) &&
+          typeof self._onUpdateNewInput === 'function'
+        ) {
+          self._onUpdateNewInput({
+            type: e.target.value
+          }, 'decisionTable');
         }
       });
   }
