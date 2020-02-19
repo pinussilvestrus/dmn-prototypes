@@ -71,6 +71,13 @@ function highlightElements(elements) {
   });
 }
 
+function addNewDecision(text) {
+  newInputConnection.showDecision(text);
+  newInputConnection.showDecisionConnection();
+
+  replaceDecision();
+}
+
 function addNewInput(text) {
   newInputConnection.showInput(text);
   newInputConnection.showConnection();
@@ -83,13 +90,30 @@ function updateInputData(updated) {
   };
 }
 
-function updateNewInput(updated) {
+function updateNewDecision(updated) {
+  newDecision = {
+    ...newDecision,
+    ...updated
+  };
+}
+
+function updateNewInput(updated = {}, type = 'inputData') {
   const {
     name
   } = updated;
 
-  name && newInputConnection.showInput(name);
-  updateInputData(updated);
+  if (type === 'inputData') {
+    updateInputData(updated);
+    name && newInputConnection.showInput(name);
+  } else {
+    updateNewDecision({
+      ...updated,
+      outputType: updated.type
+    });
+
+    name && newInputConnection.showDecision(name);
+  }
+
 }
 
 function openDecisionModal(decision) {
@@ -104,6 +128,7 @@ function openDecisionModal(decision) {
       onHighlight: highlightElements,
       onUnhighlight: unhighlightElements,
       onAddNewInput: addNewInput,
+      onAddNewDecision: addNewDecision,
       onUpdateNewInput: updateNewInput,
       availableInputs,
       decision,
@@ -254,7 +279,9 @@ function initNewInputConnection(options = {}) {
   newInputConnection = new NewInputConnection({
     svgContainer: contents.find('svg').first(),
     input: options.input || inputData.id,
-    connection: options.connection || 'connection_49'
+    connection: options.connection || 'connection_49',
+    decision: options.decision || newDecision.id,
+    decisionConnection: options.decisionConnection || 'connection_49'
   });
   newInputConnection.render();
   newInputConnection.hideNewInput();
