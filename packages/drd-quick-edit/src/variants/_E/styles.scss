@@ -57,27 +57,6 @@
       stroke-dasharray: 10px;
     }
   }
-  
-  .djs-shape.highlight .djs-visual {
-    rect {
-      stroke: coral !important;
-      stroke-width: 2px !important;
-      stroke: coral !important;
-      stroke-width: 2px !important;
-      fill: rgba(255, 127, 80, 0.3) !important;
-    }
-  
-    text {
-      fill: coral !important;
-      font-weight: bold;
-    }
-  }
-  
-  .djs-connection.highlight .djs-visual polyline {
-    stroke: coral !important;
-    stroke-width: 1.3px !important;
-    marker-end: url(#information-requirement-highlight-end) !important;
-  }
 
   .header {
     position: fixed;
