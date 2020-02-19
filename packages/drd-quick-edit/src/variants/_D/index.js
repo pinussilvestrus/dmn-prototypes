@@ -75,7 +75,7 @@ function addNewDecision(text) {
   newInputConnection.showDecision(text);
   newInputConnection.showDecisionConnection();
 
-  replaceDecision();
+  changeNewInputConnection();
 }
 
 function addNewInput(text) {
@@ -144,6 +144,13 @@ function openDecisionModal(decision) {
   decisionModal.open();
 }
 
+function changeNewInputConnection() {
+  initNewInputConnection({
+    connection: 'connection_48',
+    input: 'InputData_10q2la0'
+  });
+}
+
 function replaceDecision() {
 
   // (1) change to decision table
@@ -170,10 +177,7 @@ function replaceDecision() {
   getElement(newDecision.id).addClass('selected');
 
   // (3) re-initialize for creating second input data
-  initNewInputConnection({
-    connection: 'connection_48',
-    input: 'InputData_10q2la0'
-  });
+  changeNewInputConnection();
 
   // (4) move modal a bit
   const decisionModalGfx = $('.contents').find('.decision-modal').find('.modal-container');
