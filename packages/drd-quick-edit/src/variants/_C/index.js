@@ -47,6 +47,14 @@ let availableInputs = [
     elements: ['InputData_0qarm4x', 'connection_146']
   },
   {
+    label: 'Claim.region',
+    elements: ['InputData_0qarm4x', 'connection_146']
+  },
+  {
+    label: 'Claim.expenditure',
+    elements: ['InputData_0qarm4x', 'connection_146']
+  },
+  {
     label: 'Number of open claims of employee',
     elements: ['InputData_13z77r8', 'connection_147'],
     type: 'integer'
@@ -276,8 +284,8 @@ function closeInputDataModal() {
   inputDataModal && inputDataModal.hide();
 }
 
-function addUnderConstruction() {
-  const deprecatedNode = $('<div>⛑Under Construction</div>').addClass('under-construction');
+function addHeader() {
+  const deprecatedNode = $('<div>Input Data Configure</div>').addClass('header');
   $('.contents').append(deprecatedNode);
 }
 
@@ -295,7 +303,7 @@ function enable() {
   initDecisionInteractions([ defaultDecision, newDecision ]);
   initInputDataInteractions(inputData);
 
-  addUnderConstruction();
+  addHeader();
 }
 
 function disable() {
