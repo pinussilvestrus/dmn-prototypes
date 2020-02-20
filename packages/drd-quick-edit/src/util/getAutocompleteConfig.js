@@ -1,9 +1,9 @@
 import $ from 'jquery';
 
-const CREATE_NEW_DECISION = 'Create new Decision Table';
-const CREATE_NEW_INPUT_DATA = 'Create new Input Data';
+export const CREATE_NEW_DECISION = 'Create new Decision Table';
+export const CREATE_NEW_INPUT_DATA = 'Create new Input Data';
 
-export default function getAutocompleteConfig(options) {
+export function getAutocompleteConfig(options) {
 
   const {
     items, selectCb, createCb, disableCreate

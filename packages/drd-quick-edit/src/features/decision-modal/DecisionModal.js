@@ -21,10 +21,12 @@ import dragSVG from '../../../resources/drag.svg';
 import tableSVG from '../../../resources/table.svg';
 
 import getElement from '../../util/getElement';
-import getAutocompleteConfig from '../../util/getAutocompleteConfig';
+import {
+  CREATE_NEW_DECISION,
+  CREATE_NEW_INPUT_DATA,
+  getAutocompleteConfig
+} from '../../util/getAutocompleteConfig';
 
-const CREATE_NEW_DECISION = 'Create new Decision Table';
-const CREATE_NEW_INPUT_DATA = 'Create new Input Data';
 
 import './DecisionModal.scss';
 
@@ -73,7 +75,7 @@ export default class DecisionModal {
     this._availableInputs = availableInputs;
     this._inputColumns = decision.inputColumns;
 
-    this.AVAILABLE_INPUT_LABELS = map(this._availableInputs, i => i.label);
+    this.AVAILABLE_INPUT_LABELS = map(filter(this._availableInputs, i => !i.action), i => i.label);
     this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
 
     // re-render, OMG I miss react

@@ -12,6 +12,10 @@ import InputDataModal from '../../features/input-data-modal';
 
 import getElement from '../../util/getElement';
 
+import {
+  CREATE_NEW_INPUT_DATA, CREATE_NEW_DECISION
+} from '../../util/getAutocompleteConfig';
+
 import './styles.scss';
 
 const SELECTED_MARKER = 'selected';
@@ -44,6 +48,18 @@ let availableInputs = [
   {
     label: 'Claim',
     elements: ['InputData_0qarm4x', 'connection_146']
+  },
+
+  // actions
+  {
+    label: CREATE_NEW_INPUT_DATA,
+    elements: ['InputData_13z77r8', 'connection_147'],
+    action: true
+  },
+  {
+    label: CREATE_NEW_DECISION,
+    elements: ['new_decision', 'new_connection'],
+    action: true
   }
 ];
 
