@@ -14,6 +14,10 @@ import ContextPad from '../../features/context-pad';
 
 import getElement from '../../util/getElement';
 
+import {
+  CREATE_NEW_INPUT_DATA, CREATE_NEW_DECISION
+} from '../../util/getAutocompleteConfig';
+
 import './styles.scss';
 
 const SELECTED_MARKER = 'selected';
@@ -29,6 +33,18 @@ const ATTRIBUTE_TYPES = [
 ];
 
 let availableInputs = [
+
+  // actions
+  {
+    label: CREATE_NEW_INPUT_DATA,
+    elements: ['InputData_06ricv4', 'connection_49'],
+    action: true
+  },
+  {
+    label: CREATE_NEW_DECISION,
+    elements: ['Decision_02el7l5', 'connection_49'],
+    action: true
+  }
 ];
 
 let defaultDecision = {
@@ -148,6 +164,17 @@ function changeNewInputConnection() {
   initNewInputConnection({
     connection: 'connection_48',
     input: 'InputData_10q2la0'
+  });
+
+  availableInputs = [{
+    label: CREATE_NEW_INPUT_DATA,
+    elements: ['InputData_10q2la0', 'connection_48'],
+    action: true
+  }];
+
+  decisionModal.setInputs({
+    decision: newDecision,
+    availableInputs
   });
 }
 
