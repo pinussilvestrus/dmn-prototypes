@@ -98,7 +98,7 @@ export default class DecisionModal {
     newInputBtnGfx.prepend(plusGfx);
 
     newInputBtnGfx.click(() => {
-      const newInput = this.addInput();
+      const newInput = this.addInput({ newlyCreated: true });
 
       newInput.find('input')
         .change(e => {
@@ -166,7 +166,7 @@ export default class DecisionModal {
   }
 
   addInput(options = {}) {
-    const { label, type } = options;
+    const { label, type, newlyCreated } = options;
 
     const inputContainer = this._node.find('.inputs');
 
@@ -201,7 +201,7 @@ export default class DecisionModal {
       });
 
     this.bindRelations(newInput);
-    this.bindAutocomplete(newInput);
+    this.bindAutocomplete(newInput, newlyCreated);
 
     inputContainer.append(newInput);
 
@@ -334,7 +334,7 @@ export default class DecisionModal {
 
   }
 
-  bindAutocomplete(input) {
+  bindAutocomplete(input, newlyCreated) {
     const self = this;
 
     function onSelect(event) {
@@ -358,6 +358,8 @@ export default class DecisionModal {
       }
     }
 
+    const disableCreate = typeof self._onAddNewInput !== 'function' || !newlyCreated;
+
     input.find('input')
 
       // configure autocomplete module
@@ -365,7 +367,7 @@ export default class DecisionModal {
         items: this.AVAILABLE_INPUT_LABELS,
         selectCb: onSelect,
         createCb: onCreate,
-        disableCreate: typeof self._onAddNewInput !== 'function'
+        disableCreate
       }))
       .focus(function() {
         const node = $(this);
