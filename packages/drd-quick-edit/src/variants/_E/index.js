@@ -250,8 +250,12 @@ function closeInputDataModal() {
   inputDataModal && inputDataModal.hide();
 }
 
-// todo(pinussilvestrus): implement
-function addMissingConnection() {}
+function addMissingConnection() {
+  availableInputs.splice(availableInputs.length - 1, 1, {
+    label: 'Open Claims',
+    elements: ['InputData_13z77r8', 'connection_147']
+  });
+}
 
 function initMissingConnections() {
   missingConnections = new MissingConnections({

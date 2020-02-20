@@ -203,6 +203,9 @@
             <g class="djs-visual">
                 <polyline points="1290,417 1040,320 1040,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
             </g>
+            <circle style="fill: white; stroke: black; stroke-width: 1.5px; stroke-miterlimit: 10; cursor: pointer" cx="1180" cy="350" r="10">
+            </circle>
+            <text x="1180px" y="354px" text-anchor="middle" stroke="black" stroke-width="1px">+</text>
             <polyline points="1290,415 1040,320 1040,304 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
             <rect x="1034" y="298" width="262" height="123" class="djs-outline" style="fill: none;"/>
         </g>

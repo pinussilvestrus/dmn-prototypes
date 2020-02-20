@@ -266,8 +266,14 @@ export default class DecisionModal {
     const self = this;
 
     input.find('input')
-      .focus(e => this.highlightRelatedElements(e))
-      .blur(() => this.highlightElements([]))
+
+      // wait for other events first
+      .focus(e => {
+        setTimeout(() => this.highlightRelatedElements(e), 101);
+      })
+      .blur(() => {
+        setTimeout(() => self.highlightElements([]), 100);
+      })
       .change(e => this.setType(e.target));
 
     // todo(pinussilvestrus): remove me, just for mocking purposes

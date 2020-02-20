@@ -65,4 +65,11 @@
     font-size: 2.5rem;
     color: black;
   }
+
+  [data-element-id="connection_147"] {
+    circle, text {
+      cursor: pointer !important;
+      pointer-events: all !important;
+    }
+  }
 }

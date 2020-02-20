@@ -17,6 +17,17 @@ export default class MissingConnections {
     forEach(this._connections, c => {
       const element = getElement(c);
       element.addClass('ghost');
+
+      element.find('circle, text').click(event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        element.removeClass('ghost');
+        element.css('display', 'block');
+        element.find('circle, text').css('display', 'none');
+
+        this._onAddMissingConnection?.();
+      });
     });
   }
 
