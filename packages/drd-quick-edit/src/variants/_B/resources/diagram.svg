@@ -152,8 +152,6 @@
             <g class="djs-visual">
                 <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
-                    <tspan x="19.46875" y="19.109375">Number of open </tspan>
-                    <tspan x="11.140625" y="32.640625">claims of employee</tspan>
                 </text>
             </g>
             <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
@@ -317,7 +315,6 @@
             <g class="djs-visual">
                 <rect x="0" y="0" width="180" height="80" rx="0" ry="0" style="stroke: black; stroke-width: 2px; fill: white;"/>
                 <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
-                    <tspan x="47.1640625" y="25.875">Claim</tspan>
                 </text>
             </g>
             <rect class="djs-hit djs-hit-all" x="0" y="0" width="180" height="80" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>

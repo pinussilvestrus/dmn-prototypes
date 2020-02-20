@@ -58,6 +58,7 @@
   
     select {
       flex: 30%;
+      height: 1.5rem;
     }
   
     .delete {
@@ -73,7 +74,7 @@
   }
   
   select {
-    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
   }
   
   .close {
@@ -140,3 +141,9 @@
 .ui-menu-item [data-value="Create new Decision Table"] {
   border-top: solid 0.05rem rgba(0,0,0,0.1) !important;
 }
+
+.element-action {
+    &.highlight {
+      display: block !important;
+    }
+  }

@@ -1,5 +1,4 @@
 .variant-b {
-
   svg.diagram {
     margin-left: -10rem;
   }
@@ -12,20 +11,20 @@
     &.hover .djs-outline {
       visibility: visible;
       shape-rendering: crispEdges;
-      stroke-dasharray: 3,3;
+      stroke-dasharray: 3, 3;
     }
-  
+
     &.selected .djs-outline {
       visibility: visible;
       shape-rendering: crispEdges;
-      stroke-dasharray: 3,3;
-      stroke: #8888FF;
+      stroke-dasharray: 3, 3;
+      stroke: #8888ff;
       stroke-width: 3px;
       stroke-dasharray: 10px;
     }
-  
+
     &.hover .djs-outline {
-      stroke: #FF8888;
+      stroke: #ff8888;
       stroke-width: 1px;
       stroke-dasharray: 10px;
     }
@@ -39,20 +38,20 @@
     &.hover .djs-outline {
       visibility: visible;
       shape-rendering: crispEdges;
-      stroke-dasharray: 3,3;
+      stroke-dasharray: 3, 3;
     }
-  
+
     &.selected .djs-outline {
       visibility: visible;
       shape-rendering: crispEdges;
-      stroke-dasharray: 3,3;
-      stroke: #8888FF;
+      stroke-dasharray: 3, 3;
+      stroke: #8888ff;
       stroke-width: 3px;
       stroke-dasharray: 10px;
     }
-  
+
     &.hover .djs-outline {
-      stroke: #FF8888;
+      stroke: #ff8888;
       stroke-width: 1px;
       stroke-dasharray: 10px;
     }

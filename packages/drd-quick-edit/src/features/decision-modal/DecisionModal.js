@@ -78,6 +78,11 @@ export default class DecisionModal {
     this.AVAILABLE_INPUT_LABELS = map(filter(this._availableInputs, i => !i.action), i => i.label);
     this.ALL_ELEMENTS = flatten(map(this._availableInputs, i => i.elements));
 
+    // set action class to action inputs
+    forEach(this._availableInputs, i => {
+      i.action && forEach(i.elements, e => getElement(e).addClass('element-action'));
+    });
+
     // re-render, OMG I miss react
     this.render();
   }
