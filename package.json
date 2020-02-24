@@ -8,7 +8,8 @@
     "build": "lerna run build -- --silent",
     "postinstall": "lerna bootstrap",
     "serve": "serve packages",
-    "dev": "run-s build serve"
+    "dev": "run-s build serve",
+    "bump": "lerna run --parallel bump-deps"
   },
   "repository": {
     "type": "git",

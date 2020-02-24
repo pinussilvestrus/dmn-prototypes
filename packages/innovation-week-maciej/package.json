@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"No further bundling needed\""
+    "build": "echo \"No further bundling needed\"",
+    "bump-deps": "echo \"no bumps\""
   },
   "author": "",
   "license": "MIT"

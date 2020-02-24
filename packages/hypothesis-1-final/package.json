@@ -5,16 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "bump-deps": "ncu -u && npm i"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "dmn-js": "^7.2.1"
+    "dmn-js": "^8.0.1"
   },
   "devDependencies": {
+    "npm-check-updates": "^4.0.1",
     "raw-loader": "^4.0.0",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
   }
 }
