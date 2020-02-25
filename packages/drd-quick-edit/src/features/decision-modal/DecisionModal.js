@@ -35,16 +35,18 @@ const DEFAULT_POSITION = {
   top: 50
 };
 
+const noop = () => {};
+
 export default class DecisionModal {
   constructor(options) {
     this._node = options.node;
     this._onClose = options.onClose;
     this._onHighlight = options.onHighlight;
-    this._onUnhighlight = options.onUnhighlight;
+    this._onUnhighlight = options.onUnhighlight ;
     this._onUpdateInput = options.onUpdateInput;
-    this._onAddNewInput = options.onAddNewInput;
-    this._onAddNewDecision = options.onAddNewDecision;
-    this._onUpdateNewInput = options.onUpdateNewInput;
+    this._onAddNewInput = options.onAddNewInput || noop;
+    this._onAddNewDecision = options.onAddNewDecision || noop;
+    this._onUpdateNewInput = options.onUpdateNewInput || noop;
     this._inputData = options.inputData;
     this._newDecision = options.newDecision || 'new_decision';
 
@@ -282,19 +284,13 @@ export default class DecisionModal {
 
         const { elements: relatedElements } = self.getRelatedElements(input.find('input').val());
 
-        if (
-          relatedElements.includes(self._inputData.id) &&
-          typeof self._onUpdateNewInput === 'function'
-        ) {
+        if (relatedElements.includes(self._inputData.id)) {
           self._onUpdateNewInput({
             type: e.target.value
           }, 'inputData');
         }
 
-        if (
-          relatedElements.includes(self._newDecision) &&
-          typeof self._onUpdateNewInput === 'function'
-        ) {
+        if (relatedElements.includes(self._newDecision)) {
           self._onUpdateNewInput({
             type: e.target.value
           }, 'decisionTable');
@@ -358,13 +354,13 @@ export default class DecisionModal {
       self._newInputType = type;
 
       if (type === 'inputData') {
-        self._onAddNewInput?.(name);
+        self._onAddNewInput(name);
       } else {
-        self._onAddNewDecision?.(name);
+        self._onAddNewDecision(name);
       }
     }
 
-    const disableCreate = typeof self._onAddNewInput !== 'function' || !newlyCreated;
+    const disableCreate = self._onAddNewInput === noop || !newlyCreated;
 
     input.find('input')
 

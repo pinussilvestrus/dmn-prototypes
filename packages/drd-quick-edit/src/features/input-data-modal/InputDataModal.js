@@ -23,13 +23,15 @@ const DEFAULT_POSITION = {
   top: 500,
 };
 
+const noop = () => {};
+
 export default class InputDataModal {
   constructor(options) {
     this._node = options.node;
     this._onClose = options.onClose;
     this._onTypeChanged = options.onTypeChanged;
     this._attributeTypes = options.attributeTypes;
-    this._onReplaceDecision = options.onReplaceDecision;
+    this._onReplaceDecision = options.onReplaceDecision || noop;
     this._noReplace = options.noReplace;
 
     this.setInputData(options.inputData);
@@ -61,7 +63,7 @@ export default class InputDataModal {
     const label = $('<p></p>');
 
     const replace= $('<a class="transform-to-decision">Transform to Decision</a>');
-    replace.click(() => this._onReplaceDecision?.());
+    replace.click(() => this._onReplaceDecision());
 
     inputDataName && label.text(inputDataName);
 
