@@ -18,6 +18,8 @@ Prototypes built via our DMN Innovation Process, Q1 2020
     - [innovation-week-maciej](./packages/innovation-week-maciej)
     - [drd-relation-sketches](./packages/drd-relation-sketches)
     - [drd-quick-edit](./packages/drd-quick-edit)
+- Hypothesis 3: Decision Tables
+    - [decision-table-layout](./packages/decision-table-layout)
 
 ## Setup
 
