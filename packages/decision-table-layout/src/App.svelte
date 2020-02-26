@@ -1,9 +1,7 @@
 <script>
-  export let title;
+  import Table from "./components/Table.svelte";
 
-  function handleClick() {
-    alert("no more alerts");
-  }
+  export let title;
 </script>
 
 <style>
@@ -14,6 +12,4 @@
 
 <h1>{title}</h1>
 
-<button on:click|once={handleClick}>
-	Click me
-</button>
+<Table></Table>
