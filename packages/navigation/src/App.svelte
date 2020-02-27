@@ -3,6 +3,8 @@
   import SplitScreen from "./components/SplitScreen.svelte";
   import Table from "../../decision-table-layout/src/components/Table.svelte";
 
+  import Wrapper from "./components/Wrapper.svelte";
+
   let view = "drd";
 
   function handleDecisionClick() {
@@ -10,23 +12,14 @@
   }
 </script>
 
-<style lang="scss">
-  .drd-view {
-    width: 60%;
-    margin-left: 5rem;
-  }
-</style>
-
-<div class="wrapper drd-view" style="display: {view === 'drd' ? 'block' : 'none'}">
+<Wrapper view="drd" activeView={view} style="width: 60%; margin-left: 5rem;">
   <DRD onDecisionClick={handleDecisionClick} />
-</div>
+</Wrapper>
 
-<div
-  class="wrapper split-screen-view"
-  style="display: {view === 'split-screen' ? 'block' : 'none'}">
+<Wrapper view="split-screen" activeView={view}>
   <SplitScreen />
-</div>
+</Wrapper>
 
-<div class="wrapper table-view" style="display: {view === 'table' ? 'block' : 'none'}">
+<Wrapper view="table" activeView={view}>
   <Table />
-</div>
+</Wrapper>
