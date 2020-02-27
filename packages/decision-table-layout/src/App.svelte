@@ -1,10 +1,10 @@
 <script>
-  import Table from "./components/Table.svelte";
+  import Table from './components/Table.svelte';
 
   export let title;
 </script>
 
-<style>
+<style lang="scss">
   h1 {
     color: black;
   }

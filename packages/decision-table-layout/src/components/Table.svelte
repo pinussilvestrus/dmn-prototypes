@@ -2,68 +2,111 @@
 
 </script>
 
-<style type="text/css">
+<style lang="scss">
+
+  $color-grey: rgba($color: black, $alpha: 0.4);
+  $color-black: #444;
+
   .decision-table {
     border-collapse: collapse;
     border-spacing: 0;
-  }
-  .decision-table td {
-    font-size: 14px;
-    padding: 10px 5px;
-    border-style: solid;
-    border-width: 1px;
-    overflow: hidden;
-    word-break: normal;
-    border-color: black;
-  }
-  .decision-table th {
-    font-size: 14px;
-    font-weight: normal;
-    padding: 10px 5px;
-    border-style: solid;
-    border-width: 1px;
-    overflow: hidden;
-    word-break: normal;
-    border-color: black;
+    margin: 1rem 0rem 0rem 1rem;
+
+    td {
+      font-size: 14px;
+      padding: 10px 5px;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
+      border-color: black;
+    }
+
+    th {
+      font-size: 14px;
+      font-weight: normal;
+      padding: 10px 5px;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
+      border-color: black;
+    }
   }
 
   .title-row {
     text-align: left;
     vertical-align: middle;
-  }
 
-  .title-row th {
-    font-size: 1.5rem;
+    th {
+      font-size: 1.5rem;
+      padding: 0.4rem;
+
+      * {
+        vertical-align: middle;
+        display: inline-block;
+      }
+    }
+
+    p, select {
+      margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    }
+
+    select {
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+
+    span {
+      border-left: 2px solid $color-grey;
+      height: 35px;
+    }
+
+    .hp-explanation {
+      font-size: 1rem;
+      margin-left: 0;
+      color: $color-grey;
+    }
   }
 
   .header-row {
-    border-bottom: 3px double #444;
+    border-bottom: 4px double $color-black;
   }
 
-  td.input-header {
-    width: 100px;
-  }
+  td {
+    &.input-header,
+    &.output-header {
+      width: 100px;
+    }
 
-  td.output-header {
-    width: 100px;
-  }
+    &.output-cell,
+    &.annotation-cell {
+      border-left: 4px double $color-black;
+    }
 
-  td.output-cell {
-    border-left: 3px double #444;
-  }
+    &.output-cell + td.output-cell {
+      border-left: 1px solid $color-black;
+    }
 
-  td.annotation-cell {
-    border-left: 3px double #444;
-  }
-
-  td.output-cell + td.output-cell {
-    border-left: 1px solid #444;
+    &.rule {
+      text-align: right;
+      width: 1rem;
+    }
   }
 </style>
 
 <table class="decision-table">
   <tr class="title-row">
-    <th colspan="7">Decision 1</th>
+    <th colspan="7">
+      <p>Decision 1</p>
+      <span />
+      <select>
+        <option selected>Unique</option>
+      </select>
+      <p class="hp-explanation">
+        no overlap is possible and all rules are disjoint. Only a single rule can be matched
+      <p>
+    </th>
   </tr>
   <tr class="header-row">
     <td />
@@ -75,66 +118,30 @@
     <td class="annotation-cell">Annotations</td>
   </tr>
   <tr>
-    <td>1</td>
+    <td class="rule">1</td>
     <td />
     <td />
     <td />
     <td class="output-cell" />
     <td class="output-cell" />
-    <td class="annotation-cell"/>
+    <td class="annotation-cell" />
   </tr>
   <tr>
-    <td>2</td>
+    <td class="rule">2</td>
     <td />
     <td />
     <td />
     <td class="output-cell" />
     <td class="output-cell" />
-    <td class="annotation-cell"/>
+    <td class="annotation-cell" />
   </tr>
   <tr>
-    <td>3</td>
+    <td class="rule">3</td>
     <td />
     <td />
     <td />
     <td class="output-cell" />
     <td class="output-cell" />
-    <td class="annotation-cell"/>
-  </tr>
-  <tr>
-    <td />
-    <td />
-    <td />
-    <td />
-    <td class="output-cell" />
-    <td class="output-cell" />
-    <td class="annotation-cell"/>
-  </tr>
-  <tr>
-    <td />
-    <td />
-    <td />
-    <td />
-    <td class="output-cell" />
-    <td class="output-cell" />
-    <td class="annotation-cell"/>
-  </tr>
-  <tr>
-    <td />
-    <td />
-    <td />
-    <td />
-    <td class="output-cell" />
-    <td class="output-cell" />
-    <td class="annotation-cell"/>
-  </tr>
-  <tr>
-    <td />
-    <td />
-    <td />
-    <td />
-    <td class="output-cell" />
-    <td class="output-cell" />
-    <td class="annotation-cell"/>
+    <td class="annotation-cell" />
   </tr>
 </table>
