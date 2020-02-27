@@ -1,5 +1,8 @@
 <script>
-
+  // todo(pinussilvestrus): make it dynamic
+  const inputHeaders = [];
+  const outputHeaders = [];
+  const rules = [];
 </script>
 
 <style lang="scss">
@@ -85,38 +88,52 @@
 
       .header-row {
         border-bottom: 4px double $color-black;
-      }
 
-      .input-header,
-      .output-header {
-        width: 7rem;
-      }
-
-      .input-header,
-      .output-header {
-        .clause {
-          float: left;
-          margin-bottom: 0.5rem;
-          color: $color-grey;
-          font-size: 0.8rem;
+        .input-header,
+        .output-header {
+          width: 7rem;
         }
 
-        p {
-          font-size: 1rem;
-          text-align: left;
-          margin: 1rem 0rem 0rem 0rem;
+        .input-header,
+        .output-header {
+          position: relative;
+
+          .clause {
+            position: absolute;
+            left: 0.2rem;
+            top: 0.1rem;
+            margin-bottom: 0.5rem;
+            color: $color-grey;
+            font-size: 0.8rem;
+          }
+
+          .label {
+            word-wrap: normal;
+            font-size: 0.9rem;
+            margin: 1rem 0rem 1.5rem 0rem;
+          }
+
+          .type {
+            text-align: right;
+            position: absolute;
+            right: 0.2rem;
+            bottom: 0.1rem;
+            color: $color-grey;
+            font-size: 0.7rem;
+            word-wrap: break-word;
+            width: 100%; 
+
+            &[data-size='smaller'] {
+              font-size: 0.6rem;
+              width: 66%;
+            } 
+          }
         }
 
-        .type {
-          float: right;
-          color: $color-grey;
-          font-size: 0.8rem;
+        .annotation-header {
+          text-align: center;
+          font-size: 1rem !important;
         }
-      }
-
-      .annotation-header {
-        text-align: center;
-        font-size: 1rem !important;
       }
     }
 
@@ -140,8 +157,8 @@
 <table class="decision-table">
   <thead>
     <tr class="title-row">
-      <th colspan="7">
-        <p>Decision 1</p>
+      <th colspan=8>
+        <p>Employee Suitability Score</p>
         <span />
         <select>
           <option selected>Unique</option>
@@ -157,28 +174,33 @@
       <th />
       <th class="input-header">
         <span class="clause">When</span>
-        <p>Input 1</p>
+        <p class="label">Open Claims</p>
         <span class="type">integer</span>
       </th>
       <th class="input-header">
         <span class="clause">And</span>
-        <p>Input 3</p>
-        <span class="type">[foo, bar]</span>
+        <p class="label">Employee.region = Claim.region</p>
+        <span class="type">boolean</span>
       </th>
       <th class="input-header">
         <span class="clause">And</span>
-        <p>Input 3</p>
-        <span class="type">[> 5000]</span>
+        <p class="label">Claim.expenditure</p>
+        <span class="type">integer</span>
+      </th>
+      <th class="input-header">
+        <span class="clause">And</span>
+        <p class="label">Employee Experience</p>
+        <span class="type" data-size="smaller">["Experienced", "Senior", "Junior"]</span>
+      </th>
+       <th class="input-header">
+        <span class="clause">And</span>
+        <p class="label">Employee fills skillset</p>
+        <span class="type">boolean</span>
       </th>
       <th class="output-header output-cell">
         <span class="clause">Then</span>
-        <p>Output 1</p>
-        <span class="type">string</span>
-      </th>
-      <th class="output-header output-cell">
-        <span class="clause">And</span>
-        <p>Output 2</p>
-        <span class="type">long</span>
+        <p class="label">Score</p>
+        <span class="type">[&gt -50; &lt 20]</span>
       </th>
       <th class="annotation-header annotation-cell">Annotations</th>
     </tr>
