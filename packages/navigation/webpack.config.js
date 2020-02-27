@@ -1,13 +1,13 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
-const sass = require('svelte-preprocess-sass').sass;
+const sass = require("svelte-preprocess-sass").sass;
 
 const mode = process.env.NODE_ENV || "development";
 const prod = mode === "production";
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   entry: "./src/main.js",
   resolve: {
     alias: {
@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: __dirname + "/public",
-    filename: "bundle.js",
+    filename: "bundle.js"
   },
   module: {
     rules: [
@@ -30,7 +30,7 @@ module.exports = {
             emitCss: true,
             hotReload: true,
             preprocess: {
-              style: sass({}, { name: 'scss' }),
+              style: sass({}, { name: "scss" })
             }
           }
         }
@@ -49,17 +49,23 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-
           // Creates `style` nodes from JS strings
-          'style-loader',
+          "style-loader",
 
           // Translates CSS into CommonJS
-          'css-loader',
+          "css-loader",
 
           // Compiles Sass to CSS
-          'sass-loader',
-        ],
+          "sass-loader"
+        ]
       },
+      {
+        test: /\.svg$/,
+        loader: "svg-inline-loader",
+        options: {
+          removeSVGTagAttrs: true
+        }
+      }
     ]
   },
   mode,

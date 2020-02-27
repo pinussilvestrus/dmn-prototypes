@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- created with dmn-js / http://bpmn.io -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" width="894" height="584" viewBox="150 54 894 584" version="1.1">
+    <defs>
+        <marker id="association-start" viewBox="0 0 20 20" refX="1" refY="10" markerWidth="10" markerHeight="10" orient="auto">
+            <path d="M 11 5 L 1 10 L 11 15" style="stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; fill: none; stroke: black;"></path>
+        </marker>
+        <marker id="association-end" viewBox="0 0 20 20" refX="12" refY="10" markerWidth="10" markerHeight="10" orient="auto">
+            <path d="M 1 5 L 11 10 L 1 15" style="stroke-width: 1.5px; stroke-linecap: round; stroke-dasharray: 10000, 1; fill: none; stroke: black;"></path>
+        </marker>
+        <marker id="information-requirement-end" viewBox="0 0 20 20" refX="11" refY="10" markerWidth="20" markerHeight="20" orient="auto">
+            <path d="M 1 5 L 11 10 L 1 15 Z" style="stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1;"></path>
+        </marker>
+        <marker id="knowledge-requirement-end" viewBox="0 0 20 20" refX="11" refY="10" markerWidth="16" markerHeight="16" orient="auto">
+            <path d="M 1 3 L 11 10 L 1 17" style="stroke-width: 2px; stroke-linecap: round; stroke-dasharray: 10000, 1; fill: none; stroke: black;"></path>
+        </marker>
+        <marker id="authority-requirement-end" viewBox="0 0 20 20" refX="3" refY="3" markerWidth="18" markerHeight="18" orient="auto">
+            <circle cx="3" cy="3" r="3" style="stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1;"></circle>
+        </marker>
+    </defs>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="Decision_13nychf" style="display: block;" transform="matrix(1 0 0 1 577 60)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="180" height="80" rx="0" ry="0" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="33.96875" y="43.3828125">Determine Employee</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="180" height="80" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="192" height="92" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="Decision_03absfl" style="display: block;" transform="matrix(1 0 0 1 571 224)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="180" height="80" rx="0" ry="0" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="18.6328125" y="43.3828125">Employee Suitability Score</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="180" height="80" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="192" height="92" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="InputData_011xp5m" style="display: block;" transform="matrix(1 0 0 1 598 417)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="35.8125" y="25.8828125">Employee</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="137" height="57" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="InputData_0qarm4x" style="display: block;" transform="matrix(1 0 0 1 753 417)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="47.1640625" y="25.875">Claim</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="137" height="57" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="Decision_19jtlzt" style="display: block;" transform="matrix(1 0 0 1 386 400)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="180" height="80" rx="0" ry="0" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="31.6328125" y="43.3828125">Employee Experience</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="180" height="80" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="192" height="92" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="InputData_1vzqswv" style="display: block;" transform="matrix(1 0 0 1 413 587)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="13.484375" y="25.8828125">Approval Authority</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="137" height="57" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="InputData_13z77r8" style="display: block;" transform="matrix(1 0 0 1 913 417)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="27.8203125" y="25.875">Open Claims</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="137" height="57" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="Decision_11xban0" style="display: block;" transform="matrix(1 0 0 1 156 400)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="180" height="80" rx="0" ry="0" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="25.296875" y="43.3828125">Employee Skill Approval</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="180" height="80" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="192" height="92" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-shape" data-element-id="InputData_1x2qw0w" style="display: block;" transform="matrix(1 0 0 1 184 586)">
+            <g class="djs-visual">
+                <rect x="0" y="0" width="125" height="45" rx="22" ry="22" style="stroke: black; stroke-width: 2px; fill: white;"/>
+                <text class="djs-label" style="font-family: Arial, sans-serif; font-size: 12px;">
+                    <tspan x="15.140625" y="25.8828125">Employee Skillset</tspan>
+                </text>
+            </g>
+            <rect class="djs-hit djs-hit-all" x="0" y="0" width="125" height="45" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="-6" y="-6" width="137" height="57" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_132" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="667,224 667,141 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="667,224 667,141 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="661" y="135" width="12" height="95" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_133" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="661,417 661,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="661,417 661,304 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="655" y="298" width="12" height="125" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_134" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="816,416 696,320 696,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="816,416 696,320 696,304 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="690" y="298" width="132" height="124" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_135" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="971,417 726,320 726,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="971,417 726,320 726,304 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="720" y="298" width="257" height="125" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_136" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="246,400 596,320 596,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="246,400 596,320 596,304 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="240" y="298" width="362" height="108" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_137" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="476,400 626,320 626,304 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="476,400 626,320 626,304 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="470" y="298" width="162" height="108" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_138" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="476,587 476,480 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="476,587 476,480 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="470" y="474" width="12" height="119" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+    <g class="djs-group">
+        <g class="djs-element djs-connection" data-element-id="connection_139" style="display: block;">
+            <g class="djs-visual">
+                <polyline points="247,586 246,480 " style="fill: none; stroke: black; stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; marker-end: url('#information-requirement-end');"/>
+            </g>
+            <polyline points="247,586 246,480 " class="djs-hit djs-hit-stroke" style="fill: none; stroke-opacity: 0; stroke: white; stroke-width: 15px;"/>
+            <rect x="240" y="474" width="13" height="118" class="djs-outline" style="fill: none;"/>
+        </g>
+    </g>
+</svg>

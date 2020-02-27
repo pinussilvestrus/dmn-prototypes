@@ -1,0 +1,31 @@
+.diagram {
+  width: 70%;
+  margin: 2rem 0 0 10rem;
+
+  .decision {
+    .djs-hit {
+      pointer-events: all;
+    }
+
+    &.hover .djs-outline {
+      visibility: visible;
+      shape-rendering: crispEdges;
+      stroke-dasharray: 3, 3;
+    }
+
+    &.selected .djs-outline {
+      visibility: visible;
+      shape-rendering: crispEdges;
+      stroke-dasharray: 3, 3;
+      stroke: #8888ff;
+      stroke-width: 3px;
+      stroke-dasharray: 10px;
+    }
+
+    &.hover .djs-outline {
+      stroke: #ff8888;
+      stroke-width: 1px;
+      stroke-dasharray: 10px;
+    }
+  }
+}
