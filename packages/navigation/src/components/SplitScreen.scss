@@ -1,0 +1,16 @@
+.split-screen {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  .drd-part {
+    width: 40%;
+    zoom: 0.5;
+  }
+
+  .table-part {
+    margin-left: 2rem;
+    width: 60%;
+    zoom: 0.7;
+  }
+}

@@ -101,11 +101,9 @@
       outputCells: ["-10"]
     }
   ];
-
-  export let visible = true;
 </script>
 
-<table class="decision-table" style="display: {visible ? 'block' : 'none'}">
+<table class="decision-table">
   <thead>
     <tr class="title-row">
       <th colspan="8">
