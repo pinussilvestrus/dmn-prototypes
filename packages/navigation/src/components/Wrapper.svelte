@@ -7,5 +7,7 @@
 <div
   class="wrapper"
   style="{style} display: {view === activeView ? 'block' : 'none'}">
-  <slot/>
+  {#if view === activeView}
+      <slot/>
+  {/if}
 </div>

@@ -1,28 +1,54 @@
 <script>
+  import dom from 'domtastic';
 
-    import DRD from './DRD.svelte';
+  import { find, forEach } from 'min-dash';
 
-    import Table from '../../../decision-table-layout/src/components/Table.svelte';
+  import DRD from './DRD.svelte';
 
-    import ExpandSvg from '../../resources/expand-solid.svg';
+  import Table from '../../../decision-table-layout/src/components/Table.svelte';
 
-    import './SplitScreen.scss';
+  import ExpandSvg from '../../resources/expand-solid.svg';
 
-    const noop = () => {};
+  import './SplitScreen.scss';
 
-    export let onViewSwitch = noop;
+  const noop = () => {};
 
+  const INPUT_DATA_HEADER_BINDINGS = [
+      {
+          inputData: 'InputData_0qarm4x',
+          headerIdx: ['input-header-1', 'input-header-2']
+      }
+  ];
+
+  export let onViewSwitch = noop;
+
+  function highlightElements(hovered) {
+      const elementId = hovered.attr('data-element-id');
+
+      const found = find(INPUT_DATA_HEADER_BINDINGS, binding => {
+          return binding.inputData === elementId;
+      });
+
+      found && forEach(found.headerIdx, idx => {
+          const header = dom(`[data-header-id="${idx}"]`);
+          header.addClass('highlight');
+      });
+  }
 </script>
 
 <div class="split-screen">
-    <div class="drd-part">
-         <span class="expand" on:click={() => onViewSwitch('drd')}>{@html ExpandSvg}</span>
-        <h2 class="title">Decision Requirements</h2>
-        <DRD />
-    </div>
-    <div class="table-part">
-        <span class="expand" on:click={() => onViewSwitch('table')}>{@html ExpandSvg}</span>
-        <h2 class="title">Decision Table</h2>
-        <Table />
-    </div>
+  <div class="drd-part">
+    <span class="expand" on:click={() => onViewSwitch('drd')}>
+      {@html ExpandSvg}
+    </span>
+    <h2 class="title">Decision Requirements</h2>
+    <DRD onHighlight={highlightElements}/>
+  </div>
+  <div class="table-part">
+    <span class="expand" on:click={() => onViewSwitch('table')}>
+      {@html ExpandSvg}
+    </span>
+    <h2 class="title">Decision Table</h2>
+    <Table />
+  </div>
 </div>

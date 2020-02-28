@@ -44,4 +44,19 @@ $color-grey: #bfbfbf;
     float: right;
     margin: 0.5rem 0.5rem 0 0;
   }
+
+  .highlight {
+    background-color: rgba(coral, 0.2);
+    color: coral;
+    font-weight: bold;
+
+    .clause {
+      display: none;
+    }
+
+    .type {
+      color: coral !important;
+      font-weight: normal;
+    }
+  }
 }

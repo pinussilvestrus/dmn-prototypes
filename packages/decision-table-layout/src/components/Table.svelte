@@ -176,7 +176,7 @@
       <th />
 
       {#each inputHeaders as { idx, clause, name, type, smaller }}
-        <th class="input-header" id={idx}>
+        <th class="input-header" data-header-id={'input-header-' + idx}>
           <span class="clause">{clause}</span>
           <p class="label">{name}</p>
           <span class="type" data-size={smaller ? 'smaller' : ''}>{type}</span>
