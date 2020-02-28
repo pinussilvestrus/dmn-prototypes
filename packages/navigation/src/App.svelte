@@ -30,7 +30,8 @@
   view="table" 
   activeView={view} 
   className="table-view">
-  <span class="arrow-expand" on:click={() => switchView('split-screen')}>  
+  <span class="arrow-expand" on:click={() => switchView('split-screen')}> 
+    Expand 
     {@html ArrowExpandSvg}
   </span>
   <Table onViewSwitch={switchView} />
