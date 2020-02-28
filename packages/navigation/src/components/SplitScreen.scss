@@ -1,16 +1,47 @@
+$color-grey: #bfbfbf;
+
 .split-screen {
   display: flex;
   flex-direction: row;
   align-items: stretch;
 
   .drd-part {
+    padding: 1rem 0 0 1rem;
     width: 40%;
     zoom: 0.5;
+
+    .title {
+      font-size: 3rem;
+    }
+
+    .expand svg {
+      height: 48px;
+    }
+
   }
 
   .table-part {
     margin-left: 2rem;
+    padding-left: 1rem;
     width: 60%;
-    zoom: 0.7;
+    border-left: 1px solid $color-grey;
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .decision-table {
+      zoom: 0.7;
+    }
+
+    .expand svg {
+      height: 24px;
+    }
+  }
+
+  .expand {
+    cursor: pointer;
+    float: right;
+    margin: 0.5rem 0.5rem 0 0;
   }
 }
