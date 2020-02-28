@@ -17,11 +17,34 @@
       {
           inputData: 'InputData_0qarm4x',
           headerIdx: ['input-header-1', 'input-header-2']
+      },
+      {
+          inputData: 'Decision_11xban0',
+          headerIdx: ['input-header-4']
+      },
+      {
+          inputData: 'Decision_19jtlzt',
+          headerIdx: ['input-header-3']
+      },
+      {
+          inputData: 'InputData_011xp5m',
+          headerIdx: ['input-header-1']
+      },
+      {
+          inputData: 'InputData_13z77r8',
+          headerIdx: ['input-header-0']
       }
   ];
 
+  const HIGHLIGHT_MARKER = 'highlight';
+
   export let onViewSwitch = noop;
 
+  function setMarker(node, marker) {
+      node.hasClass(marker) ? node.removeClass(marker) : node.addClass(marker);
+  }
+
+  // handles highlighting + unhighlighting
   function highlightElements(hovered) {
       const elementId = hovered.attr('data-element-id');
 
@@ -31,7 +54,7 @@
 
       found && forEach(found.headerIdx, idx => {
           const header = dom(`[data-header-id="${idx}"]`);
-          header.addClass('highlight');
+          setMarker(header, HIGHLIGHT_MARKER)
       });
   }
 </script>

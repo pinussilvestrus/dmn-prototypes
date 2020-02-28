@@ -13,7 +13,13 @@
 
   const DECISION = 'Decision_03absfl';
 
-  const INPUT_DATA_ELEMENTS = ['InputData_0qarm4x'];
+  const INPUT_DATA_ELEMENTS = [
+    'Decision_11xban0',
+    'Decision_19jtlzt',
+    'InputData_011xp5m',
+    'InputData_0qarm4x',
+    'InputData_13z77r8'
+  ];
 
   const noop = () => {};
 
@@ -62,6 +68,7 @@
 
     inputData.on('mouseout', event => {
       inputData.removeClass('hover');
+      onHighlight(inputData);
     });
   }
 
