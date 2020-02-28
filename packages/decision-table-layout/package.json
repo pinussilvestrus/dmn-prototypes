@@ -28,6 +28,7 @@
     "lint": "eslint --ext js,svelte ."
   },
   "dependencies": {
+    "domtastic": "^0.15.12",
     "min-dash": "^3.5.2"
   }
 }

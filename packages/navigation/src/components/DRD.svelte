@@ -3,8 +3,6 @@
 
   import { onMount } from 'svelte';
 
-  import dom from 'domtastic';
-
   import { forEach } from 'min-dash';
 
   import getElement from '../util/getElement';
@@ -30,7 +28,7 @@
   function bindDecisionInteractions(decision) {
 
     // set to selected in split screen automatically
-    if(onHighlight !== noop) {
+    if (onHighlight !== noop) {
       decision.addClass('selected');
     }
 
@@ -56,7 +54,7 @@
   function bindDataInteractions(dataElement) {
 
     // do not do anything if not in split screen
-    if(onHighlight === noop) {
+    if (onHighlight === noop) {
       return;
     }
 
@@ -81,7 +79,7 @@
     forEach(DATA_ELEMENTS, id => {
       const dataElement = getElement(id);
       bindDataInteractions(dataElement);
-    })
+    });
 
   });
 </script>

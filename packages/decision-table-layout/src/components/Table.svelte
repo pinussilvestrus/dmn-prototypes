@@ -1,7 +1,12 @@
 <script>
-  import './Table.scss';
 
-  import { find } from 'min-dash';
+  import { onMount } from 'svelte';
+
+  import { find, forEach } from 'min-dash';
+
+  import dom from 'domtastic';
+
+  import './Table.scss';
 
   const HIT_POLICIES = [
     {
@@ -153,6 +158,35 @@
 
     hitPolicy = value;
   }
+
+  function initHeaderInteractions(header) {
+
+    // do not do anything if not in split screen
+    if (onHighlight === noop) {
+      return;
+    }
+
+    header.on('mouseover', () => {
+      onHighlight(header);
+    });
+
+    header.on('mouseout', () => {
+      onHighlight(header);
+    });
+  
+  }
+
+  const noop = () => {};
+
+  export let onHighlight = noop;
+
+  onMount(() => {
+    forEach(inputHeaders, ({ idx }) => {
+      const header = dom(`[data-header-id="input-header-${idx}"`);
+      console.log(header);
+      initHeaderInteractions(header);
+    });
+  });
 </script>
 
 <table class="decision-table">

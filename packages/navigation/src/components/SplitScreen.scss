@@ -45,7 +45,7 @@ $color-grey: #bfbfbf;
     margin: 0.5rem 0.5rem 0 0;
   }
 
-  .highlight {
+  th.highlight {
     background-color: rgba(coral, 0.2);
     color: coral;
 
@@ -58,4 +58,20 @@ $color-grey: #bfbfbf;
       font-weight: normal;
     }
   }
+
+  .djs-shape.highlight .djs-visual {
+    rect {
+      stroke: coral !important;
+      stroke-width: 2px !important;
+      stroke: coral !important;
+      stroke-width: 2px !important;
+      fill: rgba(255, 127, 80, 0.3) !important;
+    }
+  
+    text {
+      fill: coral !important;
+      font-weight: bold;
+    }
+  }
+  
 }
