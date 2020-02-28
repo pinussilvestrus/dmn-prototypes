@@ -26,5 +26,8 @@
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack -w",
     "lint": "eslint --ext js,svelte ."
+  },
+  "dependencies": {
+    "min-dash": "^3.5.2"
   }
 }

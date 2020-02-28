@@ -1,6 +1,47 @@
 <script>
   import "./Table.scss";
 
+  import { find } from 'min-dash';
+
+  const HIT_POLICIES = [
+    {
+      name: 'Unique',
+      explanation: 'No overlap is possible and all rules are disjoint. Only a single rule can be matched'
+    },
+    {
+      name: 'Any',
+      explanation: 'Rules may overlap. Their output have to match'
+    },
+    {
+      name: 'Priority',
+      explanation: 'Rules may overlap. The one with the highest priority will be chosen'
+    },
+    {
+      name: 'First',
+      explanation: 'Rules may overlap. The first matching rule will be chosen'
+    }, 
+    {
+      name: 'Collect',
+      explanation: 'Collects the values of all matching rules'
+    },
+    {
+      name: 'Collect (Sum)',
+      explanation: 'Collects the values of all matching rules and sums up to a single value'
+    },
+    {
+      name: 'Collect (Max)',
+      explanation: 'Collects the values of all matching rules and uses the highest value'
+    },
+    {
+      name: 'Collect (Min)',
+      explanation: 'Collects the values of all matching rules and uses the lowest value'
+    },
+    {
+      name: 'Collect (Count)',
+      explanation: 'Collects the values of all matching rules and counts the number of them'
+    }
+  ]
+
   const inputHeaders = [
     {
       idx: 0,
@@ -101,6 +142,17 @@
       outputCells: ["-10"]
     }
   ];
+
+  let hitPolicy = 'Collect (Max)';
+  $: explanation = find(HIT_POLICIES, hp => hp.name === hitPolicy).explanation;
+
+  function changeHitPolicy(event) {
+    const {
+      target: { value }
+    } = event;
+
+    hitPolicy = value;
+  }
 </script>
 
 <table class="decision-table">
@@ -109,13 +161,13 @@
       <th colspan="8">
         <p>Employee Suitability Score</p>
         <span />
-        <select>
-          <option selected>Collect (Sum)</option>
+        <select on:change={changeHitPolicy}>
+          {#each HIT_POLICIES as {name}}
+             <option selected={name === hitPolicy}>{name}</option>
+          {/each}
         </select>
         <p class="hp-explanation">
-          collects the values of all matching rules and sums up to a single value
-          <!-- no overlap is possible and all rules are disjoint. Only a single rule
-          can be matched -->
+          { explanation }
         </p>
         <p />
       </th>
