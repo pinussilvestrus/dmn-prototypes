@@ -8,7 +8,9 @@
 
     import './SplitScreen.scss';
 
-    export let onViewSwitch;
+    const noop = () => {};
+
+    export let onViewSwitch = noop;
 
 </script>
 
