@@ -18,26 +18,32 @@
   const DATA_HEADER_BINDINGS = [
     {
       element: 'InputData_0qarm4x',
+      connection: 'connection_134',
       headerIdx: ['input-header-1', 'input-header-2']
     },
     {
       element: 'Decision_11xban0',
+      connection: 'connection_136',
       headerIdx: ['input-header-4']
     },
     {
       element: 'Decision_19jtlzt',
+      connection: 'connection_137',
       headerIdx: ['input-header-3']
     },
     {
       element: 'InputData_011xp5m',
+      connection: 'connection_133',
       headerIdx: ['input-header-1']
     },
     {
       element: 'InputData_13z77r8',
+      connection: 'connection_135',
       headerIdx: ['input-header-0']
     },
     {
       element: 'Decision_13nychf',
+      connection: 'connection_132',
       headerIdx: ['output-header-0']
     }
   ];
@@ -68,11 +74,13 @@
 
     if (found.length) {
       const dataElements = map(found, binding => binding.element);
-  
-      forEach(dataElements, id => {
+      const connections = map(found, binding => binding.connection);
+
+      forEach([ ...dataElements, ...connections ], id => {
         const element = getElement(id);
         setMarker(element, HIGHLIGHT_MARKER);
       });
+
     }
   }
 

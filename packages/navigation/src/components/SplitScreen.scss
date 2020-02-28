@@ -73,5 +73,11 @@ $color-grey: #bfbfbf;
       font-weight: bold;
     }
   }
+
+  .djs-connection.highlight .djs-visual polyline {
+    stroke: coral !important;
+    stroke-width: 1.3px !important;
+    marker-end: url(#information-requirement-highlight-end) !important;
+  }
   
 }

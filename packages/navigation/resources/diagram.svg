@@ -19,6 +19,9 @@
         <marker id="authority-requirement-end" viewBox="0 0 20 20" refX="3" refY="3" markerWidth="18" markerHeight="18" orient="auto">
             <circle cx="3" cy="3" r="3" style="stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1;"></circle>
         </marker>
+        <marker id="information-requirement-highlight-end" viewBox="0 0 20 20" refX="11" refY="10" markerWidth="20" markerHeight="20" orient="auto">
+            <path d="M 1 5 L 11 10 L 1 15 Z" style="stroke-width: 1px; stroke-linecap: round; stroke-dasharray: 10000, 1; fill: coral"></path>
+        </marker>
     </defs>
     <g class="djs-group">
         <g class="djs-element djs-shape" data-element-id="Decision_13nychf" style="display: block;" transform="matrix(1 0 0 1 577 60)">
