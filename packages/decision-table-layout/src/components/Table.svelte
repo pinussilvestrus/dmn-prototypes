@@ -183,7 +183,11 @@
   onMount(() => {
     forEach(inputHeaders, ({ idx }) => {
       const header = dom(`[data-header-id="input-header-${idx}"`);
-      console.log(header);
+      initHeaderInteractions(header);
+    });
+
+    forEach(outputHeaders, ({ idx }) => {
+      const header = dom(`[data-header-id="output-header-${idx}"`);
       initHeaderInteractions(header);
     });
   });
