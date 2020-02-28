@@ -184,7 +184,7 @@
       {/each}
 
       {#each outputHeaders as { idx, clause, name, type }}
-        <th class="output-header output-cell" id={idx}>
+        <th class="output-header output-cell" data-header-id={'output-header-' + idx}>
           <span class="clause">{clause}</span>
           <p class="label">{name}</p>
           <span class="type">{type}</span>

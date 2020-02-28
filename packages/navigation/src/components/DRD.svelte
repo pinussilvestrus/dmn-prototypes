@@ -13,12 +13,13 @@
 
   const DECISION = 'Decision_03absfl';
 
-  const INPUT_DATA_ELEMENTS = [
+  const DATA_ELEMENTS = [
     'Decision_11xban0',
     'Decision_19jtlzt',
     'InputData_011xp5m',
     'InputData_0qarm4x',
-    'InputData_13z77r8'
+    'InputData_13z77r8',
+    'Decision_13nychf'
   ];
 
   const noop = () => {};
@@ -52,23 +53,23 @@
     });
   }
 
-  function bindInputDataInteractions(inputData) {
+  function bindDataInteractions(dataElement) {
 
     // do not do anything if not in split screen
     if(onHighlight === noop) {
       return;
     }
 
-    inputData.addClass('inputData');
+    dataElement.addClass('dataElement');
 
-    inputData.on('mouseover', event => {
-      inputData.addClass('hover');
-      onHighlight(inputData);
+    dataElement.on('mouseover', event => {
+      dataElement.addClass('hover');
+      onHighlight(dataElement);
     });
 
-    inputData.on('mouseout', event => {
-      inputData.removeClass('hover');
-      onHighlight(inputData);
+    dataElement.on('mouseout', event => {
+      dataElement.removeClass('hover');
+      onHighlight(dataElement);
     });
   }
 
@@ -77,9 +78,9 @@
     decision.addClass('decision');
     bindDecisionInteractions(decision);
 
-    forEach(INPUT_DATA_ELEMENTS, id => {
-      const inputData = getElement(id);
-      bindInputDataInteractions(inputData);
+    forEach(DATA_ELEMENTS, id => {
+      const dataElement = getElement(id);
+      bindDataInteractions(dataElement);
     })
 
   });

@@ -13,26 +13,30 @@
 
   const noop = () => {};
 
-  const INPUT_DATA_HEADER_BINDINGS = [
+  const DATA_HEADER_BINDINGS = [
       {
-          inputData: 'InputData_0qarm4x',
+          element: 'InputData_0qarm4x',
           headerIdx: ['input-header-1', 'input-header-2']
       },
       {
-          inputData: 'Decision_11xban0',
+          element: 'Decision_11xban0',
           headerIdx: ['input-header-4']
       },
       {
-          inputData: 'Decision_19jtlzt',
+          element: 'Decision_19jtlzt',
           headerIdx: ['input-header-3']
       },
       {
-          inputData: 'InputData_011xp5m',
+          element: 'InputData_011xp5m',
           headerIdx: ['input-header-1']
       },
       {
-          inputData: 'InputData_13z77r8',
+          element: 'InputData_13z77r8',
           headerIdx: ['input-header-0']
+      },
+      {
+        element: 'Decision_13nychf',
+        headerIdx: ['output-header-0']
       }
   ];
 
@@ -48,8 +52,8 @@
   function highlightElements(hovered) {
       const elementId = hovered.attr('data-element-id');
 
-      const found = find(INPUT_DATA_HEADER_BINDINGS, binding => {
-          return binding.inputData === elementId;
+      const found = find(DATA_HEADER_BINDINGS, binding => {
+          return binding.element === elementId;
       });
 
       found && forEach(found.headerIdx, idx => {
