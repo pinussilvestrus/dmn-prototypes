@@ -2,8 +2,11 @@
   import DRD from './components/DRD.svelte';
   import SplitScreen from './components/SplitScreen.svelte';
   import Table from '../../decision-table-layout/src/components/Table.svelte';
-
   import Wrapper from './components/Wrapper.svelte';
+
+  import ArrowExpandSvg from '../resources/arrow-expand.svg';
+
+  import './App.scss';
 
   let view = 'drd';
 
@@ -23,6 +26,12 @@
   <SplitScreen onViewSwitch={switchView} />
 </Wrapper>
 
-<Wrapper view="table" activeView={view} let:onViewSwitch={switchView}>
+<Wrapper 
+  view="table" 
+  activeView={view} 
+  className="table-view">
+  <span class="arrow-expand" on:click={() => switchView('split-screen')}>  
+    {@html ArrowExpandSvg}
+  </span>
   <Table onViewSwitch={switchView} />
 </Wrapper>

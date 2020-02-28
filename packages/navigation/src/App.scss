@@ -1,0 +1,18 @@
+.table-view {
+  .arrow-expand {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 0.5rem;
+    cursor: pointer;
+
+    svg {
+      width: 48px;
+    }
+  }
+
+  .decision-table {
+    color: #444444;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
