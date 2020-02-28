@@ -166,11 +166,15 @@
       return;
     }
 
+    header.addClass('table-header');
+
     header.on('mouseover', () => {
+      header.addClass('hover');
       onHighlight(header);
     });
 
     header.on('mouseout', () => {
+      header.removeClass('hover');
       onHighlight(header);
     });
   

@@ -58,7 +58,7 @@
       return;
     }
 
-    dataElement.addClass('dataElement');
+    dataElement.addClass('data-element');
 
     dataElement.on('mouseover', event => {
       dataElement.addClass('hover');
