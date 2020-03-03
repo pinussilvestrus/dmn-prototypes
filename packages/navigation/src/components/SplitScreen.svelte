@@ -17,14 +17,12 @@
 
   const noop = () => {};
 
-
   const HIGHLIGHT_MARKER = 'highlight';
 
-  export let onViewSwitch = noop;
-  export let onTableChange = noop;
-
-  export let tableData = {};
   $: dataHeaderBindings = tableData.bindings;
+
+
+  // methods //////////
 
   function setMarker(node, marker) {
     node.hasClass(marker) ? node.removeClass(marker) : node.addClass(marker);
@@ -75,7 +73,7 @@
   afterUpdate(async () => {
 
     // cleanup markers
-    forEach([...tableData.outputHeaders, ...tableData.inputHeaders], ({idx}) => {
+    forEach([...tableData.outputHeaders, ...tableData.inputHeaders], ({ idx }) => {
       const header = dom(
         `[data-header-id="input-header-${idx}"], [data-header-id="output-header-${idx}"]`
       );
@@ -83,6 +81,14 @@
       header.removeClass(HIGHLIGHT_MARKER);
     });
   });
+
+
+  // exports
+
+  export let onViewSwitch = noop;
+  export let onTableChange = noop;
+  export let tableData = {};
+
 </script>
 
 <div class="split-screen">

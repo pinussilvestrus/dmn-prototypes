@@ -24,10 +24,38 @@
 
   const noop = () => {};
 
-  export let decision = 'Decision_03absfl';
-  export let onViewSwitch = noop;
-  export let onHighlight = noop;
-  export let onTableChange = noop;
+
+  // lifecycle //////////
+
+  onMount(async () => {
+    forEach(filter(DATA_ELEMENTS, e => isDecision(getElement(e))), id => {
+      const _decision = getElement(id);
+      _decision.addClass('decision');
+      bindDecisionInteractions(_decision);
+    });
+
+    forEach(DATA_ELEMENTS, id => {
+      const dataElement = getElement(id);
+      bindDataInteractions(dataElement);
+    });
+  });
+
+  afterUpdate(async () => {
+  
+    // remove selected from all decisions first
+    forEach(DATA_ELEMENTS, id => {
+      const dataElement = getElement(id);
+      dataElement.removeClass('selected');
+    });
+
+    if (onHighlight !== noop) {
+      getElement(decision).addClass('selected');
+    }
+
+  });
+
+
+  // methods //////////
 
   function bindDecisionInteractions(decision) {
   
@@ -81,34 +109,16 @@
       });
   }
 
-  onMount(async () => {
-    forEach(filter(DATA_ELEMENTS, e => isDecision(getElement(e))), id => {
-      const _decision = getElement(id);
-      _decision.addClass('decision');
-      bindDecisionInteractions(_decision);
-    });
 
-    forEach(DATA_ELEMENTS, id => {
-      const dataElement = getElement(id);
-      bindDataInteractions(dataElement);
-    });
-  });
+  // exports //////////
 
-  afterUpdate(async () => {
-  
-    // remove selected from all decisions first
-    forEach(DATA_ELEMENTS, id => {
-      const dataElement = getElement(id);
-      dataElement.removeClass('selected');
-    });
+  export let decision = 'Decision_03absfl';
+  export let onViewSwitch = noop;
+  export let onHighlight = noop;
+  export let onTableChange = noop;
 
-    if (onHighlight !== noop) {
-      getElement(decision).addClass('selected');
-    }
 
-  });
-
-  // helpers //////////////
+  // helpers //////////
 
   function isDecision(dataElement) {
     return dataElement.attr('data-element-id').includes('Decision_');

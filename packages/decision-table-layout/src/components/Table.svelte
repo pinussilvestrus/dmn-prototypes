@@ -52,6 +52,67 @@
     }
   ];
 
+  const noop = () => {};
+
+  $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
+  $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 2;
+
+
+  // lifecycle //////////
+
+  onMount(() => {
+
+    const {
+      inputHeaders,
+      outputHeaders
+    } = tableData;
+
+    forEach(inputHeaders, ({ idx }) => {
+      const header = dom(`[data-header-id="input-header-${idx}"`);
+      initHeaderInteractions(header);
+    });
+
+    forEach(outputHeaders, ({ idx }) => {
+      const header = dom(`[data-header-id="output-header-${idx}"`);
+      initHeaderInteractions(header);
+    });
+  });
+
+
+  // methods //////////
+
+  function changeHitPolicy(event) {
+    const {
+      target: { value }
+    } = event;
+
+    tableData.hitPolicy = value;
+  }
+
+  function initHeaderInteractions(header) {
+  
+    // do not do anything if not in split screen
+    if (onHighlight === noop) {
+      return;
+    }
+
+    header.addClass('table-header');
+
+    header.on('mouseover', () => {
+      header.addClass('hover');
+      onHighlight(header);
+    });
+
+    header.on('mouseout', () => {
+      header.removeClass('hover');
+      onHighlight(header);
+    });
+  }
+
+
+  // exports //////////
+
+  export let onHighlight = noop;
   export let tableData = {
     name: 'Employee Suitability Score',
     hitPolicy: 'Collect (Sum)',
@@ -154,59 +215,6 @@
       }
     ]
   };
-
-  $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
-  $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 2;
-
-  function changeHitPolicy(event) {
-    const {
-      target: { value }
-    } = event;
-
-    tableData.hitPolicy = value;
-  }
-
-  function initHeaderInteractions(header) {
-  
-    // do not do anything if not in split screen
-    if (onHighlight === noop) {
-      return;
-    }
-
-    header.addClass('table-header');
-
-    header.on('mouseover', () => {
-      header.addClass('hover');
-      onHighlight(header);
-    });
-
-    header.on('mouseout', () => {
-      header.removeClass('hover');
-      onHighlight(header);
-    });
-  }
-
-  const noop = () => {};
-
-  export let onHighlight = noop;
-
-  onMount(() => {
-
-    const {
-      inputHeaders,
-      outputHeaders
-    } = tableData;
-
-    forEach(inputHeaders, ({ idx }) => {
-      const header = dom(`[data-header-id="input-header-${idx}"`);
-      initHeaderInteractions(header);
-    });
-
-    forEach(outputHeaders, ({ idx }) => {
-      const header = dom(`[data-header-id="output-header-${idx}"`);
-      initHeaderInteractions(header);
-    });
-  });
 
 </script>
 
