@@ -15,60 +15,33 @@
 
   const noop = () => {};
 
-  const DATA_HEADER_BINDINGS = [
-    {
-      element: 'InputData_0qarm4x',
-      connection: 'connection_134',
-      headerIdx: ['input-header-1', 'input-header-2']
-    },
-    {
-      element: 'Decision_11xban0',
-      connection: 'connection_136',
-      headerIdx: ['input-header-4']
-    },
-    {
-      element: 'Decision_19jtlzt',
-      connection: 'connection_137',
-      headerIdx: ['input-header-3']
-    },
-    {
-      element: 'InputData_011xp5m',
-      connection: 'connection_133',
-      headerIdx: ['input-header-1']
-    },
-    {
-      element: 'InputData_13z77r8',
-      connection: 'connection_135',
-      headerIdx: ['input-header-0']
-    },
-    {
-      element: 'Decision_13nychf',
-      connection: 'connection_132',
-      headerIdx: ['output-header-0']
-    }
-  ];
 
   const HIGHLIGHT_MARKER = 'highlight';
 
   export let onViewSwitch = noop;
+  export let onTableChange = noop;
+
+  export let tableData = {};
+  $: dataHeaderBindings = tableData.bindings;
 
   function setMarker(node, marker) {
     node.hasClass(marker) ? node.removeClass(marker) : node.addClass(marker);
   }
 
   function highlightForDrdElement(elementId) {
-    const found = find(DATA_HEADER_BINDINGS, binding => {
+    const found = find(dataHeaderBindings, binding => {
       return binding.element === elementId;
     });
 
-    found && forEach(found.headerIdx, idx => {
-      const header = dom(`[data-header-id="${idx}"]`);
-      setMarker(header, HIGHLIGHT_MARKER);
-    });
+    found &&
+      forEach(found.headerIdx, idx => {
+        const header = dom(`[data-header-id="${idx}"]`);
+        setMarker(header, HIGHLIGHT_MARKER);
+      });
   }
 
   function highlightForTableHeader(tableHeaderId) {
-    const found = filter(DATA_HEADER_BINDINGS, binding => {
+    const found = filter(dataHeaderBindings, binding => {
       return find(binding.headerIdx, idx => idx === tableHeaderId);
     });
 
@@ -76,11 +49,10 @@
       const dataElements = map(found, binding => binding.element);
       const connections = map(found, binding => binding.connection);
 
-      forEach([ ...dataElements, ...connections ], id => {
+      forEach([...dataElements, ...connections], id => {
         const element = getElement(id);
         setMarker(element, HIGHLIGHT_MARKER);
       });
-
     }
   }
 
@@ -105,13 +77,13 @@
       {@html ExpandSvg}
     </span>
     <h2 class="title">Decision Requirements</h2>
-    <DRD onHighlight={highlightElements}/>
+    <DRD onHighlight={highlightElements} {onTableChange} />
   </div>
   <div class="table-part">
     <span class="expand" on:click={() => onViewSwitch('table')}>
       {@html ExpandSvg}
     </span>
     <h2 class="title">Decision Table</h2>
-    <Table onHighlight={highlightElements} />
+    <Table onHighlight={highlightElements} {tableData} />
   </div>
 </div>

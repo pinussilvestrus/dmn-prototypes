@@ -11,13 +11,17 @@
 
   const DECISION = 'Decision_03absfl';
 
+  // todo(pinussilvestrus): maybe move to global data
   const DATA_ELEMENTS = [
     'Decision_11xban0',
     'Decision_19jtlzt',
     'InputData_011xp5m',
     'InputData_0qarm4x',
     'InputData_13z77r8',
-    'Decision_13nychf'
+    'Decision_13nychf',
+    'Decision_03absfl',
+    'InputData_1vzqswv',
+    'InputData_1x2qw0w'
   ];
 
   const noop = () => {};
@@ -72,7 +76,7 @@
     });
 
     isDecision(dataElement) && dataElement.on('click', event => {
-      onTableChange(dataElement.attr("data-element-id"));
+      onTableChange(dataElement.attr('data-element-id'));
     });
   }
 
@@ -92,7 +96,7 @@
   // helpers //////////////
 
   function isDecision(dataElement) {
-    return dataElement.attr("data-element-id").includes('Decision_');
+    return dataElement.attr('data-element-id').includes('Decision_');
   }
 </script>
 

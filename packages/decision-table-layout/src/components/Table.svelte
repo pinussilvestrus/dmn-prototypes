@@ -155,15 +155,15 @@
     ]
   };
 
-  let hitPolicy = 'Collect (Sum)';
   $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
+  $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 2;
 
   function changeHitPolicy(event) {
     const {
       target: { value }
     } = event;
 
-    hitPolicy = value;
+    tableData.hitPolicy = value;
   }
 
   function initHeaderInteractions(header) {
@@ -191,6 +191,7 @@
   export let onHighlight = noop;
 
   onMount(() => {
+
     const {
       inputHeaders,
       outputHeaders
@@ -207,18 +208,13 @@
     });
   });
 
-
-  // helpers ////////////
-  function getTableLength() {
-    return tableData.inputHeaders.length + tableData.outputHeaders.length + 2;
-  }
 </script>
 
 <div class="decision-table">
   <table>
     <thead>
       <tr class="title-row">
-        <th colspan="{getTableLength()}">
+        <th colspan="{tableLength}">
           <p>{tableData.name}</p>
           <span />
           <select on:change={changeHitPolicy}>
