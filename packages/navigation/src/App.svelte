@@ -26,7 +26,7 @@
 </script>
 
 <Wrapper view="drd" activeView={view} style="width: 60%; margin-left: 5rem;">
-  <DRD onViewSwitch={switchView} />
+  <DRD onViewSwitch={switchView} decision={currentTable.id} />
 </Wrapper>
 
 <Wrapper view="split-screen" activeView={view}>

@@ -77,7 +77,7 @@
       {@html ExpandSvg}
     </span>
     <h2 class="title">Decision Requirements</h2>
-    <DRD onHighlight={highlightElements} {onTableChange} />
+    <DRD onHighlight={highlightElements} {onTableChange} decision={tableData.id} />
   </div>
   <div class="table-part">
     <span class="expand" on:click={() => onViewSwitch('table')}>

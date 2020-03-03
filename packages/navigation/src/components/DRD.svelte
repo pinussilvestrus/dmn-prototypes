@@ -1,15 +1,13 @@
 <script>
   import Diagram from '../../resources/diagram.svg';
 
-  import { onMount } from 'svelte';
+  import { onMount, afterUpdate } from 'svelte';
 
-  import { forEach } from 'min-dash';
+  import { filter, forEach } from 'min-dash';
 
   import getElement from '../util/getElement';
 
   import './DRD.scss';
-
-  const DECISION = 'Decision_03absfl';
 
   // todo(pinussilvestrus): maybe move to global data
   const DATA_ELEMENTS = [
@@ -26,15 +24,16 @@
 
   const noop = () => {};
 
+  export let decision = 'Decision_03absfl';
   export let onViewSwitch = noop;
   export let onHighlight = noop;
   export let onTableChange = noop;
 
   function bindDecisionInteractions(decision) {
-
-    // set to selected in split screen automatically
+  
+    // do not do it on split screen
     if (onHighlight !== noop) {
-      decision.addClass('selected');
+      return;
     }
 
     decision.on('mouseover', () => {
@@ -57,7 +56,7 @@
   }
 
   function bindDataInteractions(dataElement) {
-
+  
     // do not do anything if not in split screen
     if (onHighlight === noop) {
       return;
@@ -75,23 +74,38 @@
       onHighlight(dataElement);
     });
 
-    isDecision(dataElement) && dataElement.on('click', event => {
-      onTableChange(dataElement.attr('data-element-id'));
-    });
+    isDecision(dataElement) &&
+      dataElement.on('click', event => {
+        onTableChange(dataElement.attr('data-element-id'));
+      });
   }
 
   onMount(async () => {
-    const decision = getElement(DECISION);
-    decision.addClass('decision');
-    bindDecisionInteractions(decision);
+    forEach(filter(DATA_ELEMENTS, e => isDecision(getElement(e))), id => {
+      const _decision = getElement(id);
+      _decision.addClass('decision');
+      bindDecisionInteractions(_decision);
+    });
 
     forEach(DATA_ELEMENTS, id => {
       const dataElement = getElement(id);
       bindDataInteractions(dataElement);
     });
-
   });
 
+  afterUpdate(async () => {
+  
+    // remove selected from all decisions first
+    forEach(DATA_ELEMENTS, id => {
+      const dataElement = getElement(id);
+      dataElement.removeClass('selected');
+    });
+
+    if (onHighlight !== noop) {
+      getElement(decision).addClass('selected');
+    }
+
+  });
 
   // helpers //////////////
 
