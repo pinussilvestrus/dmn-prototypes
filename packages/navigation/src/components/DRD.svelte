@@ -24,6 +24,7 @@
 
   export let onViewSwitch = noop;
   export let onHighlight = noop;
+  export let onTableChange = noop;
 
   function bindDecisionInteractions(decision) {
 
@@ -69,6 +70,10 @@
       dataElement.removeClass('hover');
       onHighlight(dataElement);
     });
+
+    isDecision(dataElement) && dataElement.on('click', event => {
+      onTableChange(dataElement.attr("data-element-id"));
+    });
   }
 
   onMount(async () => {
@@ -82,6 +87,13 @@
     });
 
   });
+
+
+  // helpers //////////////
+
+  function isDecision(dataElement) {
+    return dataElement.attr("data-element-id").includes('Decision_');
+  }
 </script>
 
 <div class="diagram">

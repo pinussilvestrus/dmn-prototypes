@@ -53,6 +53,8 @@
   ];
 
   export let tableData = {
+    name: 'Employee Suitability Score',
+    hitPolicy: 'Collect (Sum)',
     inputHeaders: [
       {
         idx: 0,
@@ -154,7 +156,7 @@
   };
 
   let hitPolicy = 'Collect (Sum)';
-  $: explanation = find(HIT_POLICIES, hp => hp.name === hitPolicy).explanation;
+  $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
 
   function changeHitPolicy(event) {
     const {
@@ -204,18 +206,24 @@
       initHeaderInteractions(header);
     });
   });
+
+
+  // helpers ////////////
+  function getTableLength() {
+    return tableData.inputHeaders.length + tableData.outputHeaders.length + 2;
+  }
 </script>
 
 <div class="decision-table">
   <table>
     <thead>
       <tr class="title-row">
-        <th colspan="8">
-          <p>Employee Suitability Score</p>
+        <th colspan="{getTableLength()}">
+          <p>{tableData.name}</p>
           <span />
           <select on:change={changeHitPolicy}>
             {#each HIT_POLICIES as { name }}
-              <option selected={name === hitPolicy}>{name}</option>
+              <option selected={name === tableData.hitPolicy}>{name}</option>
             {/each}
           </select>
           <p class="hp-explanation">{explanation}</p>
