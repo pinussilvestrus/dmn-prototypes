@@ -63,7 +63,7 @@
       idx: 1,
       clause: 'And',
       name: 'Employee.region = Claim.region',
-      type: 'boolean'
+      type: '[true, false]'
     },
     {
       idx: 2,
@@ -82,7 +82,7 @@
       idx: 4,
       clause: 'And',
       name: 'Employee fills skillset',
-      type: 'boolean'
+      type: '[true, false]'
     }
   ];
 
@@ -128,7 +128,7 @@
     },
     {
       idx: 7,
-      inputCells: ['-', '-', '[1000..10000', "'Junior'", '-'],
+      inputCells: ['-', '-', '[1000..10000]', "'Junior'", '-'],
       outputCells: ['-15']
     },
     {
