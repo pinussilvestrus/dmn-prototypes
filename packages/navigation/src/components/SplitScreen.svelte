@@ -3,6 +3,8 @@
 
   import { find, forEach, filter, map } from 'min-dash';
 
+  import { afterUpdate } from 'svelte';
+
   import DRD from './DRD.svelte';
 
   import Table from '../../../decision-table-layout/src/components/Table.svelte';
@@ -69,6 +71,18 @@
     // (2) table headers
     return highlightForTableHeader(tableHeaderId);
   }
+
+  afterUpdate(async () => {
+
+    // cleanup markers
+    forEach([...tableData.outputHeaders, ...tableData.inputHeaders], ({idx}) => {
+      const header = dom(
+        `[data-header-id="input-header-${idx}"], [data-header-id="output-header-${idx}"]`
+      );
+
+      header.removeClass(HIGHLIGHT_MARKER);
+    });
+  });
 </script>
 
 <div class="split-screen">
