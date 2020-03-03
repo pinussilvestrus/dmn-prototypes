@@ -51,6 +51,7 @@
       decision.removeClass('hover');
       decision.addClass('selected');
 
+      onTableChange(decision.attr('data-element-id'));
       onViewSwitch('split-screen');
     });
   }
