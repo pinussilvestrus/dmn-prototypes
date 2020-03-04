@@ -96,14 +96,12 @@
     <span class="expand" on:click={() => onViewSwitch('drd')}>
       {@html ExpandSvg}
     </span>
-    <h2 class="title">Decision Requirements</h2>
     <DRD onHighlight={highlightElements} {onTableChange} decision={tableData.id} />
   </div>
   <div class="table-part">
     <span class="expand" on:click={() => onViewSwitch('table')}>
       {@html ExpandSvg}
     </span>
-    <h2 class="title">Decision Table</h2>
     <Table onHighlight={highlightElements} {tableData} />
   </div>
 </div>

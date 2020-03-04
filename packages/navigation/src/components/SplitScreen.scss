@@ -6,32 +6,30 @@ $color-grey: #bfbfbf;
   align-items: stretch;
 
   .drd-part {
-    padding: 1rem 0 0 1rem;
-    width: 40%;
-    zoom: 0.5;
-
-    .title {
-      font-size: 3rem;
-    }
+    width: 35%;
+    margin: auto;
+    padding: 0.5rem;
 
     .expand svg {
-      height: 48px;
+      height: 24px;
     }
+
+    .diagram {
+      svg {
+        padding: 0;
+      }
+    } 
 
   }
 
   .table-part {
     margin-left: 2rem;
     padding-left: 1rem;
-    width: 60%;
+    width: 65%;
     border-left: 1px solid $color-grey;
 
     .title {
       font-size: 1.5rem;
-    }
-
-    .decision-table {
-      zoom: 0.7;
     }
 
     .expand svg {

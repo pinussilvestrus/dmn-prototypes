@@ -158,17 +158,17 @@ export default {
       {
         idx: 1,
         inputCells: ['<1000'],
-        outputCells: ['Junior']
+        outputCells: ["'Junior'"]
       },
       {
         idx: 2,
         inputCells: ['[1000..10000]'],
-        outputCells: ['Experienced']
+        outputCells: ["'Experienced'"]
       },
       {
         idx: 3,
         inputCells: ['>10000'],
-        outputCells: ['Senior']
+        outputCells: ["'Senior'"]
       }
     ],
     bindings: [
@@ -253,12 +253,12 @@ export default {
       {
         idx: 1,
         inputCells: ['true'],
-        outputCells: ['Employee not suitable']
+        outputCells: ["'Employee not suitable'"]
       },
       {
         idx: 2,
         inputCells: ['false'],
-        outputCells: ['Employee is suitable']
+        outputCells: ["'Employee is suitable'"]
       }
     ],
     bindings: [

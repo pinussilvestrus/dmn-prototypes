@@ -2,150 +2,159 @@ $color-grey: #bfbfbf;
 $color-black: #444;
 $color-background: #f8f8f8;
 
-.decision-table table{
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin: 1rem 0rem 0rem 1rem;
+.decision-table {
+  padding-right: 1rem;
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 1rem 0rem 0rem 1rem;
 
-  td {
-    font-size: 14px;
-    border-style: solid;
-    border-width: 1px;
-    overflow: hidden;
-    word-break: normal;
-    border-color: black;
-  }
+    td {
+      font-size: 14px;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
+      border-color: black;
+      min-width: 5rem;
+    }
 
-  .output-cell,
-  .annotation-cell {
-    border-left: 6px double $color-black;
-  }
+    .output-cell,
+    .annotation-cell {
+      border-left: 6px double $color-black;
+    }
 
-  .output-cell + .output-cell {
-    border-left: 1px solid $color-black;
-  }
+    .output-cell + .output-cell {
+      border-left: 1px solid $color-black;
+    }
 
-  th {
-    font-size: 14px;
-    font-weight: normal;
-    border-style: solid;
-    border-width: 1px;
-    overflow: hidden;
-    word-break: normal;
-    border-color: black;
-  }
-
-  thead {
     th {
-      padding: 0.4rem;
+      font-weight: normal;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
+      border-color: black;
     }
 
-    .title-row {
-      text-align: left;
-      vertical-align: middle;
-
+    thead {
       th {
-        font-size: 1.5rem;
-
-        * {
-          vertical-align: middle;
-          display: inline-block;
-        }
+        padding: 0.4rem;
       }
 
-      p,
-      select {
-        margin: 0.5rem 0.5rem 0.5rem 0.5rem;
-      }
+      .title-row {
+        text-align: left;
+        vertical-align: middle;
 
-      select {
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
+        th {
+          font-size: 1.3rem;
 
-      span {
-        border-left: 2px solid $color-grey;
-        height: 35px;
-      }
-
-      .hp-explanation {
-        font-size: 1rem;
-        margin-left: 0;
-        color: $color-grey;
-      }
-    }
-
-    .header-row {
-      border-bottom: 6px double $color-black;
-
-      .input-header,
-      .output-header {
-        width: 7rem;
-      }
-
-      .input-header,
-      .output-header {
-        position: relative;
-
-        .clause {
-          position: absolute;
-          left: 0.2rem;
-          top: 0.1rem;
-          margin-bottom: 0.5rem;
-          color: $color-grey;
-          font-size: 0.8rem;
-        }
-
-        .label {
-          word-wrap: normal;
-          font-size: 0.9rem;
-          margin: 1rem 0rem 1.5rem 0rem;
-        }
-
-        .type {
-          text-align: right;
-          position: absolute;
-          right: 0.2rem;
-          bottom: 0.1rem;
-          color: $color-grey;
-          font-size: 0.7rem;
-          word-wrap: break-word;
-          width: 100%;
-
-          &[data-size="smaller"] {
-            font-size: 0.6rem;
-            width: 66%;
+          * {
+            vertical-align: middle;
+            display: inline-block;
           }
         }
+
+        p,
+        select {
+          margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+        }
+
+        select {
+          font-size: 1rem;
+          padding: 0.5rem;
+        }
+
+        span {
+          border-left: 2px solid $color-grey;
+          height: 35px;
+        }
+
+        .hp-explanation {
+          font-size: 0.8rem;
+          margin-left: 0;
+          color: $color-grey;
+        }
       }
 
-      .annotation-header {
-        text-align: center;
-        font-size: 1rem !important;
+      .header-row {
+        border-bottom: 6px double $color-black;
+
+        .empty-cell {
+
+        }
+
+        .input-header,
+        .output-header {
+          width: 7rem;
+        }
+
+        .input-header,
+        .output-header {
+          position: relative;
+
+          .clause {
+            position: absolute;
+            left: 0.2rem;
+            top: 0.1rem;
+            margin-bottom: 0.5rem;
+            color: $color-grey;
+            font-size: 0.8rem;
+          }
+
+          .label {
+            word-wrap: normal;
+            font-size: 0.9rem;
+            margin: 1rem 0rem 1.5rem 0rem;
+          }
+
+          .type {
+            text-align: right;
+            position: absolute;
+            right: 0.2rem;
+            bottom: 0.1rem;
+            color: $color-grey;
+            font-size: 0.7rem;
+            word-wrap: break-word;
+            width: 100%;
+
+            &[data-size="smaller"] {
+              font-size: 0.6rem;
+              width: 66%;
+            }
+          }
+        }
+
+        .annotation-header {
+          text-align: center;
+          font-size: 1rem !important;
+        }
       }
     }
-  }
 
-  tbody {
-    td {
-      padding: 0.5rem;
-      font-size: 0.8rem;
-      white-space: nowrap;
+    tbody {
+      td {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        white-space: nowrap;
+      }
+
+      .rule {
+        text-align: right;
+        width: 1rem;
+        min-width: 0;
+      }
+
+      tr:nth-child(2n) {
+        background-color: $color-background;
+      }
     }
 
-    .rule {
-      text-align: right;
-      width: 1rem;
-    }
-
-    tr:nth-child(2n) {
-      background-color: $color-background;
-    }
-  }
-
-  .table-header {
-    &.hover {
-      color: rgba(coral, 1.5);
+    .table-header {
+      &.hover {
+        color: rgba(coral, 1.5);
+      }
     }
   }
 }

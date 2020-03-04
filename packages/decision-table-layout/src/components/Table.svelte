@@ -235,7 +235,7 @@
         </th>
       </tr>
       <tr class="header-row">
-        <th />
+        <th class="empty-cell"/>
 
         {#each tableData.inputHeaders as { idx, clause, name, type, smaller }}
           <th class="input-header" data-header-id={'input-header-' + idx}>
