@@ -12,6 +12,12 @@ $color-black: #444;
   cursor: pointer;
   background: white;
 
+  &.btn-sticky {
+    border-radius: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
   &:hover {
     background: $color-grey-light;
   }

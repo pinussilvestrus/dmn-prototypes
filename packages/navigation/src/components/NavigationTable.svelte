@@ -12,7 +12,7 @@
 
 <div class="navigation-table">
     <div class="buttons">
-        <span class="arrow-expand btn" on:click={() => onViewSwitch('split-screen')}>
+        <span class="arrow-expand btn btn-sticky" on:click={() => onViewSwitch('split-screen')}>
           {@html ArrowExpandSvg}
         </span>
         <button class="edit-drd btn" on:click={() => onViewSwitch('drd')}>

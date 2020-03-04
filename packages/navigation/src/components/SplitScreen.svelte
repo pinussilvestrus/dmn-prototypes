@@ -99,11 +99,11 @@
     <button class="edit-drd btn" on:click={() => onViewSwitch('drd')}>
       Edit DRD
     </button>
-    <span class="collapse btn" on:click={() => onViewSwitch('table')}>
-      {@html CollapseSVG}
-    </span>
     <div class="drd">
       <DRD onHighlight={highlightElements} {onTableChange} decision={tableData.id} />
+    </div>
+    <div class="collapse btn btn-sticky" on:click={() => onViewSwitch('table')}>
+      {@html CollapseSVG}
     </div>
   </div>
   <div class="split"></div>

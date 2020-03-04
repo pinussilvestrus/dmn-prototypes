@@ -1,5 +1,6 @@
 $color-grey: #bfbfbf;
 $color-black: #444;
+$color-grey-light: #fcfcfc;
 
 .navigation-table {
   display: flex;
@@ -7,12 +8,17 @@ $color-black: #444;
   align-items: stretch;
 
   .buttons {
-    margin-top: 1rem;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    position: relative;
+    background-color: $color-grey-light;
+    border-bottom: 1px solid $color-grey;
 
     .arrow-expand {
-      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
       padding-bottom: 0.3rem;
-      margin: 0 0.5rem 0 0.5rem;
 
       svg {
         width: 1rem;
@@ -20,15 +26,6 @@ $color-black: #444;
       }
     }
 
-    .edit-drd {
-      margin-left: -0.7rem;
-      display: block;
-      position: relative;
-      top: 40%;
-      -webkit-transform: translateY(-50%) rotate(-90deg);
-      -ms-transform: translateY(-50%) rotate(-90deg);
-      transform: translateY(-50%) rotate(-90deg);
-    }
   }
 
   .decision-table {
