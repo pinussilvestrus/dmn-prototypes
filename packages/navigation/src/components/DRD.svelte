@@ -1,11 +1,13 @@
 <script>
-  import Diagram from '../../resources/diagram.svg';
-
   import { onMount, afterUpdate } from 'svelte';
 
   import { filter, forEach } from 'min-dash';
 
+  import dom from 'domtastic';
+
   import getElement from '../util/getElement';
+
+  import Diagram from '../../resources/diagram.svg';
 
   import './DRD.scss';
 
@@ -28,16 +30,28 @@
   // lifecycle //////////
 
   onMount(async () => {
-    forEach(filter(DATA_ELEMENTS, e => isDecision(getElement(e))), id => {
-      const _decision = getElement(id);
-      _decision.addClass('decision');
-      bindDecisionInteractions(_decision);
-    });
 
-    forEach(DATA_ELEMENTS, id => {
-      const dataElement = getElement(id);
-      bindDataInteractions(dataElement);
-    });
+    const decisionElements = filter(DATA_ELEMENTS, e => isDecision(getElement(e)));
+
+    forEach(decisionElements, id => getElement(id).addClass('decision'));
+
+    if (isSplitScreen()) {
+
+      forEach(DATA_ELEMENTS, id => {
+        const dataElement = getElement(id);
+        bindDataInteractions(dataElement);
+      });
+  
+    } else {
+
+      forEach(decisionElements, id => {
+        const _decision = getElement(id);
+        bindDecisionInteractions(_decision);
+        addTableIcon(_decision);
+      });
+
+    }
+
   });
 
   afterUpdate(async () => {
@@ -109,6 +123,37 @@
       });
   }
 
+  function addTableIcon(decision) {
+    const tableIconBox = createSVGNode('g', {
+      'pointer-events': 'all',
+      cursor: 'pointer'
+    });
+
+    const rect = createSVGNode('rect', {
+      x: 0,
+      y: 0,
+      transform: 'translate (2, 2)',
+      width: 20,
+      height: 20,
+      fill: '#52B415'
+    });
+
+    const icon = createSVGNode('path', {
+      fill: 'white',
+      transform: 'scale (0.025) translate (200, 200)',
+      d: 'M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z'
+    });
+
+    dom(tableIconBox).on('click', () => {
+      onTableChange(decision.attr('data-element-id'));
+      onViewSwitch('split-screen');
+    });
+
+    tableIconBox.append(rect);
+    tableIconBox.append(icon);
+    decision.append(tableIconBox);
+  }
+
 
   // exports //////////
 
@@ -122,6 +167,18 @@
 
   function isDecision(dataElement) {
     return dataElement.attr('data-element-id').includes('Decision_');
+  }
+
+  function isSplitScreen() {
+    return onHighlight !== noop;
+  }
+
+  function createSVGNode(n, v = {}) {
+    n = document.createElementNS('http://www.w3.org/2000/svg', n);
+    for (var p in v) {
+      n.setAttributeNS(null, p.replace(/[A-Z]/g, function(m, p, o, s) { return '-' + m.toLowerCase(); }), v[p]);
+    }
+    return n;
   }
 </script>
 
