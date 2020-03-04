@@ -72,7 +72,7 @@
       decision.removeClass('hover');
     });
 
-    decision.on('click', event => {
+    decision.on('dblclick', event => {
       event.stopPropagation();
       event.preventDefault();
 

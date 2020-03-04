@@ -18,7 +18,6 @@
   }
 
   function switchView(name) {
-
     if (name === 'table') {
       updateExpand(false);
     }
