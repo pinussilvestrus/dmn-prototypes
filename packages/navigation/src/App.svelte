@@ -40,6 +40,9 @@
 </Wrapper>
 
 <Wrapper view="table" activeView={view} className="table-view">
+  <button class="edit-drd btn" on:click={() => switchView('drd')}>
+    Edit DRD
+  </button>
   <span class="arrow-expand btn" on:click={() => switchView('split-screen')}>
     {@html ArrowExpandSvg}
   </span>
