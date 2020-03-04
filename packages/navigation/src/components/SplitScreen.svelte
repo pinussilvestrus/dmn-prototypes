@@ -9,7 +9,7 @@
 
   import Table from '../../../decision-table-layout/src/components/Table.svelte';
 
-  import ExpandSvg from '../../resources/expand-solid.svg';
+  import CollapseSVG from '../../resources/arrow-collapse.svg';
 
   import getElement from '../util/getElement';
 
@@ -93,15 +93,17 @@
 
 <div class="split-screen">
   <div class="drd-part">
-    <span class="expand" on:click={() => onViewSwitch('drd')}>
-      {@html ExpandSvg}
+    <button class="edit-drd btn" on:click={() => onViewSwitch('drd')}>
+      Edit DRD
+    </button>
+    <span class="collapse btn" on:click={() => onViewSwitch('table')}>
+      {@html CollapseSVG}
     </span>
-    <DRD onHighlight={highlightElements} {onTableChange} decision={tableData.id} />
+    <div class="drd">
+      <DRD onHighlight={highlightElements} {onTableChange} decision={tableData.id} />
+    </div>
   </div>
   <div class="table-part">
-    <span class="expand" on:click={() => onViewSwitch('table')}>
-      {@html ExpandSvg}
-    </span>
     <Table onHighlight={highlightElements} {tableData} />
   </div>
 </div>

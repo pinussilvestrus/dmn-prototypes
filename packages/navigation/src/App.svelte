@@ -40,8 +40,7 @@
 </Wrapper>
 
 <Wrapper view="table" activeView={view} className="table-view">
-  <span class="arrow-expand" on:click={() => switchView('split-screen')}>
-    Expand
+  <span class="arrow-expand btn" on:click={() => switchView('split-screen')}>
     {@html ArrowExpandSvg}
   </span>
   <Table onViewSwitch={switchView} tableData={currentTable} />

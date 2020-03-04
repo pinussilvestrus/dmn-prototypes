@@ -1,17 +1,28 @@
 $color-grey: #bfbfbf;
+$color-black: #444;
 
 .split-screen {
   display: flex;
   flex-direction: row;
   align-items: stretch;
 
+  .collapse {
+    float: right;
+    padding-bottom: 0.3rem;
+
+    svg {
+      width: 0.8rem;
+      color: $color-black;
+    }
+  }
+
   .drd-part {
     width: 35%;
-    margin: auto;
     padding: 0.5rem;
 
-    .expand svg {
-      height: 24px;
+    .drd {
+      margin: auto;
+      padding-right: 0.5rem;
     }
 
     .diagram {
@@ -23,7 +34,7 @@ $color-grey: #bfbfbf;
   }
 
   .table-part {
-    margin-left: 2rem;
+    margin-left: 0.5rem;
     padding-left: 1rem;
     width: 65%;
     border-left: 1px solid $color-grey;
@@ -35,12 +46,6 @@ $color-grey: #bfbfbf;
     .expand svg {
       height: 24px;
     }
-  }
-
-  .expand {
-    cursor: pointer;
-    float: right;
-    margin: 0.5rem 0.5rem 0 0;
   }
 
   th.highlight {
