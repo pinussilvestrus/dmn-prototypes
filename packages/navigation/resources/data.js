@@ -228,5 +228,45 @@ export default {
         headerIdx: ['input-header-0']
       }
     ]
+  },
+  Decision_13nychf: {
+    id: 'Decision_13nychf',
+    name: 'Determine Employee',
+    hitPolicy: 'Unique',
+    inputHeaders: [
+      {
+        idx: 0,
+        clause: 'When',
+        name: 'Score < 20',
+        type: '[true, false]'
+      }
+    ],
+    outputHeaders: [
+      {
+        idx: 0,
+        clause: 'Then',
+        name: 'Output',
+        type: 'string'
+      }
+    ],
+    rules: [
+      {
+        idx: 1,
+        inputCells: ['true'],
+        outputCells: ['Employee not suitable']
+      },
+      {
+        idx: 2,
+        inputCells: ['false'],
+        outputCells: ['Employee is suitable']
+      }
+    ],
+    bindings: [
+      {
+        element: 'Decision_03absfl',
+        connection: 'connection_137',
+        headerIdx: ['input-header-0']
+      }
+    ]
   }
 };

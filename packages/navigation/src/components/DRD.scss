@@ -5,6 +5,10 @@ $colorSelect: #8888ff;
   width: 100%;
   padding: 1rem;
 
+  svg {
+    padding: 1rem;
+  }
+
   .decision {
     .djs-hit {
       pointer-events: all;
