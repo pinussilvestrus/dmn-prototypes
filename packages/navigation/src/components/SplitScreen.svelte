@@ -103,6 +103,7 @@
       <DRD onHighlight={highlightElements} {onTableChange} decision={tableData.id} />
     </div>
   </div>
+  <div class="split"></div>
   <div class="table-part">
     <Table onHighlight={highlightElements} {tableData} />
   </div>
