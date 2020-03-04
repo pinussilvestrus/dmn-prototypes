@@ -45,7 +45,7 @@
         idx: 0,
         clause: 'Then',
         name: 'Score',
-        type: '[> -50; < 20]'
+        type: '[-50..20]'
       }
     ],
     rules: [
