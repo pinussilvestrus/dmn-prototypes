@@ -9,7 +9,7 @@ $color-black: #444;
   .collapse {
     float: right;
     padding-bottom: 0.3rem;
-    margin-top: 0.5rem;
+    margin-right: 0.5rem;
 
     svg {
       width: 1rem;
@@ -21,6 +21,11 @@ $color-black: #444;
     width: 35%;
     resize: horizontal;
     overflow: auto;
+    margin-top: 1rem;
+
+    .edit-drd {
+      margin: 0;
+    }
 
     .drd {
       margin: auto;
