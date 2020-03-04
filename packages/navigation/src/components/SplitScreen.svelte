@@ -70,6 +70,9 @@
     return highlightForTableHeader(tableHeaderId);
   }
 
+
+  // lifecycle //////////
+  
   afterUpdate(async () => {
 
     // cleanup markers
