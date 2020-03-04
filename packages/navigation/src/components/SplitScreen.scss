@@ -19,6 +19,8 @@ $color-black: #444;
 
   .drd-part {
     width: 35%;
+    resize: horizontal;
+    overflow: auto;
 
     .drd {
       margin: auto;
