@@ -6,15 +6,28 @@ $color-black: #444;
   flex-direction: row;
   align-items: stretch;
 
-  .arrow-expand {
-    display: inline-block;
-    vertical-align: top;
-    padding-bottom: 0.3rem;
-    margin: 0.5rem;
+  .buttons {
+    margin-top: 1rem;
 
-    svg {
-      width: 0.8rem;
-      color: $color-black;
+    .arrow-expand {
+      display: inline-block;
+      padding-bottom: 0.3rem;
+      margin: 0 0.5rem 0 0.5rem;
+
+      svg {
+        width: 0.8rem;
+        color: $color-black;
+      }
+    }
+
+    .edit-drd {
+      margin-left: -0.7rem;
+      display: block;
+      position: relative;
+      top: 40%;
+      -webkit-transform: translateY(-50%) rotate(-90deg);
+      -ms-transform: translateY(-50%) rotate(-90deg);
+      transform: translateY(-50%) rotate(-90deg);
     }
   }
 

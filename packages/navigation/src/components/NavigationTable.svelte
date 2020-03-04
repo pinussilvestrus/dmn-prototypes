@@ -12,12 +12,12 @@
 
 <div class="navigation-table">
     <div class="buttons">
-        <button class="edit-drd btn" on:click={() => onViewSwitch('drd')}>
-            Edit DRD
-        </button>
         <span class="arrow-expand btn" on:click={() => onViewSwitch('split-screen')}>
           {@html ArrowExpandSvg}
         </span>
+        <button class="edit-drd btn" on:click={() => onViewSwitch('drd')}>
+          Edit DRD
+        </button>
     </div>
     <Table { tableData } />
 </div>
