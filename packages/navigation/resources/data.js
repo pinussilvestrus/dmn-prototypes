@@ -264,7 +264,7 @@ export default {
     bindings: [
       {
         element: 'Decision_03absfl',
-        connection: 'connection_137',
+        connection: 'connection_132',
         headerIdx: ['input-header-0']
       }
     ]

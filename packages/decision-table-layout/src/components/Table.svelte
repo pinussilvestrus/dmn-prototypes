@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { afterUpdate } from 'svelte';
 
   import { find, forEach } from 'min-dash';
 
@@ -52,6 +52,8 @@
     }
   ];
 
+  const HIGHLIGHT_MARKER = 'highlight';
+
   const noop = () => {};
 
   $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
@@ -60,7 +62,7 @@
 
   // lifecycle //////////
 
-  onMount(() => {
+  afterUpdate(async () => {
 
     const {
       inputHeaders,
@@ -98,13 +100,27 @@
 
     header.addClass('table-header');
 
-    header.on('mouseover', () => {
-      header.addClass('hover');
+    header.on('mouseover', event => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      if (header.hasClass(HIGHLIGHT_MARKER)) {
+        return;
+      }
+  
+      header.addClass(HIGHLIGHT_MARKER);
       onHighlight(header);
     });
 
-    header.on('mouseout', () => {
-      header.removeClass('hover');
+    header.on('mouseout', event => {
+      event.stopPropagation();
+      event.preventDefault();
+
+      if (!header.hasClass(HIGHLIGHT_MARKER)) {
+        return;
+      }
+  
+      header.removeClass(HIGHLIGHT_MARKER);
       onHighlight(header);
     });
   }
@@ -113,108 +129,7 @@
   // exports //////////
 
   export let onHighlight = noop;
-  export let tableData = {
-    name: 'Employee Suitability Score',
-    hitPolicy: 'Collect (Sum)',
-    inputHeaders: [
-      {
-        idx: 0,
-        clause: 'When',
-        name: 'Open Claims',
-        type: 'integer'
-      },
-      {
-        idx: 1,
-        clause: 'And',
-        name: 'Employee.region = Claim.region',
-        type: '[true, false]'
-      },
-      {
-        idx: 2,
-        clause: 'And',
-        name: 'Claim.expenditure',
-        type: 'integer'
-      },
-      {
-        idx: 3,
-        clause: 'And',
-        name: 'Employee Experience',
-        type: "['Junior', 'Senior', 'Experienced']",
-        smaller: true
-      },
-      {
-        idx: 4,
-        clause: 'And',
-        name: 'Employee fills skillset',
-        type: '[true, false]'
-      }
-    ],
-    outputHeaders: [
-      {
-        idx: 0,
-        clause: 'Then',
-        name: 'Score',
-        type: '[> -50; < 20]'
-      }
-    ],
-    rules: [
-      {
-        idx: 1,
-        inputCells: ['<=5', '-', '-', '-', '-'],
-        outputCells: ['10']
-      },
-      {
-        idx: 2,
-        inputCells: ['>10', '-', '-', "'Junior'", '-'],
-        outputCells: ['-25']
-      },
-      {
-        idx: 3,
-        inputCells: ['>5', '-', '-', "'Experienced', 'Senior'", '-'],
-        outputCells: ['-10']
-      },
-      {
-        idx: 4,
-        inputCells: ['-', 'true', '-', '-', '-'],
-        outputCells: ['20']
-      },
-      {
-        idx: 5,
-        inputCells: ['-', '-', '<1000', "'Junior', 'Experienced'", '-'],
-        outputCells: ['0']
-      },
-      {
-        idx: 6,
-        inputCells: ['-', '-', '<1000', "'Senior'", '-'],
-        outputCells: ['-20']
-      },
-      {
-        idx: 7,
-        inputCells: ['-', '-', '[1000..10000]', "'Junior'", '-'],
-        outputCells: ['-15']
-      },
-      {
-        idx: 8,
-        inputCells: ['-', '-', '>10000', "'Junior'", '-'],
-        outputCells: ['-50']
-      },
-      {
-        idx: 9,
-        inputCells: ['-', '-', '>10000', "'Experienced'", '-'],
-        outputCells: ['-15']
-      },
-      {
-        idx: 10,
-        inputCells: ['-', '-', '-', "'Junior'", 'false'],
-        outputCells: ['-50']
-      },
-      {
-        idx: 11,
-        inputCells: ['-', '-', '-', "'Experienced', 'Senior'", 'false'],
-        outputCells: ['-10']
-      }
-    ]
-  };
+  export let tableData = {};
 
 </script>
 

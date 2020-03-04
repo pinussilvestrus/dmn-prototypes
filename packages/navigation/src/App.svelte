@@ -30,7 +30,9 @@
   }
 
   function changeTable(tableId) {
-    if (!data[tableId]) {
+    const newTable = data[tableId];
+
+    if (!newTable || currentTable === newTable) {
       return;
     }
 
