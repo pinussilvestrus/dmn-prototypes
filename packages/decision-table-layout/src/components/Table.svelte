@@ -52,7 +52,7 @@
     }
   ];
 
-  const HIGHLIGHT_MARKER = 'highlight';
+  const HOVER_MARKER = 'hover';
 
   const noop = () => {};
 
@@ -104,11 +104,11 @@
       event.stopPropagation();
       event.preventDefault();
 
-      if (header.hasClass(HIGHLIGHT_MARKER)) {
+      if (header.hasClass(HOVER_MARKER)) {
         return;
       }
   
-      header.addClass(HIGHLIGHT_MARKER);
+      header.addClass(HOVER_MARKER);
       onHighlight(header);
     });
 
@@ -116,11 +116,11 @@
       event.stopPropagation();
       event.preventDefault();
 
-      if (!header.hasClass(HIGHLIGHT_MARKER)) {
+      if (!header.hasClass(HOVER_MARKER)) {
         return;
       }
   
-      header.removeClass(HIGHLIGHT_MARKER);
+      header.removeClass(HOVER_MARKER);
       onHighlight(header);
     });
   }
