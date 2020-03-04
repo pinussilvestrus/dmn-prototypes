@@ -11,9 +11,23 @@
 
   let view = 'drd';
   let currentTable = data['Decision_03absfl'];
+  let expanded = true;
+
+  function updateExpand(isExpanded) {
+    expanded = isExpanded;
+  }
 
   function switchView(name) {
-    view = name;
+
+    if (name === 'table') {
+      updateExpand(false);
+    }
+
+    if (view === 'table' && name === 'split-screen') {
+      updateExpand(true);
+    }
+
+    view = (name === 'split-screen' && !expanded) ? 'table' : name;
   }
 
   function changeTable(tableId) {
