@@ -8,6 +8,8 @@ $color-grey-light: #fcfcfc;
   align-items: stretch;
 
   .drd-part {
+    resize: horizontal;
+    overflow: auto;
     position: relative;
     width: 35%;
     overflow: auto;
