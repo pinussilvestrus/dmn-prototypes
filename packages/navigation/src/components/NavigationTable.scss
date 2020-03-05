@@ -1,6 +1,6 @@
 $color-grey: #bfbfbf;
 $color-black: #444;
-$color-grey-light: #fcfcfc;
+$color-grey-light: rgba($color: $color-grey, $alpha: 0.1);
 
 .navigation-table {
   display: flex;

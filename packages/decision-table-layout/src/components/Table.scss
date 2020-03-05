@@ -1,6 +1,7 @@
 $color-grey: #bfbfbf;
 $color-black: #444;
 $color-background: #f8f8f8;
+$color-highlight: #ff2400;
 
 .decision-table {
   padding-right: 1rem;
@@ -153,7 +154,7 @@ $color-background: #f8f8f8;
 
     .table-header {
       &.hover {
-        color: rgba(coral, 1.5);
+        color: $color-highlight;
       }
     }
   }

@@ -1,7 +1,10 @@
 $color-grey: #bfbfbf;
 $color-black: #444;
-$color-grey-light: #fcfcfc;
-$color-selected: #8888ff;
+$color-grey-light: rgba($color: $color-grey, $alpha: 0.1);
+$color-selected: #7391C8;
+$color-selected-light: rgba($color: $color-selected, $alpha: 0.3);
+$color-highlight: #ff2400;
+$color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
 
 .split-screen {
   display: flex;
@@ -67,15 +70,15 @@ $color-selected: #8888ff;
   }
 
   th.highlight {
-    background-color: rgba(coral, 0.2);
-    color: coral;
+    background-color: $color-highlight-light;
+    color: $color-highlight;
 
     .clause {
       display: none;
     }
 
     .type {
-      color: coral !important;
+      color: $color-highlight !important;
       font-weight: normal;
     }
   }
@@ -91,23 +94,25 @@ $color-selected: #8888ff;
       rect {
         stroke: $color-selected !important;
         stroke-width: 2px !important;
-        fill: rgba($color: $color-selected, $alpha: 0.3) !important;
+        fill: $color-selected-light !important;
       }
 
       text {
         fill: $color-selected !important;
+        stroke: none;
+        font-weight: bold;
       }
     }
 
     &.highlight .djs-visual {
       rect {
-        stroke: coral !important;
+        stroke: $color-highlight !important;
         stroke-width: 2px !important;
-        fill: rgba(255, 127, 80, 0.3) !important;
+        fill: $color-highlight-light !important;
       }
 
       text {
-        fill: coral !important;
+        fill: $color-highlight !important;
         font-weight: bold;
       }
     }
@@ -117,7 +122,7 @@ $color-selected: #8888ff;
 
     &.hover:not(.selected) {
       text {
-        fill: coral !important;
+        fill: $color-highlight !important;
       }
 
       .djs-outline {
@@ -129,7 +134,7 @@ $color-selected: #8888ff;
   }
 
   .djs-connection.highlight .djs-visual polyline {
-    stroke: coral !important;
+    stroke: $color-highlight !important;
     stroke-width: 1.3px !important;
     marker-end: url(#information-requirement-highlight-end) !important;
   }

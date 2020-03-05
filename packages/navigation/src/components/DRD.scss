@@ -1,5 +1,5 @@
-$colorHover: #ff8888;
-$colorSelect: #8888ff;
+$color-hover: #ff8888;
+$color-select: #7391C8;;
 
 .diagram {
 
@@ -11,13 +11,13 @@ $colorSelect: #8888ff;
     &.selected .djs-visual {
       visibility: visible;
       shape-rendering: crispEdges;
-      stroke: $colorSelect;
+      stroke: $color-select;
       stroke-width: 3px;
       stroke-dasharray: 10px;
     }
 
     &.hover:not(.selected) .djs-outline {
-      stroke: $colorHover;
+      stroke: $color-hover;
       stroke-width: 1px;
       stroke-dasharray: 10px;
     }
