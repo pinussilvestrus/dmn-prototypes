@@ -3,7 +3,7 @@
 
   import { find, forEach, filter, map } from 'min-dash';
 
-  import { afterUpdate } from 'svelte';
+  import { afterUpdate, onMount } from 'svelte';
 
   import DRD from './DRD.svelte';
 
@@ -70,8 +70,16 @@
     return highlightForTableHeader(tableHeaderId);
   }
 
+  function zoomDiagram() {
+    const diagram = dom('.diagram').children();
+    diagram.attr('viewBox', '200 50 800 650');
+  }
 
   // lifecycle //////////
+
+  onMount(async () => {
+    zoomDiagram();
+  });
   
   afterUpdate(async () => {
 

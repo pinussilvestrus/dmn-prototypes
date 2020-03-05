@@ -15,14 +15,13 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
     resize: horizontal;
     overflow: auto;
     position: relative;
-    width: 35%;
+    width: 25%;
     overflow: auto;
-    padding: 1rem 0 0 1rem;
     background-color: $color-grey-light;
     border-bottom: 1px solid $color-grey;
 
     .edit-drd {
-      margin: 0;
+      margin: 1rem 0 0 1rem;
     }
 
     .collapse {
@@ -38,8 +37,8 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
     }
 
     .drd {
+      padding-top: 1rem;
       margin: auto;
-      padding: 0.5rem 1rem 0.5rem 0.5rem;
     }
 
     .diagram {
@@ -56,7 +55,7 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
 
   .table-part {
     margin-left: 0.5rem;
-    width: 65%;
+    width: 75%;
 
     .title-row {
       p {
@@ -116,9 +115,6 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
         font-weight: bold;
       }
     }
-  }
-
-  .djs-shape {
 
     &.hover:not(.selected) {
       text {
@@ -130,7 +126,6 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
         stroke: none;
       }
     }
-
   }
 
   .djs-connection.highlight .djs-visual polyline {
