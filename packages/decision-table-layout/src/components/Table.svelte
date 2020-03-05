@@ -181,7 +181,7 @@
         <tr id={idx}>
           <td class="rule">{idx}</td>
           {#each inputCells as input}
-            <td class="input-cell">{input}</td>
+            <td class="input-cell" data-empty="{input === '-' ? 'empty' : 'none'}">{input}</td>
           {/each}
           {#each outputCells as output}
             <td class="output-cell">{output}</td>

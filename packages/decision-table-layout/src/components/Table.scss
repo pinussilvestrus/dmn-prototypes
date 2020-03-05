@@ -81,10 +81,6 @@ $color-background: #f8f8f8;
       .header-row {
         border-bottom: 6px double $color-black;
 
-        .empty-cell {
-
-        }
-
         .input-header,
         .output-header {
           width: 7rem;
@@ -138,6 +134,10 @@ $color-background: #f8f8f8;
         padding: 0.5rem;
         font-size: 0.8rem;
         white-space: nowrap;
+
+        &[data-empty="empty"] {
+          text-align: center;
+        }
       }
 
       .rule {
