@@ -167,8 +167,13 @@ export default {
       },
       {
         idx: 3,
-        inputCells: ['>10000'],
+        inputCells: ['[10000..20000]'],
         outputCells: ["'Senior'"]
+      },
+      {
+        idx: 4,
+        inputCells: ['>20000'],
+        outputCells: ["'Partner'"]
       }
     ],
     bindings: [
