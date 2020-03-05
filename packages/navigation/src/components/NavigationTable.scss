@@ -6,6 +6,7 @@ $color-grey-light: rgba($color: $color-grey, $alpha: 0.1);
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  height: 100%;
 
   .buttons {
     padding: 1rem;
@@ -18,6 +19,8 @@ $color-grey-light: rgba($color: $color-grey, $alpha: 0.1);
       position: absolute;
       bottom: 50%;
       right: 0;
+      height: 3rem;
+      padding-top: 2rem;
       padding-bottom: 0.3rem;
 
       svg {

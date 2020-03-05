@@ -46,13 +46,13 @@
     onTableChange={changeTable} />
 </Wrapper>
 
-<Wrapper view="split-screen" activeView={view}>
+<Wrapper view="split-screen" activeView={view} style="height: 100%;">
   <SplitScreen
     onViewSwitch={switchView}
     tableData={currentTable}
     onTableChange={changeTable} />
 </Wrapper>
 
-<Wrapper view="table" activeView={view} className="table-view">
+<Wrapper view="table" activeView={view} className="table-view" style="height: 100%;">
   <NavigationTable onViewSwitch={switchView} tableData={currentTable} />
 </Wrapper>
