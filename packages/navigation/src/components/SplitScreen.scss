@@ -28,7 +28,7 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
     .collapse {
       padding-bottom: 0.3rem;
       position: absolute;
-      bottom: 0;
+      bottom: 50%;
       right: 0;
 
       svg {
