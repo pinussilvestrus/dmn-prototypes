@@ -8,43 +8,19 @@ $colorSelect: #8888ff;
       pointer-events: all;
     }
 
-    &.hover .djs-outline {
+    &.selected .djs-visual {
       visibility: visible;
       shape-rendering: crispEdges;
-      stroke-dasharray: 3, 3;
-    }
-
-    &.selected .djs-outline {
-      visibility: visible;
-      shape-rendering: crispEdges;
-      stroke-dasharray: 3, 3;
       stroke: $colorSelect;
       stroke-width: 3px;
       stroke-dasharray: 10px;
     }
 
-    &.hover .djs-outline {
+    &.hover:not(.selected) .djs-outline {
       stroke: $colorHover;
       stroke-width: 1px;
       stroke-dasharray: 10px;
     }
   }
 
-  .data-element {
-    .djs-hit {
-      pointer-events: all;
-    }
-
-    &.hover .djs-outline {
-      visibility: visible;
-      shape-rendering: crispEdges;
-      stroke-dasharray: 3, 3;
-    }
-
-    &.hover .djs-outline {
-      stroke: coral;
-      stroke-width: 5px;
-      stroke-dasharray: 20px;
-    }
-  }
 }

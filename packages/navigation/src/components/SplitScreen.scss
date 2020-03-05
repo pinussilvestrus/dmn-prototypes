@@ -1,6 +1,7 @@
 $color-grey: #bfbfbf;
 $color-black: #444;
 $color-grey-light: #fcfcfc;
+$color-selected: #8888ff;
 
 .split-screen {
   display: flex;
@@ -26,7 +27,7 @@ $color-grey-light: #fcfcfc;
       position: absolute;
       bottom: 0;
       right: 0;
-  
+
       svg {
         width: 1rem;
         color: $color-black;
@@ -42,8 +43,7 @@ $color-grey-light: #fcfcfc;
       svg {
         padding: 0;
       }
-    } 
-
+    }
   }
 
   .split {
@@ -55,8 +55,10 @@ $color-grey-light: #fcfcfc;
     margin-left: 0.5rem;
     width: 65%;
 
-    .title {
-      font-size: 1.5rem;
+    .title-row {
+      p {
+        color: $color-selected;
+      }
     }
 
     .expand svg {
@@ -78,19 +80,52 @@ $color-grey-light: #fcfcfc;
     }
   }
 
-  .djs-shape.highlight .djs-visual {
-    rect {
-      stroke: coral !important;
-      stroke-width: 2px !important;
-      stroke: coral !important;
-      stroke-width: 2px !important;
-      fill: rgba(255, 127, 80, 0.3) !important;
+  .djs-shape {
+    &.selected .djs-visual {
+      * {
+        shape-rendering: auto;
+        stroke-width: 1px;
+        stroke-dasharray: none;
+      }
+
+      rect {
+        stroke: $color-selected !important;
+        stroke-width: 2px !important;
+        fill: rgba($color: $color-selected, $alpha: 0.3) !important;
+      }
+
+      text {
+        fill: $color-selected !important;
+      }
     }
-  
-    text {
-      fill: coral !important;
-      font-weight: bold;
+
+    &.highlight .djs-visual {
+      rect {
+        stroke: coral !important;
+        stroke-width: 2px !important;
+        fill: rgba(255, 127, 80, 0.3) !important;
+      }
+
+      text {
+        fill: coral !important;
+        font-weight: bold;
+      }
     }
+  }
+
+  .djs-shape {
+
+    &.hover:not(.selected) {
+      text {
+        fill: coral !important;
+      }
+
+      .djs-outline {
+        shape-rendering: auto;
+        stroke: none;
+      }
+    }
+
   }
 
   .djs-connection.highlight .djs-visual polyline {
@@ -98,5 +133,4 @@ $color-grey-light: #fcfcfc;
     stroke-width: 1.3px !important;
     marker-end: url(#information-requirement-highlight-end) !important;
   }
-  
 }
