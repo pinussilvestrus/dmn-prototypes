@@ -58,6 +58,7 @@ export default class MoveCanvas {
 
   unbind() {
     this._node.off('mousemove', this.move);
+    this._node.removeClass('dragged');
     this._start = null;
     this._last = null;
   }
@@ -65,6 +66,8 @@ export default class MoveCanvas {
   init() {
     this._node.on('mousedown', event => {
       this._start = toPoint(event);
+
+      this._node.addClass('dragged');
 
       this._node.on('mousemove', e => this.move(e));
       this._node.on('mouseup', _ => this.unbind());
