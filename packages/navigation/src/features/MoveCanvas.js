@@ -6,21 +6,32 @@ export default class MoveCanvas {
     this._node = dom(node);
   }
 
-  scrollNode(delta) {
+  scrollNode(delta = {}) {
 
-    if (!delta.x || !delta.y) {
+    const {
+      x,
+      y
+    } = delta;
+
+    if (!x || !y) {
       return;
     }
 
-    const svg = this._node.find('svg');
+    const diagram = this._node.children();
 
-    const viewbox = svg.attr('viewBox');
+    const viewbox = diagram.attr('viewBox');
 
     const split = viewbox.split(' ');
 
-    const newViewBox = `${parseInt(split[0]) + delta.x} ${parseInt(split[1]) + delta.y} ${split[2]} ${split[3]}`;
+    // transform delta
+    const scrollDelta = {
+      x: -1 * x * 2,
+      y: -1 * y * 2
+    };
 
-    svg.attr('viewBox', newViewBox);
+    const newViewBox = `${parseInt(split[0]) + scrollDelta.x} ${parseInt(split[1]) + scrollDelta.y} ${split[2]} ${split[3]}`;
+
+    diagram.attr('viewBox', newViewBox);
   }
 
   move(event) {
@@ -40,9 +51,15 @@ export default class MoveCanvas {
     this._last = position;
   }
 
+  zoomDiagram() {
+    const diagram = this._node.children();
+    diagram.attr('viewBox', '200 50 800 900');
+  }
+
   unbind() {
     this._node.off('mousemove', this.move);
     this._start = null;
+    this._last = null;
   }
 
   init() {

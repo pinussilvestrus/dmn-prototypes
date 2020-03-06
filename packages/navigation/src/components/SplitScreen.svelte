@@ -13,7 +13,7 @@
 
   import getElement from '../util/getElement';
 
-  import MoveCanvas from './MoveCanvas';
+  import MoveCanvas from '../features/MoveCanvas';
 
   import './SplitScreen.scss';
 
@@ -72,17 +72,13 @@
     return highlightForTableHeader(tableHeaderId);
   }
 
-  function zoomDiagram() {
-    const diagram = dom('.diagram').children();
-    diagram.attr('viewBox', '200 50 800 650');
-  }
 
   // lifecycle //////////
 
   onMount(async () => {
-    zoomDiagram();
     const moveCanvas = new MoveCanvas('.diagram');
     moveCanvas.init();
+    moveCanvas.zoomDiagram();
   });
   
   afterUpdate(async () => {
