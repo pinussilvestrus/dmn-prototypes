@@ -3,6 +3,8 @@ $color-black: #444;
 $color-background: #f8f8f8;
 $color-highlight: #ff2400;
 
+$table-font-size: 12px;
+
 .decision-table {
   padding-right: 1rem;
   
@@ -12,7 +14,7 @@ $color-highlight: #ff2400;
     margin: 1rem 0rem 0rem 1rem;
 
     td {
-      font-size: 14px;
+      font-size: $table-font-size + 2;
       border-style: solid;
       border-width: 1px;
       overflow: hidden;
@@ -49,7 +51,7 @@ $color-highlight: #ff2400;
         vertical-align: middle;
 
         th {
-          font-size: 1.3rem;
+          font-size: $table-font-size + 8;
 
           * {
             vertical-align: middle;
@@ -63,7 +65,7 @@ $color-highlight: #ff2400;
         }
 
         select {
-          font-size: 1rem;
+          font-size: $table-font-size + 1;
           padding: 0.5rem;
         }
 
@@ -73,7 +75,7 @@ $color-highlight: #ff2400;
         }
 
         .hp-explanation {
-          font-size: 0.8rem;
+          font-size: $table-font-size;
           margin-left: 0;
           color: $color-grey;
         }
@@ -97,12 +99,12 @@ $color-highlight: #ff2400;
             top: 0.1rem;
             margin-bottom: 0.5rem;
             color: $color-grey;
-            font-size: 0.8rem;
+            font-size: $table-font-size + 2;
           }
 
           .label {
             word-wrap: normal;
-            font-size: 0.9rem;
+            font-size: $table-font-size + 2;
             margin: 1rem 0rem 1.5rem 0rem;
           }
 
@@ -112,12 +114,12 @@ $color-highlight: #ff2400;
             right: 0.2rem;
             bottom: 0.1rem;
             color: $color-grey;
-            font-size: 0.7rem;
+            font-size: $table-font-size - 1;
             word-wrap: break-word;
             width: 100%;
 
             &[data-size="smaller"] {
-              font-size: 0.6rem;
+              font-size: $table-font-size - 3;
               width: 66%;
             }
           }
@@ -125,7 +127,7 @@ $color-highlight: #ff2400;
 
         .annotation-header {
           text-align: center;
-          font-size: 1rem !important;
+          font-size: $table-font-size + 2 !important;
         }
       }
     }
@@ -133,7 +135,7 @@ $color-highlight: #ff2400;
     tbody {
       td {
         padding: 0.5rem;
-        font-size: 0.8rem;
+        font-size: $table-font-size;
         white-space: nowrap;
 
         &[data-empty="empty"] {
