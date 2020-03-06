@@ -13,6 +13,8 @@
 
   import getElement from '../util/getElement';
 
+  import MoveCanvas from './MoveCanvas';
+
   import './SplitScreen.scss';
 
   const noop = () => {};
@@ -79,6 +81,8 @@
 
   onMount(async () => {
     zoomDiagram();
+    const moveCanvas = new MoveCanvas('.diagram');
+    moveCanvas.init();
   });
   
   afterUpdate(async () => {
