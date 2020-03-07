@@ -1,0 +1,84 @@
+$color-grey: #bfbfbf;
+$color-grey-light: rgba($color: $color-grey, $alpha: 0.1);
+$color-title: #7391C8;
+$color-title-light: rgba($color: $color-title, $alpha: 0.7);
+
+.modal {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background-color: white;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  max-width: 500px;
+  max-height: 100vh;
+  border-radius: 4px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-bottom: 30%;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: $color-title;
+  box-sizing: border-box;
+
+  code {
+    color: $color-title-light;
+  }
+}
+
+.modal-close {
+  background: transparent;
+  border: 0;
+}
+
+.modal-header .modal-close:before {
+  content: "\2715";
+}
+
+.modal-content {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.8);
+
+  .yaml-view {
+    background: $color-grey-light;
+    padding-left: 2rem;
+    border: 1px solid $color-grey;
+  }
+}
+
+.btn-modal {
+  float: right;
+}

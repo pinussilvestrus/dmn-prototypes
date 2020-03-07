@@ -5,7 +5,11 @@
 
   import { afterUpdate, onMount } from 'svelte';
 
+  import MicroModal from 'micromodal';
+
   import DRD from './DRD.svelte';
+
+  import PropertiesModal from './PropertiesModal.svelte';
 
   import Table from '../../../decision-table-layout/src/components/Table.svelte';
 
@@ -79,6 +83,13 @@
     const moveCanvas = new MoveCanvas('.diagram');
     moveCanvas.init();
     moveCanvas.zoomDiagram();
+
+    MicroModal.init();
+    const emptyCell = dom('.empty-cell');
+    emptyCell.attr('data-micromodal-trigger', 'modal-1');
+    emptyCell.on('dblclick', () => {
+      MicroModal.show('modal-1');
+    });
   });
   
   afterUpdate(async () => {
@@ -118,4 +129,5 @@
   <div class="table-part">
     <Table onHighlight={highlightElements} {tableData} />
   </div>
+  <PropertiesModal />
 </div>
