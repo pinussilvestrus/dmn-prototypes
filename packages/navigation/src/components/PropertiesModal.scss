@@ -1,4 +1,7 @@
 $color-grey: #bfbfbf;
+$color-grey-dark: rgba(0, 0, 0, 0.8);
+$color-grey-less-dark: rgba(0, 0, 0, 0.2);
+$color-grey-less-light: rgba($color: $color-grey, $alpha: 0.2);
 $color-grey-light: rgba($color: $color-grey, $alpha: 0.1);
 $color-title: #7391C8;
 $color-title-light: rgba($color: $color-title, $alpha: 0.7);
@@ -20,7 +23,7 @@ $color-title-light: rgba($color: $color-title, $alpha: 0.7);
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: $color-grey-less-dark;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,25 +31,27 @@ $color-title-light: rgba($color: $color-title, $alpha: 0.7);
 
 .modal-container {
   background-color: white;
-  padding: 1rem 1.5rem 1rem 1.5rem;
   max-width: 500px;
   max-height: 100vh;
   border-radius: 4px;
-  overflow-y: auto;
   box-sizing: border-box;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 .modal-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 60px 20px 20px;
+  background-color: $color-grey-light;
+  font-size: 16px;
+  border-bottom: 1px solid $color-grey-less-light;
 }
 
 .modal-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-weight: 600;
-  font-size: 1.25rem;
   line-height: 1.25;
   color: $color-title;
   box-sizing: border-box;
@@ -59,6 +64,15 @@ $color-title-light: rgba($color: $color-title, $alpha: 0.7);
 .modal-close {
   background: transparent;
   border: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
 }
 
 .modal-header .modal-close:before {
@@ -66,10 +80,11 @@ $color-title-light: rgba($color: $color-title, $alpha: 0.7);
 }
 
 .modal-content {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
+  color: $color-grey-dark;
+  padding: 10px 30px 20px 20px;
+  overflow-y: auto;
+  font-size: 14px;
 
   .yaml-view {
     background: $color-grey-light;
@@ -78,6 +93,12 @@ $color-title-light: rgba($color: $color-title, $alpha: 0.7);
   }
 }
 
+.modal-footer {
+  padding: 15px 20px 15px;
+  border-top: 1px solid $color-grey-less-light;
+}
+
 .btn-modal {
   float: right;
+  margin-bottom: 20px;
 }

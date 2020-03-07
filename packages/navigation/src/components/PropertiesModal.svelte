@@ -7,9 +7,9 @@
   <div class="modal-overlay" tabindex="-1" data-micromodal-close>
     <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
       <header class="modal-header">
-        <h2 class="modal-title" id="modal-1-title">
+        <p class="modal-title" id="modal-1-title">
           Decision Properties <code>Decision_03absfl</code>
-        </h2>
+        </p>
         <button class="modal-close" aria-label="Close modal" data-micromodal-close></button>
       </header>
       <main class="modal-content" id="modal-1-content">
