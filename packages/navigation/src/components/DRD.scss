@@ -12,14 +12,14 @@ $color-select: #7391C8;;
       visibility: visible;
       shape-rendering: crispEdges;
       stroke: $color-select;
-      stroke-width: 3px;
-      stroke-dasharray: 10px;
+      stroke-width: 0.02rem;
+      stroke-dasharray: 0.625rem;
     }
 
     &.hover:not(.selected) .djs-outline {
       stroke: $color-hover;
-      stroke-width: 1px;
-      stroke-dasharray: 10px;
+      stroke-width: 0.05rem;
+      stroke-dasharray: 0.625rem;
     }
   }
 

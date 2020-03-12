@@ -120,7 +120,7 @@
 
   hr {
     width: 50%;
-    border: 0.5px solid gray;
+    border: 0.03rem solid gray;
   }
 </style>
 

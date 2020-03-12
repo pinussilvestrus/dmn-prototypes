@@ -4,9 +4,9 @@ $color-black: #444;
 
 .btn {
   padding: 0.5rem;
-  border: solid 1px $color-grey;
-  border-radius: 2px;
-  font-size: 12px;
+  border: solid 0.05rem $color-grey;
+  border-radius: 0.125rem;
+  font-size: 0.75rem;
   color: $color-black;
   font-weight: bold;
   cursor: pointer;

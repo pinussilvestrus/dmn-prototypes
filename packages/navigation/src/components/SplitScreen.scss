@@ -27,7 +27,7 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
     width: 25%;
     overflow: auto;
     background-color: $color-grey-light;
-    border-bottom: 1px solid $color-grey;
+    border-bottom: 0.05rem solid $color-grey;
 
     .edit-drd {
       margin: 1rem 0 0 1rem;
@@ -65,7 +65,7 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
 
   .split {
     margin-right: 0.5rem;
-    border-left: 1px solid $color-grey;
+    border-left: 0.05rem solid $color-grey;
   }
 
   .table-part {
@@ -79,7 +79,7 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
     }
 
     .expand svg {
-      height: 24px;
+      height: 1.5rem;
     }
   }
 
@@ -101,13 +101,13 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
     &.selected .djs-visual {
       * {
         shape-rendering: auto;
-        stroke-width: 1px;
+        stroke-width: 0.05rem;
         stroke-dasharray: none;
       }
 
       rect {
         stroke: $color-selected !important;
-        stroke-width: 2px !important;
+        stroke-width: 0.125rem !important;
         fill: $color-selected-light !important;
       }
 
@@ -121,7 +121,7 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
     &.highlight .djs-visual {
       rect {
         stroke: $color-highlight !important;
-        stroke-width: 2px !important;
+        stroke-width: 0.125rem !important;
         fill: $color-highlight-light !important;
       }
 
@@ -145,7 +145,7 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
 
   .djs-connection.highlight .djs-visual polyline {
     stroke: $color-highlight !important;
-    stroke-width: 1.3px !important;
+    stroke-width: 0.08rem !important;
     marker-end: url(#information-requirement-highlight-end) !important;
   }
 }
