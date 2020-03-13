@@ -13,7 +13,6 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
   align-items: stretch;
 
   .drd-part {
-
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -118,16 +117,24 @@ $color-highlight-light: rgba($color: $color-highlight, $alpha: 0.3);
       }
     }
 
-    &.highlight .djs-visual {
-      rect {
-        stroke: $color-highlight !important;
-        stroke-width: 0.125rem !important;
-        fill: $color-highlight-light !important;
+    &.highlight {
+      .djs-visual {
+        rect {
+          stroke: $color-highlight !important;
+          stroke-width: 0.125rem !important;
+          fill: $color-highlight-light !important;
+        }
+  
+        text {
+          fill: $color-highlight !important;
+          font-weight: bold;
+        }
       }
 
-      text {
-        fill: $color-highlight !important;
-        font-weight: bold;
+      .dt-icon {
+        path {
+          fill: $color-highlight;
+        }
       }
     }
 

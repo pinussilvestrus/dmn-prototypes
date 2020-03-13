@@ -33,7 +33,11 @@
 
     const decisionElements = filter(DATA_ELEMENTS, e => isDecision(getElement(e)));
 
-    forEach(decisionElements, id => getElement(id).addClass('decision'));
+    forEach(decisionElements, id => {
+      const _decision = getElement(id);
+      _decision.addClass('decision');
+      addTableIcon(_decision);
+    });
 
     if (isSplitScreen()) {
 
@@ -47,7 +51,6 @@
       forEach(decisionElements, id => {
         const _decision = getElement(id);
         bindDecisionInteractions(_decision);
-        addTableIcon(_decision);
       });
 
     }
@@ -126,7 +129,8 @@
   function addTableIcon(decision) {
     const tableIconBox = createSVGNode('g', {
       'pointer-events': 'all',
-      cursor: 'pointer'
+      class: 'dt-icon',
+      cursor: isSplitScreen() ? 'normal' : 'pointer'
     });
 
     const rect = createSVGNode('rect', {
@@ -135,16 +139,16 @@
       transform: 'translate (2, 2)',
       width: 20,
       height: 20,
-      fill: '#52B415'
+      fill:  isSplitScreen() ? 'none' : '#52B415'
     });
 
     const icon = createSVGNode('path', {
-      fill: 'white',
+      fill: isSplitScreen() ? 'black' : 'white',
       transform: 'scale (0.025) translate (200, 200)',
       d: 'M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z'
     });
 
-    dom(tableIconBox).on('click', () => {
+    !isSplitScreen() && dom(tableIconBox).on('click', () => {
       onTableChange(decision.attr('data-element-id'));
       onViewSwitch('split-screen');
     });
