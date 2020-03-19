@@ -1,5 +1,5 @@
 <script>
-  import BasicTable from '../core/BasicTable.svelte';
+  import BasicTable from '../shared/BasicTable.svelte';
 
 
   // exports //////////

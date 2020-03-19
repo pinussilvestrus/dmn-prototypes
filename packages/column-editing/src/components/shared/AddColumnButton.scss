@@ -1,0 +1,14 @@
+@import '../../vars';
+
+.new-column-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 40%;
+  height: 1rem;
+  width: 1em;
+  text-align: center;
+  background-color: $color-black;
+  color: whitesmoke;
+  user-select: none;
+}

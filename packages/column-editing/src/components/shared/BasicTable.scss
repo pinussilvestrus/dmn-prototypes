@@ -12,19 +12,23 @@
       font-size: $table-font-size + 0.125;
       border-style: solid;
       border-width: 0.05rem;
-      overflow: hidden;
       word-break: normal;
       border-color: black;
       min-width: 5rem;
     }
 
-    .output-cell,
-    .annotation-cell {
-      border-left: 0.375rem double $color-black;
-    }
+    .empty-cell {
+      position: relative;
+      width: 8px;
+      min-width: 0;
+      border-top: none;
+      border-bottom: none;
+      padding: 0;
+      background-color: white;
 
-    .output-cell + .output-cell {
-      border-left: 0.05rem solid $color-black;
+      &.last-rule {
+        border-bottom: 0.05rem solid black;
+      }
     }
 
     th {
@@ -75,7 +79,6 @@
       }
 
       .header-row {
-        border-bottom: 0.375rem double $color-black;
 
         .input-header,
         .output-header {
@@ -140,6 +143,13 @@
         text-align: right;
         width: 1rem;
         min-width: 0;
+      }
+
+      .empty-line {
+        td {
+          height: 2px;
+          padding: 0;
+        }
       }
 
       tr:nth-child(2n) {

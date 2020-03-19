@@ -9,12 +9,14 @@
 
     import HIT_POLICIES from '../../util/getHitPolicies';
 
+    import AddColumnButton from './AddColumnButton';
+
     const HOVER_MARKER = 'hover';
 
     const noop = () => {};
 
     $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
-    $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 2;
+    $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 4;
 
 
     // lifecycle //////////
@@ -35,6 +37,8 @@
         const header = dom(`[data-header-id="output-header-${idx}"`);
         initHeaderInteractions(header);
       });
+
+      initAddColumnBtns();
     });
 
 
@@ -82,6 +86,26 @@
       });
     }
 
+    function initAddColumnBtns() {
+
+      // inputs
+      const inputGap = dom('#input-gap');
+      let bBox = inputGap[0].getBoundingClientRect();
+    
+      const addInputBtn = dom('#add-input-column');
+      addInputBtn.css('left', bBox.x - 10 + 'px');
+      addInputBtn.css('top', bBox.y + 20 + 'px');
+
+      // outputs
+      const outputGap = dom('#output-gap');
+      bBox = outputGap[0].getBoundingClientRect();
+    
+      const addOutputBtn = dom('#add-output-column');
+      addOutputBtn.css('left', bBox.x - 10 + 'px');
+      addOutputBtn.css('top', bBox.y + 20 + 'px');
+
+    }
+
 
     // exports //////////
 
@@ -109,17 +133,22 @@
       <tr class="header-row">
         <th class="empty-cell"/>
 
-        {#each tableData.inputHeaders as { idx, clause, name, type, smaller }}
+        {#each tableData.inputHeaders as { idx, clause, name, type, smaller }, i}
           <th class="input-header" data-header-id={'input-header-' + idx}>
             <span class="clause">{clause}</span>
             <p class="label">{name}</p>
             <span class="type" data-size={smaller ? 'smaller' : ''}>
               {type}
             </span>
+
           </th>
+
+          {#if i === tableData.inputHeaders.length - 1}
+            <th class="empty-cell" id="input-gap" />
+          {/if}
         {/each}
 
-        {#each tableData.outputHeaders as { idx, clause, name, type }}
+        {#each tableData.outputHeaders as { idx, clause, name, type }, i}
           <th
             class="output-header output-cell"
             data-header-id={'output-header-' + idx}>
@@ -127,6 +156,10 @@
             <p class="label">{name}</p>
             <span class="type">{type}</span>
           </th>
+
+          {#if i === tableData.outputHeaders.length - 1}
+            <th class="empty-cell" id="output-gap" />
+          {/if}
         {/each}
 
         <th class="annotation-header annotation-cell">Annotations</th>
@@ -134,20 +167,34 @@
     </thead>
     <tbody>
 
-      {#each tableData.rules as { idx, inputCells, outputCells }}
+      <tr class="empty-line">
+        <td colspan={tableLength}></td>
+      </tr>
+      {#each tableData.rules as { idx, inputCells, outputCells }, i}
         <tr id={idx}>
           <td class="rule">{idx}</td>
-          {#each inputCells as input}
+          {#each inputCells as input, j}
             <td class="input-cell" data-empty="{input === '-' ? 'empty' : 'none'}">{input}</td>
+
+            {#if j === inputCells.length - 1}
+              <td class="empty-cell  {i === tableData.rules.length - 1 ? 'last-rule' : ''} "/>
+            {/if}
           {/each}
-          {#each outputCells as output}
+          {#each outputCells as output, j}
             <td class="output-cell">{output}</td>
+
+            {#if j === outputCells.length - 1}
+            <td class="empty-cell  {i === tableData.rules.length - 1 ? 'last-rule' : ''} "/>
+          {/if}
           {/each}
           <td class="annotation-cell" />
         </tr>
       {/each}
 
     </tbody>
-  </table>
+  </table>  
+
+  <AddColumnButton id="add-input-column" />
+  <AddColumnButton id="add-output-column" />
 </div>
   
