@@ -5,8 +5,9 @@
   // exports //////////
 
   export let tableData;
+  export let editComponent;
 </script>
 
 <div>
-  <BasicTable {tableData} />
+  <BasicTable {tableData} {editComponent} />
 </div>

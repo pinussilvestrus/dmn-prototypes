@@ -15,6 +15,13 @@
 
     const noop = () => {};
 
+    // state //////////
+
+    let currentHeader = {
+      bBox: {},
+      data: null
+    };
+    
     $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
     $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 4;
 
@@ -22,7 +29,6 @@
     // lifecycle //////////
 
     afterUpdate(async () => {
-
       const {
         inputHeaders,
         outputHeaders
@@ -94,7 +100,7 @@
     
       const addInputBtn = dom('#add-input-column');
       addInputBtn.css('left', bBox.x - 10 + 'px');
-      addInputBtn.css('top', bBox.y - 23 + 'px');
+      addInputBtn.css('top', bBox.y - 5 + 'px');
 
       // outputs
       const outputGap = dom('#output-gap');
@@ -102,7 +108,7 @@
     
       const addOutputBtn = dom('#add-output-column');
       addOutputBtn.css('left', bBox.x - 10 + 'px');
-      addOutputBtn.css('top', bBox.y - 23 + 'px');
+      addOutputBtn.css('top', bBox.y - 5 + 'px');
     }
 
     function updateTableData(updated) {
@@ -112,11 +118,40 @@
       };
     }
 
+    function onInputColumnClick(event) {
+      const {
+        target
+      } = event;
+
+      if (!target) {
+        return;
+      }
+
+      const node = dom(target);
+
+      const inputHeader = getTableHeader('inputHeaders', node.attr('data-idx'));
+    
+      if (inputHeader) {
+        currentHeader = {
+          data: inputHeader,
+          bBox: node[0].getBoundingClientRect()
+        };
+      }
+    }
+
 
     // exports //////////
 
     export let onHighlight = noop;
     export let tableData = {};
+    export let editComponent;
+
+
+    // helpers //////////
+
+    function getTableHeader(type, idx) {
+      return find(tableData[type], h => h.idx === parseInt(idx));
+    }
 
 </script>
   
@@ -140,13 +175,16 @@
         <th class="empty-cell"/>
 
         {#each tableData.inputHeaders as { idx, clause, name, type, smaller }, i}
-          <th class="input-header" data-header-id={'input-header-' + idx}>
-            <span class="clause">{clause}</span>
-            <p class="label">{name}</p>
-            <span class="type" data-size={smaller ? 'smaller' : ''}>
-              {type}
-            </span>
-
+          <th 
+            class="input-header" 
+            data-header-id={'input-header-' + idx} 
+            data-idx={idx}
+            on:dblclick={onInputColumnClick} >
+              <span class="clause">{clause}</span>
+              <p class="label">{name}</p>
+              <span class="type" data-size={smaller ? 'smaller' : ''}>
+                {type}
+              </span>
           </th>
 
           {#if i === tableData.inputHeaders.length - 1}
@@ -202,5 +240,7 @@
 
   <AddColumnButton id="add-input-column" {tableData} onUpdateTable={updateTableData} />
   <AddColumnButton id="add-output-column" {tableData} onUpdateTable={updateTableData} />
+
+  <svelte:component this="{editComponent}" header={currentHeader} />
 </div>
   

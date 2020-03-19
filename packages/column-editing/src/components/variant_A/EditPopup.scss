@@ -1,0 +1,48 @@
+@import "../../vars";
+
+.column-header-edit-modal {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 0.05rem solid $color-grey-light;
+  border-radius: 3px;
+  box-sizing: border-box;
+  box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  z-index: 1;
+
+  &:before {
+    bottom: 100%;
+    border-bottom: 2rem solid rgba($color: black, $alpha: 0.5);
+  }
+
+  &:after {
+    bottom: 100%;
+    border-bottom-color: white;
+  }
+
+  &::after, &::before {
+    content: " ";
+    position: absolute;
+    width: 0;
+    border-bottom-width: 10px;
+    border-bottom-style: solid;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+
+  .field {
+    margin-top: 0.5rem;
+
+    label {
+      font-size: small;
+      color: $color-grey;
+      font-size: $table-font-size + 0.125;
+    }
+
+    input {
+      font-size: $table-font-size + 0.125;
+      color: $color-black;
+    }
+  }
+}
