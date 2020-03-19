@@ -53,13 +53,11 @@
         ...tableData,
         [type]: [
           ...tableData[type],
-    
-          // todo(pinussilvestrus): make semantic
           {
-            idx: 5,
+            idx: tableData[type].length,
             clause: 'And',
-            name: 'foo',
-            type: 'integer'
+            name: '',
+            type: ''
           }
         ]
       };

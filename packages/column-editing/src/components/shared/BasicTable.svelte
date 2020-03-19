@@ -94,7 +94,7 @@
     
       const addInputBtn = dom('#add-input-column');
       addInputBtn.css('left', bBox.x - 10 + 'px');
-      addInputBtn.css('top', bBox.y + 20 + 'px');
+      addInputBtn.css('top', bBox.y - 23 + 'px');
 
       // outputs
       const outputGap = dom('#output-gap');
@@ -102,7 +102,7 @@
     
       const addOutputBtn = dom('#add-output-column');
       addOutputBtn.css('left', bBox.x - 10 + 'px');
-      addOutputBtn.css('top', bBox.y + 20 + 'px');
+      addOutputBtn.css('top', bBox.y - 23 + 'px');
     }
 
     function updateTableData(updated) {
