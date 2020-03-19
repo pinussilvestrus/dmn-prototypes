@@ -103,7 +103,13 @@
       const addOutputBtn = dom('#add-output-column');
       addOutputBtn.css('left', bBox.x - 10 + 'px');
       addOutputBtn.css('top', bBox.y + 20 + 'px');
+    }
 
+    function updateTableData(updated) {
+      tableData = {
+        ...tableData,
+        ...updated
+      };
     }
 
 
@@ -194,7 +200,7 @@
     </tbody>
   </table>  
 
-  <AddColumnButton id="add-input-column" />
-  <AddColumnButton id="add-output-column" />
+  <AddColumnButton id="add-input-column" {tableData} onUpdateTable={updateTableData} />
+  <AddColumnButton id="add-output-column" {tableData} onUpdateTable={updateTableData} />
 </div>
   
