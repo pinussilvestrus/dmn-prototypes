@@ -12,8 +12,8 @@
 <div 
     class="column-header-edit-modal" 
     style="
-left: {header.bBox.x + 20}px; 
-top: {header.bBox.y + 60}px;
+left: {header.bBox.x + 13}px; 
+top: {header.bBox.y + 42}px;
 display: {header.data ? 'block' : 'none'}
 ">
     {#if header.data}
