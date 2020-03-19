@@ -22,6 +22,8 @@ Prototypes built via our DMN Innovation Process, Q1 2020
     - [decision-table-layout](./packages/decision-table-layout)
     - [navigation](./packages/navigation)
     - [innovation-week-andreas](./packages/innovation-week-andreas)
+- Column Editing
+    - [columns-editing](./packages/column-editing)
 
 ## Setup
 
