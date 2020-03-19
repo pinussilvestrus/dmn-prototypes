@@ -3,7 +3,6 @@
 
   // variant A
   import Table_A from './components/variant_A/Table_A.svelte';
-  import EditPopup from './components/variant_A/EditPopup.svelte';
 
   import data from '../resources/data.js';
 
@@ -39,7 +38,7 @@
 
 <div class="variant-a">
   {#if active === 'A'}
-    <Table_A { tableData } editComponent={EditPopup}/>
+    <Table_A { tableData }/>
   {/if}
 </div>
 

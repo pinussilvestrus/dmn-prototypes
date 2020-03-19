@@ -1,13 +1,14 @@
 <script>
   import BasicTable from '../shared/BasicTable.svelte';
 
+  import EditPopup from './EditPopup.svelte';
+
 
   // exports //////////
 
   export let tableData;
-  export let editComponent;
 </script>
 
 <div>
-  <BasicTable {tableData} {editComponent} />
+  <BasicTable {tableData} editComponent={EditPopup} />
 </div>

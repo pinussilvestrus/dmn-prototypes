@@ -21,7 +21,7 @@
       bBox: {},
       data: null
     };
-    
+
     $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
     $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 4;
 
@@ -100,7 +100,7 @@
     
       const addInputBtn = dom('#add-input-column');
       addInputBtn.css('left', bBox.x - 10 + 'px');
-      addInputBtn.css('top', bBox.y - 5 + 'px');
+      addInputBtn.css('top', (bBox.bottom - bBox.top) + 'px');
 
       // outputs
       const outputGap = dom('#output-gap');
@@ -108,7 +108,7 @@
     
       const addOutputBtn = dom('#add-output-column');
       addOutputBtn.css('left', bBox.x - 10 + 'px');
-      addOutputBtn.css('top', bBox.y - 5 + 'px');
+      addOutputBtn.css('top', (bBox.bottom - bBox.top) + 'px');
     }
 
     function updateTableData(updated) {
@@ -129,6 +129,7 @@
 
       const node = dom(target);
 
+      // todo(pinussilvestrus): also handle child events here!
       const inputHeader = getTableHeader('inputHeaders', node.attr('data-idx'));
     
       if (inputHeader) {
