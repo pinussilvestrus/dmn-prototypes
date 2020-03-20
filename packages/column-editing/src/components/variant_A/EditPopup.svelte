@@ -108,6 +108,7 @@ display: {header.data ? 'block' : 'none'}
             <div class="field type-field">
                 <label for="type">allowed values</label>
                 <input 
+                    placeholder="string"
                     id="type" 
                     name="name"
                     type="text" 
