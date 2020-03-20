@@ -80,8 +80,8 @@
 <div 
     class="column-header-edit-modal" 
     style="
-left: {header.bBox.x + 13}px; 
-top: {header.bBox.y + 50}px;
+left: {header.bBox.left + 13}px; 
+top: {header.bBox.bottom - 10}px;
 display: {header.data ? 'block' : 'none'}
 ">
     {#if header.data}
