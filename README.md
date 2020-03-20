@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/eccd3f40-e68e-4d41-8e3b-80bd04dbde36/deploy-status)](https://app.netlify.com/sites/dmn-prototypes/deploys)
 
-Prototypes built via our DMN Innovation Process, Q1 2020
+Prototypes built via our DMN Innovation Process, Q1 & Q2 2020
 
 ## Demos
 
@@ -23,7 +23,7 @@ Prototypes built via our DMN Innovation Process, Q1 2020
     - [navigation](./packages/navigation)
     - [innovation-week-andreas](./packages/innovation-week-andreas)
 - Column Editing
-    - [columns-editing](./packages/column-editing)
+    - [column-editing](./packages/column-editing)
 
 ## Setup
 
