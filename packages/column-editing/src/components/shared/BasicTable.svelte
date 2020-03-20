@@ -330,7 +330,8 @@
           <th
             class="output-header output-cell"
             data-header-id={idx}
-            on:dblclick={handleColumnClick} >
+            on:dblclick={handleColumnClick} 
+            on:contextmenu|preventDefault={handleOpenContextMenu}>
               <span class="clause">{clause}</span>
               <p class="label">{expression}</p>
               <span class="type">{type}</span>
