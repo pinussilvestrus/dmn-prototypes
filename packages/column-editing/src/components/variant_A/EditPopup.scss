@@ -1,4 +1,5 @@
 @import "../../vars";
+@import "../../forms";
 
 .column-header-edit-modal {
   display: none;
@@ -33,16 +34,5 @@
 
   .field {
     margin-top: 0.5rem;
-
-    label {
-      font-size: small;
-      color: $color-grey;
-      font-size: $table-font-size + 0.125;
-    }
-
-    input {
-      font-size: $table-font-size + 0.125;
-      color: $color-black;
-    }
   }
 }

@@ -17,15 +17,17 @@ top: {header.bBox.y + 42}px;
 display: {header.data ? 'block' : 'none'}
 ">
     {#if header.data}
-        <div class="field expression-field">
-            <label>expression</label>
-            <input value="{header.data.name}" />
-        </div>
-
-        <div class="field type-field">
-            <label>allowed values</label>
-            <input value="{header.data.type}" />
-        </div>
+        <form>
+            <div class="field expression-field">
+                <label>expression</label>
+                <input value="{header.data.name}" />
+            </div>
+    
+            <div class="field type-field">
+                <label>allowed values</label>
+                <input value="{header.data.type}" />
+            </div>
+        </form>
     {/if}
     
 </div>
