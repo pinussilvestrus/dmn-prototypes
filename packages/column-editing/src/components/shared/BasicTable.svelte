@@ -1,7 +1,7 @@
 <script>
     import { afterUpdate } from 'svelte';
 
-    import { find, forEach } from 'min-dash';
+    import { find, forEach, map } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -141,7 +141,39 @@
     }
 
     function handleUpdateColumnHeader(idx, updated = {}) {
-      const header = getTableHeader(idx);
+      const {
+        inputHeaders,
+        outputHeaders
+      } = tableData;
+
+      // (1) try to update inputHeaders
+      const updatedInputHeaders = map(inputHeaders, h => {
+        if (h.idx === idx) {
+          h = {
+            ...h,
+            ...updated
+          };
+        }
+
+        return h;
+      });
+
+      // (2) try to update outputHeaders
+      const updatedOutputHeaders = map(outputHeaders, h => {
+        if (h.idx === idx) {
+          h = {
+            ...h,
+            ...updated
+          };
+        }
+
+        return h;
+      });
+
+      updateTableData({
+        inputHeaders: updatedInputHeaders,
+        outputHeaders: updatedOutputHeaders
+      });
     }
 
 
@@ -252,6 +284,6 @@
   <AddColumnButton id="add-input-column" {tableData} onUpdateTable={updateTableData} />
   <AddColumnButton id="add-output-column" {tableData} onUpdateTable={updateTableData} />
 
-  <svelte:component this="{editComponent}" header={currentHeader} />
+  <svelte:component this="{editComponent}" header={currentHeader} onUpdateHeader={handleUpdateColumnHeader} />
 </div>
   
