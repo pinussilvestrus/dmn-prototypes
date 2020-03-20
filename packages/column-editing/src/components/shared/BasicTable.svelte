@@ -15,12 +15,14 @@
 
     const noop = () => {};
 
-    // state //////////
-
-    let currentHeader = {
+    const nullHeader = {
       bBox: {},
       data: null
     };
+
+    // state //////////
+
+    let currentHeader = nullHeader;
 
     $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
     $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 4;
@@ -171,10 +173,16 @@
         return h;
       });
 
+      handleEditComponentClose();
+
       updateTableData({
         inputHeaders: updatedInputHeaders,
         outputHeaders: updatedOutputHeaders
       });
+    }
+
+    function handleEditComponentClose() {
+      currentHeader = nullHeader;
     }
 
 
@@ -285,6 +293,11 @@
   <AddColumnButton id="add-input-column" {tableData} onUpdateTable={updateTableData} />
   <AddColumnButton id="add-output-column" {tableData} onUpdateTable={updateTableData} />
 
-  <svelte:component this="{editComponent}" header={currentHeader} onUpdateHeader={handleUpdateColumnHeader} />
+  <!-- Editing Component -->
+  <svelte:component 
+    this="{editComponent}" 
+    header={currentHeader} 
+    onUpdateHeader={handleUpdateColumnHeader}
+    onClose={handleEditComponentClose} />
 </div>
   

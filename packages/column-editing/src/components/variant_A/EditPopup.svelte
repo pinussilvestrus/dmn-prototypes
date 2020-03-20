@@ -1,5 +1,10 @@
 <script>
+    import { afterUpdate } from 'svelte';
+
+    import dom from 'domtastic';
+
     import './EditPopup.scss';
+
 
     const noop = () => {};
 
@@ -8,6 +13,47 @@
       onUpdateHeader(header.data.idx, updated);
     }
 
+    function handleClickOutside(event) {
+      const {
+        target
+      } = event;
+    
+      const node = dom(target);
+
+      if (!isInsidePopup(node)) {
+        handleClose();
+      }
+    }
+
+    function handleClose() {
+      onClose();
+    }
+
+    function handleKeydown(event) {
+    
+      // ESC
+      if (event.which === 27) {
+        handleClose();
+      }
+    }
+
+
+    // lifecycle //////////
+
+    afterUpdate(async () => {
+    
+      const body = dom('body');
+
+      if (header.data) {
+        body.on('click', handleClickOutside);
+        body.on('keydown', handleKeydown);
+      } else {
+        body.off('click', handleClickOutside);
+        body.off('keydown', handleKeydown);
+      }
+    });
+
+
     // exports //////////
 
     export let header = {
@@ -15,6 +61,7 @@
       data: null
     };
     export let onUpdateHeader = noop;
+    export let onClose = noop;
 
     // helpers //////////
 
@@ -23,6 +70,10 @@
         expression: form.expression.value,
         type: form.type.value
       };
+    }
+
+    function isInsidePopup(node) {
+      return node.closest('.column-header-edit-modal').length;
     }
 </script>
 
