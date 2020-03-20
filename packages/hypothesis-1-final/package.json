@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "dmn-js": "^8.0.1"
+    "dmn-js": "^8.2.0"
   },
   "devDependencies": {
     "npm-check-updates": "^4.0.4",
