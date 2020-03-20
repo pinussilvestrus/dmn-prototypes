@@ -9,6 +9,14 @@
 
     const items = [
       {
+        key: 'edit',
+        label: 'Edit Column',
+        action: handleEditColumn
+      },
+      {
+        key: 'separator'
+      },
+      {
         key: 'cut',
         label: 'Cut Column',
         action: noop
@@ -29,7 +37,7 @@
         action: noop
       },
       {
-        key: 'seperator'
+        key: 'separator'
       },
       {
         key: 'new-left',
@@ -48,10 +56,16 @@
       }
     ];
 
+
+    // methods //////////
+
     function handleClickOutside(event) {
       const {
         target
       } = event;
+
+      event.stopPropagation();
+      event.preventDefault();
     
       const node = dom(target);
 
@@ -62,6 +76,11 @@
 
     function handleClose() {
       onClose();
+    }
+
+    function handleEditColumn() {
+      onClose();
+      onEditColumn(context.data);
     }
 
 
@@ -85,6 +104,7 @@
       data: null
     };
     export let onClose = noop;
+    export let onEditColumn = noop;
 
 
     // helpers //////////
@@ -98,16 +118,21 @@
     class="popup context-menu" 
     style="
 left: {context.position.x}px; 
-top: {context.position.y}px;
+top: {context.position.y - 15}px;
 display: {context.data ? 'block' : 'none'}
 ">
     {#if context.data}
         {#each items as {key, label, action}}
 
-            {#if key === 'seperator'}
+            {#if key === 'separator'}
                 <div class="separator"></div>
             {:else}
-                <div class="item" id="action-{key}">{label}</div>
+                <div 
+                    class="item" 
+                    id="action-{key}"
+                    on:click={action} >
+                        {label}
+                    </div>
             {/if}
         {/each}
     {/if}

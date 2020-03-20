@@ -128,6 +128,15 @@
       };
     }
 
+    function handleEditColumn(header) {
+      const bBox = dom(`[data-header-id="${header.idx}"]`)[0].getBoundingClientRect();
+
+      currentHeader = {
+        data: header,
+        bBox
+      };
+    }
+
     function handleColumnClick(event) {
       const {
         target
@@ -143,12 +152,7 @@
 
       const header = getTableHeader(headerNode.attr('data-header-id'));
     
-      if (header) {
-        currentHeader = {
-          data: header,
-          bBox: headerNode[0].getBoundingClientRect()
-        };
-      }
+      header && handleEditColumn(header);
     }
 
     function handleUpdateColumnHeader(idx, updated = {}) {
@@ -212,7 +216,7 @@
         data: header,
         position: {
           x: event.pageX,
-          y: event.pageY - 15
+          y: event.pageY
         }
       };
     }
@@ -334,7 +338,8 @@
   <!-- Context Menu Component, fixed by now -->
   <ContextMenu 
     context={currentContextMenu}
-    onClose={handleCloseContextMenu} />
+    onClose={handleCloseContextMenu}
+    onEditColumn={handleEditColumn} />
 
   <!-- Editing Component, variant dependent -->
   <svelte:component 

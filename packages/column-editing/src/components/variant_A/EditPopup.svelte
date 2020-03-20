@@ -17,12 +17,17 @@
       const {
         target
       } = event;
+
+      if (!isOnPage(target)) {
+        return;
+      }
     
       const node = dom(target);
 
       if (!isInsidePopup(node)) {
         handleClose();
       }
+
     }
 
     function handleClose() {
@@ -75,6 +80,11 @@
     function isInsidePopup(node) {
       return node.closest('.column-header-edit-popup').length;
     }
+
+    function isOnPage(node) {
+      return document.body.contains(node);
+    }
+
 </script>
 
 <div 
@@ -85,7 +95,7 @@ top: {header.bBox.bottom - 10}px;
 display: {header.data ? 'block' : 'none'}
 ">
     {#if header.data}
-        <form on:submit|preventDefault={handleSubmit}>
+        <form on:submit|preventDefault={handleSubmit} autocomplete="off">
             <div class="field expression-field">
                 <label for="type">expression</label>
                 <input 
