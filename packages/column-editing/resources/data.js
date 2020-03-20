@@ -5,42 +5,42 @@ export default {
     hitPolicy: 'Collect (Sum)',
     inputHeaders: [
       {
-        idx: 0,
+        idx: 'input-header-0',
         clause: 'When',
-        name: 'Open Claims',
+        expression: 'Open Claims',
         type: 'integer'
       },
       {
-        idx: 1,
+        idx: 'input-header-1',
         clause: 'And',
-        name: 'Employee.region = Claim.region',
+        expression: 'Employee.region = Claim.region',
         type: '[true, false]'
       },
       {
-        idx: 2,
+        idx: 'input-header-2',
         clause: 'And',
-        name: 'Claim.expenditure',
+        expression: 'Claim.expenditure',
         type: 'integer'
       },
       {
-        idx: 3,
+        idx: 'input-header-3',
         clause: 'And',
-        name: 'Employee Experience',
+        expression: 'Employee Experience',
         type: "['Junior', 'Senior', 'Experienced']",
         smaller: true
       },
       {
-        idx: 4,
+        idx: 'input-header-4',
         clause: 'And',
-        name: 'Employee fills skillset',
+        expression: 'Employee fills skillset',
         type: '[true, false]'
       }
     ],
     outputHeaders: [
       {
-        idx: 0,
+        idx: 'output-header-0',
         clause: 'Then',
-        name: 'Score',
+        expression: 'Score',
         type: '[-50..20]'
       }
     ],

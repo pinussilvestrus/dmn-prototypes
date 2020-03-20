@@ -11,14 +11,14 @@
 
     let addHandler = noop;
 
-    function addInputColumn() {
+    function handleAddInputColumn() {
       addColumn('inputHeaders');
       updateRules('inputCells');
 
       onUpdateTable(tableData);
     }
 
-    function addOutputColumn() {
+    function handleAddOutputColumn() {
       addColumn('outputHeaders');
       updateRules('outputCells');
 
@@ -54,9 +54,11 @@
         [type]: [
           ...tableData[type],
           {
-            idx: tableData[type].length,
+            idx: (type === 'inputHeaders'
+              ? `input-header-${tableData[type].length}`
+              : `output-header-${tableData[type].length}`),
             clause: 'And',
-            name: '',
+            expression: '',
             type: ''
           }
         ]
@@ -67,7 +69,7 @@
 
     // lifecycle //////////
     onMount(async () => {
-      addHandler = id.includes('input') ? addInputColumn : addOutputColumn;
+      addHandler = id.includes('input') ? handleAddInputColumn : handleAddOutputColumn;
     });
 
 

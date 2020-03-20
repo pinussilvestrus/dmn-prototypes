@@ -35,4 +35,11 @@
   .field {
     margin-top: 0.5rem;
   }
+
+  input[type="submit"] {
+    visibility: hidden; 
+    position: fixed;
+    bottom: 0;
+    left: 0
+  }
 }

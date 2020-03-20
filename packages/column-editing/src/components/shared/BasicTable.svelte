@@ -35,12 +35,12 @@
       } = tableData;
 
       forEach(inputHeaders, ({ idx }) => {
-        const header = dom(`[data-header-id="input-header-${idx}"`);
+        const header = dom(`[data-header-id="${idx}"`);
         initHeaderInteractions(header);
       });
 
       forEach(outputHeaders, ({ idx }) => {
-        const header = dom(`[data-header-id="output-header-${idx}"`);
+        const header = dom(`[data-header-id="${idx}"`);
         initHeaderInteractions(header);
       });
 
@@ -50,7 +50,7 @@
 
     // methods //////////
 
-    function changeHitPolicy(event) {
+    function handleChangeHitPolicy(event) {
       const {
         target: { value }
       } = event;
@@ -118,7 +118,7 @@
       };
     }
 
-    function onInputColumnClick(event) {
+    function handleColumnClick(event) {
       const {
         target
       } = event;
@@ -130,14 +130,18 @@
       const node = dom(target);
 
       // todo(pinussilvestrus): also handle child events here!
-      const inputHeader = getTableHeader('inputHeaders', node.attr('data-idx'));
+      const header = getTableHeader(node.attr('data-header-id'));
     
-      if (inputHeader) {
+      if (header) {
         currentHeader = {
-          data: inputHeader,
+          data: header,
           bBox: node[0].getBoundingClientRect()
         };
       }
+    }
+
+    function handleUpdateColumnHeader(idx, updated = {}) {
+      const header = getTableHeader(idx);
     }
 
 
@@ -150,8 +154,14 @@
 
     // helpers //////////
 
-    function getTableHeader(type, idx) {
-      return find(tableData[type], h => h.idx === parseInt(idx));
+    function getTableHeader(idx) {
+      const found = find(tableData['inputHeaders'], h => h.idx === idx);
+
+      if (found) {
+        return found;
+      }
+
+      return find(tableData['outputHeaders'], h => h.idx === idx);
     }
 
 </script>
@@ -163,7 +173,7 @@
         <th colspan="{tableLength}">
           <p>{tableData.name}</p>
           <span />
-          <select on:change={changeHitPolicy}>
+          <select on:change={handleChangeHitPolicy}>
             {#each HIT_POLICIES as { name }}
               <option selected={name === tableData.hitPolicy}>{name}</option>
             {/each}
@@ -175,14 +185,13 @@
       <tr class="header-row">
         <th class="empty-cell"/>
 
-        {#each tableData.inputHeaders as { idx, clause, name, type, smaller }, i}
+        {#each tableData.inputHeaders as { idx, clause, expression, type, smaller }, i}
           <th 
             class="input-header" 
-            data-header-id={'input-header-' + idx} 
-            data-idx={idx}
-            on:dblclick={onInputColumnClick} >
+            data-header-id={idx} 
+            on:dblclick={handleColumnClick} >
               <span class="clause">{clause}</span>
-              <p class="label">{name}</p>
+              <p class="label">{expression}</p>
               <span class="type" data-size={smaller ? 'smaller' : ''}>
                 {type}
               </span>
@@ -193,13 +202,14 @@
           {/if}
         {/each}
 
-        {#each tableData.outputHeaders as { idx, clause, name, type }, i}
+        {#each tableData.outputHeaders as { idx, clause, expression, type }, i}
           <th
             class="output-header output-cell"
-            data-header-id={'output-header-' + idx}>
-            <span class="clause">{clause}</span>
-            <p class="label">{name}</p>
-            <span class="type">{type}</span>
+            data-header-id={idx}
+            on:dblclick={handleColumnClick} >
+              <span class="clause">{clause}</span>
+              <p class="label">{expression}</p>
+              <span class="type">{type}</span>
           </th>
 
           {#if i === tableData.outputHeaders.length - 1}
