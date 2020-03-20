@@ -1,15 +1,24 @@
-@import '../../vars';
+@import "../../vars";
 
 .new-column-button {
   position: absolute;
   left: 0;
   top: 0;
-  border-radius: 90%;
   cursor: pointer;
-  height: 1rem;
-  width: 1em;
   text-align: center;
-  background-color: $color-black;
-  color: whitesmoke;
+  color: $color-black;
   user-select: none;
+
+  svg {
+    position: absolute;
+    height: 1rem;
+  }
+
+  .fake {
+    position: absolute;
+    background: white;
+    margin: 0.25rem 0 0 0.3rem;
+    height: 0.5rem;
+    padding: 0.1rem 0 0 0.5rem;
+  }
 }

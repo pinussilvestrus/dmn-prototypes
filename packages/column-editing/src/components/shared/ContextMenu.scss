@@ -1,24 +1,24 @@
-@import '../../vars';
+@import "../../vars";
 
 .context-menu {
-    padding: 0 !important;
-    font-size: $table-font-size;
+  padding: 0 !important;
+  font-size: $table-font-size;
 
-    .item {
-        color: $color-grey-darken-30;
-        padding: 0.5rem 1rem 0.5rem 1rem;
+  .item {
+    color: $color-grey-darken-30;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 
-        &:hover {
-            background: $color-silver-darken-94;
-            cursor: pointer;
-            font: black;
-        }
+    &:hover {
+      background: $color-silver-darken-94;
+      cursor: pointer;
+      font: black;
     }
+  }
 
-    .separator {
-        margin: 0 0.5rem 0 0.5rem;
-        border-bottom: 1px solid $color-silver-darken-80;
-        height: 1px;
-        display: block;
-    }
+  .separator {
+    margin: 0 0.5rem 0 0.5rem;
+    border-bottom: 1px solid $color-silver-darken-80;
+    height: 1px;
+    display: block;
+  }
 }

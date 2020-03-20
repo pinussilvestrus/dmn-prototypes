@@ -1,6 +1,8 @@
 <script>
     import { onMount } from 'svelte';
 
+    import PlusSVG from '../../../resources/plus-solid.svg';
+
     import {
       map
     } from 'min-dash';
@@ -81,5 +83,6 @@
 </script>
 
 <div {id} class="new-column-button" on:click={addHandler}>
-    +
+    <div class="fake"></div>
+    {@html PlusSVG}
 </div>

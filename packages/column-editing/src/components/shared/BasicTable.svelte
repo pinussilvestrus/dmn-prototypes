@@ -109,7 +109,7 @@
       let bBox = inputGap[0].getBoundingClientRect();
     
       const addInputBtn = dom('#add-input-column');
-      addInputBtn.css('left', bBox.x - 10 + 'px');
+      addInputBtn.css('left', bBox.x - 11 + 'px');
       addInputBtn.css('top', (bBox.bottom - bBox.top) + 'px');
 
       // outputs
@@ -117,7 +117,7 @@
       bBox = outputGap[0].getBoundingClientRect();
     
       const addOutputBtn = dom('#add-output-column');
-      addOutputBtn.css('left', bBox.x - 10 + 'px');
+      addOutputBtn.css('left', bBox.x - 11 + 'px');
       addOutputBtn.css('top', (bBox.bottom - bBox.top) + 'px');
     }
 
