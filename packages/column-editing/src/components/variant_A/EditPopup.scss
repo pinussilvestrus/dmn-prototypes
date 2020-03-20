@@ -1,16 +1,7 @@
-@import "../../vars";
 @import "../../forms";
+@import "../../vars";
 
-.column-header-edit-modal {
-  display: none;
-  position: absolute;
-  background-color: white;
-  border: 0.05rem solid $color-grey-light;
-  border-radius: 3px;
-  box-sizing: border-box;
-  box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  z-index: 1;
+.column-header-edit-popup {
 
   &:before {
     bottom: 100%;

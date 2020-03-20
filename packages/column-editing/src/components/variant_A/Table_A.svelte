@@ -1,7 +1,7 @@
 <script>
-  import BasicTable from '../shared/BasicTable.svelte';
+  import BasicTable from '../shared/BasicTable';
 
-  import EditPopup from './EditPopup.svelte';
+  import EditPopup from './EditPopup';
 
 
   // exports //////////

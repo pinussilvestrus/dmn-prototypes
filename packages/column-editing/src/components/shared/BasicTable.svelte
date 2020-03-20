@@ -11,6 +11,8 @@
 
     import AddColumnButton from './AddColumnButton';
 
+    import ContextMenu from './ContextMenu';
+
     const HOVER_MARKER = 'hover';
 
     const noop = () => {};
@@ -20,9 +22,15 @@
       data: null
     };
 
+    const nullContextMenu = {
+      position: {},
+      data: null
+    };
+
     // state //////////
 
     let currentHeader = nullHeader;
+    let currentContextMenu = nullContextMenu;
 
     $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
     $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 4;
@@ -185,6 +193,30 @@
       currentHeader = nullHeader;
     }
 
+    function handleOpenContextMenu(event) {
+      const {
+        target
+      } = event;
+
+      if (!target) {
+        return;
+      }
+
+      const original = dom(target);
+
+      const headerNode = original.closest('th');
+
+      const header = getTableHeader(headerNode.attr('data-header-id'));
+
+      currentContextMenu = {
+        data: header,
+        position: {
+          x: event.pageX,
+          y: event.pageY - 15
+        }
+      };
+    }
+
 
     // exports //////////
 
@@ -230,7 +262,8 @@
           <th 
             class="input-header" 
             data-header-id={idx} 
-            on:dblclick={handleColumnClick} >
+            on:dblclick={handleColumnClick} 
+            on:contextmenu|preventDefault={handleOpenContextMenu}>
               <span class="clause">{clause}</span>
               <p class="label">{expression}</p>
               <span class="type" data-size={smaller ? 'smaller' : ''}>
@@ -290,10 +323,14 @@
     </tbody>
   </table>  
 
+  <!-- Adding Component, fixed by now -->
   <AddColumnButton id="add-input-column" {tableData} onUpdateTable={updateTableData} />
   <AddColumnButton id="add-output-column" {tableData} onUpdateTable={updateTableData} />
 
-  <!-- Editing Component -->
+  <!-- Context Menu Component, fixed by now -->
+  <ContextMenu context={currentContextMenu} />
+
+  <!-- Editing Component, variant dependent -->
   <svelte:component 
     this="{editComponent}" 
     header={currentHeader} 

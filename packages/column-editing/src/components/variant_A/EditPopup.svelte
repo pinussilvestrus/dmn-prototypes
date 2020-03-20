@@ -73,12 +73,12 @@
     }
 
     function isInsidePopup(node) {
-      return node.closest('.column-header-edit-modal').length;
+      return node.closest('.column-header-edit-popup').length;
     }
 </script>
 
 <div 
-    class="column-header-edit-modal" 
+    class="popup column-header-edit-popup" 
     style="
 left: {header.bBox.left + 13}px; 
 top: {header.bBox.bottom - 10}px;
