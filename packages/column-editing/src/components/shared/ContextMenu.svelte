@@ -1,4 +1,8 @@
 <script>
+    import { afterUpdate } from 'svelte';
+
+    import dom from 'domtastic';
+
     import './ContextMenu.scss';
 
     const noop = () => {};
@@ -44,12 +48,50 @@
       }
     ];
 
+    function handleClickOutside(event) {
+      const {
+        target
+      } = event;
+    
+      const node = dom(target);
+
+      if (!isInsideMenu(node)) {
+        handleClose();
+      }
+    }
+
+    function handleClose() {
+      onClose();
+    }
+
+
+    // lifecycle //////////
+
+    afterUpdate(async () => {
+      const body = dom('body');
+
+      if (context.data) {
+        body.on('click', handleClickOutside);
+      } else {
+        body.off('click', handleClickOutside);
+      }
+    });
+
+
     // exports //////////
 
     export let context = {
       position: {},
       data: null
     };
+    export let onClose = noop;
+
+
+    // helpers //////////
+
+    function isInsideMenu(node) {
+      return node.closest('.context-menu').length;
+    }
 </script>
 
 <div 

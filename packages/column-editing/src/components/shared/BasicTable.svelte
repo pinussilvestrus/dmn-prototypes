@@ -181,7 +181,7 @@
         return h;
       });
 
-      handleEditComponentClose();
+      handleCloseEditComponent();
 
       updateTableData({
         inputHeaders: updatedInputHeaders,
@@ -189,7 +189,7 @@
       });
     }
 
-    function handleEditComponentClose() {
+    function handleCloseEditComponent() {
       currentHeader = nullHeader;
     }
 
@@ -215,6 +215,10 @@
           y: event.pageY - 15
         }
       };
+    }
+
+    function handleCloseContextMenu() {
+      currentContextMenu = nullContextMenu;
     }
 
 
@@ -328,13 +332,15 @@
   <AddColumnButton id="add-output-column" {tableData} onUpdateTable={updateTableData} />
 
   <!-- Context Menu Component, fixed by now -->
-  <ContextMenu context={currentContextMenu} />
+  <ContextMenu 
+    context={currentContextMenu}
+    onClose={handleCloseContextMenu} />
 
   <!-- Editing Component, variant dependent -->
   <svelte:component 
     this="{editComponent}" 
     header={currentHeader} 
     onUpdateHeader={handleUpdateColumnHeader}
-    onClose={handleEditComponentClose} />
+    onClose={handleCloseEditComponent} />
 </div>
   
