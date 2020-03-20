@@ -127,15 +127,16 @@
         return;
       }
 
-      const node = dom(target);
+      const original = dom(target);
 
-      // todo(pinussilvestrus): also handle child events here!
-      const header = getTableHeader(node.attr('data-header-id'));
+      const headerNode = original.closest('th');
+
+      const header = getTableHeader(headerNode.attr('data-header-id'));
     
       if (header) {
         currentHeader = {
           data: header,
-          bBox: node[0].getBoundingClientRect()
+          bBox: headerNode[0].getBoundingClientRect()
         };
       }
     }
