@@ -1,7 +1,7 @@
 <script>
     import { afterUpdate } from 'svelte';
 
-    import { find, forEach, map } from 'min-dash';
+    import { filter, find, findIndex, forEach, map } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -153,6 +153,48 @@
       const header = getTableHeader(headerNode.attr('data-header-id'));
     
       header && handleEditColumn(header);
+    }
+
+    // todo(pinussilvestrus): refactor me, I AM NOT STABLE
+    function handleRemoveColumn(idx) {
+      const {
+        inputHeaders,
+        outputHeaders,
+        rules
+      } = tableData;
+
+      // (1) try to update inputs
+      const updatedInputHeaders = filter(inputHeaders, h => h.idx !== idx);
+
+      // (2) try to update outputHeaders
+      const updatedOutputHeaders = filter(outputHeaders, h => h.idx !== idx);
+
+
+      // (3) try to update rules
+      let updatedRules = [];
+
+      const updateRules = (index, type) => {
+        updatedRules = map(rules, r => {
+          r[type].splice(index, 1);
+          return r;
+        });
+      };
+    
+      let index = findIndex(inputHeaders, h => h.idx === idx);
+
+      if (index) {
+        updateRules(index, 'inputCells');
+      } else {
+        let index = findIndex(outputHeaders, h => h.idx === idx);
+        updateRules(index, 'outputCells');
+      }
+
+      updateTableData({
+        inputHeaders: updatedInputHeaders,
+        outputHeaders: updatedOutputHeaders,
+        rules: updatedRules
+      });
+
     }
 
     function handleUpdateColumnHeader(idx, updated = {}) {
@@ -339,7 +381,8 @@
   <ContextMenu 
     context={currentContextMenu}
     onClose={handleCloseContextMenu}
-    onEditColumn={handleEditColumn} />
+    onEditColumn={handleEditColumn}
+    onRemoveColumn={handleRemoveColumn} />
 
   <!-- Editing Component, variant dependent -->
   <svelte:component 

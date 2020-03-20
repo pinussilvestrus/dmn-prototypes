@@ -52,7 +52,7 @@
       {
         key: 'remove',
         label: 'Remove Column',
-        action: noop
+        action: handleRemoveColumn
       }
     ];
 
@@ -72,6 +72,11 @@
       if (!isInsideMenu(node)) {
         handleClose();
       }
+    }
+
+    function handleRemoveColumn() {
+      onClose();
+      onRemoveColumn(context.data.idx);
     }
 
     function handleClose() {
@@ -105,6 +110,7 @@
     };
     export let onClose = noop;
     export let onEditColumn = noop;
+    export let onRemoveColumn = noop;
 
 
     // helpers //////////
