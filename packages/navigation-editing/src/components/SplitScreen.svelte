@@ -109,6 +109,7 @@
 
   export let onViewSwitch = noop;
   export let onTableChange = noop;
+  export let onUpdateTableData = noop;
   export let tableData = {};
 
 </script>
@@ -127,7 +128,7 @@
   </div>
   <div class="split"></div>
   <div class="table-part">
-    <Table onHighlight={highlightElements} {tableData} />
+    <Table onHighlight={highlightElements} {onUpdateTableData} {tableData} />
   </div>
   <PropertiesModal />
 </div>

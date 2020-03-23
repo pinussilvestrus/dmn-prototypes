@@ -135,6 +135,8 @@
         ...tableData,
         ...updated
       };
+
+      onUpdateTableData(tableData);
     }
 
     function handleEditColumn(header) {
@@ -293,6 +295,7 @@
     // exports //////////
 
     export let onHighlight = noop;
+    export let onUpdateTableData = noop;
     export let tableData = {};
     export let editComponent;
 

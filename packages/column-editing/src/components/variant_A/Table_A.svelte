@@ -8,8 +8,9 @@
 
   export let tableData;
   export let onHighlight;
+  export let onUpdateTableData;
 </script>
 
 <div>
-  <BasicTable {tableData} {onHighlight} editComponent={EditPopup} />
+  <BasicTable {tableData} {onHighlight} {onUpdateTableData} editComponent={EditPopup} />
 </div>

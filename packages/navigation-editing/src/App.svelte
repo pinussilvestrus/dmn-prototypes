@@ -28,6 +28,24 @@
     view = (name === 'split-screen' && !expanded) ? 'table' : name;
   }
 
+  function handleUpdateTableData(updated = {}) {
+    const {
+      id
+    } = updated;
+
+    if (!id) {
+      return;
+    }
+
+    data[id] = {
+      ...data[id],
+      ...updated
+    };
+
+    // is this really necessary? Might run into performance issues...
+    changeTable(id);
+  }
+
   function changeTable(tableId) {
     const newTable = data[tableId];
 
@@ -50,6 +68,7 @@
   <SplitScreen
     onViewSwitch={switchView}
     tableData={currentTable}
+    onUpdateTableData={handleUpdateTableData}
     onTableChange={changeTable} />
 </Wrapper>
 
