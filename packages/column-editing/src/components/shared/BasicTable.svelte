@@ -226,9 +226,7 @@
 
         return h;
       });
-
-      handleCloseEditComponent();
-
+    
       updateTableData({
         inputHeaders: updatedInputHeaders,
         outputHeaders: updatedOutputHeaders

@@ -5,12 +5,25 @@
 
     import './EditPopup.scss';
 
-
     const noop = () => {};
 
-    function handleSubmit({ target: form }) {
-      const updated = constructBody(form);
-      onUpdateHeader(header.data.idx, updated);
+    $: originalData = header.data;
+
+
+    // methods //////////
+
+    function handleChange({ target }) {
+      const formNode = dom(target);
+
+      const {
+        data: headerData
+      } = header;
+
+      const updated = {
+        [formNode.attr('name')]: formNode.val()
+      };
+
+      headerData && onUpdateHeader(headerData.idx, updated);
     }
 
     function handleClickOutside(event) {
@@ -30,6 +43,11 @@
 
     }
 
+    function undoChanges() {
+      onUpdateHeader(header.data.idx, originalData);
+    }
+
+
     function handleClose() {
       onClose();
     }
@@ -38,6 +56,7 @@
     
       // ESC
       if (event.which === 27) {
+        undoChanges();
         handleClose();
       }
     }
@@ -47,6 +66,11 @@
 
     afterUpdate(async () => {
     
+      // set autofocus
+      const expressionNode = dom('.column-header-edit-popup form input[name="expression"]')[0];
+      expressionNode && expressionNode.focus();
+
+      // handle background activity
       const body = dom('body');
 
       if (header.data) {
@@ -68,14 +92,8 @@
     export let onUpdateHeader = noop;
     export let onClose = noop;
 
-    // helpers //////////
 
-    function constructBody(form) {
-      return {
-        expression: form.expression.value,
-        type: form.type.value
-      };
-    }
+    // helpers //////////
 
     function isInsidePopup(node) {
       return node.closest('.column-header-edit-popup').length;
@@ -95,7 +113,11 @@ top: {header.bBox.bottom - 10}px;
 display: {header.data ? 'block' : 'none'}
 ">
     {#if header.data}
-        <form on:submit|preventDefault={handleSubmit} autocomplete="off">
+        <form 
+          id="column-header-edit"
+          on:change|preventDefault={handleChange} 
+          on:click|preventDefault={noop}
+          autocomplete="off">
             <div class="field expression-field">
                 <label for="type">expression</label>
                 <input 
@@ -110,12 +132,10 @@ display: {header.data ? 'block' : 'none'}
                 <input 
                     placeholder="string"
                     id="type" 
-                    name="name"
+                    name="type"
                     type="text" 
                     value="{header.data.type}" />
             </div>
-
-            <input type="submit"/>
         </form>
     {/if}
     
