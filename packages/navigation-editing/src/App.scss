@@ -1,0 +1,27 @@
+@import '../../column-editing/src/popups';
+@import './vars';
+
+
+.btn {
+  padding: 0.5rem;
+  border: solid 0.05rem $color-grey;
+  border-radius: 0.125rem;
+  font-size: 0.75rem;
+  color: $color-black;
+  font-weight: bold;
+  cursor: pointer;
+  background: $color-silver-darken-87;
+
+  &.btn-sticky {
+    border-radius: none;
+  }
+
+  &:hover {
+    background: $color-silver-darken-94;
+  }
+}
+
+.edit-drd {
+  vertical-align: top;
+  margin-top: 0.5rem;
+}

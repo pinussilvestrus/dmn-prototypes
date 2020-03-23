@@ -241,6 +241,8 @@
             ...h,
             ...updated
           };
+
+          markPreview(idx, updated);
         }
 
         return h;

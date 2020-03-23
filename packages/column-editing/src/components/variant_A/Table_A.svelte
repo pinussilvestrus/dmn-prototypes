@@ -7,8 +7,9 @@
   // exports //////////
 
   export let tableData;
+  export let onHighlight;
 </script>
 
 <div>
-  <BasicTable {tableData} editComponent={EditPopup} />
+  <BasicTable {tableData} {onHighlight} editComponent={EditPopup} />
 </div>

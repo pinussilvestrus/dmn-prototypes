@@ -1,0 +1,152 @@
+@import '../vars';
+
+.split-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  .drd-part {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+    
+    resize: horizontal;
+    overflow: auto;
+    position: relative;
+    width: 25%;
+    overflow: auto;
+    background-color: $color-silver-base;
+    border-bottom: 0.05rem solid $color-grey;
+
+    .edit-drd {
+      margin: 1rem 0 0 1rem;
+    }
+
+    .collapse {
+      height: 3rem;
+      padding-top: 2rem;
+      padding-bottom: 0.3rem;
+      position: absolute;
+      bottom: 50%;
+      right: 0;
+
+      svg {
+        width: 1rem;
+        color: $color-black;
+      }
+    }
+
+    .drd {
+      padding-top: 1rem;
+      margin: auto;
+    }
+
+    .diagram {
+      svg {
+        padding: 0;
+      }
+
+      &.dragged {
+        cursor: grab;
+      }
+    }
+  }
+
+  .split {
+    margin-right: 0.5rem;
+    border-left: 0.05rem solid $color-grey;
+  }
+
+  .table-part {
+    margin-left: 0.5rem;
+    width: 75%;
+
+    .title-row {
+      p {
+        color: $color-selected;
+      }
+    }
+
+    .expand svg {
+      height: 1.5rem;
+    }
+  }
+
+  th.highlight {
+    background-color: $color-highlight-light;
+    color: $color-highlight;
+
+    .clause {
+      display: none;
+    }
+
+    .type {
+      color: $color-highlight !important;
+      font-weight: normal;
+    }
+  }
+
+  .djs-shape {
+    &.selected .djs-visual {
+      * {
+        shape-rendering: auto;
+        stroke-width: 0.05rem;
+        stroke-dasharray: none;
+      }
+
+      rect {
+        stroke: $color-selected !important;
+        stroke-width: 0.125rem !important;
+        fill: $color-selected-light !important;
+      }
+
+      text {
+        fill: $color-selected !important;
+        stroke: none;
+        font-weight: bold;
+      }
+    }
+
+    &.highlight {
+      .djs-visual {
+        rect {
+          stroke: $color-highlight !important;
+          stroke-width: 0.125rem !important;
+          fill: $color-highlight-light !important;
+        }
+  
+        text {
+          fill: $color-highlight !important;
+          font-weight: bold;
+        }
+      }
+
+      .dt-icon {
+        path {
+          fill: $color-highlight;
+        }
+      }
+    }
+
+    &.hover:not(.selected) {
+      text {
+        fill: $color-highlight !important;
+      }
+
+      .djs-outline {
+        shape-rendering: auto;
+        stroke: none;
+      }
+    }
+  }
+
+  .djs-connection.highlight .djs-visual polyline {
+    stroke: $color-highlight !important;
+    stroke-width: 0.08rem !important;
+    marker-end: url(#information-requirement-highlight-end) !important;
+  }
+}

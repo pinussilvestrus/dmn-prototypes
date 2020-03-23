@@ -1,0 +1,36 @@
+@import '../vars';
+
+.navigation-table {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+
+  .buttons {
+    padding: 1rem;
+    padding-top: 0.5rem;
+    position: relative;
+    background-color: $color-silver-base;
+    border: 0.05rem solid $color-grey;
+
+    .arrow-expand {
+      position: absolute;
+      bottom: 50%;
+      right: 0;
+      height: 3rem;
+      padding-top: 2rem;
+      padding-bottom: 0.3rem;
+
+      svg {
+        width: 1rem;
+        color: $color-black;
+      }
+    }
+
+  }
+
+  .decision-table {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
