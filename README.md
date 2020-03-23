@@ -24,6 +24,7 @@ Prototypes built via our DMN Innovation Process, Q1 & Q2 2020
     - [innovation-week-andreas](./packages/innovation-week-andreas)
 - Column Editing
     - [column-editing](./packages/column-editing)
+    - [navigation-editing](./packages/navigation-editing)
 
 ## Setup
 
