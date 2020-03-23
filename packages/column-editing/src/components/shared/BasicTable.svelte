@@ -1,7 +1,14 @@
 <script>
     import { afterUpdate } from 'svelte';
 
-    import { filter, find, findIndex, forEach, map } from 'min-dash';
+    import {
+      filter,
+      find,
+      findIndex,
+      forEach,
+      keys,
+      map
+    } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -14,6 +21,8 @@
     import ContextMenu from './ContextMenu';
 
     const HOVER_MARKER = 'hover';
+
+    const PREVIEW_MARKER = 'preview';
 
     const noop = () => {};
 
@@ -45,12 +54,12 @@
       } = tableData;
 
       forEach(inputHeaders, ({ idx }) => {
-        const header = dom(`[data-header-id="${idx}"`);
+        const header = getHeaderNode(idx);
         initHeaderInteractions(header);
       });
 
       forEach(outputHeaders, ({ idx }) => {
-        const header = dom(`[data-header-id="${idx}"`);
+        const header = getHeaderNode(idx);
         initHeaderInteractions(header);
       });
 
@@ -129,7 +138,7 @@
     }
 
     function handleEditColumn(header) {
-      const bBox = dom(`[data-header-id="${header.idx}"]`)[0].getBoundingClientRect();
+      const bBox = getHeaderNode(header.idx)[0].getBoundingClientRect();
 
       currentHeader = {
         data: header,
@@ -197,6 +206,14 @@
 
     }
 
+    function markPreview(idx, properties) {
+      const node = getHeaderNode(idx);
+
+      forEach(keys(properties), key => {
+        node.find(`.${key}`).addClass(PREVIEW_MARKER);
+      });
+    }
+
     function handleUpdateColumnHeader(idx, updated = {}) {
       const {
         inputHeaders,
@@ -210,6 +227,8 @@
             ...h,
             ...updated
           };
+
+          markPreview(idx, updated);
         }
 
         return h;
@@ -235,6 +254,9 @@
 
     function handleCloseEditComponent() {
       currentHeader = nullHeader;
+
+      // remove previews
+      dom('.input-header *, .output-header *').removeClass(PREVIEW_MARKER);
     }
 
     function handleOpenContextMenu(event) {
@@ -285,6 +307,10 @@
       return find(tableData['outputHeaders'], h => h.idx === idx);
     }
 
+    function getHeaderNode(idx) {
+      return dom(`[data-header-id="${idx}"`);
+    }
+
 </script>
   
 <div class="decision-table">
@@ -313,7 +339,7 @@
             on:dblclick={handleColumnClick} 
             on:contextmenu|preventDefault={handleOpenContextMenu}>
               <span class="clause">{clause}</span>
-              <p class="label">{expression}</p>
+              <p class="expression">{expression}</p>
               <span class="type" data-size={smaller ? 'smaller' : ''}>
                 {type}
               </span>
@@ -331,7 +357,7 @@
             on:dblclick={handleColumnClick} 
             on:contextmenu|preventDefault={handleOpenContextMenu}>
               <span class="clause">{clause}</span>
-              <p class="label">{expression}</p>
+              <p class="expression">{expression}</p>
               <span class="type">{type}</span>
           </th>
 

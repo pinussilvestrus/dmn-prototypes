@@ -90,6 +90,10 @@
         .output-header {
           position: relative;
 
+          .preview {
+            color: $color-preview !important;
+          }
+
           .clause {
             position: absolute;
             left: 0.2rem;
@@ -99,7 +103,7 @@
             font-size: $table-font-size + 0.125;
           }
 
-          .label {
+          .expression {
             word-wrap: normal;
             font-size: $table-font-size + 0.125;
             margin: 1rem 0rem 1.5rem 0rem;

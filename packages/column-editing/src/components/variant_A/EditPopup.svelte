@@ -109,7 +109,7 @@
     class="popup column-header-edit-popup" 
     style="
 left: {header.bBox.left + 13}px; 
-top: {header.bBox.bottom - 10}px;
+top: {header.bBox.bottom + 10}px;
 display: {header.data ? 'block' : 'none'}
 ">
     {#if header.data}
