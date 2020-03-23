@@ -1,0 +1,40 @@
+@import '../../vars';
+
+.autocomplete {
+  position: relative;
+  display: inline-block;
+
+  input {
+    margin-bottom: 0;
+  }
+
+  .items {
+    display: none;
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    .item {
+      font-size: $table-font-size;
+      padding: 10px;
+      cursor: pointer;
+      background-color: white;
+      border-bottom: 1px solid $color-silver-darken-80;
+
+      &:hover {
+        background-color: $color-silver-darken-94;
+      }
+    }
+  }
+}‚
+
+.autocomplete-active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}

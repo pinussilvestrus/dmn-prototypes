@@ -3,6 +3,8 @@
 
     import dom from 'domtastic';
 
+    import AutoCompleteInput from './AutocompleteInput';
+
     import './EditPopup.scss';
 
     const noop = () => {};
@@ -115,12 +117,12 @@ display: {header.data ? 'block' : 'none'}
     {#if header.data}
         <form 
           id="column-header-edit"
-          on:change|preventDefault={handleChange} 
           on:click|preventDefault={noop}
           autocomplete="off">
             <div class="field expression-field">
                 <label for="type">expression</label>
                 <input 
+                    on:change|preventDefault={handleChange} 
                     id="expression" 
                     name="expression"
                     type="text" 
@@ -129,12 +131,13 @@ display: {header.data ? 'block' : 'none'}
     
             <div class="field type-field">
                 <label for="type">allowed values</label>
-                <input 
-                    placeholder="string"
-                    id="type" 
-                    name="type"
-                    type="text" 
-                    value="{header.data.type}" />
+                <AutoCompleteInput 
+                  placeholder="string"
+                  id="type" 
+                  name="type"
+                  type="text"
+                  onInputChange={handleChange}
+                  value="{header.data.type}" />
             </div>
         </form>
     {/if}
