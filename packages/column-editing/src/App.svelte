@@ -4,6 +4,9 @@
   // variant A
   import Table_A from './components/variant_A/Table_A.svelte';
 
+  // variant B
+  import Table_B from './components/variant_B/Table_B.svelte';
+
   import data from '../resources/data.js';
 
   import './App.scss';
@@ -44,6 +47,6 @@
 
 <div class="variant-b">
   {#if active === 'B'}
-    Foo
+    <Table_B { tableData } />
   {/if}
 </div>

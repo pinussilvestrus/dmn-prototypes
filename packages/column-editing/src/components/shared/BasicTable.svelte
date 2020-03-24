@@ -26,6 +26,7 @@
 
     const nullHeader = {
       bBox: {},
+      expressionBbox: {},
       data: null
     };
 
@@ -102,11 +103,16 @@
     }
 
     function handleEditColumn(header) {
-      const bBox = getHeaderNode(header.idx)[0].getBoundingClientRect();
+      const headerNode = getHeaderNode(header.idx);
+
+      const bBox = headerNode[0].getBoundingClientRect();
+
+      const expressionBbox = headerNode.find('.expression')[0].getBoundingClientRect();
 
       currentHeader = {
         data: header,
-        bBox
+        bBox,
+        expressionBbox
       };
     }
 

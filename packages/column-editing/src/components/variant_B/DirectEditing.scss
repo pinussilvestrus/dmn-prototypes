@@ -1,0 +1,37 @@
+.direct-editing {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  padding: 0;
+  z-index: 1;
+
+  form {
+    padding: 0.4rem;
+
+    * {
+      overflow: visible;
+    }
+
+    .type-field, .expression-field {
+      padding: 0.3rem;
+    }
+
+    input {
+      width: 100%;
+
+      &[name="expression"] {
+        border: 0;
+        margin: 0.1rem auto 1.5rem auto;
+        word-wrap: break-word;
+        word-break: break-all;
+        text-align: center;
+        padding: 0;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
