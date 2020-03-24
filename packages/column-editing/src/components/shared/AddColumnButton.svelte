@@ -79,10 +79,15 @@
 
     export let id;
     export let tableData = {};
+    export let bounds = {};
     export let onUpdateTable = noop;
 </script>
 
-<div {id} class="new-column-button" on:click={addHandler}>
+<div 
+  {id} 
+  class="new-column-button" 
+  style="left: {bounds.left}; top: {bounds.top}"
+  on:click={addHandler} >
     <div class="fake"></div>
     {@html PlusSVG}
 </div>

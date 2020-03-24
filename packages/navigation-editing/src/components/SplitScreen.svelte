@@ -25,6 +25,8 @@
 
   const HIGHLIGHT_MARKER = 'highlight';
 
+  const HOVER_MARKER = 'hover';
+
   $: dataHeaderBindings = tableData.bindings;
 
 
@@ -60,6 +62,33 @@
         setMarker(element, HIGHLIGHT_MARKER);
       });
     }
+  }
+
+  function handleHeaderMouseover(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    const header = dom(event.target);
+
+    header.addClass('table-header');
+
+    if (header.hasClass(HOVER_MARKER)) {
+      return;
+    }
+  
+    header.setMarker(HOVER_MARKER);
+    highlightElements(header);
+  }
+
+  function handleHeaderMouseout(event) {
+    const header = dom(event.target);
+
+    if (header.hasClass(HOVER_MARKER)) {
+      header.setMarker(HOVER_MARKER);
+    }
+
+    // toggle unhiglighting
+    highlightElements(header);
   }
 
   // handles highlighting + unhighlighting
@@ -128,7 +157,12 @@
   </div>
   <div class="split"></div>
   <div class="table-part">
-    <Table onHighlight={highlightElements} {onUpdateTableData} {tableData} />
+    <Table 
+      onHighlight={highlightElements}
+      onHeaderMouseover={handleHeaderMouseover} 
+      onHeaderMouseout={handleHeaderMouseout}
+      {onUpdateTableData} 
+      {tableData} />
   </div>
   <PropertiesModal />
 </div>

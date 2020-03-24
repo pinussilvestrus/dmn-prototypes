@@ -20,8 +20,6 @@
 
     import ContextMenu from './ContextMenu';
 
-    const HOVER_MARKER = 'hover';
-
     const PREVIEW_MARKER = 'preview';
 
     const noop = () => {};
@@ -44,26 +42,14 @@
     $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
     $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 4;
 
+    let addInputBounds = {};
+    let addOutputBounds = {};
+
 
     // lifecycle //////////
 
     afterUpdate(async () => {
-      const {
-        inputHeaders,
-        outputHeaders
-      } = tableData;
-
-      forEach(inputHeaders, ({ idx }) => {
-        const header = getHeaderNode(idx);
-        initHeaderInteractions(header);
-      });
-
-      forEach(outputHeaders, ({ idx }) => {
-        const header = getHeaderNode(idx);
-        initHeaderInteractions(header);
-      });
-
-      initAddColumnBtns();
+      updateAddColumnBounds();
     });
 
 
@@ -77,57 +63,33 @@
       tableData.hitPolicy = value;
     }
 
-    function initHeaderInteractions(header) {
-    
-      // do not do anything if not in split screen
-      if (onHighlight === noop) {
-        return;
-      }
-
-      header.addClass('table-header');
-
-      header.on('mouseover', event => {
-        event.stopPropagation();
-        event.preventDefault();
-
-        if (header.hasClass(HOVER_MARKER)) {
-          return;
-        }
-    
-        header.addClass(HOVER_MARKER);
-        onHighlight(header);
-      });
-
-      header.on('mouseout', event => {
-        event.stopPropagation();
-        event.preventDefault();
-
-        if (!header.hasClass(HOVER_MARKER)) {
-          return;
-        }
-    
-        header.removeClass(HOVER_MARKER);
-        onHighlight(header);
-      });
+    function handleMouseover(event) {
+      onHeaderMouseover(event);
     }
 
-    function initAddColumnBtns() {
+    function handleMouseout(event) {
+      onHeaderMouseout(event);
+    }
+
+    function updateAddColumnBounds() {
 
       // inputs
       const inputGap = dom('#input-gap');
       let bBox = inputGap[0].getBoundingClientRect();
-    
-      const addInputBtn = dom('#add-input-column');
-      addInputBtn.css('left', bBox.x - 7 + 'px');
-      addInputBtn.css('top', (bBox.bottom - bBox.top) + 'px');
+
+      addInputBounds = {
+        left: bBox.x - 7 + 'px',
+        top: bBox.bottom - bBox.top + 'px'
+      };
 
       // outputs
       const outputGap = dom('#output-gap');
       bBox = outputGap[0].getBoundingClientRect();
-    
-      const addOutputBtn = dom('#add-output-column');
-      addOutputBtn.css('left', bBox.x - 7 + 'px');
-      addOutputBtn.css('top', (bBox.bottom - bBox.top) + 'px');
+
+      addOutputBounds = {
+        left: bBox.x - 7 + 'px',
+        top: bBox.bottom - bBox.top + 'px'
+      };
     }
 
     function updateTableData(updated) {
@@ -179,7 +141,6 @@
 
       // (2) try to update outputHeaders
       const updatedOutputHeaders = filter(outputHeaders, h => h.idx !== idx);
-
 
       // (3) try to update rules
       let updatedRules = [];
@@ -294,8 +255,9 @@
 
     // exports //////////
 
-    export let onHighlight = noop;
     export let onUpdateTableData = noop;
+    export let onHeaderMouseover = noop;
+    export let onHeaderMouseout = noop;
     export let tableData = {};
     export let editComponent;
 
@@ -341,6 +303,8 @@
           <th 
             class="input-header" 
             data-header-id={idx} 
+            on:mouseover={handleMouseover}
+            on:mouseout={handleMouseout}
             on:dblclick={handleColumnClick} 
             on:contextmenu|preventDefault={handleOpenContextMenu}>
               <span class="clause">{clause}</span>
@@ -404,8 +368,16 @@
   </table>  
 
   <!-- Adding Component, fixed by now -->
-  <AddColumnButton id="add-input-column" {tableData} onUpdateTable={updateTableData} />
-  <AddColumnButton id="add-output-column" {tableData} onUpdateTable={updateTableData} />
+  <AddColumnButton 
+      id="add-input-column" 
+      bounds={addInputBounds}
+      onUpdateTable={updateTableData} 
+      {tableData} />
+  <AddColumnButton 
+      id="add-output-column" 
+      bounds={addOutputBounds}
+      onUpdateTable={updateTableData}
+      {tableData} />
 
   <!-- Context Menu Component, fixed by now -->
   <ContextMenu 
