@@ -323,6 +323,8 @@
           <th
             class="output-header output-cell"
             data-header-id={idx}
+            on:mouseover={handleMouseover}
+            on:mouseout={handleMouseout}
             on:dblclick={handleColumnClick} 
             on:contextmenu|preventDefault={handleOpenContextMenu}>
               <span class="clause">{clause}</span>

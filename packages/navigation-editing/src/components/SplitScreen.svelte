@@ -68,7 +68,8 @@
     event.stopPropagation();
     event.preventDefault();
 
-    const header = dom(event.target);
+    const node = dom(event.target);
+    const header = node.closest('.input-header, .output-header');
 
     header.addClass('table-header');
 
@@ -76,15 +77,16 @@
       return;
     }
   
-    header.setMarker(HOVER_MARKER);
+    setMarker(header, HOVER_MARKER);
     highlightElements(header);
   }
 
   function handleHeaderMouseout(event) {
-    const header = dom(event.target);
+    const node = dom(event.target);
+    const header = node.closest('.input-header, .output-header');
 
     if (header.hasClass(HOVER_MARKER)) {
-      header.setMarker(HOVER_MARKER);
+      setMarker(header, HOVER_MARKER);
     }
 
     // toggle unhiglighting
