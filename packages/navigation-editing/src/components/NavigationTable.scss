@@ -12,6 +12,8 @@
     position: relative;
     background-color: $color-silver-base;
     border: 0.05rem solid $color-grey;
+    border-top: none;
+    border-left: none;
 
     .arrow-expand {
       position: absolute;

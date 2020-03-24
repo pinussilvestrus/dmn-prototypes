@@ -8,6 +8,7 @@
     const noop = () => {};
 
     export let onViewSwitch = noop;
+    export let onUpdateTableData = noop;
     export let tableData;
 </script>
 
@@ -20,5 +21,7 @@
           Edit DRD
         </button>
     </div>
-    <Table { tableData } />
+    <Table 
+      {onUpdateTableData} 
+      {tableData} />
 </div>

@@ -13,7 +13,8 @@
   background: $color-silver-darken-87;
 
   &.btn-sticky {
-    border-radius: none;
+    border-radius: 0;
+    border-right: none;
   }
 
   &:hover {

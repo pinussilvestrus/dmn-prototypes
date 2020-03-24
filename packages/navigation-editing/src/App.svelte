@@ -73,5 +73,8 @@
 </Wrapper>
 
 <Wrapper view="table" activeView={view} className="table-view" style="height: 100%;">
-  <NavigationTable onViewSwitch={switchView} tableData={currentTable} />
+  <NavigationTable 
+    onViewSwitch={switchView} 
+    tableData={currentTable}
+    onUpdateTableData={handleUpdateTableData} />
 </Wrapper>
