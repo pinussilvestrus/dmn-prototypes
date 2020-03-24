@@ -132,7 +132,6 @@ display: {header.data ? 'block' : 'none'}
             <div class="field type-field">
                 <label for="type">allowed values</label>
                 <AutoCompleteInput 
-                  placeholder="string"
                   id="type" 
                   name="type"
                   type="text"

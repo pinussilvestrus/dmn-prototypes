@@ -11,12 +11,13 @@
   .items {
     display: none;
     position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
+    box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     z-index: 99;
+    background-color: white;
 
-    top: 100%;
+    top: 95%;
     left: 0;
     right: 0;
 
@@ -24,17 +25,19 @@
       font-size: $table-font-size;
       padding: 10px;
       cursor: pointer;
-      background-color: white;
-      border-bottom: 1px solid $color-silver-darken-80;
+      border-bottom: 1px solid $color-silver-darken-94;
+
+      &:last-child {
+        border-bottom: none;
+      }
 
       &:hover {
         background-color: $color-silver-darken-94;
       }
+
+      strong {
+        color: $color-blue-darken-55;
+      }
     }
   }
-}‚
-
-.autocomplete-active {
-  background-color: DodgerBlue !important;
-  color: #ffffff;
 }
