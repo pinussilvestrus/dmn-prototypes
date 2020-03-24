@@ -25,6 +25,26 @@
 
   .field {
     margin-top: 0.5rem;
+
+    .blank {
+      padding-top: 0.15rem;
+    }
+  }
+
+  .feel {
+    background-color: $color-blue-lighten-75;
+    font-size: $table-font-size - 0.15;
+    color: white;
+    padding: 0.15rem 0.4rem 0.15rem 0.4rem;
+    margin-left: 0.2rem;
+    border-radius: 5px;
+
+    svg {
+      vertical-align: middle;
+      height: $table-font-size - 0.15;
+      margin-right: 0.15rem;
+      margin-top: -0.15rem;
+    }
   }
 
   input[type="submit"] {

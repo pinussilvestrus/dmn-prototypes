@@ -5,6 +5,8 @@
 
     import AutoCompleteInput from './AutocompleteInput';
 
+    import FileCodeSvg from '../../../resources/file-code.svg';
+
     import './EditPopup.scss';
 
     const noop = () => {};
@@ -120,7 +122,7 @@ display: {header.data ? 'block' : 'none'}
           on:click|preventDefault={noop}
           autocomplete="off">
             <div class="field expression-field">
-                <label for="type">Expression</label>
+                <label for="type"><span class="blank">Expression</span> <span class="feel">{@html FileCodeSvg}FEEL</span></label>
                 <input 
                     on:change|preventDefault={handleChange} 
                     id="expression" 
