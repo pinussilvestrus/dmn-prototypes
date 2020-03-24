@@ -3,6 +3,8 @@
 
     import dom from 'domtastic';
 
+    import AutoCompleteInput from '../shared/AutocompleteInput';
+
     import './DirectEditing.scss';
 
     const noop = () => {};
@@ -140,10 +142,11 @@ display: {header.data ? 'block' : 'none'}
     
             <div class="field type-field">
                 <label for="type">Allowed Values</label>
-                <input 
+                <AutoCompleteInput 
                   id="type" 
                   name="type"
                   type="text"
+                  onInputChange={handleChange}
                   value="{header.data.type}" />
             </div>
 
