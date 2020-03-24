@@ -8,6 +8,7 @@ export default {
         idx: 'input-header-0',
         clause: 'When',
         expression: 'Open Claims',
+        variable: 'openClaims',
         type: 'integer'
       },
       {

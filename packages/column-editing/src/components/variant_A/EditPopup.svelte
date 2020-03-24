@@ -120,7 +120,7 @@ display: {header.data ? 'block' : 'none'}
           on:click|preventDefault={noop}
           autocomplete="off">
             <div class="field expression-field">
-                <label for="type">expression</label>
+                <label for="type">Expression</label>
                 <input 
                     on:change|preventDefault={handleChange} 
                     id="expression" 
@@ -130,13 +130,23 @@ display: {header.data ? 'block' : 'none'}
             </div>
     
             <div class="field type-field">
-                <label for="type">allowed values</label>
+                <label for="type">Allowed Values</label>
                 <AutoCompleteInput 
                   id="type" 
                   name="type"
                   type="text"
                   onInputChange={handleChange}
                   value="{header.data.type}" />
+            </div>
+
+            <div class="field expression-field">
+              <label for="type">Engine Variable</label>
+              <input 
+                  on:change|preventDefault={handleChange} 
+                  id="variable" 
+                  name="variable"
+                  type="text" 
+                  value="{header.data.variable || ''}" />
             </div>
         </form>
     {/if}
