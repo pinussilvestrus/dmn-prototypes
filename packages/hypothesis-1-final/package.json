@@ -14,9 +14,9 @@
     "dmn-js": "^8.2.0"
   },
   "devDependencies": {
-    "npm-check-updates": "^4.0.4",
+    "npm-check-updates": "^4.0.5",
     "raw-loader": "^4.0.0",
-    "webpack": "^4.42.0",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
 }

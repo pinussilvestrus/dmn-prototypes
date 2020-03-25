@@ -3,7 +3,7 @@
 
     import dom from 'domtastic';
 
-    import AutoCompleteInput from '../shared/AutocompleteInput';
+    import AutoCompleteInput from '../shared/AutocompleteInput.svelte';
 
     import './DirectEditing.scss';
 
