@@ -1,6 +1,7 @@
 {
   "packages": [
-    "packages/*"
+    "packages/*",
+    "!packages/innovation-week-linus"
   ],
   "version": "0.0.0"
 }
