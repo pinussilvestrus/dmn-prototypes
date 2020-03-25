@@ -1,8 +1,14 @@
+@import "../../vars";
+
 .direct-editing {
   display: none;
   position: absolute;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid $color-silver-darken-87;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
   padding: 0;
   z-index: 1;
 
@@ -13,24 +19,34 @@
       overflow: visible;
     }
 
-    .type-field, .expression-field {
+    .type-field,
+    .expression-field {
       padding: 0.3rem;
     }
 
-    input {
+    input, textarea {
       width: 100%;
+    }
 
-      &[name="expression"] {
-        border: 0;
-        margin: 0.1rem auto 1.5rem auto;
-        word-wrap: break-word;
-        word-break: break-all;
-        text-align: center;
-        padding: 0;
+    textarea[name="expression"] {
+      font-size: $table-font-size + 0.125;
+      resize: none;
+      color: $color-grey-darken-30;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      border: 0;
+      overflow: hidden;
+      text-align: center;
+      padding: 0;
+      margin: 0.15rem auto 1rem auto;
+      min-height: 2rem;
+      height:auto;
 
-        &:focus {
-          outline: none;
-        }
+      &:focus {
+        outline: none;
       }
     }
   }

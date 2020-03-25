@@ -1,8 +1,8 @@
-@import '../../vars';
+@import "../../vars";
 
 .decision-table {
   padding-right: 1rem;
-  
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -80,15 +80,15 @@
       }
 
       .header-row {
-
         .input-header,
         .output-header {
-          width: 7rem;
-        }
-
-        .input-header,
-        .output-header {
+          width: 8rem;
+          max-width: 10rem;
           position: relative;
+
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+          word-break: break-word;
 
           .preview {
             color: $color-preview !important;
@@ -104,7 +104,6 @@
           }
 
           .expression {
-            word-wrap: normal;
             font-size: $table-font-size + 0.125;
             margin: 1rem 0rem 1.5rem 0rem;
           }

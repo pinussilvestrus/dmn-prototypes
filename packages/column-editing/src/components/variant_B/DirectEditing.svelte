@@ -63,12 +63,18 @@
       }
     }
 
-    function handleInputKeydown(event) {
+    function handleTextAreaKeydown(event) {
 
       // Enter
       if (event.which === 13) {
         handleChange(event);
-        handleClose();
+        return handleClose();
+      }
+    }
+
+    function handleTextAreaKeyup({ target }) {
+      if (target.scrollHeight > target.clientHeight) {
+        target.style.height = target.scrollHeight + 'px';
       }
     }
 
@@ -78,8 +84,9 @@
     afterUpdate(async () => {
     
       // set autofocus
-      const expressionNode = dom('.direct-editing form input[name="expression"]')[0];
+      const expressionNode = dom('.direct-editing form textarea[name="expression"]')[0];
       expressionNode && expressionNode.focus();
+      expressionNode && handleTextAreaKeyup({ target: expressionNode });
 
       // handle background activity
       const body = dom('body');
@@ -131,8 +138,10 @@ display: {header.data ? 'block' : 'none'}
           on:click|preventDefault={noop}
           autocomplete="off">
             <div class="field expression-field">
-                <input 
-                    on:keydown={handleInputKeydown}
+                <textarea 
+                    contenteditable="true"
+                    on:keydown={handleTextAreaKeydown}
+                    on:keyup={handleTextAreaKeyup}
                     on:change|preventDefault={handleChange} 
                     id="expression" 
                     name="expression"
