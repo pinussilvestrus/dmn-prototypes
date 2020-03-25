@@ -3,7 +3,7 @@
 
     import dom from 'domtastic';
 
-    import AutoCompleteInput from '../shared/AutocompleteInput.svelte';
+    import AutoCompleteInput from '../shared/AutoCompleteInput';
 
     import FileCodeSvg from '../../../resources/file-code.svg';
 
