@@ -80,50 +80,6 @@
       }
 
       .header-row {
-        .input-header,
-        .output-header {
-          width: 8rem;
-          max-width: 10rem;
-          position: relative;
-
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-          word-break: break-word;
-
-          .preview {
-            color: $color-preview !important;
-          }
-
-          .clause {
-            position: absolute;
-            left: 0.2rem;
-            top: 0.1rem;
-            margin-bottom: 0.5rem;
-            color: $color-grey;
-            font-size: $table-font-size + 0.125;
-          }
-
-          .expression {
-            font-size: $table-font-size + 0.125;
-            margin: 1rem 0rem 1.5rem 0rem;
-          }
-
-          .type {
-            text-align: right;
-            position: absolute;
-            right: 0.2rem;
-            bottom: 0.1rem;
-            color: $color-grey;
-            font-size: $table-font-size - 0.125;
-            word-wrap: break-word;
-            width: 100%;
-
-            &[data-size="smaller"] {
-              font-size: $table-font-size - 0.2;
-              width: 66%;
-            }
-          }
-        }
 
         .annotation-header {
           text-align: center;

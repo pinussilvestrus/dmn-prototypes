@@ -16,8 +16,8 @@
 
     import HIT_POLICIES from '../../util/getHitPolicies';
 
+    import ColumnHeader from './ColumnHeader';
     import AddColumnButton from './AddColumnButton';
-
     import ContextMenu from './ContextMenu';
 
     const PREVIEW_MARKER = 'preview';
@@ -116,7 +116,7 @@
       };
     }
 
-    function handleColumnClick(event) {
+    function handleColumnClick(event, header) {
       const {
         target
       } = event;
@@ -124,12 +124,6 @@
       if (!target) {
         return;
       }
-
-      const original = dom(target);
-
-      const headerNode = original.closest('th');
-
-      const header = getTableHeader(headerNode.attr('data-header-id'));
     
       header && handleEditColumn(header);
     }
@@ -230,7 +224,7 @@
       dom('.input-header *, .output-header *').removeClass(PREVIEW_MARKER);
     }
 
-    function handleOpenContextMenu(event) {
+    function handleOpenContextMenu(event, header) {
       const {
         target
       } = event;
@@ -238,12 +232,6 @@
       if (!target) {
         return;
       }
-
-      const original = dom(target);
-
-      const headerNode = original.closest('th');
-
-      const header = getTableHeader(headerNode.attr('data-header-id'));
 
       currentContextMenu = {
         data: header,
@@ -270,16 +258,6 @@
 
     // helpers //////////
 
-    function getTableHeader(idx) {
-      const found = find(tableData['inputHeaders'], h => h.idx === idx);
-
-      if (found) {
-        return found;
-      }
-
-      return find(tableData['outputHeaders'], h => h.idx === idx);
-    }
-
     function getHeaderNode(idx) {
       return dom(`[data-header-id="${idx}"`);
     }
@@ -305,39 +283,29 @@
       <tr class="header-row">
         <th class="empty-cell"/>
 
-        {#each tableData.inputHeaders as { idx, clause, expression, type, smaller }, i}
-          <th 
-            class="input-header" 
-            data-header-id={idx} 
-            on:mouseover={handleMouseover}
-            on:mouseout={handleMouseout}
-            on:dblclick={handleColumnClick} 
-            on:contextmenu|preventDefault={handleOpenContextMenu}>
-              <span class="clause">{clause}</span>
-              <p class="expression">{expression}</p>
-              <span class="type" data-size={smaller ? 'smaller' : ''}>
-                {type}
-              </span>
-          </th>
+        {#each tableData.inputHeaders as header, i}
+          <ColumnHeader
+            columnType="input"
+            data={header}
+            onMouseover={handleMouseover}
+            onMouseout={handleMouseout}
+            onDblClick={handleColumnClick}
+            onContextMenu={handleOpenContextMenu} />
 
           {#if i === tableData.inputHeaders.length - 1}
             <th class="empty-cell" id="input-gap" />
           {/if}
         {/each}
 
-        {#each tableData.outputHeaders as { idx, clause, expression, type }, i}
-          <th
-            class="output-header output-cell"
-            data-header-id={idx}
-            on:mouseover={handleMouseover}
-            on:mouseout={handleMouseout}
-            on:dblclick={handleColumnClick} 
-            on:contextmenu|preventDefault={handleOpenContextMenu}>
-              <span class="clause">{clause}</span>
-              <p class="expression">{expression}</p>
-              <span class="type">{type}</span>
-          </th>
-
+        {#each tableData.outputHeaders as header, i}
+          <ColumnHeader
+            columnType="output"
+            data={header}
+            onMouseover={handleMouseover}
+            onMouseout={handleMouseout}
+            onDblClick={handleColumnClick}
+            onContextMenu={handleOpenContextMenu} />
+    
           {#if i === tableData.outputHeaders.length - 1}
             <th class="empty-cell" id="output-gap" />
           {/if}
@@ -377,15 +345,16 @@
 
   <!-- Adding Component, fixed by now -->
   <AddColumnButton 
-      id="add-input-column" 
-      bounds={addInputBounds}
-      onUpdateTable={updateTableData} 
-      {tableData} />
+    id="add-input-column" 
+    bounds={addInputBounds}
+    onUpdateTable={updateTableData} 
+    {tableData} />
+    
   <AddColumnButton 
-      id="add-output-column" 
-      bounds={addOutputBounds}
-      onUpdateTable={updateTableData}
-      {tableData} />
+    id="add-output-column" 
+    bounds={addOutputBounds}
+    onUpdateTable={updateTableData}
+    {tableData} />
 
   <!-- Context Menu Component, fixed by now -->
   <ContextMenu 
