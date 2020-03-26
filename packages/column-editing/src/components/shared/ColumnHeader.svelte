@@ -24,13 +24,11 @@
 
       const expressionNode = headerNode.find('.expression');
 
-      displayExpression = data.expression;
       if (headerNode.length) {
 
-        // large content
-        if (isTooLarge(expressionNode)) {
-          displayExpression = ellipsizeTextBox(expressionNode);
-        }
+        // large content, very dirty stuff
+
+        displayExpression = ellipsizeTextBox(expressionNode, data.expression);
 
         // preview
         expressionSuffix = expressionNode.hasClass(PREVIEW_MARKER) ? '*' : '';
@@ -78,9 +76,11 @@
       return node[0].scrollHeight;
     }
 
-    function ellipsizeTextBox(node) {
+    function ellipsizeTextBox(node, fullExpression) {
       const element = node[0];
 
+      element.innerHTML = fullExpression;
+    
       let wordArray = element.innerHTML.split('');
 
       while (isTooLarge([element])) {
