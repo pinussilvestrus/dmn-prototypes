@@ -1,7 +1,7 @@
 @import "./vars";
 
 form {
-  input {
+  input, textarea {
     border-radius: 3px;
     border: solid 1px $color-silver-darken-80;
     background-color: #ffffff;
@@ -13,6 +13,13 @@ form {
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
+  }
+
+  textarea {
+    resize: none;
+    min-height: 7em;
+    overflow: auto;
+    height: auto;
   }
 
   input::placeholder {
