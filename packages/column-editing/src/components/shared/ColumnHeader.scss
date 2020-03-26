@@ -2,9 +2,8 @@
 
 .input-header,
 .output-header {
-  width: 8rem;
-  max-width: 10rem;
   position: relative;
+  width: 8rem;
 
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -30,6 +29,11 @@
   .expression {
     font-size: $table-font-size + 0.125;
     margin: 1rem 0rem 1.5rem 0rem;
+
+    max-width: 10rem;
+    max-height: 4rem;
+    overflow: hidden;
+    text-overflow: "…";
   }
 
   .type {

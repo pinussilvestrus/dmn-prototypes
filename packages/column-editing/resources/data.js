@@ -7,7 +7,7 @@ export default {
       {
         idx: 'input-header-0',
         clause: 'When',
-        expression: 'Open Claims',
+        expression: 'Open ClaimaaaasOpenClaimaaaasOpenClaimaaaasOpenClaimaaaasOpen Claimaaaas Open Claimaaaas ',
         variable: 'openClaims',
         type: 'integer'
       },

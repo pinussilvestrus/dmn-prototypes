@@ -1,4 +1,6 @@
 <script>
+    import { beforeUpdate, afterUpdate } from 'svelte';
+
     import dom from 'domtastic';
 
     import './ColumnHeader.scss';
@@ -7,16 +9,34 @@
 
     const PREVIEW_MARKER = 'preview';
 
+    let displayExpression = '';
     let expressionSuffix = '';
     let typeSuffix = '';
-    $: {
-      const headerNode = getHeaderNode(data.idx);
     
+    // lifecycle //////////
+
+    beforeUpdate(async () => {
+      displayExpression = data.expression;
+    });
+
+    afterUpdate(async () => {
+      const headerNode = getHeaderNode(data.idx);
+
+      const expressionNode = headerNode.find('.expression');
+
+      displayExpression = data.expression;
       if (headerNode.length) {
-        expressionSuffix = headerNode.find('.expression').hasClass(PREVIEW_MARKER) ? '*' : '';
+
+        // large content
+        if (isTooLarge(expressionNode)) {
+          displayExpression = ellipsizeTextBox(expressionNode);
+        }
+
+        // preview
+        expressionSuffix = expressionNode.hasClass(PREVIEW_MARKER) ? '*' : '';
         typeSuffix = headerNode.find('.type').hasClass(PREVIEW_MARKER) ? '*' : '';
       }
-    }
+    });
 
 
     // methods //////////
@@ -45,6 +65,33 @@
     function getHeaderNode(idx) {
       return dom(`[data-header-id="${idx}"`);
     }
+
+    function isTooLarge(node) {
+      return getScrollHeight(node) > getOffsetHeight(node);
+    }
+
+    function getOffsetHeight(node) {
+      return node[0].offsetHeight;
+    }
+
+    function getScrollHeight(node) {
+      return node[0].scrollHeight;
+    }
+
+    function ellipsizeTextBox(node) {
+      const element = node[0];
+
+      let wordArray = element.innerHTML.split('');
+
+      while (isTooLarge([element])) {
+        wordArray.pop();
+        element.innerHTML = wordArray.join('') + '...';
+      }
+
+      return element.innerHTML;
+    }
+
+
 </script>
 
 <th 
@@ -55,7 +102,9 @@
     on:dblclick={handleDblClick} 
     on:contextmenu|preventDefault={handleContextMenu}>
         <span class="clause">{data.clause}</span>
-        <p class="expression">{data.expression + expressionSuffix}</p>
+        <p class="expression">
+            {displayExpression + expressionSuffix}
+        </p>
         <span class="type" data-size={data.smaller ? 'smaller' : ''}>
             {data.type + typeSuffix}
         </span>
