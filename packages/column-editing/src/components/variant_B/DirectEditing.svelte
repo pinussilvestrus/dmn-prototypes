@@ -128,7 +128,7 @@
     class="direct-editing" 
     style="
 left: {header.bBox.left}px; 
-top: {header.expressionBbox.top - 15}px;
+top: {header.bBox.top}px;
 width: {Math.round(header.bBox.right - header.bBox.left)}px;
 display: {header.data ? 'block' : 'none'}
 ">
@@ -139,6 +139,7 @@ display: {header.data ? 'block' : 'none'}
           autocomplete="off">
             <div class="field expression-field">
                 <textarea 
+                    style="margin-top: {Math.round(header.expressionBbox.top - header.bBox.top - 13)}px"
                     contenteditable="true"
                     on:keydown={handleTextAreaKeydown}
                     on:keyup={handleTextAreaKeyup}
