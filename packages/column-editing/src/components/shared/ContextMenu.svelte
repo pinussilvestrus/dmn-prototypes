@@ -14,6 +14,11 @@
         action: handleEditColumn
       },
       {
+        key: 'expand',
+        label: 'Expand Column',
+        action: noop
+      },
+      {
         key: 'separator'
       },
       {

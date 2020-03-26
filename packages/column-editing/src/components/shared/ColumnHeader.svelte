@@ -27,7 +27,6 @@
       if (headerNode.length) {
 
         // large content, very dirty stuff
-
         displayExpression = ellipsizeTextBox(expressionNode, data.expression);
 
         // preview
