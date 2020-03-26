@@ -21,6 +21,7 @@
     import ContextMenu from './ContextMenu';
 
     const PREVIEW_MARKER = 'preview';
+    const FIELD_FOCUS_MARKER = 'edit-focus';
 
     const noop = () => {};
 
@@ -217,11 +218,32 @@
       });
     }
 
+    function handleEditFieldFocus(idx, prop) {
+      const headerNode = getHeaderNode(idx);
+
+      if (!headerNode.length) {
+        return;
+      }
+
+      headerNode.find('.' + prop).addClass(FIELD_FOCUS_MARKER);
+    }
+
+    function handleEditFieldFocusOut(idx, prop) {
+      const headerNode = getHeaderNode(idx);
+
+      if (!headerNode.length) {
+        return;
+      }
+
+      headerNode.find('.' + prop).removeClass(FIELD_FOCUS_MARKER);
+    }
+
     function handleCloseEditComponent() {
       currentHeader = nullHeader;
 
       // remove previews
       dom('.input-header *, .output-header *').removeClass(PREVIEW_MARKER);
+      updateTableData({});
     }
 
     function handleOpenContextMenu(event, header) {
@@ -349,7 +371,7 @@
     bounds={addInputBounds}
     onUpdateTable={updateTableData} 
     {tableData} />
-    
+
   <AddColumnButton 
     id="add-output-column" 
     bounds={addOutputBounds}
@@ -368,6 +390,8 @@
     this="{editComponent}" 
     header={currentHeader} 
     onUpdateHeader={handleUpdateColumnHeader}
+    onFieldFocus={handleEditFieldFocus}
+    onFieldFocusOut={handleEditFieldFocusOut}
     onClose={handleCloseEditComponent} />
 </div>
   

@@ -1,4 +1,4 @@
-@import '../../vars';
+@import "../../vars";
 
 .input-header,
 .output-header {
@@ -9,6 +9,10 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
+
+  .edit-focus {
+    font-weight: bold;
+  }
 
   .preview {
     color: $color-preview !important;

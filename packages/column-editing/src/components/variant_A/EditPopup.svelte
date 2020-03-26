@@ -65,6 +65,16 @@
       }
     }
 
+    function handleFocus(event) {
+      const node = dom(event.target);
+      onFieldFocus(header.data.idx, node.attr('name'));
+    }
+
+    function handleFocusOut(event) {
+      const node = dom(event.target);
+      onFieldFocusOut(header.data.idx, node.attr('name'));
+    }
+
 
     // lifecycle //////////
 
@@ -95,6 +105,8 @@
     };
     export let onUpdateHeader = noop;
     export let onClose = noop;
+    export let onFieldFocus = noop;
+    export let onFieldFocusOut = noop;
 
 
     // helpers //////////
@@ -125,6 +137,8 @@ display: {header.data ? 'block' : 'none'}
                 <label for="type"><span class="blank">Expression</span> <span class="feel">{@html FileCodeSvg}FEEL</span></label>
                 <input 
                     on:change|preventDefault={handleChange} 
+                    on:focus={handleFocus}
+                    on:focusout={handleFocusOut}
                     id="expression" 
                     name="expression"
                     type="text" 
@@ -138,6 +152,8 @@ display: {header.data ? 'block' : 'none'}
                   name="type"
                   type="text"
                   onInputChange={handleChange}
+                  onInputFocus={handleFocus}
+                  onInputFocusOut={handleFocusOut}
                   value="{header.data.type}" />
             </div>
 

@@ -68,6 +68,8 @@
     export let placeholder;
     export let value = '';
     export let onInputChange = noop;
+    export let onInputFocus = noop;
+    export let onInputFocusOut = noop;
 </script>
 
 <div class="autocomplete">
@@ -78,6 +80,8 @@
     placeholder="{placeholder}"
     value={value}
     on:change|preventDefault={onInputChange} 
+    on:focus={onInputFocus}
+    on:focusout={onInputFocusOut}
     on:click={setFullItems}
     on:input={handleInputChange}/>
   <div class="items">
