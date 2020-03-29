@@ -12,6 +12,14 @@
     let displayExpression = '';
     let expressionSuffix = '';
     let typeSuffix = '';
+
+    $: {
+      const headerNode = getHeaderNode(data.idx);
+
+      expressionSuffix = headerNode.find('.expression').hasClass(PREVIEW_MARKER) ? '*' : '';
+      typeSuffix = headerNode.find('.type').hasClass(PREVIEW_MARKER) ? '*' : '';
+    }
+
     
     // lifecycle //////////
 
@@ -26,12 +34,8 @@
 
       if (headerNode.length) {
 
-        // large content, very dirty stuff
+        // large content, very dirty stuff because monkey-patching
         displayExpression = ellipsizeTextBox(expressionNode, data.expression);
-
-        // preview
-        expressionSuffix = expressionNode.hasClass(PREVIEW_MARKER) ? '*' : '';
-        typeSuffix = headerNode.find('.type').hasClass(PREVIEW_MARKER) ? '*' : '';
       }
     });
 
@@ -86,6 +90,9 @@
         wordArray.pop();
         element.innerHTML = wordArray.join('') + '...';
       }
+
+      // add suffix
+      element.innerHTML += expressionSuffix;
 
       return element.innerHTML;
     }
