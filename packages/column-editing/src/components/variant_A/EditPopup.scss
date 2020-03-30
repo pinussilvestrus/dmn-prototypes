@@ -32,6 +32,8 @@
   }
 
   .feel {
+    /* todo(pinussilvestrus): remove for now */
+    display: none;
     background-color: $color-blue-lighten-75;
     font-size: $table-font-size - 0.15;
     color: white;
