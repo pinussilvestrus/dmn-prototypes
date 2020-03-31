@@ -18,10 +18,13 @@
     * {
       overflow: visible;
     }
+    
+    .field {
+      padding: 0.35rem;
+    }
 
-    .type-field,
     .expression-field {
-      padding: 0.3rem;
+      padding-left: 0;
     }
 
     input[name="expression"] {

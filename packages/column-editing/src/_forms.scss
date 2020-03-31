@@ -13,14 +13,15 @@ form {
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
+    min-width: 10rem;
   }
 
-  // textarea {
-  //   resize: none;
-  //   min-height: 7em;
-  //   overflow: auto;
-  //   height: auto;
-  // }
+  textarea {
+    resize: none;
+    min-height: 7em;
+    overflow: auto;
+    height: auto;
+  }
 
   input::placeholder {
     font-size: $table-font-size + 0.125;

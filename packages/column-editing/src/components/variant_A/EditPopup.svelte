@@ -171,7 +171,7 @@ display: {header.data ? 'block' : 'none'}
             </div>
 
             {#if isInputHeader(header.data)}
-            <div class="field expression-field">
+            <div class="field variable-field">
               <label for="type">Engine Variable Name</label>
               <input 
                   on:change|preventDefault={handleChange} 
