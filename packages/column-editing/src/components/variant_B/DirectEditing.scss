@@ -24,11 +24,7 @@
       padding: 0.3rem;
     }
 
-    input, textarea {
-      width: 100%;
-    }
-
-    textarea[name="expression"] {
+    input[name="expression"] {
       font-size: $table-font-size + 0.125;
       resize: none;
       color: $color-grey-darken-30;
@@ -39,7 +35,7 @@
       letter-spacing: normal;
       border: 0;
       overflow: hidden;
-      text-align: center;
+      // text-align: center;
       padding: 0;
       margin: 0 auto 0.5rem auto;
       min-height: 2rem;

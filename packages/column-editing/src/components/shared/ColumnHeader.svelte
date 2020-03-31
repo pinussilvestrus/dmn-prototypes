@@ -1,7 +1,9 @@
 <script>
-    import { beforeUpdate, afterUpdate } from 'svelte';
+    import { afterUpdate } from 'svelte';
 
     import dom from 'domtastic';
+
+    import { css } from 'emotion';
 
     import './ColumnHeader.scss';
 
@@ -9,7 +11,9 @@
 
     const PREVIEW_MARKER = 'preview';
 
-    let displayExpression = '';
+
+    // state //////////
+
     let expressionSuffix = '';
     let typeSuffix = '';
 
@@ -20,12 +24,10 @@
       typeSuffix = headerNode.find('.type').hasClass(PREVIEW_MARKER) ? '*' : '';
     }
 
+    $: resize = generateClass(resizeStyles);
+
     
     // lifecycle //////////
-
-    beforeUpdate(async () => {
-      displayExpression = data.expression;
-    });
 
     afterUpdate(async () => {
       const headerNode = getHeaderNode(data.idx);
@@ -33,9 +35,7 @@
       const expressionNode = headerNode.find('.expression');
 
       if (headerNode.length) {
-
-        // large content, very dirty stuff because monkey-patching
-        displayExpression = ellipsizeTextBox(expressionNode, data.expression);
+        onTextBoxOverflow(expressionNode, data.expression, expressionSuffix);
       }
     });
 
@@ -58,7 +58,9 @@
     export let onMouseout = noop;
     export let onDblClick = noop;
     export let onContextMenu = noop;
+    export let onTextBoxOverflow = noop;
     export let columnType = noop;
+    export let resizeStyles = {};
 
 
     // helpers //////////
@@ -67,34 +69,14 @@
       return dom(`[data-header-id="${idx}"`);
     }
 
-    function isTooLarge(node) {
-      return getScrollHeight(node) > getOffsetHeight(node);
-    }
-
-    function getOffsetHeight(node) {
-      return node[0].offsetHeight;
-    }
-
-    function getScrollHeight(node) {
-      return node[0].scrollHeight;
-    }
-
-    function ellipsizeTextBox(node, fullExpression) {
-      const element = node[0];
-
-      element.innerHTML = fullExpression;
-    
-      let wordArray = element.innerHTML.split('');
-
-      while (isTooLarge([element])) {
-        wordArray.pop();
-        element.innerHTML = wordArray.join('') + '...';
-      }
-
-      // add suffix
-      element.innerHTML += expressionSuffix;
-
-      return element.innerHTML;
+    function generateClass(resizeStyles) {
+      return css`
+        white-space: ${resizeStyles.whiteSpace} !important;
+        max-width: ${resizeStyles.maxWidth} !important;
+        max-height: ${resizeStyles.maxHeight} !important;
+        overflow: ${resizeStyles.overflow} !important;
+        text-overflow: ${resizeStyles.textOverflow} !important;
+      `;
     }
 
 
@@ -108,8 +90,8 @@
     on:dblclick={handleDblClick} 
     on:contextmenu|preventDefault={handleContextMenu}>
         <span class="clause">{data.clause}</span>
-        <p class="expression">
-            {displayExpression + expressionSuffix}
+        <p class="{'expression ' + resize}">
+            {data.expression + expressionSuffix}
         </p>
         <span class="type" data-size={data.smaller ? 'smaller' : ''}>
             {data.type + typeSuffix}

@@ -7,11 +7,14 @@
   // variant B
   import Table_B from './components/variant_B/Table_B.svelte';
 
+  // variant C
+  import Table_C from './components/variant_C/Table_C.svelte';
+
   import data from '../resources/data.js';
 
   import './App.scss';
 
-  const variants = ['A', 'B'];
+  const variants = ['A', 'B', 'C'];
 
   const toggleVariant = (variant) => active = variant;
 
@@ -48,5 +51,11 @@
 <div class="variant-b">
   {#if active === 'B'}
     <Table_B { tableData } />
+  {/if}
+</div>
+
+<div class="variant-c">
+  {#if active === 'C'}
+    <Table_C { tableData } />
   {/if}
 </div>

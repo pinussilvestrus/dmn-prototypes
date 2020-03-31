@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "domtastic": "^0.15.12",
+    "emotion": "^10.0.27",
     "micromodal": "^0.4.3",
     "min-dash": "^3.5.2"
   }

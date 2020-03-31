@@ -55,6 +55,8 @@
     }
 
     function handleKeydown(event) {
+
+      handleExpressionInput(event);
     
       // ESC
       if (event.which === 27) {
@@ -63,7 +65,7 @@
       }
     }
 
-    function handleTextAreaKeydown(event) {
+    function handleExpressionInputKeydown(event) {
 
       // Enter
       if (event.which === 13) {
@@ -72,7 +74,16 @@
       }
     }
 
-    function handleTextAreaKeyup({ target }) {
+    function handleExpressionInput(event) {
+      const {
+        target
+      } = event;
+
+      target.style.width = target.value.length + 'ch';
+    }
+
+    // todo(pinussilvestrus): can potentielly be removed
+    function handleExpressionInputKeyup({ target }) {
       if (target.scrollHeight > target.clientHeight) {
         target.style.height = target.scrollHeight + 'px';
       }
@@ -84,9 +95,9 @@
     afterUpdate(async () => {
     
       // set autofocus
-      const expressionNode = dom('.direct-editing form textarea[name="expression"]')[0];
+      const expressionNode = dom('.direct-editing form input[name="expression"]')[0];
       expressionNode && expressionNode.focus();
-      expressionNode && handleTextAreaKeyup({ target: expressionNode });
+      expressionNode && handleExpressionInput({ target: expressionNode });
 
       // handle background activity
       const body = dom('body');
@@ -129,7 +140,6 @@
     style="
 left: {header.bBox.left}px; 
 top: {header.bBox.top}px;
-width: {Math.round(header.bBox.right - header.bBox.left)}px;
 display: {header.data ? 'block' : 'none'}
 ">
     {#if header.data}
@@ -138,11 +148,11 @@ display: {header.data ? 'block' : 'none'}
           on:click|preventDefault={noop}
           autocomplete="off">
             <div class="field expression-field">
-                <textarea 
+                <input 
                     style="margin-top: {Math.round(header.expressionBbox.top - header.bBox.top - 13)}px"
                     contenteditable="true"
-                    on:keydown={handleTextAreaKeydown}
-                    on:keyup={handleTextAreaKeyup}
+                    on:keydown={handleExpressionInputKeydown}
+                    on:keyup={handleExpressionInputKeyup}
                     on:change|preventDefault={handleChange} 
                     id="expression" 
                     name="expression"

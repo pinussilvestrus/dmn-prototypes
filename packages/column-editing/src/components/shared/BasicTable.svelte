@@ -274,6 +274,8 @@
     export let onUpdateTableData = noop;
     export let onHeaderMouseover = noop;
     export let onHeaderMouseout = noop;
+    export let onTextBoxOverflow = noop;
+    export let resizeStyles = {};
     export let tableData = {};
     export let editComponent;
 
@@ -312,7 +314,9 @@
             onMouseover={handleMouseover}
             onMouseout={handleMouseout}
             onDblClick={handleColumnClick}
-            onContextMenu={handleOpenContextMenu} />
+            onContextMenu={handleOpenContextMenu}
+            {onTextBoxOverflow}
+            {resizeStyles} />
 
           {#if i === tableData.inputHeaders.length - 1}
             <th class="empty-cell" id="input-gap" />
@@ -326,7 +330,9 @@
             onMouseover={handleMouseover}
             onMouseout={handleMouseout}
             onDblClick={handleColumnClick}
-            onContextMenu={handleOpenContextMenu} />
+            onContextMenu={handleOpenContextMenu}
+            {onTextBoxOverflow}
+            {resizeStyles} />
     
           {#if i === tableData.outputHeaders.length - 1}
             <th class="empty-cell" id="output-gap" />
