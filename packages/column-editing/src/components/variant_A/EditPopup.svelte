@@ -65,6 +65,14 @@
       }
     }
 
+    function handleExpressionInput(event) {
+      const {
+        target
+      } = event;
+
+      target.style.width = target.value.length + 'ch';
+    }
+
     function handleFocus(event) {
       const node = dom(event.target);
       onFieldFocus(header.data.idx, node.attr('name'));
@@ -83,6 +91,7 @@
       // set autofocus
       const expressionNode = dom('.column-header-edit-popup form input[name="expression"]')[0];
       expressionNode && expressionNode.focus();
+      expressionNode && handleExpressionInput({ target: expressionNode });
 
       // handle background activity
       const body = dom('body');
@@ -143,6 +152,7 @@ display: {header.data ? 'block' : 'none'}
                     on:change|preventDefault={handleChange} 
                     on:focus={handleFocus}
                     on:focusout={handleFocusOut}
+                    on:input={handleExpressionInput}
                     id="expression" 
                     name="expression"
                     value="{header.data.expression}" />

@@ -49,6 +49,10 @@
     }
   }
 
+  input {
+    min-width: 10rem;
+  }
+
   input[type="submit"] {
     visibility: hidden; 
     position: fixed;

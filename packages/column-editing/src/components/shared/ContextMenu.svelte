@@ -13,11 +13,12 @@
         label: 'Edit Column',
         action: handleEditColumn
       },
-      {
-        key: 'expand',
-        label: 'Expand Column',
-        action: noop
-      },
+    
+  // {
+      //   key: 'expand',
+      //   label: 'Expand Column',
+      //   action: noop
+      // },
       {
         key: 'separator'
       },
