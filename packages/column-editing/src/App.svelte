@@ -2,19 +2,19 @@
   import { findIndex } from 'min-dash';
 
   // variant A
-  import Table_A from './components/variant_A/Table_A.svelte';
+  import Table_A from './components/variant_A/Table.svelte';
 
   // variant B
-  import Table_B from './components/variant_B/Table_B.svelte';
+  import Table_B from './components/variant_B/Table.svelte';
 
-  // variant C
-  import Table_C from './components/variant_C/Table_C.svelte';
+  // variant A_2
+  import Table_A_2 from './components/variant_A_2/Table.svelte';
 
   import data from '../resources/data.js';
 
   import './App.scss';
 
-  const variants = ['A', 'B', 'C'];
+  const variants = ['A1', 'A2', 'B1'];
 
   const toggleVariant = (variant) => active = variant;
 
@@ -34,7 +34,7 @@
 
   let tableData = data['Decision_03absfl'];
 
-  let active = 'A';
+  let active = 'A1';
 
 </script>
 
@@ -43,19 +43,19 @@
 </div>
 
 <div class="variant-a">
-  {#if active === 'A'}
+  {#if active === 'A1'}
     <Table_A { tableData }/>
   {/if}
 </div>
 
 <div class="variant-b">
-  {#if active === 'B'}
+  {#if active === 'B1'}
     <Table_B { tableData } />
   {/if}
 </div>
 
 <div class="variant-c">
-  {#if active === 'C'}
-    <Table_C { tableData } />
+  {#if active === 'A2'}
+    <Table_A_2 { tableData } />
   {/if}
 </div>

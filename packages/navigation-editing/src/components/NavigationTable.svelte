@@ -1,5 +1,5 @@
 <script>
-    import Table from '../../../column-editing/src/components/variant_A/Table_A';
+    import Table from '../../../column-editing/src/components/variant_A/Table';
     
     import ArrowExpandSvg from '../../resources/arrow-expand.svg';
 

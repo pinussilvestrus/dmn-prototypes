@@ -11,7 +11,7 @@
 
   import PropertiesModal from '../../../navigation/src/components/PropertiesModal.svelte';
 
-  import Table from '../../../column-editing/src/components/variant_A/Table_A';
+  import Table from '../../../column-editing/src/components/variant_A/Table';
 
   import CollapseSVG from '../../resources/arrow-collapse.svg';
 
