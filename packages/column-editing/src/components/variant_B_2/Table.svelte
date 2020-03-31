@@ -1,7 +1,7 @@
 <script>
   import BasicTable from '../shared/BasicTable';
 
-  import EditPopup from '../variant_A/EditPopup';
+  import DirectEditing from '../variant_B/DirectEditing';
 
   import ellipsizeTextBox from '../../util/ellipsizeTextBox';
 
@@ -16,7 +16,6 @@
   const handleTextBoxOverflow = (node, expression, expressionSuffix) => {
     ellipsizeTextBox(node, expression, expressionSuffix);
   };
-
 
   // exports //////////
 
@@ -34,7 +33,7 @@
     {onUpdateTableData} 
     {onHeaderMouseover}
     {onHeaderMouseout}
-    editComponent={EditPopup}
-    {resizeStyles}
-    onTextBoxOverflow={handleTextBoxOverflow} />
+    editComponent={DirectEditing}
+    onTextBoxOverflow={handleTextBoxOverflow}
+    {resizeStyles} />
 </div>

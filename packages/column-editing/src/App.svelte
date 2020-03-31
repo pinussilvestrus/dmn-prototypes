@@ -10,11 +10,14 @@
   // variant A_2
   import Table_A_2 from './components/variant_A_2/Table.svelte';
 
+  // variant B_2
+  import Table_B_2 from './components/variant_B_2/Table.svelte';
+
   import data from '../resources/data.js';
 
   import './App.scss';
 
-  const variants = ['A1', 'A2', 'B1'];
+  const variants = ['A1', 'A2', 'B1', 'B2'];
 
   const toggleVariant = (variant) => active = variant;
 
@@ -54,8 +57,14 @@
   {/if}
 </div>
 
-<div class="variant-c">
+<div class="variant-a-2">
   {#if active === 'A2'}
     <Table_A_2 { tableData } />
+  {/if}
+</div>
+
+<div class="variant-b-2">
+  {#if active === 'B2'}
+    <Table_B_2 { tableData } />
   {/if}
 </div>
