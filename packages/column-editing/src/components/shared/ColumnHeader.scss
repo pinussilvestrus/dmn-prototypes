@@ -3,15 +3,12 @@
 .input-header,
 .output-header {
   position: relative;
-  width: 8rem;
+  // width: 8rem;
+  padding-right: 0.7rem !important;
 
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
-
-//   .edit-focus {
-//     font-weight: bold;
-//   }
 
   .preview {
     color: $color-preview !important;
@@ -30,10 +27,17 @@
     font-size: $table-font-size + 0.125;
     margin: 1rem 0rem 1.5rem 0rem;
 
-    max-width: 10rem;
-    max-height: 4rem;
-    overflow: hidden;
-    text-overflow: "…";
+    // max-width: 10rem;
+    // max-height: 4rem;
+    // overflow: hidden;
+    // text-overflow: "…";
+
+    text-align: left;
+    padding-top: 0.5rem;
+    word-wrap: unset;
+    word-break: unset;
+    overflow-wrap: unset;
+    white-space: nowrap;
   }
 
   .type {

@@ -80,7 +80,7 @@
       let bBox = inputGap[0].getBoundingClientRect();
 
       addInputBounds = {
-        left: bBox.x - 7 + 'px',
+        left: bBox.x - 8 + 'px',
         top: bBox.bottom - bBox.top + 'px'
       };
 
@@ -89,7 +89,7 @@
       bBox = outputGap[0].getBoundingClientRect();
 
       addOutputBounds = {
-        left: bBox.x - 7 + 'px',
+        left: bBox.x - 8 + 'px',
         top: bBox.bottom - bBox.top + 'px'
       };
     }

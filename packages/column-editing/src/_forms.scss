@@ -15,12 +15,12 @@ form {
     letter-spacing: normal;
   }
 
-  textarea {
-    resize: none;
-    min-height: 7em;
-    overflow: auto;
-    height: auto;
-  }
+  // textarea {
+  //   resize: none;
+  //   min-height: 7em;
+  //   overflow: auto;
+  //   height: auto;
+  // }
 
   input::placeholder {
     font-size: $table-font-size + 0.125;

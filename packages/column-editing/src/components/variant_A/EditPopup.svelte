@@ -81,7 +81,7 @@
     afterUpdate(async () => {
     
       // set autofocus
-      const expressionNode = dom('.column-header-edit-popup form textarea[name="expression"]')[0];
+      const expressionNode = dom('.column-header-edit-popup form input[name="expression"]')[0];
       expressionNode && expressionNode.focus();
 
       // handle background activity
@@ -135,7 +135,7 @@ display: {header.data ? 'block' : 'none'}
           autocomplete="off">
             <div class="field expression-field">
                 <label for="type"><span class="blank">Expression</span> <span class="feel">{@html FileCodeSvg}FEEL</span></label>
-                <textarea
+                <input
                     on:change|preventDefault={handleChange} 
                     on:focus={handleFocus}
                     on:focusout={handleFocusOut}
