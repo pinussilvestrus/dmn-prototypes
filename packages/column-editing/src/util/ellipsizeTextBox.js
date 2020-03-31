@@ -17,13 +17,13 @@ export default function ellipsizeTextBox(node, fullExpression, expressionSuffix)
 }
 
 function isTooLarge(node) {
-  return getScrollHeight(node) > getOffsetHeight(node);
+  return getScrollWidth(node) > getOffsetWidth(node);
 }
 
-function getOffsetHeight(node) {
-  return node[0].offsetHeight;
+function getOffsetWidth(node) {
+  return node[0].offsetWidth;
 }
 
-function getScrollHeight(node) {
-  return node[0].scrollHeight;
+function getScrollWidth(node) {
+  return node[0].scrollWidth;
 }
