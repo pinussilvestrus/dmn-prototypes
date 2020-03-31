@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from 'svelte';
+
   import { findIndex } from 'min-dash';
 
   // variant A
@@ -17,27 +19,59 @@
 
   import './App.scss';
 
-  const variants = ['A1', 'A2', 'B1', 'B2'];
+  const VARIANTS = ['A1', 'A2', 'B1', 'B2'];
 
-  const toggleVariant = (variant) => active = variant;
+  const DEFAULT_VARIANT = 'A1';
 
-  const onNextVariant = () => {
-    const found = findIndex(variants, v => v === active);
+  const toggleVariant = (variant) => {
+    const found = findIndex(VARIANTS, v => v === variant);
 
     if (found < 0) {
-      return toggleVariant(variants[0]);
+      return active = VARIANTS[0];
     }
-
-    if (found === variants.length - 1) {
-      return toggleVariant(variants[0]);
-    }
-
-    return toggleVariant(variants[found + 1]);
+  
+    active = variant;
+    updateURL(variant);
   };
 
-  let tableData = data['Decision_03absfl'];
+  const onNextVariant = () => {
+    const found = findIndex(VARIANTS, v => v === active);
 
-  let active = 'A1';
+    if (found === VARIANTS.length - 1) {
+      return toggleVariant(VARIANTS[0]);
+    }
+
+    return toggleVariant(VARIANTS[found + 1]);
+  };
+
+
+  // state //////////
+
+  let tableData = data['Decision_03absfl'];
+  let active = DEFAULT_VARIANT;
+
+
+  // lifecycle //////////
+  onMount(async () => {
+    const variant = urlParam('variant');
+    toggleVariant(variant);
+  });
+
+
+  // helpers //////////
+
+  function updateURL(variant) {
+    const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?variant=${variant}`;
+    window.history.pushState({ path: newurl }, '', newurl);
+  }
+
+  function urlParam(name) {
+    const results = new RegExp('[?&]' + name + '=([^&#]*)')
+      .exec(window.location.href);
+
+    return results && results[1] || DEFAULT_VARIANT;
+  }
+
 
 </script>
 
