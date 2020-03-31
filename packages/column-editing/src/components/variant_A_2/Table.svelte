@@ -5,7 +5,7 @@
 
   import ellipsizeTextBox from '../../util/ellipsizeTextBox';
 
-  const resizeStyles = {
+  const wrapExpressionStyles = {
     maxWidth: '10rem',
     maxHeight: '4rem',
     overflow: 'hidden',
@@ -35,6 +35,6 @@
     {onHeaderMouseover}
     {onHeaderMouseout}
     editComponent={EditPopup}
-    {resizeStyles}
+    {wrapExpressionStyles}
     onTextBoxOverflow={handleTextBoxOverflow} />
 </div>

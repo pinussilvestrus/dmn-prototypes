@@ -5,6 +5,8 @@
 
     import { css } from 'emotion';
 
+    import NoopResizeComponent from './NoopResize';
+
     import './ColumnHeader.scss';
 
     const noop = () => {};
@@ -24,7 +26,7 @@
       typeSuffix = headerNode.find('.type').hasClass(PREVIEW_MARKER) ? '*' : '';
     }
 
-    $: resize = generateClass(resizeStyles);
+    $: wrapClass = generateWrapClass(wrapExpressionStyles);
 
     
     // lifecycle //////////
@@ -60,7 +62,8 @@
     export let onContextMenu = noop;
     export let onTextBoxOverflow = noop;
     export let columnType = noop;
-    export let resizeStyles = {};
+    export let wrapExpressionStyles = {};
+    export let resizeComponent = NoopResizeComponent;
 
 
     // helpers //////////
@@ -69,13 +72,13 @@
       return dom(`[data-header-id="${idx}"`);
     }
 
-    function generateClass(resizeStyles) {
+    function generateWrapClass(wrapExpressionStyles) {
       return css`
-        white-space: ${resizeStyles.whiteSpace} !important;
-        max-width: ${resizeStyles.maxWidth} !important;
-        max-height: ${resizeStyles.maxHeight} !important;
-        overflow: ${resizeStyles.overflow} !important;
-        text-overflow: ${resizeStyles.textOverflow} !important;
+        white-space: ${wrapExpressionStyles.whiteSpace} !important;
+        max-width: ${wrapExpressionStyles.maxWidth} !important;
+        max-height: ${wrapExpressionStyles.maxHeight} !important;
+        overflow: ${wrapExpressionStyles.overflow} !important;
+        text-overflow: ${wrapExpressionStyles.textOverflow} !important;
       `;
     }
 
@@ -89,11 +92,13 @@
     on:mouseout={onMouseout}
     on:dblclick={handleDblClick} 
     on:contextmenu|preventDefault={handleContextMenu}>
-        <span class="clause">{data.clause}</span>
-        <p class="{'expression ' + resize}">
-            {data.expression + expressionSuffix}
-        </p>
-        <span class="type" data-size={data.smaller ? 'smaller' : ''}>
-            {data.type + typeSuffix}
-        </span>
+        <svelte:component this={resizeComponent}>
+          <span class="clause">{data.clause}</span>
+          <p class="{'expression ' + wrapClass}">
+              {data.expression + expressionSuffix}
+          </p>
+          <span class="type" data-size={data.smaller ? 'smaller' : ''}>
+              {data.type + typeSuffix}
+          </span>
+        </svelte:component>
 </th>
