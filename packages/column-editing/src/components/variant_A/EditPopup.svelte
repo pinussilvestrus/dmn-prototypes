@@ -119,6 +119,10 @@
       return document.body.contains(node);
     }
 
+    function isInputHeader(header) {
+      return header.idx.includes('input-header');
+    }
+
 </script>
 
 <div 
@@ -156,8 +160,9 @@ display: {header.data ? 'block' : 'none'}
                   value="{header.data.type}" />
             </div>
 
+            {#if isInputHeader(header.data)}
             <div class="field expression-field">
-              <label for="type">Engine Variable</label>
+              <label for="type">Engine Variable Name</label>
               <input 
                   on:change|preventDefault={handleChange} 
                   id="variable" 
@@ -165,6 +170,7 @@ display: {header.data ? 'block' : 'none'}
                   type="text" 
                   value="{header.data.variable || ''}" />
             </div>
+          {/if}
         </form>
     {/if}
     
