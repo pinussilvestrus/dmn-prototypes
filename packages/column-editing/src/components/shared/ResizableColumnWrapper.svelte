@@ -18,6 +18,11 @@
       return;
     }
 
+    // check event on right border
+    if (!isOnRightBorder(event)) {
+      return;
+    }
+
     const rootNode = getRootElement(event);
 
     startX = event.pageX;
@@ -63,6 +68,11 @@
 
   // helpers //////////
 
+  function isOnRightBorder(event) {
+    const rootElement = getRootElement(event);
+    return event.offsetX >= rootElement[0].getBoundingClientRect().width - 20;
+  }
+
   function isRootElement(event) {
     return dom(event.target).hasClass('resizable-column-wrapper');
   }
@@ -73,7 +83,6 @@
 
   function getExpressionElement(event) {
     const rootElement = getRootElement(event);
-
     return rootElement.find('.expression');
   }
 
