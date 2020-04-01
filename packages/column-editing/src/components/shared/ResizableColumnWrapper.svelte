@@ -4,7 +4,8 @@
 
   import './ResizableColumnWrapper.scss';
 
-  const RESIZE_MARKER = 'resizing';
+  const RESIZING_MARKER = 'resizing';
+  const RESIZED_MARKER = 'resized';
 
   const noop = () => {};
 
@@ -12,12 +13,17 @@
   let startWidth;
 
   function handleInitResize(event) {
+  
+    if (!isRootElement(event)) {
+      return;
+    }
+
     const rootNode = getRootElement(event);
 
     startX = event.pageX;
     startWidth = rootNode[0].getBoundingClientRect().width;
 
-    rootNode.addClass(RESIZE_MARKER);
+    rootNode.addClass(RESIZING_MARKER);
 
     rootNode.on('mousemove', handleResize);
     rootNode.on('mouseup', handleEndResize);
@@ -31,12 +37,16 @@
     const delta = event.pageX - startX;
 
     rootNode[0].style.width = startWidth + delta + 'px';
+
+    // switch resize mode
+    const expressionNode = getExpressionElement(event);
+    expressionNode.addClass(RESIZED_MARKER);
   }
 
   function handleEndResize(event) {
     const rootNode = getRootElement(event);
 
-    rootNode.removeClass(RESIZE_MARKER);
+    rootNode.removeClass(RESIZING_MARKER);
 
     rootNode.off('mouseup', handleEndResize);
     rootNode.off('mousemove', handleResize);
@@ -53,15 +63,22 @@
 
   // helpers //////////
 
+  function isRootElement(event) {
+    return dom(event.target).hasClass('resizable-column-wrapper');
+  }
+
   function getRootElement(event) {
     return dom(event.target).closest('.resizable-column-wrapper');
+  }
+
+  function getExpressionElement(event) {
+    const rootElement = getRootElement(event);
+
+    return rootElement.find('.expression');
   }
 
 </script>
 
 <div class="resizable-column-wrapper" on:mousedown={handleInitResize}>
   <slot/>
-  <!-- <div 
-    class="resize-handler"
-    on:mousedown={handleInitResize} /> -->
 </div>

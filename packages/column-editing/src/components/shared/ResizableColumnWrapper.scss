@@ -1,10 +1,10 @@
 .resizable-column-wrapper {
   height: 100%;
-
-  // display: grid;
-  // grid-template-columns: 1fr 0.1fr;
+  min-width: 5rem;
+  pointer-events: stroke;
 
   padding: 0.4rem !important;
+  padding-right: 0.7rem !important;
   position: relative;
 
   &.resizing {
@@ -23,22 +23,17 @@
     width: 1em;
   }
 
-  // grid-column: 1;
-
-  .resize-handler {
-    grid-column: 2;
-    height: 100%;
-    width: 5px;
-
-    &:hover {
-      cursor: col-resize;
-    }
-  }
-
   .expression {
     word-wrap: unset;
     word-break: unset;
     overflow-wrap: unset;
     white-space: nowrap;
+
+    &.resized {
+      // word-wrap: break-word;
+      // word-break: break-word;
+      // word-break: break-word;
+      white-space: normal;
+    }
   }
 }
