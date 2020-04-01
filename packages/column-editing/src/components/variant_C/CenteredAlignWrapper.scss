@@ -1,0 +1,12 @@
+.centered-align-wrapper {
+  padding: 0.4rem !important;
+  padding-right: 0.7rem !important;
+  height: 100%;
+
+  .expression {
+    text-align: center;
+    max-width: 10rem;
+    text-overflow: "…";
+    white-space: normal;
+  }
+}

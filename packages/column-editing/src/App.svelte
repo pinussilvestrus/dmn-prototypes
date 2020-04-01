@@ -15,11 +15,14 @@
   // variant B_2
   import Table_B_2 from './components/variant_B_2/Table.svelte';
 
+  // variant C
+  import Table_C from './components/variant_C/Table.svelte';
+
   import data from '../resources/data.js';
 
   import './App.scss';
 
-  const VARIANTS = ['A1', 'A2', 'B1', 'B2'];
+  const VARIANTS = ['A1', 'A2', 'B1', 'B2', 'C'];
 
   const DEFAULT_VARIANT = 'A1';
 
@@ -100,5 +103,11 @@
 <div class="variant-b-2">
   {#if active === 'B2'}
     <Table_B_2 { tableData } />
+  {/if}
+</div>
+
+<div class="variant-c">
+  {#if active === 'C'}
+    <Table_C { tableData } />
   {/if}
 </div>
