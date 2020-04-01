@@ -88,6 +88,8 @@
   class="new-column-button" 
   style="left: {bounds.left}; top: {bounds.top}"
   on:click={addHandler} >
-    <div class="fake"></div>
-    {@html PlusSVG}
+    {#if bounds.left}
+      <div class="fake"></div>
+      {@html PlusSVG}
+    {/if}
 </div>

@@ -6,6 +6,8 @@
 
   const RESIZE_MARKER = 'resizing';
 
+  const noop = () => {};
+
   let startX;
   let startWidth;
 
@@ -19,6 +21,8 @@
 
     rootNode.on('mousemove', handleResize);
     rootNode.on('mouseup', handleEndResize);
+
+    onResizeStart();
   }
 
   function handleResize(event) {
@@ -36,7 +40,15 @@
 
     rootNode.off('mouseup', handleEndResize);
     rootNode.off('mousemove', handleResize);
+
+    onResizeEnd();
   }
+
+
+  // exports //////////
+
+  export let onResizeEnd = noop;
+  export let onResizeStart = noop;
 
 
   // helpers //////////

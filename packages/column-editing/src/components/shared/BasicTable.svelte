@@ -44,8 +44,8 @@
     $: explanation = find(HIT_POLICIES, hp => hp.name === tableData.hitPolicy).explanation;
     $: tableLength = tableData.inputHeaders.length + tableData.outputHeaders.length + 4;
 
-    let addInputBounds = {};
-    let addOutputBounds = {};
+    let addInputBounds = null;
+    let addOutputBounds = null;
 
 
     // lifecycle //////////
@@ -73,7 +73,12 @@
       onHeaderMouseout(event);
     }
 
+    function hideAddColumnButtons() {
+      dom('.new-column-button').css('display', 'none');
+    }
+
     function updateAddColumnBounds() {
+      dom('.new-column-button').css('display', 'block');
 
       // inputs
       const inputGap = dom('#input-gap');
@@ -315,6 +320,8 @@
             onMouseout={handleMouseout}
             onDblClick={handleColumnClick}
             onContextMenu={handleOpenContextMenu}
+            onResizeEnd={updateAddColumnBounds}
+            onResizeStart={hideAddColumnButtons}
             {onTextBoxOverflow}
             {resizeComponent} />
 
@@ -331,6 +338,8 @@
             onMouseout={handleMouseout}
             onDblClick={handleColumnClick}
             onContextMenu={handleOpenContextMenu}
+            onResizeEnd={updateAddColumnBounds}
+            onResizeStart={hideAddColumnButtons}
             {onTextBoxOverflow}
             {resizeComponent} />
     
@@ -372,6 +381,7 @@
   </table>  
 
   <!-- Adding Component, fixed by now -->
+  {#if addInputBounds}
   <AddColumnButton 
     id="add-input-column" 
     bounds={addInputBounds}
@@ -383,6 +393,7 @@
     bounds={addOutputBounds}
     onUpdateTable={updateTableData}
     {tableData} />
+  {/if}
 
   <!-- Context Menu Component, fixed by now -->
   <ContextMenu 

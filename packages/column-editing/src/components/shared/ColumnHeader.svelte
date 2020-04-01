@@ -24,9 +24,11 @@
       typeSuffix = headerNode.find('.type').hasClass(PREVIEW_MARKER) ? '*' : '';
     }
     
+
     // lifecycle //////////
 
     afterUpdate(async () => {
+
       const headerNode = getHeaderNode(data.idx);
 
       const expressionNode = headerNode.find('.expression');
@@ -56,6 +58,8 @@
     export let onDblClick = noop;
     export let onContextMenu = noop;
     export let onTextBoxOverflow = noop;
+    export let onResizeEnd = noop;
+    export let onResizeStart = noop;
     export let columnType = noop;
     export let resizeComponent = ResizableColumnWrapper;
 
@@ -76,13 +80,16 @@
     on:mouseout={onMouseout}
     on:dblclick={handleDblClick} 
     on:contextmenu|preventDefault={handleContextMenu}>
-        <svelte:component this={resizeComponent}>
-          <span class="clause">{data.clause}</span>
-          <p class="expression">
-              {data.expression + expressionSuffix}
-          </p>
-          <span class="type" data-size={data.smaller ? 'smaller' : ''}>
-              {data.type + typeSuffix}
-          </span>
+        <svelte:component 
+          this={resizeComponent} 
+          onResizeStart={onResizeStart}
+          onResizeEnd={onResizeEnd} >
+            <span class="clause">{data.clause}</span>
+            <p class="expression">
+                {data.expression + expressionSuffix}
+            </p>
+            <span class="type" data-size={data.smaller ? 'smaller' : ''}>
+                {data.type + typeSuffix}
+            </span>
         </svelte:component>
 </th>
