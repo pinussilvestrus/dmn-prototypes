@@ -1,13 +1,9 @@
 .resizable-column-wrapper {
-  height: auto;
   max-height: 5rem; // todo(pinussilvestrus): discuss this
   min-width: 5rem;
-
   pointer-events: stroke;
-
   padding: 0.4rem !important;
   padding-right: 0.7rem !important;
-  position: relative;
 
   &.resizing {
     cursor: col-resize;
@@ -32,9 +28,6 @@
     white-space: nowrap;
 
     &.resized {
-      // word-wrap: break-word;
-      // word-break: break-word;
-      // word-break: break-word;
       white-space: normal;
     }
   }

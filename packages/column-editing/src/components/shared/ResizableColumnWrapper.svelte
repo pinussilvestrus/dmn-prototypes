@@ -2,8 +2,6 @@
 <script>
   import dom from 'domtastic';
 
-  import { forEach } from 'min-dash';
-
   import './ResizableColumnWrapper.scss';
 
   const RESIZING_MARKER = 'resizing';
@@ -48,22 +46,6 @@
     // switch resize mode
     const expressionNode = getExpressionElement(event);
     expressionNode.addClass(RESIZED_MARKER);
-
-    // please do not do such stuff in real life
-    resizeSiblings(event);
-  }
-
-  function resizeSiblings(event) {
-    const rootElement = getRootElement(event);
-
-    forEach(dom('.resize-wrapper'), wrapper => {
-      if (!wrapper.style || isRootElement({ target: wrapper })) {
-        return;
-      }
-  
-      console.log(wrapper.style.height);
-      wrapper.style.height = rootElement[0].getBoundingClientRect().height + 'px';
-    });
   }
 
   function handleEndResize(event) {
