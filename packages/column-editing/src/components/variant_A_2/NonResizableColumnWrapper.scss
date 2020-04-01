@@ -1,0 +1,13 @@
+.non-resizable-column-wrapper {
+  padding: 0.4rem !important;
+  padding-right: 0.7rem !important;
+  height: 100%;
+
+  .expression {
+    max-width: 10rem;
+    max-height: 4rem;
+    overflow: hidden;
+    text-overflow: "…";
+    white-space: nowrap;
+  }
+}

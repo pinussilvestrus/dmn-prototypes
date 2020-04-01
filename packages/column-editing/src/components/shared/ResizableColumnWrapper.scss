@@ -1,0 +1,12 @@
+.resizable-column-wrapper {
+  padding: 0.4rem !important;
+  padding-right: 0.7rem !important;
+  height: 100%;
+
+  .expression {
+    word-wrap: unset;
+    word-break: unset;
+    overflow-wrap: unset;
+    white-space: nowrap;
+  }
+}

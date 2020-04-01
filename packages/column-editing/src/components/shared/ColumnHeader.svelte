@@ -3,9 +3,7 @@
 
     import dom from 'domtastic';
 
-    import { css } from 'emotion';
-
-    import NoopResizeComponent from './NoopResize';
+    import ResizableColumnWrapper from './ResizableColumnWrapper';
 
     import './ColumnHeader.scss';
 
@@ -25,9 +23,6 @@
       expressionSuffix = headerNode.find('.expression').hasClass(PREVIEW_MARKER) ? '*' : '';
       typeSuffix = headerNode.find('.type').hasClass(PREVIEW_MARKER) ? '*' : '';
     }
-
-    $: wrapClass = generateWrapClass(wrapExpressionStyles);
-
     
     // lifecycle //////////
 
@@ -62,24 +57,13 @@
     export let onContextMenu = noop;
     export let onTextBoxOverflow = noop;
     export let columnType = noop;
-    export let wrapExpressionStyles = {};
-    export let resizeComponent = NoopResizeComponent;
+    export let resizeComponent = ResizableColumnWrapper;
 
 
     // helpers //////////
 
     function getHeaderNode(idx) {
       return dom(`[data-header-id="${idx}"`);
-    }
-
-    function generateWrapClass(wrapExpressionStyles) {
-      return css`
-        white-space: ${wrapExpressionStyles.whiteSpace} !important;
-        max-width: ${wrapExpressionStyles.maxWidth} !important;
-        max-height: ${wrapExpressionStyles.maxHeight} !important;
-        overflow: ${wrapExpressionStyles.overflow} !important;
-        text-overflow: ${wrapExpressionStyles.textOverflow} !important;
-      `;
     }
 
 
@@ -94,7 +78,7 @@
     on:contextmenu|preventDefault={handleContextMenu}>
         <svelte:component this={resizeComponent}>
           <span class="clause">{data.clause}</span>
-          <p class="{'expression ' + wrapClass}">
+          <p class="expression">
               {data.expression + expressionSuffix}
           </p>
           <span class="type" data-size={data.smaller ? 'smaller' : ''}>

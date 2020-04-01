@@ -3,15 +3,9 @@
 
   import EditPopup from '../variant_A/EditPopup';
 
-  import ellipsizeTextBox from '../../util/ellipsizeTextBox';
+  import NonResizableColumnWrapper from './NonResizableColumnWrapper';
 
-  const wrapExpressionStyles = {
-    maxWidth: '10rem',
-    maxHeight: '4rem',
-    overflow: 'hidden',
-    textOverflow: '…',
-    whiteSpace: 'nowrap'
-  };
+  import ellipsizeTextBox from '../../util/ellipsizeTextBox';
 
   const handleTextBoxOverflow = (node, expression, expressionSuffix) => {
     ellipsizeTextBox(node, expression, expressionSuffix);
@@ -35,6 +29,6 @@
     {onHeaderMouseover}
     {onHeaderMouseout}
     editComponent={EditPopup}
-    {wrapExpressionStyles}
+    resizeComponent={NonResizableColumnWrapper}
     onTextBoxOverflow={handleTextBoxOverflow} />
 </div>

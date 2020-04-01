@@ -3,15 +3,10 @@
 
   import DirectEditing from '../variant_B/DirectEditing';
 
+  import NonResizableColumnWrapper from '../variant_A_2/NonResizableColumnWrapper';
+
   import ellipsizeTextBox from '../../util/ellipsizeTextBox';
 
-  const wrapExpressionStyles = {
-    maxWidth: '10rem',
-    maxHeight: '4rem',
-    overflow: 'hidden',
-    textOverflow: '…',
-    whiteSpace: 'nowrap'
-  };
 
   const handleTextBoxOverflow = (node, expression, expressionSuffix) => {
     ellipsizeTextBox(node, expression, expressionSuffix);
@@ -35,5 +30,5 @@
     {onHeaderMouseout}
     editComponent={DirectEditing}
     onTextBoxOverflow={handleTextBoxOverflow}
-    {wrapExpressionStyles} />
+    resizeComponent={NonResizableColumnWrapper} />
 </div>

@@ -275,9 +275,9 @@
     export let onHeaderMouseover = noop;
     export let onHeaderMouseout = noop;
     export let onTextBoxOverflow = noop;
-    export let wrapExpressionStyles = {};
     export let tableData = {};
     export let editComponent;
+    export let resizeComponent;
 
 
     // helpers //////////
@@ -316,7 +316,7 @@
             onDblClick={handleColumnClick}
             onContextMenu={handleOpenContextMenu}
             {onTextBoxOverflow}
-            {wrapExpressionStyles} />
+            {resizeComponent} />
 
           {#if i === tableData.inputHeaders.length - 1}
             <th class="empty-cell" id="input-gap" />
@@ -332,7 +332,7 @@
             onDblClick={handleColumnClick}
             onContextMenu={handleOpenContextMenu}
             {onTextBoxOverflow}
-            {wrapExpressionStyles} />
+            {resizeComponent} />
     
           {#if i === tableData.outputHeaders.length - 1}
             <th class="empty-cell" id="output-gap" />
