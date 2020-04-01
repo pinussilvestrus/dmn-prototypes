@@ -1,7 +1,39 @@
 .resizable-column-wrapper {
-  padding: 0.4rem !important;
-  padding-right: 0.7rem !important;
   height: 100%;
+
+  // display: grid;
+  // grid-template-columns: 1fr 0.1fr;
+
+  padding: 0.4rem !important;
+  position: relative;
+
+  &.resizing {
+    cursor: col-resize;
+    user-select: none;
+  }
+
+  &::before {
+    @extend .resizable-column-wrapper.resizing;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1em;
+  }
+
+  // grid-column: 1;
+
+  .resize-handler {
+    grid-column: 2;
+    height: 100%;
+    width: 5px;
+
+    &:hover {
+      cursor: col-resize;
+    }
+  }
 
   .expression {
     word-wrap: unset;
