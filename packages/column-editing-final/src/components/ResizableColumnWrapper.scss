@@ -1,0 +1,38 @@
+.advanced-resizable-column-wrapper {
+  padding: 0.4rem !important;
+  padding-right: 0.7rem !important;
+  min-width: 80px;
+  max-width: 150px;
+  pointer-events: stroke;
+  height: 100%;
+
+  &.resizing {
+    cursor: col-resize;
+    user-select: none;
+  }
+
+  &.resized {
+    max-width: unset;
+  }
+
+  &::before {
+    @extend .advanced-resizable-column-wrapper.resizing;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+  }
+
+  .expression {
+    overflow: hidden;
+    word-wrap: unset;
+    word-break: unset;
+    overflow-wrap: unset;
+    text-overflow: "…";
+    white-space: nowrap;
+  }
+}
+

@@ -82,8 +82,10 @@
     on:contextmenu|preventDefault={handleContextMenu}>
         <svelte:component 
           this={resizeComponent} 
-          onResizeStart={onResizeStart}
-          onResizeEnd={onResizeEnd} >
+          {onResizeStart}
+          {onResizeEnd}
+          header={data}
+          {onTextBoxOverflow} >
             <span class="clause">{data.clause}</span>
             <p class="expression">
                 {data.expression + expressionSuffix}
