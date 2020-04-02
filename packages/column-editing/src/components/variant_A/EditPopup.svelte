@@ -74,11 +74,19 @@
     }
 
     function handleFocus(event) {
+      if (!header.data) {
+        return;
+      }
+
       const node = dom(event.target);
       onFieldFocus(header.data.idx, node.attr('name'));
     }
 
     function handleFocusOut(event) {
+      if (!header.data) {
+        return;
+      }
+
       const node = dom(event.target);
       onFieldFocusOut(header.data.idx, node.attr('name'));
     }
@@ -97,10 +105,10 @@
       const body = dom('body');
 
       if (header.data) {
-        body.on('click', handleClickOutside);
+        body.on('mousedown', handleClickOutside);
         body.on('keydown', handleKeydown);
       } else {
-        body.off('click', handleClickOutside);
+        body.off('mousedown', handleClickOutside);
         body.off('keydown', handleKeydown);
       }
     });
