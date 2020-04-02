@@ -86,9 +86,7 @@
     on:input={handleInputChange}/>
   <div class="items">
      {#each filteredItems as {match, rest} }
-        <div class="item" on:click={handleItemSelect}>
-            {#if match}<strong>{match}</strong>{/if}{rest}
-        </div>
+        <div class="item" on:click={handleItemSelect}>{#if match}<strong>{match}</strong>{/if}{rest}</div>
      {/each}
   </div>
 </div>
