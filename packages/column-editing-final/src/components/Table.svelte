@@ -6,6 +6,8 @@
 
   import ellipsizeTextBox from '../util/ellipsizeTextBox';
 
+  import './Table.scss';
+
   const handleTextBoxOverflow = (node, expression) => {
     ellipsizeTextBox(node, expression);
   };
