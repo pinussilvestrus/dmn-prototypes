@@ -167,7 +167,6 @@ display: {header.data ? 'block' : 'none'}
             </div>
 
             <div class="field advanced-expression-field">
-              <label for="advancedExpression">Expression</label>
               <AdvancedExpressionInput 
                   id="advancedExpression"
                   name="advancedExpression"

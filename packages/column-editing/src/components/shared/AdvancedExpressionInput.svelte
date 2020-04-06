@@ -1,14 +1,26 @@
 <script>
     import { onMount, afterUpdate } from 'svelte';
 
-    import './AdvancedExpressionInput.scss';
+    import tippy from 'sveltejs-tippy';
+    import 'tippy.js/themes/light-border.css';
 
     import dom from 'domtastic';
+
+    import WarningSVG from '../../../resources/warning.svg';
+
+    import './AdvancedExpressionInput.scss';
+
     
     const noop = () => {};
 
     let inputState = 'input';
     let isModeChanging = false;
+
+    const otherLanguageTooltip = {
+      content: 'This is not a FEEL expression. Other expression languages than FEEL are not recommended any more.',
+      placement: 'bottom',
+      theme: 'light-border'
+    };
 
     function handleKeydown(event) {
       const target = dom(event.target);
@@ -31,14 +43,15 @@
 
       const val = target.val();
 
-      const value = {
+      const newValue = {
+        ...value,
         val,
         isMultiLine: inputState !== 'input'
       };
     
       onChange({
         target: target[0],
-        value
+        value: newValue
       });
     }
 
@@ -51,7 +64,7 @@
     afterUpdate(async () => {
       if (isModeChanging) {
         isModeChanging = false;
-        const node = dom('textarea.advanced-expression');
+        const node = dom('.advanced-expression').find('textarea');
         node[0].focus();
       }
     });
@@ -63,28 +76,34 @@
     export let name;
     export let type;
     export let placeholder;
+    export let label = 'Expression';
     export let value = {};
     export let onChange = noop;
 </script>
 
-{#if inputState === 'textarea'}
-    <textarea 
-        class="advanced-expression"
-        {id}
-        {name}
-        {type}
-        {placeholder}
-        value={value.val || ''}
-        on:keydown={handleKeydown}
-        on:change|preventDefault={handleChange}/>
-{:else}
-    <input 
-        class="advanced-expression"
-        {id}
-        {name}
-        {type}
-        {placeholder}
-        value={value.val || ''}
-        on:keydown={handleKeydown}
-        on:change|preventDefault={handleChange} />
-{/if}
+<div class="advanced-expression">
+    <label for="advancedExpression">{label}</label>
+    {#if value.isNotFeelinIt}
+        <span class="not-feel" use:tippy={otherLanguageTooltip}>{@html WarningSVG}</span>
+    {/if}
+
+    {#if inputState === 'textarea'}
+        <textarea 
+            {id}
+            {name}
+            {type}
+            {placeholder}
+            value={value.val || ''}
+            on:keydown={handleKeydown}
+            on:change|preventDefault={handleChange}/>
+    {:else}
+        <input 
+            {id}
+            {name}
+            {type}
+            {placeholder}
+            value={value.val || ''}
+            on:keydown={handleKeydown}
+            on:change|preventDefault={handleChange} />
+    {/if}
+</div>

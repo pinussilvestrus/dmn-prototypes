@@ -1,3 +1,22 @@
+@import "../../vars";
+
 .advanced-expression {
-    
+  label {
+    display: inline-block;
+  }
+
+  .not-feel {
+    font-size: $table-font-size;
+    float: right;
+    padding: 0.2rem 0.4rem 0 0;
+    color: $color-warning;
+
+    svg {
+      height: 0.8rem;
+    }
+  }
+
+  input, textarea {
+      display: block;
+  }
 }

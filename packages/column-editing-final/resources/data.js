@@ -34,6 +34,11 @@ export default {
         idx: 'input-header-4',
         clause: 'And',
         expression: 'Employee fills skillset',
+        advancedExpression: {
+          isMultiLine: true,
+          val: 'employeeFillsSkillset = Math.random() * 10',
+          isNotFeelinIt: true
+        },
         type: '[true, false]'
       }
     ],
