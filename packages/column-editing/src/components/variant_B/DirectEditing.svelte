@@ -134,7 +134,11 @@
     }
 
     function isInputHeader(header) {
-      return header.idx.includes('input-header');
+    
+      // todo(pinussilvestrus): remove for now
+      return false;
+    
+      // return header.idx.includes('input-header');
     }
 
 </script>
