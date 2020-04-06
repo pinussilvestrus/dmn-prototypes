@@ -4,6 +4,7 @@
     import dom from 'domtastic';
 
     import AutoCompleteInput from '../shared/AutoCompleteInput';
+    import AdvancedExpressionInput from '../shared/AdvancedExpressionInput';
 
     import './DirectEditing.scss';
 
@@ -14,7 +15,7 @@
 
     // methods //////////
 
-    function handleChange({ target }) {
+    function handleChange({ target, value }) {
       const formNode = dom(target);
 
       const {
@@ -22,7 +23,7 @@
       } = header;
 
       const updated = {
-        [formNode.attr('name')]: formNode.val()
+        [formNode.attr('name')]: value || formNode.val()
       };
 
       headerData && onUpdateHeader(headerData.idx, updated);
@@ -65,6 +66,7 @@
       }
     }
 
+
     function handleExpressionInputKeydown(event) {
 
       // Enter
@@ -79,14 +81,11 @@
         target
       } = event;
 
-      target.style.width = target.value.length + 'ch';
-    }
-
-    // todo(pinussilvestrus): can potentielly be removed
-    function handleExpressionInputKeyup({ target }) {
-      if (target.scrollHeight > target.clientHeight) {
-        target.style.height = target.scrollHeight + 'px';
+      if (dom(target).attr('name') !== 'expression') {
+        return;
       }
+
+      target.style.width = target.value.length + 'ch';
     }
 
 
@@ -160,12 +159,23 @@ display: {header.data ? 'block' : 'none'}
                     style="margin-top: {Math.round(header.expressionBbox.top - header.bBox.top - 13)}px"
                     contenteditable="true"
                     on:keydown={handleExpressionInputKeydown}
-                    on:keyup={handleExpressionInputKeyup}
                     on:change|preventDefault={handleChange} 
                     id="expression" 
                     name="expression"
                     type="text" 
                     value="{header.data.expression}" />
+            </div>
+
+            <div class="field advanced-expression-field">
+              <label for="advancedExpression">Expression</label>
+              <AdvancedExpressionInput 
+                  id="advancedExpression"
+                  name="advancedExpression"
+                  type="text"
+                  value="{header.data.advancedExpression}"
+                  onChange={handleChange}
+                  onClose={handleClose}
+              />
             </div>
     
             <div class="field type-field">
