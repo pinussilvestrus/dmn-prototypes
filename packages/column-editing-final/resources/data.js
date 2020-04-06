@@ -39,7 +39,7 @@ export default {
           val: 'employeeFillsSkillset = Math.random() * 10',
           isNotFeelinIt: true
         },
-        type: '[true, false]'
+        type: '[0, 10]'
       }
     ],
     outputHeaders: [
@@ -98,12 +98,12 @@ export default {
       },
       {
         idx: 10,
-        inputCells: ['-', '-', '-', "'Junior'", 'false'],
+        inputCells: ['-', '-', '-', "'Junior'", '? < 5'],
         outputCells: ['-50']
       },
       {
         idx: 11,
-        inputCells: ['-', '-', '-', "'Experienced', 'Senior'", 'false'],
+        inputCells: ['-', '-', '-', "'Experienced', 'Senior'", '? >= 5'],
         outputCells: ['-10']
       }
     ],
