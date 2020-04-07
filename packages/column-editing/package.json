@@ -30,6 +30,7 @@
     "lint": "eslint --ext js,svelte ."
   },
   "dependencies": {
+    "autosize": "^4.0.2",
     "domtastic": "^0.15.12",
     "min-dash": "^3.5.2",
     "sveltejs-tippy": "^3.0.0"

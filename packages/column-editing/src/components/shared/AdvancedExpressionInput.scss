@@ -21,4 +21,8 @@
     display: block;
     width: 100%;
   }
+
+  textarea {
+    min-height: 0;
+  }
 }

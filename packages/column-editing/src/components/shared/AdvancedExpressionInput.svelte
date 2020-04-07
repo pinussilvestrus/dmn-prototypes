@@ -4,6 +4,8 @@
     import tippy from 'sveltejs-tippy';
     import 'tippy.js/themes/light-border.css';
 
+    import autosize from 'autosize';
+
     import dom from 'domtastic';
 
     import './AdvancedExpressionInput.scss';
@@ -23,6 +25,13 @@
       allowHTML: true
     };
 
+    function adjustTextBoxSize() {
+      if (inputState === 'textarea') {
+        const node = getTextAreaNode()[0];
+        autosize(node);
+      }
+    }
+
     function handleKeydown(event) {
       const target = dom(event.target);
 
@@ -37,6 +46,10 @@
         isModeChanging = true;
         value.val = target.val();
       }
+    }
+
+    function handleTextBoxKeyup(event) {
+      adjustTextBoxSize();
     }
 
     function handleChange(event) {
@@ -65,9 +78,11 @@
     afterUpdate(async () => {
       if (isModeChanging) {
         isModeChanging = false;
-        const node = dom('.advanced-expression').find('textarea');
+        const node = getTextAreaNode();
         node[0].focus();
       }
+
+      adjustTextBoxSize();
     });
 
 
@@ -80,6 +95,13 @@
     export let label = 'Expression';
     export let value = {};
     export let onChange = noop;
+
+
+    // helpers //////////
+
+    function getTextAreaNode() {
+      return dom('.advanced-expression').find('textarea');
+    }
 </script>
 
 <div class="advanced-expression">
@@ -95,6 +117,7 @@
             {placeholder}
             value={value.val || ''}
             on:keydown={handleKeydown}
+            on:keyup={handleTextBoxKeyup}
             on:change|preventDefault={handleChange}/>
     {:else}
         <input 
