@@ -37,6 +37,7 @@ export default {
         advancedExpression: {
           isMultiLine: true,
           val: 'employeeFillsSkillset = Math.random() * 10',
+          expressionLanguage: 'JavaScript',
           isNotFeelinIt: true
         },
         type: '[0, 10]'

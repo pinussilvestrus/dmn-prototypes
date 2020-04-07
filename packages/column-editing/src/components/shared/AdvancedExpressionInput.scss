@@ -7,9 +7,10 @@
 
   .not-feel {
     font-size: $table-font-size;
-    float: right;
+    //float: right;
+    margin-left: 1rem;
     padding: 0.2rem 0.4rem 0 0;
-    color: $color-warning;
+    color: $color-silver-darken-80;
 
     svg {
       height: 0.8rem;
@@ -17,6 +18,7 @@
   }
 
   input, textarea {
-      display: block;
+    display: block;
+    width: 100%;
   }
 }

@@ -6,8 +6,6 @@
 
     import dom from 'domtastic';
 
-    import WarningSVG from '../../../resources/warning.svg';
-
     import './AdvancedExpressionInput.scss';
 
     
@@ -17,9 +15,12 @@
     let isModeChanging = false;
 
     const otherLanguageTooltip = {
-      content: 'This is not a FEEL expression. Other expression languages than FEEL are not recommended any more.',
+      content: 'This is not a FEEL expression. Other expression languages than FEEL are not recommended any more. <br/><br/><a>Change expression language to FEEL</a>',
       placement: 'bottom',
-      theme: 'light-border'
+      theme: 'light-border',
+      duration: 500,
+      hideOnClick: true,
+      allowHTML: true
     };
 
     function handleKeydown(event) {
@@ -82,10 +83,9 @@
 </script>
 
 <div class="advanced-expression">
-    <label for="advancedExpression">{label}</label>
-    {#if value.isNotFeelinIt}
-        <span class="not-feel" use:tippy={otherLanguageTooltip}>{@html WarningSVG}</span>
-    {/if}
+    <label for="advancedExpression">
+        {label}{#if value.isNotFeelinIt}<span class="not-feel" use:tippy={otherLanguageTooltip}> {value.expressionLanguage} (deprecated)</span>{/if}
+    </label>
 
     {#if inputState === 'textarea'}
         <textarea 
