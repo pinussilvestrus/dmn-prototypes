@@ -13,7 +13,7 @@
     
     const noop = () => {};
 
-    let inputState = 'input';
+    let inputState = 'textarea';
     let isModeChanging = false;
 
     const otherLanguageTooltip = {
