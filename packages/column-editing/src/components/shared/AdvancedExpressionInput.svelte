@@ -22,7 +22,8 @@
       theme: 'light-border',
       duration: 500,
       hideOnClick: true,
-      allowHTML: true
+      allowHTML: true,
+      interactive: true
     };
 
     function adjustTextBoxSize() {
