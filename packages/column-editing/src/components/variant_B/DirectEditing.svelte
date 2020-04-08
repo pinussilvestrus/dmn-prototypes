@@ -134,10 +134,7 @@
 
     function isInputHeader(header) {
     
-      // todo(pinussilvestrus): remove for now
-      return false;
-    
-      // return header.idx.includes('input-header');
+      return header.idx.includes('input-header');
     }
 
 </script>
@@ -166,16 +163,18 @@ display: {header.data ? 'block' : 'none'}
                     value="{header.data.expression}" />
             </div>
 
-            <div class="field advanced-expression-field">
-              <AdvancedExpressionInput 
-                  id="advancedExpression"
-                  name="advancedExpression"
-                  type="text"
-                  value="{header.data.advancedExpression}"
-                  onChange={handleChange}
-                  onClose={handleClose}
-              />
-            </div>
+            {#if isInputHeader(header.data)}
+              <div class="field advanced-expression-field">
+                <AdvancedExpressionInput 
+                    id="advancedExpression"
+                    name="advancedExpression"
+                    type="text"
+                    value="{header.data.advancedExpression}"
+                    onChange={handleChange}
+                    onClose={handleClose}
+                />
+              </div>
+            {/if}
     
             <div class="field type-field">
                 <label for="type">Allowed Values</label>
@@ -187,7 +186,7 @@ display: {header.data ? 'block' : 'none'}
                   value="{header.data.type}" />
             </div>
 
-            {#if isInputHeader(header.data)}
+            <!-- {#if isInputHeader(header.data)}
               <div class="field variable-field">
                 <label for="type">Engine Variable Name</label>
                 <input 
@@ -197,7 +196,7 @@ display: {header.data ? 'block' : 'none'}
                     type="text" 
                     value="{header.data.variable || ''}" />
               </div>
-            {/if}
+            {/if} -->
         </form>
     {/if}
     

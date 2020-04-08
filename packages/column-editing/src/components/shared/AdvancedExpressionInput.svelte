@@ -17,7 +17,7 @@
     let isModeChanging = false;
 
     const otherLanguageTooltip = {
-      content: 'This is not a FEEL expression. Other expression languages than FEEL are not recommended any more. <br/><br/><a>Change expression language to FEEL</a>',
+      content: 'This is not a FEEL expression. Other expression languages (e.g. JavaScript) are not recommended anymore. <br/><br/><a>Change expression language to FEEL</a>',
       placement: 'bottom',
       theme: 'light-border',
       duration: 500,
