@@ -17,13 +17,21 @@
     let isModeChanging = false;
 
     const otherLanguageTooltip = {
-      content: 'This is not a FEEL expression. Other expression languages (e.g. JavaScript) are not recommended anymore. <br/><br/><a>Change expression language to FEEL</a>',
+      content: null,
       placement: 'bottom',
       theme: 'light-border',
       duration: 500,
       hideOnClick: true,
       allowHTML: true,
-      interactive: true
+      interactive: true,
+    
+      // bind click handler outside of svelte scope
+      onShown: () => {
+        dom('.tippy-content').find('.convert').on('click', convertToFeel);
+      },
+      onHide: () => {
+        dom('.tippy-content').find('.convert').off('click', convertToFeel);
+      }
     };
 
     function adjustTextBoxSize() {
@@ -49,17 +57,38 @@
       }
     }
 
+    function convertToFeel() {
+      const node = inputState === 'input'
+        ? getInputNode()
+        : getTextAreaNode();
+
+      handleChange({
+        target: node[0]
+      },{
+        isNotFeelinIt: false
+      });
+
+      value = {
+        ...value,
+        isNotFeelinIt: false
+      };
+
+      const tippyInstance = getTippyInstance();
+      tippyInstance && tippyInstance.destroy();
+    }
+
     function handleTextBoxKeyup(event) {
       adjustTextBoxSize();
     }
 
-    function handleChange(event) {
+    function handleChange(event, options = {}) {
       const target = dom(event.target);
 
       const val = target.val();
 
       const newValue = {
         ...value,
+        ...options,
         val,
         isMultiLine: inputState !== 'input'
       };
@@ -74,6 +103,10 @@
 
     onMount(async () => {
       inputState = value.isMultiLine ? 'textarea' : 'input';
+
+      // set tooltip template
+      const tippyInstance = getTippyInstance();
+      tippyInstance.setContent(dom('.tooltip-template')[0].innerHTML);
     });
 
     afterUpdate(async () => {
@@ -103,6 +136,20 @@
     function getTextAreaNode() {
       return dom('.advanced-expression').find('textarea');
     }
+
+    function getInputNode() {
+      return dom('.advanced-expression').find('input');
+    }
+
+    function getTippyInstance() {
+      const notFeelNode = dom('.not-feel')[0];
+
+      if (!notFeelNode) {
+        return;
+      }
+
+      return notFeelNode._tippy;
+    }
 </script>
 
 <div class="advanced-expression">
@@ -130,4 +177,10 @@
             on:keydown={handleKeydown}
             on:change|preventDefault={handleChange} />
     {/if}
+</div>
+
+<div class="tooltip-template" style="display: none;">
+  This is not a FEEL expression. Other expression languages (e.g. JavaScript) are not recommended anymore.
+  <br/><br/>
+  <a class="convert">Change expression language to FEEL</a>
 </div>
