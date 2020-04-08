@@ -182,5 +182,5 @@
 <div class="tooltip-template" style="display: none;">
   This is not a FEEL expression. Other expression languages (e.g. JavaScript) are not recommended anymore.
   <br/><br/>
-  <a class="convert">Change expression language to FEEL</a>
+  <a class="convert" href="javascript:void()">Change expression language to FEEL</a>
 </div>
