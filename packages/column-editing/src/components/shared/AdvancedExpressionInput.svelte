@@ -106,7 +106,7 @@
 
       // set tooltip template
       const tippyInstance = getTippyInstance();
-      tippyInstance.setContent(dom('.tooltip-template')[0].innerHTML);
+      tippyInstance && tippyInstance.setContent(dom('.tooltip-template')[0].innerHTML);
     });
 
     afterUpdate(async () => {
