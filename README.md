@@ -25,7 +25,7 @@ Prototypes built via our DMN Innovation Process, Q1 & Q2 2020
 - Column Editing
     - [column-editing](./packages/column-editing)
     - [navigation-editing](./packages/navigation-editing)
-    - [column-editing](./packages/column-editing-final)
+    - [column-editing-final](./packages/column-editing-final)
 
 ## Setup
 
