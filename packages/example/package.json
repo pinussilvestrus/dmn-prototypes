@@ -11,12 +11,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "dmn-js": "^9.0.0"
+    "dmn-js": "^9.4.0"
   },
   "devDependencies": {
-    "npm-check-updates": "^7.0.1",
-    "raw-loader": "^4.0.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "npm-check-updates": "^10.2.5",
+    "raw-loader": "^4.0.2",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0"
   }
 }

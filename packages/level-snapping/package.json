@@ -22,16 +22,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "npm-check-updates": "^7.0.1",
+    "npm-check-updates": "^10.2.5",
     "npm-run-all": "^4.1.5",
     "opn-cli": "^5.0.0",
-    "raw-loader": "^4.0.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "raw-loader": "^4.0.2",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "diagram-js": "^6.6.1",
-    "dmn-js": "^9.0.0",
+    "diagram-js": "^6.8.2",
+    "dmn-js": "^9.4.0",
     "min-dash": "^3.5.2",
     "min-dom": "^3.1.3"
   }
