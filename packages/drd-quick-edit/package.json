@@ -15,7 +15,7 @@
   "dependencies": {
     "diagram-js": "^7.3.0",
     "jquery": "^3.6.0",
-    "min-dash": "^3.7.0",
+    "min-dash": "^3.8.1",
     "webpack-jquery-ui": "^2.0.1"
   },
   "devDependencies": {
