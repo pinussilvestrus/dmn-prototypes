@@ -32,7 +32,7 @@
   "dependencies": {
     "autosize": "^5.0.0",
     "domtastic": "^0.15.12",
-    "min-dash": "^3.7.0",
+    "min-dash": "^3.8.1",
     "sveltejs-tippy": "^3.0.0"
   }
 }
