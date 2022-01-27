@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "domtastic": "^0.15.12",
-    "min-dash": "^3.7.0"
+    "min-dash": "^3.8.1"
   }
 }
